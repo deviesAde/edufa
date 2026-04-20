@@ -1,5 +1,6 @@
 import Header from '@/Components/Header';
 import Hero from '@/Components/Hero';
+import ServiceCards from '@/Components/ServiceCards';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { Head } from '@inertiajs/react';
 
@@ -13,8 +14,9 @@ export default function Page() {
             <main>
                 <Hero />
 
-               
-                <div className="bg-gray-50 py-24 sm:py-32 overflow-hidden relative">
+                <ServiceCards />
+
+                <div className="bg-gray-50 py-16 sm:py-24 overflow-hidden relative">
                     <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[600px] h-[600px] bg-edufa-yellow/5 rounded-full blur-3xl"></div>
                     <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
                         <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:gap-x-16 items-start">
