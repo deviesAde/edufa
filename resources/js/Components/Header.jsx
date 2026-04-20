@@ -29,12 +29,10 @@ export default function Header() {
                             <NavLink href={route('home')} active={route().current('home')}>
                                 Home
                             </NavLink>
-                            <NavLink href="#">Cabang</NavLink>
-                            <NavLink href={route('terapis')} active={route().current('terapis')}>Terapis</NavLink>
                             <NavLink href={route('cabang')} active={route().current('cabang')}>
                                 Cabang
                             </NavLink>
-                            <NavLink href="#">Terapis</NavLink>
+                            <NavLink href={route('terapis')} active={route().current('terapis')}>Terapis</NavLink>
                             <NavLink href="#">Kegiatan</NavLink>
                             <NavLink href="#">Artikel</NavLink>
                             
@@ -123,9 +121,7 @@ export default function Header() {
         Terapis
     </Link>
     
-    <button className="block w-full border-l-4 border-transparent py-3 pl-3 pr-4 text-left text-base font-medium text-gray-600 transition duration-150 ease-in-out hover:border-edufa-yellow hover:bg-edufa-yellow/5 hover:text-gray-900">
-        Terapis
-    </button>
+
     
     <button className="block w-full border-l-4 border-transparent py-3 pl-3 pr-4 text-left text-base font-medium text-gray-600 transition duration-150 ease-in-out hover:border-edufa-yellow hover:bg-edufa-yellow/5 hover:text-gray-900">
         Kegiatan
