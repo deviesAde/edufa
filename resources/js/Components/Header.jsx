@@ -31,6 +31,10 @@ export default function Header() {
                             </NavLink>
                             <NavLink href="#">Cabang</NavLink>
                             <NavLink href={route('terapis')} active={route().current('terapis')}>Terapis</NavLink>
+                            <NavLink href={route('cabang')} active={route().current('cabang')}>
+                                Cabang
+                            </NavLink>
+                            <NavLink href="#">Terapis</NavLink>
                             <NavLink href="#">Kegiatan</NavLink>
                             <NavLink href="#">Artikel</NavLink>
                             
@@ -107,13 +111,15 @@ export default function Header() {
                     >
                         Home
                     </Link>
-                    <button className="block w-full border-l-4 border-transparent py-3 pl-3 pr-4 text-left text-base font-medium text-gray-600 transition duration-150 ease-in-out hover:border-edufa-yellow hover:bg-edufa-yellow/5 hover:text-gray-900">
+                    <Link href={route('cabang')} className={`block w-full border-l-4 py-3 pl-3 pr-4 text-left text-base transition duration-150 ease-in-out ${route().current('cabang') ? 'border-edufa-yellow font-bold text-gray-900 bg-edufa-yellow/10' : 'border-transparent font-medium text-gray-600 hover:border-edufa-yellow hover:bg-edufa-yellow/5 hover:text-gray-900'}`}>
                         Cabang
                     </button>
                     <Link
                         href={route('terapis')}
                         className={`block w-full border-l-4 py-3 pl-3 pr-4 text-left text-base transition duration-150 ease-in-out ${route().current('terapis') ? 'border-edufa-yellow font-bold text-gray-900 bg-edufa-yellow/10' : 'border-transparent font-medium text-gray-600 hover:border-edufa-yellow hover:bg-edufa-yellow/5 hover:text-gray-900'}`}
                     >
+                    </Link>
+                    <button className="block w-full border-l-4 border-transparent py-3 pl-3 pr-4 text-left text-base font-medium text-gray-600 transition duration-150 ease-in-out hover:border-edufa-yellow hover:bg-edufa-yellow/5 hover:text-gray-900">
                         Terapis
                     </Link>
                     <button className="block w-full border-l-4 border-transparent py-3 pl-3 pr-4 text-left text-base font-medium text-gray-600 transition duration-150 ease-in-out hover:border-edufa-yellow hover:bg-edufa-yellow/5 hover:text-gray-900">

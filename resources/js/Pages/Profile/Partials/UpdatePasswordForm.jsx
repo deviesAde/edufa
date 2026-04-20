@@ -47,13 +47,12 @@ export default function UpdatePasswordForm({ className = '' }) {
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">
-                    Update Password
+                <h2 className="text-xl font-black text-gray-900 tracking-tight">
+                    Perbarui Kata Sandi
                 </h2>
 
-                <p className="mt-1 text-sm text-gray-600">
-                    Ensure your account is using a long, random password to stay
-                    secure.
+                <p className="mt-1 text-sm text-gray-500 font-medium">
+                    Pastikan akun Anda menggunakan kata sandi yang panjang dan acak untuk menjaga keamanan.
                 </p>
             </header>
 
@@ -122,7 +121,12 @@ export default function UpdatePasswordForm({ className = '' }) {
                 </div>
 
                 <div className="flex items-center gap-4">
-                    <PrimaryButton disabled={processing}>Save</PrimaryButton>
+                    <button 
+                        disabled={processing}
+                        className="inline-flex items-center px-8 py-3 bg-edufa-blue border border-transparent rounded-xl font-bold text-sm text-white uppercase tracking-widest hover:bg-edufa-blue/90 focus:bg-edufa-blue/90 active:bg-edufa-blue/90 focus:outline-none focus:ring-2 focus:ring-edufa-blue focus:ring-offset-2 transition ease-in-out duration-150 disabled:opacity-50 shadow-lg shadow-edufa-blue/20"
+                    >
+                        Simpan Sandi Baru
+                    </button>
 
                     <Transition
                         show={recentlySuccessful}
@@ -131,8 +135,8 @@ export default function UpdatePasswordForm({ className = '' }) {
                         leave="transition ease-in-out"
                         leaveTo="opacity-0"
                     >
-                        <p className="text-sm text-gray-600">
-                            Saved.
+                        <p className="text-sm text-green-600 font-bold">
+                            Tersimpan.
                         </p>
                     </Transition>
                 </div>

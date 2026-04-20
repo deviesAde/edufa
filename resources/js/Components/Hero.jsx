@@ -36,7 +36,7 @@ export default function Hero() {
                 <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-4xl">
                     <div className="flex items-center space-x-6 mb-8">
                         <span className="rounded-full bg-edufa-blue px-4 py-1.5 text-xs font-black uppercase tracking-[0.2em] text-white shadow-lg shadow-edufa-blue/30">
-                            EDUfa Centre
+                            EDUFA MELAYANI DENGAN HATI 
                         </span>
                         <span className="h-0.5 w-12 bg-edufa-yellow animate-width-grow"></span>
                         <span className="text-[10px] font-bold text-white uppercase tracking-widest drop-shadow-sm">
