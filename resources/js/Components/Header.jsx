@@ -6,6 +6,7 @@ import { Link } from '@inertiajs/react';
 
 export default function Header() {
     const [showingNavigationMenu, setShowingNavigationMenu] = useState(false);
+    const [showingPelayananMenu, setShowingPelayananMenu] = useState(false);
 
     const waLink = "https://wa.me/6281234567890?text=Halo%20EDUfa,%20saya%20ingin%20konsultasi%20dan%20daftar";
 
@@ -28,6 +29,8 @@ export default function Header() {
                             <NavLink href={route('home')} active={route().current('home')}>
                                 Home
                             </NavLink>
+                            <NavLink href="#">Cabang</NavLink>
+                            <NavLink href={route('terapis')} active={route().current('terapis')}>Terapis</NavLink>
                             <NavLink href={route('cabang')} active={route().current('cabang')}>
                                 Cabang
                             </NavLink>
@@ -35,20 +38,25 @@ export default function Header() {
                             <NavLink href="#">Kegiatan</NavLink>
                             <NavLink href="#">Artikel</NavLink>
                             
-                            {/* Dropdown for Pelatihan */}
+                            {/* Dropdown for Pelayanan */}
                             <div className="inline-flex items-center">
                                 <Dropdown>
                                     <Dropdown.Trigger>
                                         <button className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-semibold leading-5 text-gray-500 transition duration-150 ease-in-out hover:border-edufa-yellow hover:text-gray-900 focus:outline-none">
-                                            Pelatihan
+                                            Pelayanan
                                             <svg className="ml-1 h-4 w-4 fill-current text-edufa-blue" viewBox="0 0 20 20">
                                                 <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                                             </svg>
                                         </button>
                                     </Dropdown.Trigger>
-                                    <Dropdown.Content width="48">
-                                        <Dropdown.Link href="#" className="hover:bg-edufa-yellow/10 font-medium">Pelatihan ABA</Dropdown.Link>
-                                        <Dropdown.Link href="#" className="hover:bg-edufa-yellow/10 font-medium">Pelatihan ABA Surabaya</Dropdown.Link>
+                                    <Dropdown.Content contentClasses="w-64 bg-white py-1">
+                                        <Dropdown.Link href={route('pelayanan.asesmen')} className="hover:bg-edufa-blue hover:text-white font-medium transition-colors">Asesmen Psikologi</Dropdown.Link>
+                                        <Dropdown.Link href={route('pelayanan.pelatihan')} className="hover:bg-edufa-blue hover:text-white font-medium transition-colors">Pelatihan</Dropdown.Link>
+                                        <Dropdown.Link href={route('pelayanan.konseling')} className="hover:bg-edufa-blue hover:text-white font-medium transition-colors">Konseling</Dropdown.Link>
+                                        <Dropdown.Link href={route('pelayanan.terapi')} className="hover:bg-edufa-blue hover:text-white font-medium transition-colors">Terapi</Dropdown.Link>
+                                        <Dropdown.Link href={route('pelayanan.paud')} className="hover:bg-edufa-blue hover:text-white font-medium transition-colors">PAUD EDUfa Kids</Dropdown.Link>
+                                        <Dropdown.Link href={route('pelayanan.pendampingan')} className="hover:bg-edufa-blue hover:text-white font-medium transition-colors">Pendampingan ABK di Sekolah</Dropdown.Link>
+                                        <Dropdown.Link href={route('pelayanan.balai')} className="hover:bg-edufa-blue hover:text-white font-medium transition-colors">Balai Latihan Kerja dan Kehidupan</Dropdown.Link>
                                     </Dropdown.Content>
                                 </Dropdown>
                             </div>
@@ -99,16 +107,21 @@ export default function Header() {
                 <div className="space-y-1 pb-3 pt-2">
                     <Link
                         href={route('home')}
-                        className="block w-full border-l-4 border-edufa-yellow py-3 pl-3 pr-4 text-left text-base font-bold text-gray-900 bg-edufa-yellow/10 transition duration-150 ease-in-out"
+                        className={`block w-full border-l-4 py-3 pl-3 pr-4 text-left text-base transition duration-150 ease-in-out ${route().current('home') ? 'border-edufa-yellow font-bold text-gray-900 bg-edufa-yellow/10' : 'border-transparent font-medium text-gray-600 hover:border-edufa-yellow hover:bg-edufa-yellow/5 hover:text-gray-900'}`}
                     >
                         Home
                     </Link>
                     <Link href={route('cabang')} className={`block w-full border-l-4 py-3 pl-3 pr-4 text-left text-base transition duration-150 ease-in-out ${route().current('cabang') ? 'border-edufa-yellow font-bold text-gray-900 bg-edufa-yellow/10' : 'border-transparent font-medium text-gray-600 hover:border-edufa-yellow hover:bg-edufa-yellow/5 hover:text-gray-900'}`}>
                         Cabang
+                    </button>
+                    <Link
+                        href={route('terapis')}
+                        className={`block w-full border-l-4 py-3 pl-3 pr-4 text-left text-base transition duration-150 ease-in-out ${route().current('terapis') ? 'border-edufa-yellow font-bold text-gray-900 bg-edufa-yellow/10' : 'border-transparent font-medium text-gray-600 hover:border-edufa-yellow hover:bg-edufa-yellow/5 hover:text-gray-900'}`}
+                    >
                     </Link>
                     <button className="block w-full border-l-4 border-transparent py-3 pl-3 pr-4 text-left text-base font-medium text-gray-600 transition duration-150 ease-in-out hover:border-edufa-yellow hover:bg-edufa-yellow/5 hover:text-gray-900">
                         Terapis
-                    </button>
+                    </Link>
                     <button className="block w-full border-l-4 border-transparent py-3 pl-3 pr-4 text-left text-base font-medium text-gray-600 transition duration-150 ease-in-out hover:border-edufa-yellow hover:bg-edufa-yellow/5 hover:text-gray-900">
                         Kegiatan
                     </button>
@@ -116,10 +129,25 @@ export default function Header() {
                         Artikel
                     </button>
                     
-                    <div className="bg-gray-50 py-2">
-                        <div className="px-3 py-1 text-xs font-bold text-edufa-blue uppercase tracking-widest">Pelatihan</div>
-                        <Link href="#" className="block py-3 pl-6 pr-4 text-sm font-medium text-gray-600 hover:bg-edufa-yellow/5 hover:text-gray-900 transition-colors">Pelatihan ABA</Link>
-                        <Link href="#" className="block py-3 pl-6 pr-4 text-sm font-medium text-gray-600 hover:bg-edufa-yellow/5 hover:text-gray-900 transition-colors">Pelatihan ABA Surabaya</Link>
+                    <div className="bg-gray-50 py-2 border-y border-gray-100">
+                        <button 
+                            onClick={() => setShowingPelayananMenu(!showingPelayananMenu)}
+                            className="w-full flex items-center justify-between px-4 py-2 text-left hover:bg-gray-100 transition-colors"
+                        >
+                            <span className="text-sm font-bold text-edufa-blue uppercase tracking-widest">Pelayanan</span>
+                            <svg className={`h-5 w-5 text-edufa-blue transition-transform duration-200 ${showingPelayananMenu ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div className={`overflow-hidden transition-all duration-300 ease-in-out ${showingPelayananMenu ? 'max-h-[500px] opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
+                            <Link href={route('pelayanan.asesmen')} className="block py-3 pl-8 pr-4 text-sm font-medium text-gray-600 hover:bg-edufa-blue hover:text-white transition-colors">Asesmen Psikologi</Link>
+                            <Link href={route('pelayanan.pelatihan')} className="block py-3 pl-8 pr-4 text-sm font-medium text-gray-600 hover:bg-edufa-blue hover:text-white transition-colors">Pelatihan</Link>
+                            <Link href={route('pelayanan.konseling')} className="block py-3 pl-8 pr-4 text-sm font-medium text-gray-600 hover:bg-edufa-blue hover:text-white transition-colors">Konseling</Link>
+                            <Link href={route('pelayanan.terapi')} className="block py-3 pl-8 pr-4 text-sm font-medium text-gray-600 hover:bg-edufa-blue hover:text-white transition-colors">Terapi</Link>
+                            <Link href={route('pelayanan.paud')} className="block py-3 pl-8 pr-4 text-sm font-medium text-gray-600 hover:bg-edufa-blue hover:text-white transition-colors">PAUD EDUfa Kids</Link>
+                            <Link href={route('pelayanan.pendampingan')} className="block py-3 pl-8 pr-4 text-sm font-medium text-gray-600 hover:bg-edufa-blue hover:text-white transition-colors">Pendampingan ABK di Sekolah</Link>
+                            <Link href={route('pelayanan.balai')} className="block py-3 pl-8 pr-4 text-sm font-medium text-gray-600 hover:bg-edufa-blue hover:text-white transition-colors">Balai Latihan Kerja dan Kehidupan</Link>
+                        </div>
                     </div>
 
                     <div className="border-t border-gray-100 pt-4 pb-1 px-4 text-center">
