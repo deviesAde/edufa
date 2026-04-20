@@ -15,6 +15,14 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                edufa: {
+                    blue: '#0f59bc',
+                    yellow: '#ffd900',
+                    green: '#6cc02f',
+                    red: '#ff0000',
+                },
+            },
         },
     },
 
