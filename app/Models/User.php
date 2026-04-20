@@ -30,7 +30,17 @@ class User extends Authenticatable
         ];
     }
     public function isAdmin(): bool
-{
-    return $this->role === 'admin';
-}
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isEditor(): bool
+    {
+        return $this->role === 'editor';
+    }
+
+    public function canAccessAdmin(): bool
+    {
+        return in_array($this->role, ['admin', 'editor']);
+    }
 }

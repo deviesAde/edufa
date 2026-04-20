@@ -13,12 +13,12 @@ class AdminOnly
      *
      * @param  Closure(Request): (Response)  $next
      */
-   public function handle($request, Closure $next)
-{
-    if (!auth()->check() || auth()->user()->role !== 'admin') {
-        abort(403);
-    }
+    public function handle($request, Closure $next)
+    {
+        if (!auth()->check() || !auth()->user()->canAccessAdmin()) {
+            abort(403);
+        }
 
-    return $next($request);
-}
+        return $next($request);
+    }
 }
