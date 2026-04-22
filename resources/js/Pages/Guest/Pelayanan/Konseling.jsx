@@ -13,7 +13,7 @@ export default function Konseling() {
 
             <main className="pt-20 pb-0">
                 {/* Hero Section */}
-                <div className="relative bg-edufa-blue py-20 lg:py-28 overflow-hidden rounded-b-[3rem] shadow-sm">
+                <div className="relative bg-edufa-blue py-10 lg:py-16 overflow-hidden rounded-b-[2rem] sm:rounded-b-[3rem] shadow-sm">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-edufa-yellow/10 rounded-full blur-[100px] pointer-events-none"></div>
                     <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
                     
@@ -23,7 +23,7 @@ export default function Konseling() {
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.5 }}
-                                className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm text-edufa-yellow text-sm font-bold tracking-widest uppercase"
+                                className="inline-flex items-center justify-center px-4 py-1.5 mb-4 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm text-edufa-yellow text-sm font-bold tracking-widest uppercase"
                             >
                                 Pelayanan Kami
                             </motion.div>
@@ -31,19 +31,19 @@ export default function Konseling() {
                                 initial={{ opacity: 0, y: -20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: 0.1 }}
-                                className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl text-balance"
+                                className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl text-balance"
                             >
                                 Layanan <br className="hidden sm:block" />
-                                <span className="text-edufa-yellow relative inline-block mt-2">
+                                <span className="text-edufa-yellow relative inline-block mt-1 sm:mt-2">
                                     Konseling
-                                    <div className="absolute -bottom-2 left-0 w-full h-2 bg-edufa-yellow/30 rounded-full"></div>
+                                    <div className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-1.5 sm:h-2 bg-edufa-yellow/30 rounded-full"></div>
                                 </span>
                             </motion.h1>
                             <motion.p 
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: 0.2 }}
-                                className="mt-8 text-lg sm:text-xl leading-8 text-blue-50 text-balance"
+                                className="mt-4 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-8 text-blue-50 text-balance"
                             >
                                 Pendampingan dan sesi diskusi tatap muka bersama psikolog profesional untuk mencari solusi dari berbagai tantangan psikologis.
                             </motion.p>
@@ -60,20 +60,26 @@ export default function Konseling() {
                             viewport={{ once: true }}
                             transition={{ duration: 0.8 }}
                         >
-                            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-6">Ruang Aman untuk Bercerita & Bertumbuh</h2>
-                            <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                                Sesi konseling di EDUfa Centre memberikan ruang yang aman, konfidensial, dan suportif. Psikolog kami akan membantu Anda mengidentifikasi akar masalah, mengelola emosi, serta menyusun strategi coping yang sehat.
+                            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-6">Mengenal Layanan Konseling</h2>
+                            <p className="text-lg text-gray-600 mb-4 leading-relaxed text-justify">
+                                Jasa konseling diberikan kepada individu yang membutuhkan bantuan untuk membantu dirinya sendiri dalam menyelesaikan masalah psikologis yang ada.
                             </p>
+                            <p className="text-lg text-gray-600 mb-4 leading-relaxed text-justify">
+                                Jasa konseling diberikan sesuai dengan perjanjian terlebih dahulu dan dilakukan dengan perjanjian dengan waktu yang mengikat.
+                            </p>
+                            <p className="text-lg text-gray-600 mb-6 leading-relaxed text-justify">
+                                Layanan konseling hanya tersedia di biro psikologi di daerah tertentu.
+                            </p>
+                            <h3 className="text-xl font-semibold text-gray-900 mb-4">Layanan Konseling :</h3>
                             <ul className="space-y-4 mb-8">
                                 {[
-                                    "Konseling Anak & Remaja",
-                                    "Konseling Orang Tua (Parenting)",
-                                    "Konseling Perkawinan & Keluarga",
-                                    "Konseling Karir & Dewasa"
+                                    "Konseling Individu",
+                                    "Mekanisme Perjanjian",
+                                    "Ketersediaan Layanan"
                                 ].map((item, index) => (
                                     <li key={index} className="flex items-center gap-3">
                                         <div className="w-8 h-8 rounded-full bg-edufa-yellow/20 flex items-center justify-center flex-shrink-0">
-                                            <svg className="w-5 h-5 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                            <svg className="w-5 h-5 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
                                         </div>
                                         <span className="text-gray-800 font-medium">{item}</span>
                                     </li>
