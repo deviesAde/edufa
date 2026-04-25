@@ -144,7 +144,7 @@ export default function Page({ branches }) {
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 items-center">
 
                             {/* Left Text Detail */}
-                            <div className="lg:col-span-6 relative">
+                            <div className="lg:col-span-5 relative">
                                 <h2 className="text-sm font-black leading-7 text-edufa-yellow uppercase tracking-[0.2em] mb-4">
                                     Alasan Memilih Kami
                                 </h2>
