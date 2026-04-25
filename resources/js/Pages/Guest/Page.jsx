@@ -3,13 +3,32 @@ import Hero from '@/Components/Hero';
 import ServiceCards from '@/Components/ServiceCards';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import BranchSection from '@/Components/BranchSection';
-import { Head } from '@inertiajs/react';
+import SEO from '@/Components/SEO';
 
 export default function Page({ branches }) {
+    // const schema = {
+    //     "@context": "https://schema.org",
+    //     "@type": "LocalBusiness",
+    //     "name": "EDUfa Centre",
+    //     "image": "https://edufa.com/hero/logo.png",
+    //     "@id": "https://edufa.com",
+    //     "url": "https://edufa.com",
+    //     "address": {
+    //         "@type": "PostalAddress",
+    //         "addressLocality": "Bandung",
+    //         "addressRegion": "Jawa Barat",
+    //         "addressCountry": "ID"
+    //     }
+    // };
+
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased">
-            <Head title="Biro Psikologi & Pusat Layanan Terapi EDUfa" />
-            
+            <SEO
+                title="Beranda"
+                description="EDUfa Centre adalah Biro Psikologi & Pusat Layanan Terapi di Bandung. Kami melayani asesmen psikologi, pelatihan, konseling, dan terapi ABK."
+                // schema={schema}
+            />
+
             <Header />
 
             <main>
@@ -17,7 +36,7 @@ export default function Page({ branches }) {
 
                 <ServiceCards />
 
-                
+
                 <div className="bg-white py-24 sm:py-32 overflow-hidden relative">
                     {/* Decorative Background Elements */}
                     <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[800px] h-[800px] bg-edufa-yellow/5 rounded-full blur-3xl pointer-events-none"></div>
@@ -45,9 +64,9 @@ export default function Page({ branches }) {
                             {/* Salamanca Card */}
                             <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-2xl shadow-gray-200/40 ring-1 ring-gray-900/5 group hover:-translate-y-2 transition-transform duration-500 relative overflow-hidden flex flex-col justify-between">
                                 <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
-                                    <svg className="w-32 h-32 text-edufa-blue" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72l5 2.73 5-2.73v3.72z"/></svg>
+                                    <svg className="w-32 h-32 text-edufa-blue" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72l5 2.73 5-2.73v3.72z" /></svg>
                                 </div>
-                                
+
                                 <div className="relative z-10 mb-8">
                                     <div className="w-16 h-16 rounded-2xl bg-edufa-blue/10 flex items-center justify-center mb-8">
                                         <svg className="w-8 h-8 text-edufa-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l9-5-9-5-9 5 9 5z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" /></svg>
@@ -59,7 +78,7 @@ export default function Page({ branches }) {
                                         Fokus pada menyediakan <span className="font-bold text-edufa-blue">pendidikan inklusi</span> untuk semua anak.
                                     </p>
                                 </div>
-                                
+
                                 <div className="pt-6 border-t border-gray-100 relative z-10">
                                     <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Nomor Akte Yayasan</p>
                                     <p className="text-sm font-mono text-edufa-blue font-bold">AHU-AH.01.06-0040306</p>
@@ -69,7 +88,7 @@ export default function Page({ branches }) {
                             {/* Counseling Card */}
                             <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-2xl shadow-gray-200/40 ring-1 ring-gray-900/5 group hover:-translate-y-2 transition-transform duration-500 relative overflow-hidden flex flex-col justify-between">
                                 <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
-                                    <svg className="w-32 h-32 text-edufa-yellow" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                                    <svg className="w-32 h-32 text-edufa-yellow" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" /></svg>
                                 </div>
 
                                 <div className="relative z-10 mb-8">
@@ -83,7 +102,7 @@ export default function Page({ branches }) {
                                         Fokus pada membantu <span className="font-bold text-amber-600">mengembangkan potensi</span> anak / peserta didik / tenaga kerja secara optimal.
                                     </p>
                                 </div>
-                                    
+
                                 <div className="pt-6 border-t border-gray-100 relative z-10">
                                     <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">SIPP No</p>
                                     <p className="text-sm font-mono text-amber-600 font-bold">201220017-2025-04-0720</p>
@@ -95,10 +114,10 @@ export default function Page({ branches }) {
                         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-6 relative overflow-visible mt-20">
                             <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white flex items-center justify-center flex-none ring-4 ring-white shadow-xl relative z-20 overflow-hidden">
                                 <div className="flex items-center justify-center w-full h-full bg-gradient-to-tr from-edufa-blue/20 to-edufa-yellow/20">
-                                     <svg className="w-12 h-12 text-edufa-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                                    <svg className="w-12 h-12 text-edufa-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
                                 </div>
                             </div>
-                            
+
                             <div className="text-center md:text-left relative z-10 flex-1 bg-gray-900 rounded-3xl p-6 md:p-8 md:-ml-12 shadow-xl shadow-gray-900/10 w-full pl-6 md:pl-16">
                                 <div className="inline-flex flex-wrap gap-2 items-center justify-center md:justify-start mb-3">
                                     <span className="text-[10px] font-bold text-white uppercase tracking-widest bg-edufa-blue/80 px-2 py-0.5 rounded border border-edufa-blue">
@@ -120,26 +139,26 @@ export default function Page({ branches }) {
                 <div className="bg-edufa-blue py-24 sm:py-32 relative overflow-hidden">
                     <div className="absolute -bottom-1/2 left-1/2 -translate-x-1/2 w-full max-w-5xl h-96 bg-edufa-yellow/10 blur-[120px] rounded-full pointer-events-none"></div>
                     <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 blur-[100px] rounded-full pointer-events-none"></div>
-                    
+
                     <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 items-center">
-                            
+
                             {/* Left Text Detail */}
                             <div className="lg:col-span-5 relative">
                                 <h2 className="text-sm font-black leading-7 text-edufa-yellow uppercase tracking-[0.2em] mb-4">
                                     Alasan Memilih Kami
                                 </h2>
-                                
+
                                 <h3 className="text-3xl font-black tracking-tight text-white sm:text-4xl lg:text-5xl mb-8 leading-[1.1]">
                                     Keunggulan Kami
                                 </h3>
 
                                 <div className="mb-10 inline-block relative group">
                                     <div className="bg-edufa-yellow rounded-[2rem] shadow-2xl p-6 md:p-8 relative z-10 group-hover:-translate-y-2 group-hover:shadow-edufa-yellow/30 transition-all duration-300">
-                                        <ApplicationLogo/>
+                                        <ApplicationLogo />
                                     </div>
                                 </div>
-                                
+
                                 <div className="text-lg leading-relaxed text-blue-100 space-y-6">
                                     <p>
                                         <strong className="text-white font-bold">Layanan yang lengkap, terintegrasi, dan berkelanjutan.</strong> EDUfa tidak hanya memberikan asesmen dan terapi, tetapi juga mendukung proses perkembangan melalui pelatihan, konseling, PAUD transisi, pendampingan ABK di sekolah, hingga program kemandirian melalui Balai Latihan Kerja dan Kehidupan untuk remaja dan dewasa.
@@ -152,7 +171,7 @@ export default function Page({ branches }) {
                                     </p>
                                 </div>
                             </div>
-                            
+
                             {/* Right Grid Icons */}
                             <div className="lg:col-span-7">
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
@@ -175,7 +194,7 @@ export default function Page({ branches }) {
                         </div>
                     </div>
                 </div>
-                
+
                 <BranchSection branches={branches} />
 
             </main>

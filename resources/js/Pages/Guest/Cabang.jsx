@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Head } from '@inertiajs/react';
+import SEO from '@/Components/SEO';
 import Header from '@/Components/Header';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { LeafletMap } from '@/Components/ui/LeafletMap';
@@ -71,7 +71,10 @@ export default function Cabang({ branches = [] }) {
 
     return (
         <div className="min-h-screen bg-gray-50 font-sans text-gray-900 antialiased selection:bg-edufa-yellow/30">
-            <Head title="Cabang Kami - Biografi & Peta | EDUfa Centre" />
+            <SEO 
+                title="Cabang Kami - Lokasi & Peta" 
+                description="Temukan cabang terdekat EDUfa Centre di kota Anda. Dengan puluhan jaringan kantor cabang, kami hadir lebih dekat untuk mendampingi keluarga Anda."
+            />
             
             <Header />
 

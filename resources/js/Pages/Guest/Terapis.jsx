@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Head } from '@inertiajs/react';
+import SEO from '@/Components/SEO';
 import Header from '@/Components/Header';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -49,7 +49,10 @@ export default function Terapis() {
 
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased overflow-hidden">
-            <Head title="Tim Terapis & Staf - EDUfa Centre" />
+            <SEO 
+                title="Tim Terapis & Staf" 
+                description="Mengenal lebih dekat tim terapis profesional dan staf manajemen yang berdedikasi tinggi di EDUfa Centre."
+            />
             
             <Header />
 
