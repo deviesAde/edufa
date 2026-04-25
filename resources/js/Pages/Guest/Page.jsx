@@ -125,7 +125,7 @@ export default function Page({ branches }) {
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 items-center">
                             
                             {/* Left Text Detail */}
-                            <div className="lg:col-span-5 relative">
+                            <div className="lg:col-span-6 relative">
                                 <h2 className="text-sm font-black leading-7 text-edufa-yellow uppercase tracking-[0.2em] mb-4">
                                     Alasan Memilih Kami
                                 </h2>
@@ -135,40 +135,81 @@ export default function Page({ branches }) {
                                 </h3>
 
                                 <div className="mb-10 inline-block relative group">
-                                    <div className="bg-edufa-yellow rounded-[2rem] shadow-2xl p-6 md:p-8 relative z-10 group-hover:-translate-y-2 group-hover:shadow-edufa-yellow/30 transition-all duration-300">
-                                        <ApplicationLogo/>
+                                    <div className="bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10 shadow-2xl p-6 md:p-8 relative z-10 group-hover:-translate-y-2 transition-all duration-300">
+                                        <img src="/logo.png" alt="EDUfa Logo" className="h-16 md:h-20 w-auto object-contain drop-shadow-lg brightness-0 invert" />
                                     </div>
                                 </div>
                                 
-                                <div className="text-lg leading-relaxed text-blue-100 space-y-6">
+                                <div className="text-lg leading-relaxed text-blue-100">
                                     <p>
-                                        <strong className="text-white font-bold">Layanan yang lengkap, terintegrasi, dan berkelanjutan.</strong> EDUfa tidak hanya memberikan asesmen dan terapi, tetapi juga mendukung proses perkembangan melalui pelatihan, konseling, PAUD transisi, pendampingan ABK di sekolah, hingga program kemandirian melalui Balai Latihan Kerja dan Kehidupan untuk remaja dan dewasa.
-                                    </p>
-                                    <p>
-                                        EDUfa didukung oleh tenaga profesional yang kompeten dan kredibel, pendekatan yang terstruktur, dan jaringan cabang di berbagai kota.
-                                    </p>
-                                    <p>
-                                        EDUfa hadir sebagai mitra orang tua, pendidik, dan institusi dalam mengembangkan potensi anak dan peserta didik secara optimal.
+                                        EDUfa hadir sebagai mitra terpercaya dengan <strong className="text-white font-bold">layanan yang lengkap dan terintegrasi</strong>. Didukung oleh tenaga profesional yang kompeten, kami siap membantu mengembangkan potensi setiap anak secara optimal.
                                     </p>
                                 </div>
                             </div>
                             
-                            {/* Right Grid Icons */}
-                            <div className="lg:col-span-7">
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                            {/* Right Side: Features & Gallery */}
+                            <div className="lg:col-span-6 flex flex-col gap-6 md:gap-8">
+                                {/* 4 Small Icons */}
+                                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
                                     {[
                                         { title: "Layanan Lengkap", icon: "M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" },
-                                        { title: "Jangkauan Luas & Nyaman", icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" },
-                                        { title: "SDM Profesional", icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" },
-                                        { title: "Pendekatan Terstruktur", icon: "M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" }
+                                        { title: "Jangkauan Luas", icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" },
+                                        { title: "Profesional", icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" },
+                                        { title: "Terstruktur", icon: "M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" }
                                     ].map((item, index) => (
-                                        <div key={index} className="flex flex-row sm:flex-col items-center sm:items-start p-6 bg-white/5 backdrop-blur-sm rounded-[2rem] border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all group">
-                                            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-edufa-yellow/10 flex items-center justify-center mb-0 sm:mb-6 mr-6 sm:mr-0 ring-1 ring-edufa-yellow/30 group-hover:scale-110 group-hover:bg-edufa-yellow/20 transition-all duration-300 flex-none">
-                                                <svg className="w-7 h-7 sm:w-8 sm:h-8 text-edufa-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24" dangerouslySetInnerHTML={{ __html: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="${item.icon}" />` }} />
+                                        <div key={index} className="flex flex-col items-center justify-center p-4 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all group text-center">
+                                            <div className="w-12 h-12 rounded-xl bg-edufa-yellow/10 flex items-center justify-center mb-3 ring-1 ring-edufa-yellow/30 group-hover:scale-110 group-hover:bg-edufa-yellow/20 transition-all duration-300">
+                                                <svg className="w-6 h-6 text-edufa-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24" dangerouslySetInnerHTML={{ __html: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="${item.icon}" />` }} />
                                             </div>
-                                            <h3 className="text-xl font-bold text-white leading-tight">{item.title}</h3>
+                                            <h3 className="text-sm font-bold text-white leading-tight">{item.title}</h3>
                                         </div>
                                     ))}
+                                </div>
+
+                                {/* 7 Images Gallery (Auto Slider) */}
+                                <div className="relative w-full h-56 sm:h-72 md:h-[340px] overflow-hidden rounded-[2rem] bg-white/5 border border-white/10 group mt-auto">
+                                    <style dangerouslySetInnerHTML={{__html: `
+                                        @keyframes slideGaleri {
+                                            0% { transform: translateX(0); }
+                                            100% { transform: translateX(-50%); }
+                                        }
+                                        .animate-slide-galeri {
+                                            animation: slideGaleri 35s linear infinite;
+                                        }
+                                        .group:hover .animate-slide-galeri {
+                                            animation-play-state: paused;
+                                        }
+                                    `}} />
+                                    {/* Gradient edges for smooth fade */}
+                                    <div className="absolute inset-y-0 left-0 w-16 sm:w-28 bg-gradient-to-r from-edufa-blue to-transparent z-10 pointer-events-none rounded-l-[2rem]"></div>
+                                    <div className="absolute inset-y-0 right-0 w-16 sm:w-28 bg-gradient-to-l from-edufa-blue to-transparent z-10 pointer-events-none rounded-r-[2rem]"></div>
+                                    
+                                    {(() => {
+                                        const images = [
+                                            { src: "/images/Salinan IMG_0871.jpg", alt: "Kegiatan Terapi 1" },
+                                            { src: "/images/Salinan IMG_0899.jpg", alt: "Kegiatan Terapi 2" },
+                                            { src: "/images/Salinan IMG_0981.jpg", alt: "Kegiatan Terapi 3" },
+                                            { src: "/images/Salinan IMG_1025.jpg", alt: "Kegiatan Terapi 4" },
+                                            { src: "/images/Salinan IMG_1295.jpg", alt: "Kegiatan Terapi 5" },
+                                            { src: "/images/IMG_4822.jpg", alt: "Kegiatan EDUfa 6" },
+                                        ];
+                                        return (
+                                            <div className="flex h-full w-max animate-slide-galeri items-center py-4">
+                                                {[...images, ...images].map((img, i) => (
+                                                    <div key={i} className="h-full w-[240px] sm:w-[320px] md:w-[380px] flex-shrink-0 px-2 sm:px-3">
+                                                        <div className="w-full h-full rounded-2xl overflow-hidden relative shadow-lg group/item">
+                                                            <div className="absolute inset-0 bg-edufa-blue/20 mix-blend-multiply group-hover/item:bg-transparent transition-all duration-300 z-10"></div>
+                                                            <img 
+                                                                src={img.src}
+                                                                alt={img.alt}
+                                                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-110"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        );
+                                    })()}
                                 </div>
                             </div>
 

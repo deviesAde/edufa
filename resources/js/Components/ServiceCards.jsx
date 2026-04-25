@@ -4,7 +4,7 @@ import { RevealCardContainer } from '@/Components/ui/animated-profile-card';
 
 const services = [
     {
-        title: "ASESMEN",
+        title: "ASESMEN PSIKOLOGI",
         description: "Evaluasi psikologis & diagnostik",
         icon: (
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -12,8 +12,8 @@ const services = [
             </svg>
         ),
         accentColor: "#0f59bc", 
-        textColor: "text-edufa-blue",
-        lightBg: "bg-edufa-blue/5",
+        textColor: "text-white",
+        lightBg: "bg-edufa-blue",
     },
     {
         title: "TERAPI",
@@ -24,8 +24,8 @@ const services = [
             </svg>
         ),
         accentColor: "#ffd900", // edufa-yellow
-        textColor: "text-amber-600",
-        lightBg: "bg-amber-50",
+        textColor: "text-gray-900",
+        lightBg: "bg-amber-400",
     },
     {
         title: "PELATIHAN",
@@ -36,8 +36,8 @@ const services = [
             </svg>
         ),
         accentColor: "#6cc02f", // edufa-green
-        textColor: "text-edufa-green",
-        lightBg: "bg-edufa-green/5",
+        textColor: "text-white",
+        lightBg: "bg-edufa-green",
     },
     {
         title: "PAUD",
@@ -48,32 +48,67 @@ const services = [
             </svg>
         ),
         accentColor: "#ff0000", // edufa-red
-        textColor: "text-edufa-red",
-        lightBg: "bg-edufa-red/5",
+        textColor: "text-white",
+        lightBg: "bg-edufa-red",
+    },
+    {
+        title: "KONSELING",
+        description: "Layanan konseling profesional",
+        icon: (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+        ),
+        accentColor: "#9333ea", // purple-600
+        textColor: "text-white",
+        lightBg: "bg-purple-600",
+    },
+    {
+        title: "PENDAMPINGAN ABK DI SEKOLAH",
+        description: "Dukungan pendidikan inklusif",
+        icon: (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+        ),
+        accentColor: "#ea580c", // orange-600
+        textColor: "text-white",
+        lightBg: "bg-orange-500",
+    },
+    {
+        title: "BALAI LATIHAN KERJA & KEHIDUPAN",
+        description: "Keterampilan kerja dan mandiri",
+        icon: (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+        ),
+        accentColor: "#0d9488", // teal-600
+        textColor: "text-white",
+        lightBg: "bg-teal-600",
     }
 ];
 
 const ServiceCardBody = ({ service, isAccent = false }) => {
 
-    const isYellow = isAccent && service.title === "TERAPI";
-    const titleColor = isYellow ? "text-gray-900" : (isAccent ? "text-white" : "text-gray-900");
-    const descColor = isYellow ? "text-gray-800" : (isAccent ? "text-white/90" : "text-gray-600");
-    const iconBg = isYellow ? "bg-black/10 text-gray-900" : (isAccent ? "bg-white/20 text-white" : cn(service.lightBg, service.textColor));
+    const titleColor = isAccent ? "text-white" : "text-gray-900";
+    const descColor = isAccent ? "text-white/90" : "text-gray-600";
+    const iconBg = isAccent ? "bg-white/20 text-white" : cn(service.lightBg, service.textColor);
 
     return (
         <div className={cn(
-            "flex flex-col h-full p-6",
+            "flex flex-col h-full p-5",
             isAccent ? "bg-[var(--accent-color)] text-[var(--on-accent-foreground)]" : "bg-white text-gray-900",
         )}>
-            <div className="flex flex-col items-start gap-4 mb-3">
+            <div className="flex flex-col items-start gap-3 mb-2">
                 <div className={cn(
-                    "p-3 rounded-xl transition-colors duration-300",
+                    "w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-300",
                     iconBg
                 )}>
                     {service.icon}
                 </div>
                 <h3 className={cn(
-                    "text-lg font-bold tracking-tight",
+                    "text-base sm:text-lg font-bold tracking-tight",
                     titleColor
                 )}>
                     {service.title}
@@ -94,7 +129,7 @@ export default function ServiceCards() {
     return (
         <section className="relative z-30 -mt-16 sm:-mt-24 px-6 lg:px-8">
             <div className="mx-auto max-w-7xl">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 items-stretch">
+                <div className="flex flex-wrap justify-center gap-4 sm:gap-6 items-stretch">
                     {services.map((service, index) => {
                         const isYellow = service.title === "TERAPI";
                         const textOnAccent = isYellow ? "#1f2937" : "#ffffff";
@@ -106,7 +141,7 @@ export default function ServiceCards() {
                                 accent={service.accentColor}
                                 textOnAccent={textOnAccent}
                                 mutedOnAccent={mutedOnAccent}
-                                className="border-gray-100/50 ring-1 ring-gray-900/5 shadow-sm hover:shadow-md transition-shadow h-full min-h-[220px]"
+                                className="w-full sm:w-[calc(50%-1rem)] lg:w-[260px] border-gray-100/50 ring-1 ring-gray-900/5 shadow-sm hover:shadow-md transition-shadow h-full min-h-[180px]"
                                 base={
                                     <ServiceCardBody service={service} />
                                 }

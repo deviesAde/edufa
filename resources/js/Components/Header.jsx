@@ -33,8 +33,8 @@ export default function Header() {
                                 Cabang
                             </NavLink>
                             <NavLink href={route('terapis')} active={route().current('terapis')}>Terapis</NavLink>
-                            <NavLink href="#">Kegiatan</NavLink>
-                            <NavLink href="#">Artikel</NavLink>
+                            <NavLink href={route('kegiatan')} active={route().current('kegiatan')}>Kegiatan</NavLink>
+                            <NavLink href={route('artikel')} active={route().current('artikel')}>Artikel</NavLink>
                             
                             {/* Dropdown for Pelayanan */}
                             <div className="inline-flex items-center">
@@ -123,13 +123,19 @@ export default function Header() {
     
 
     
-    <button className="block w-full border-l-4 border-transparent py-3 pl-3 pr-4 text-left text-base font-medium text-gray-600 transition duration-150 ease-in-out hover:border-edufa-yellow hover:bg-edufa-yellow/5 hover:text-gray-900">
+    <Link
+        href={route('kegiatan')}
+        className={`block w-full border-l-4 py-3 pl-3 pr-4 text-left text-base transition duration-150 ease-in-out ${route().current('kegiatan') ? 'border-edufa-yellow font-bold text-gray-900 bg-edufa-yellow/10' : 'border-transparent font-medium text-gray-600 hover:border-edufa-yellow hover:bg-edufa-yellow/5 hover:text-gray-900'}`}
+    >
         Kegiatan
-    </button>
+    </Link>
     
-    <button className="block w-full border-l-4 border-transparent py-3 pl-3 pr-4 text-left text-base font-medium text-gray-600 transition duration-150 ease-in-out hover:border-edufa-yellow hover:bg-edufa-yellow/5 hover:text-gray-900">
+    <Link
+        href={route('artikel')}
+        className={`block w-full border-l-4 py-3 pl-3 pr-4 text-left text-base transition duration-150 ease-in-out ${route().current('artikel') ? 'border-edufa-yellow font-bold text-gray-900 bg-edufa-yellow/10' : 'border-transparent font-medium text-gray-600 hover:border-edufa-yellow hover:bg-edufa-yellow/5 hover:text-gray-900'}`}
+    >
         Artikel
-    </button>
+    </Link>
     
     <div className="bg-gray-50 py-2 border-y border-gray-100">
         <button 
