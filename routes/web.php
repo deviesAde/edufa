@@ -42,6 +42,14 @@ Route::get('/terapis', function () {
     return Inertia::render('Guest/Terapis');
 })->name('terapis');
 
+Route::get('/kegiatan', function () {
+    return Inertia::render('Guest/Kegiatan');
+})->name('kegiatan');
+
+Route::get('/artikel', function () {
+    return Inertia::render('Guest/Artikel');
+})->name('artikel');
+
 // Pelayanan Routes
 Route::prefix('pelayanan')->name('pelayanan.')->group(function () {
     Route::get('/asesmen-psikologi', function () { return Inertia::render('Guest/Pelayanan/AsesmenPsikologi'); })->name('asesmen');
