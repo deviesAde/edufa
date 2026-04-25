@@ -2,7 +2,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, Link } from '@inertiajs/react';
 import { MapPin, User, Globe, ChevronRight } from 'lucide-react';
 
-export default function Dashboard() {
+export default function Dashboard({ stats }) {
     return (
         <AuthenticatedLayout
             header={
@@ -19,17 +19,17 @@ export default function Dashboard() {
                     {/* Stat Card 1 */}
                     <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm shadow-gray-200/50">
                         <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Total Cabang</p>
-                        <p className="text-3xl font-black text-edufa-blue">35</p>
+                        <p className="text-3xl font-black text-edufa-blue">{stats.totalBranches}</p>
                     </div>
                     {/* Stat Card 2 */}
                     <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm shadow-gray-200/50">
-                        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Total Terapis</p>
-                        <p className="text-3xl font-black text-edufa-yellow">124</p>
+                        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Total Anggota Tim</p>
+                        <p className="text-3xl font-black text-edufa-yellow">{stats.totalTeamMembers}</p>
                     </div>
                     {/* Stat Card 3 */}
                     <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm shadow-gray-200/50">
                         <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Artikel Baru</p>
-                        <p className="text-3xl font-black text-gray-900">12</p>
+                        <p className="text-3xl font-black text-gray-900">{stats.totalArticles}</p>
                     </div>
                 </div>
 

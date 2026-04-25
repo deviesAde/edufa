@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Models\Branch;
+use App\Models\TeamMember;
 use App\Http\Controllers\BranchController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -39,7 +40,9 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/terapis', function () {
-    return Inertia::render('Guest/Terapis');
+    return Inertia::render('Guest/Terapis', [
+        'teamMembers' => \App\Models\TeamMember::all()
+    ]);
 })->name('terapis');
 
 Route::get('/kegiatan', function () {
@@ -50,7 +53,7 @@ Route::get('/artikel', function () {
     return Inertia::render('Guest/Artikel');
 })->name('artikel');
 
-// Pelayanan Routes
+
 Route::prefix('pelayanan')->name('pelayanan.')->group(function () {
     Route::get('/asesmen-psikologi', function () { return Inertia::render('Guest/Pelayanan/AsesmenPsikologi'); })->name('asesmen');
     Route::get('/pelatihan', function () { return Inertia::render('Guest/Pelayanan/Pelatihan'); })->name('pelatihan');
@@ -61,9 +64,6 @@ Route::prefix('pelayanan')->name('pelayanan.')->group(function () {
     Route::get('/balai-latihan-kerja', function () { return Inertia::render('Guest/Pelayanan/Balai'); })->name('balai');
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified', 'admin'])->name('dashboard');
 Route::get('/cabang', function () {
     return Inertia::render('Guest/Cabang', [
         'branches' => Branch::all()
@@ -72,7 +72,13 @@ Route::get('/cabang', function () {
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+        return Inertia::render('Dashboard', [
+            'stats' => [
+                'totalBranches' => Branch::count(),
+                'totalTeamMembers' => TeamMember::count(),
+                'totalArticles' => 0, 
+            ]
+        ]);
     })->name('dashboard');
 
     Route::resource('admin/branches', BranchController::class)->names([
@@ -83,6 +89,16 @@ Route::middleware(['auth', 'admin'])->group(function () {
         'edit' => 'admin.branches.edit',
         'update' => 'admin.branches.update',
         'destroy' => 'admin.branches.destroy',
+    ]);
+
+    Route::resource('admin/team-members', \App\Http\Controllers\TeamMemberController::class)->names([
+        'index' => 'admin.team-members.index',
+        'create' => 'admin.team-members.create',
+        'store' => 'admin.team-members.store',
+        'show' => 'admin.team-members.show',
+        'edit' => 'admin.team-members.edit',
+        'update' => 'admin.team-members.update',
+        'destroy' => 'admin.team-members.destroy',
     ]);
 });
 

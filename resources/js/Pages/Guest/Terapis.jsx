@@ -4,24 +4,19 @@ import Header from '@/Components/Header';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function Terapis() {
+export default function Terapis({ teamMembers = [] }) {
     const [selectedPerson, setSelectedPerson] = useState(null);
 
-    // Generate mock data for 28 therapists
-    const therapists = Array.from({ length: 28 }, (_, i) => ({
-        id: i + 1,
-        name: `Terapis Profesional ${i + 1}`,
-        role: "Terapis Psikologi & Pendidikan",
-        // Using dicebear avatars with varied backgrounds for mock images
-        image: `https://api.dicebear.com/9.x/notionists/svg?seed=Terapis${i + 1}&backgroundColor=e0f2fe,fef08a,f3f4f6&flip=false`
+    // Filter therapists from database
+    const therapists = teamMembers.filter(member => member.type === 'terapis').map(member => ({
+        ...member,
+        image: member.photo_url || '/default.svg'
     }));
 
-    // Generate mock data for 5 staff members
-    const staffs = Array.from({ length: 5 }, (_, i) => ({
-        id: i + 1,
-        name: `Staf Manajemen ${i + 1}`,
-        role: "Tim Administrasi & Dukungan",
-        image: `https://api.dicebear.com/9.x/notionists/svg?seed=Staff${i + 1}&backgroundColor=fef08a,e0f2fe,f3f4f6&flip=false`
+    // Filter staff members from database
+    const staffs = teamMembers.filter(member => member.type === 'staf').map(member => ({
+        ...member,
+        image: member.photo_url || '/default.svg'
     }));
 
     const containerVariants = {
@@ -249,7 +244,7 @@ export default function Terapis() {
                                 </div>
                                 <h3 className="text-3xl font-bold text-gray-900 mb-2">{selectedPerson.name}</h3>
                                 <p className="text-gray-600 mb-6 leading-relaxed">
-                                    Anggota profesional dari tim EDUfa Centre yang berdedikasi untuk memberikan layanan dan pendampingan terbaik bagi Anda.
+                                    {selectedPerson.description || 'Anggota profesional dari tim EDUfa Centre yang berdedikasi untuk memberikan layanan dan pendampingan terbaik bagi Anda.'}
                                 </p>
                                 <button onClick={() => setSelectedPerson(null)} className="w-full py-3 px-6 rounded-xl bg-gray-100 text-gray-900 font-bold hover:bg-gray-200 transition-colors shadow-sm">
                                     Tutup

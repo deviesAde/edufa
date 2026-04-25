@@ -39,7 +39,7 @@ class AuthenticatedSessionController extends Controller
                 'email' => 'Akses hanya untuk admin.',
             ]);
         }
-        return redirect()->intended('/admin');
+        return redirect()->intended('/dashboard');
     }
 
     /**
