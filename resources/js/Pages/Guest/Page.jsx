@@ -3,7 +3,33 @@ import Hero from '@/Components/Hero';
 import ServiceCards from '@/Components/ServiceCards';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import BranchSection from '@/Components/BranchSection';
+import FloatingShapes from '@/Components/FloatingShapes';
 import SEO from '@/Components/SEO';
+import { motion } from 'framer-motion';
+
+const RevealText = ({ text, className = "", delay = 0 }) => {
+    const words = text.split(" ");
+    return (
+        <span className={`inline-block ${className}`}>
+            {words.map((word, i) => (
+                <motion.span
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{
+                        duration: 0.8,
+                        delay: delay + i * 0.1,
+                        ease: [0.2, 0.65, 0.3, 0.9]
+                    }}
+                    className="inline-block mr-[0.25em]"
+                >
+                    {word}
+                </motion.span>
+            ))}
+        </span>
+    );
+};
 
 export default function Page({ branches }) {
     // const schema = {
@@ -38,6 +64,7 @@ export default function Page({ branches }) {
 
 
                 <div className="bg-white py-24 sm:py-32 overflow-hidden relative">
+                    <FloatingShapes />
                     {/* Decorative Background Elements */}
                     <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[800px] h-[800px] bg-edufa-yellow/5 rounded-full blur-3xl pointer-events-none"></div>
                     <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[600px] h-[600px] bg-edufa-blue/5 rounded-full blur-3xl pointer-events-none"></div>
@@ -45,14 +72,33 @@ export default function Page({ branches }) {
                     <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
                         {/* Title and Intro */}
                         <div className="mx-auto max-w-3xl text-center mb-20">
-                            <h2 className="text-sm font-bold tracking-widest text-edufa-blue uppercase mb-4 inline-block px-4 py-1.5 rounded-full bg-edufa-blue/10">
+                            <motion.h2 
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                className="text-sm font-bold tracking-widest text-edufa-blue uppercase mb-4 inline-block px-4 py-1.5 rounded-full bg-edufa-blue/10"
+                            >
                                 Tentang Kami
-                            </h2>
+                            </motion.h2>
                             <h3 className="text-4xl md:text-5xl font-black tracking-tighter text-gray-900 mb-8">
-                                TENTANG EDUfa Centre
+                                <RevealText text="TENTANG EDUfa Centre" />
                             </h3>
                             <p className="text-xl md:text-2xl leading-relaxed text-gray-600 font-medium">
-                                Yayasan EDUfa Salamanca dan Biro Psikologi EDUfa Counseling berdiri pada tanggal <span className="text-edufa-blue font-bold px-1 relative inline-block"><span className="relative z-10">31 Mei 2012</span><span className="absolute bottom-1 left-0 w-full h-3 bg-edufa-yellow/40 -z-10 rounded-sm"></span></span> di Bandung.
+                                <RevealText 
+                                    text="Yayasan EDUfa Salamanca dan Biro Psikologi EDUfa Counseling berdiri pada tanggal" 
+                                    delay={0.5} 
+                                />
+                                <span className="text-edufa-blue font-bold px-1 relative inline-block mx-2">
+                                    <span className="relative z-10">31 Mei 2012</span>
+                                    <motion.span 
+                                        initial={{ width: 0 }}
+                                        whileInView={{ width: "100%" }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 1.5, duration: 0.8 }}
+                                        className="absolute bottom-1 left-0 h-3 bg-edufa-yellow/40 -z-10 rounded-sm"
+                                    ></motion.span>
+                                </span> 
+                                <RevealText text="di Bandung." delay={1.8} />
                             </p>
                         </div>
 
@@ -62,11 +108,14 @@ export default function Page({ branches }) {
                             <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-px h-3/4 bg-gradient-to-b from-transparent via-gray-200 to-transparent"></div>
 
                             {/* Salamanca Card */}
-                            <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-2xl shadow-gray-200/40 ring-1 ring-gray-900/5 group hover:-translate-y-2 transition-transform duration-500 relative overflow-hidden flex flex-col justify-between">
+                            <motion.div 
+                                whileHover={{ y: -15, scale: 1.02, rotate: -1 }}
+                                transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                                className="bg-white rounded-[2rem] p-8 md:p-10 shadow-2xl shadow-gray-200/40 ring-1 ring-gray-900/5 group relative overflow-hidden flex flex-col justify-between"
+                            >
                                 <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
                                     <svg className="w-32 h-32 text-edufa-blue" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72l5 2.73 5-2.73v3.72z" /></svg>
                                 </div>
-
                                 <div className="relative z-10 mb-8">
                                     <div className="w-16 h-16 rounded-2xl bg-edufa-blue/10 flex items-center justify-center mb-8">
                                         <svg className="w-8 h-8 text-edufa-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l9-5-9-5-9 5 9 5z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" /></svg>
@@ -83,14 +132,17 @@ export default function Page({ branches }) {
                                     <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Nomor Akte Yayasan</p>
                                     <p className="text-sm font-mono text-edufa-blue font-bold">AHU-AH.01.06-0040306</p>
                                 </div>
-                            </div>
+                            </motion.div>
 
                             {/* Counseling Card */}
-                            <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-2xl shadow-gray-200/40 ring-1 ring-gray-900/5 group hover:-translate-y-2 transition-transform duration-500 relative overflow-hidden flex flex-col justify-between">
+                            <motion.div 
+                                whileHover={{ y: -15, scale: 1.02, rotate: 1 }}
+                                transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                                className="bg-white rounded-[2rem] p-8 md:p-10 shadow-2xl shadow-gray-200/40 ring-1 ring-gray-900/5 group relative overflow-hidden flex flex-col justify-between"
+                            >
                                 <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
                                     <svg className="w-32 h-32 text-edufa-yellow" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" /></svg>
                                 </div>
-
                                 <div className="relative z-10 mb-8">
                                     <div className="w-16 h-16 rounded-2xl bg-edufa-yellow/10 flex items-center justify-center mb-8">
                                         <svg className="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
@@ -107,7 +159,7 @@ export default function Page({ branches }) {
                                     <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">SIPP No</p>
                                     <p className="text-sm font-mono text-amber-600 font-bold">201220017-2025-04-0720</p>
                                 </div>
-                            </div>
+                            </motion.div>
                         </div>
 
                         {/* Leader Section */}
@@ -146,16 +198,16 @@ export default function Page({ branches }) {
                             {/* Left Text Detail */}
                             <div className="lg:col-span-5 relative">
                                 <h2 className="text-sm font-black leading-7 text-edufa-yellow uppercase tracking-[0.2em] mb-4">
-                                    Alasan Memilih Kami
+                                    <RevealText text="Alasan Memilih Kami" />
                                 </h2>
 
                                 <h3 className="text-3xl font-black tracking-tight text-white sm:text-4xl lg:text-5xl mb-8 leading-[1.1]">
-                                    Keunggulan Kami
+                                    <RevealText text="Keunggulan Kami" delay={0.2} />
                                 </h3>
 
                                 <div className="mb-10 inline-block relative group">
-                                    <div className="bg-edufa-yellow rounded-[2rem] shadow-2xl p-6 md:p-8 relative z-10 group-hover:-translate-y-2 group-hover:shadow-edufa-yellow/30 transition-all duration-300">
-                                        <ApplicationLogo/>
+                                    <div className="relative z-10 group-hover:-translate-y-2 transition-all duration-300">
+                                        <img src="/hero/logo edufa putih.png" alt="EDUfa Logo" className="h-28 w-auto" />
                                     </div>
                                 </div>
                                 

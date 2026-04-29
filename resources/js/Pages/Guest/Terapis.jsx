@@ -4,6 +4,30 @@ import Header from '@/Components/Header';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const RevealText = ({ text, className = "", delay = 0 }) => {
+    const words = text.split(" ");
+    return (
+        <span className={`inline-block ${className}`}>
+            {words.map((word, i) => (
+                <motion.span
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{
+                        duration: 0.8,
+                        delay: delay + i * 0.1,
+                        ease: [0.2, 0.65, 0.3, 0.9]
+                    }}
+                    className="inline-block mr-[0.25em]"
+                >
+                    {word}
+                </motion.span>
+            ))}
+        </span>
+    );
+};
+
 export default function Terapis({ teamMembers = [] }) {
     const [selectedPerson, setSelectedPerson] = useState(null);
 
@@ -43,7 +67,7 @@ export default function Terapis({ teamMembers = [] }) {
     };
 
     return (
-        <div className="min-h-screen bg-white font-sans text-gray-900 antialiased overflow-hidden">
+        <div className="min-h-screen bg-white font-sans text-gray-900 antialiased">
             <SEO 
                 title="Tim Terapis & Staf" 
                 description="Mengenal lebih dekat tim terapis profesional dan staf manajemen yang berdedikasi tinggi di EDUfa Centre."
@@ -51,41 +75,89 @@ export default function Terapis({ teamMembers = [] }) {
             
             <Header />
 
-            <main className="pt-20 pb-0">
-                {/* Hero Section */}
-                <div className="relative bg-edufa-blue py-20 lg:py-28 overflow-hidden rounded-b-[3rem] shadow-sm">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-edufa-yellow/10 rounded-full blur-[100px] pointer-events-none"></div>
-                    <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+            <main className="pb-0">
+                {/* New Creative Hero Section */}
+                <div className="relative py-12 lg:py-20 overflow-hidden bg-white">
+                    {/* Background Mesh/Blobs */}
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
+                        <motion.div 
+                            animate={{ 
+                                scale: [1, 1.2, 1],
+                                rotate: [0, 90, 0],
+                                opacity: [0.1, 0.15, 0.1]
+                            }}
+                            transition={{ duration: 20, repeat: Infinity }}
+                            className="absolute -top-24 -left-24 w-[500px] h-[500px] bg-edufa-yellow rounded-full blur-[120px]"
+                        />
+                        <motion.div 
+                            animate={{ 
+                                scale: [1, 1.3, 1],
+                                rotate: [0, -90, 0],
+                                opacity: [0.05, 0.1, 0.05]
+                            }}
+                            transition={{ duration: 25, repeat: Infinity }}
+                            className="absolute top-0 -right-24 w-[600px] h-[600px] bg-edufa-blue rounded-full blur-[150px]"
+                        />
+                    </div>
                     
+                    {/* Floating Decorative Elements */}
+                    <motion.div 
+                        animate={{ y: [0, -20, 0], rotate: [0, 45, 0] }}
+                        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute top-20 left-[10%] w-12 h-12 border-4 border-edufa-yellow/30 rounded-2xl hidden md:block"
+                    />
+                    <motion.div 
+                        animate={{ y: [0, 20, 0], scale: [1, 1.2, 1] }}
+                        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute bottom-20 right-[15%] w-16 h-16 border-4 border-edufa-blue/20 rounded-full hidden md:block"
+                    />
+
                     <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
-                        <div className="mx-auto max-w-3xl text-center">
+                        <div className="mx-auto max-w-4xl text-center">
                             <motion.div
-                                initial={{ opacity: 0, scale: 0.9 }}
+                                initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.5 }}
-                                className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm text-edufa-yellow text-sm font-bold tracking-widest uppercase"
+                                transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                                className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-edufa-blue/5 border border-edufa-blue/10 text-edufa-blue text-xs font-black tracking-widest uppercase shadow-sm"
                             >
-                                Tim Ahli Kami
+                                <span className="w-2 h-2 rounded-full bg-edufa-blue mr-3 animate-pulse"></span>
+                                Tim Ahli & Profesional
                             </motion.div>
+                            
                             <motion.h1 
-                                initial={{ opacity: 0, y: -20 }}
+                                initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.1 }}
-                                className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl text-balance"
+                                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                                className="text-3xl font-black tracking-tight text-gray-900 sm:text-5xl lg:text-6xl leading-[1.1]"
                             >
-                                Mengenal Lebih Dekat <br className="hidden sm:block" />
-                                <span className="text-edufa-yellow relative inline-block mt-2">
-                                    Tenaga Profesional Kami
-                                    <div className="absolute -bottom-2 left-0 w-full h-2 bg-edufa-yellow/30 rounded-full"></div>
+                                <RevealText text="Mengenal Sosok" className="text-gray-900" /> <br />
+                                <span className="relative inline-block mt-2">
+                                    <RevealText text="Di Balik EDUfa" className="text-edufa-blue" delay={0.5} />
+                                    <motion.svg 
+                                        viewBox="0 0 300 20" 
+                                        className="absolute -bottom-2 left-0 w-full h-4 text-edufa-yellow"
+                                        initial={{ pathLength: 0, opacity: 0 }}
+                                        animate={{ pathLength: 1, opacity: 1 }}
+                                        transition={{ delay: 1.2, duration: 1 }}
+                                    >
+                                        <motion.path 
+                                            d="M5 15 Q 150 5 295 15" 
+                                            fill="transparent" 
+                                            stroke="currentColor" 
+                                            strokeWidth="8" 
+                                            strokeLinecap="round" 
+                                        />
+                                    </motion.svg>
                                 </span>
                             </motion.h1>
+                            
                             <motion.p 
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.2 }}
-                                className="mt-8 text-lg sm:text-xl leading-8 text-blue-50 text-balance"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 1, delay: 1 }}
+                                className="mt-6 text-base sm:text-xl leading-relaxed text-gray-600 max-w-2xl mx-auto font-medium"
                             >
-                                Didukung oleh para profesional yang berdedikasi tinggi di bidang psikologi dan pendidikan untuk memberikan layanan terbaik bagi Anda dan keluarga.
+                                Kami bangga memiliki tim yang tidak hanya kompeten, tetapi juga memiliki <span className="text-edufa-blue font-bold">hati dan dedikasi</span> untuk membantu setiap individu tumbuh maksimal.
                             </motion.p>
                         </div>
                     </div>
@@ -97,10 +169,10 @@ export default function Terapis({ teamMembers = [] }) {
                         <div className="absolute -left-12 top-0 w-24 h-24 bg-edufa-yellow/20 rounded-full blur-2xl -z-10"></div>
                         <div>
                             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl flex items-center gap-3">
-                                Tim Terapis
+                                <RevealText text="Tim Terapis" />
                             </h2>
                             <p className="mt-4 text-lg text-gray-600 max-w-2xl">
-                                Para terapis berpengalaman kami siap mendampingi perjalanan perkembangan dan optimalisasi potensi Anda.
+                                <RevealText text="Para terapis berpengalaman kami siap mendampingi perjalanan perkembangan dan optimalisasi potensi Anda." delay={0.5} />
                             </p>
                         </div>
                         <div className="inline-flex items-center justify-center rounded-2xl bg-edufa-blue/5 px-6 py-3 text-sm font-bold text-edufa-blue ring-1 ring-inset ring-edufa-blue/10 whitespace-nowrap">
@@ -114,10 +186,14 @@ export default function Terapis({ teamMembers = [] }) {
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, margin: "-100px" }}
-                        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-6 sm:gap-x-8 sm:gap-y-12"
+                        className="flex flex-wrap justify-center gap-x-3 gap-y-6 sm:gap-x-8 sm:gap-y-12"
                     >
                         {therapists.map((person) => (
-                            <motion.div key={`terapis-${person.id}`} variants={itemVariants} className="group relative flex flex-col h-full">
+                            <motion.div 
+                                key={`terapis-${person.id}`} 
+                                variants={itemVariants} 
+                                className="group relative flex flex-col h-full w-[calc(50%-0.375rem)] sm:w-[calc(33.333%-1.334rem)] lg:w-[calc(25%-1.5rem)]"
+                            >
                                 <div className="aspect-[4/5] w-full overflow-hidden rounded-2xl sm:rounded-3xl bg-gray-50 relative mb-3 sm:mb-5 ring-1 ring-gray-900/5 transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:shadow-edufa-blue/10">
                                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
                                     <img
@@ -157,9 +233,11 @@ export default function Terapis({ teamMembers = [] }) {
                     <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
                         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 text-center md:text-left">
                             <div className="mx-auto md:mx-0">
-                                <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Tim Staf & Manajemen</h2>
+                                <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                                    <RevealText text="Tim Staf & Manajemen" />
+                                </h2>
                                 <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto md:mx-0 text-balance">
-                                    Tulang punggung operasional yang memastikan setiap layanan EDUfa berjalan lancar, nyaman, dan terpusat.
+                                    <RevealText text="Tulang punggung operasional yang memastikan setiap layanan EDUfa berjalan lancar, nyaman, dan terpusat." delay={0.5} />
                                 </p>
                             </div>
                             <div className="inline-flex items-center justify-center rounded-2xl bg-edufa-yellow/10 px-6 py-3 text-sm font-bold text-amber-700 ring-1 ring-inset ring-edufa-yellow/30 mx-auto md:mx-0 whitespace-nowrap">

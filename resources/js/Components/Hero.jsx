@@ -1,10 +1,13 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { AnimatedText } from '@/Components/ui/animated-underline-text-one';
 import { BlurTextEffect } from '@/Components/ui/blur-text-effect';
+import FloatingShapes from '@/Components/FloatingShapes';
+import { motion } from 'framer-motion';
 
 export default function Hero() {
     return (
         <div className="relative isolate overflow-hidden bg-gray-900 min-h-[85vh] flex items-center">
+            <FloatingShapes />
             {/* Background Video */}
             <video 
                 className="absolute inset-0 w-full h-full object-cover -z-20 opacity-60"
@@ -60,15 +63,22 @@ export default function Hero() {
                     </div>
 
                     <div className="mt-12 flex flex-wrap items-center gap-8">
-                        <a
+                        <motion.a
                             href="#"
-                            className="group relative overflow-hidden rounded-full bg-edufa-blue px-12 py-5 text-sm font-black text-white shadow-2xl shadow-edufa-blue/40 transition-all hover:scale-[1.05] active:scale-95 bg-gradient-to-r from-edufa-blue to-blue-700"
+                            whileHover={{ scale: 1.05, rotate: -1 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="group relative overflow-hidden rounded-full bg-edufa-blue px-12 py-5 text-sm font-black text-white shadow-2xl shadow-edufa-blue/40 transition-all bg-gradient-to-r from-edufa-blue to-blue-700"
                         >
                             <span className="relative z-10">Mulai Konsultasi</span>
                             <div className="absolute inset-0 bg-white/20 translate-y-full transition-transform group-hover:translate-y-0"></div>
-                        </a>
+                        </motion.a>
                         
-                        <a href="#" className="flex items-center gap-3 text-sm font-black text-white group bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full hover:bg-white/40 transition-all border border-white/30 shadow-xl shadow-black/5">
+                        <motion.a 
+                            href="#" 
+                            whileHover={{ scale: 1.05, rotate: 1 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="flex items-center gap-3 text-sm font-black text-white group bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full hover:bg-white/40 transition-all border border-white/30 shadow-xl shadow-black/5"
+                        >
                             <span className="relative">
                                 Cari Tahu Lebih Lanjut
                                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all group-hover:w-full"></span>
@@ -76,7 +86,7 @@ export default function Hero() {
                             <svg className="w-5 h-5 transition-transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>
-                        </a>
+                        </motion.a>
                     </div>
                 </div>
             </div>

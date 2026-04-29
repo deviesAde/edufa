@@ -4,6 +4,31 @@ import Header from '@/Components/Header';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { LeafletMap } from '@/Components/ui/LeafletMap';
 import { cn } from '@/lib/utils';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const RevealText = ({ text, className = "", delay = 0 }) => {
+    const words = text.split(" ");
+    return (
+        <span className={`inline-block ${className}`}>
+            {words.map((word, i) => (
+                <motion.span
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{
+                        duration: 0.8,
+                        delay: delay + i * 0.1,
+                        ease: [0.2, 0.65, 0.3, 0.9]
+                    }}
+                    className="inline-block mr-[0.25em]"
+                >
+                    {word}
+                </motion.span>
+            ))}
+        </span>
+    );
+};
 
 // Math function to calculate distance (in Kilometers) using Haversine formula
 function getDistanceKM(lat1, lon1, lat2, lon2) {
@@ -84,23 +109,72 @@ export default function Cabang({ branches = [] }) {
                     <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]"></div>
                     <div className="absolute -top-32 -right-32 w-96 h-96 bg-edufa-yellow/10 rounded-full blur-[100px]"></div>
                     <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-edufa-blue/5 rounded-full blur-[100px]"></div>
+                    
+                    {/* Floating Decorative Shapes */}
+                    <motion.div 
+                        animate={{ 
+                            y: [0, -20, 0],
+                            rotate: [0, 10, 0]
+                        }}
+                        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute top-20 left-10 w-12 h-12 bg-edufa-yellow/20 rounded-xl blur-sm -z-0"
+                    />
+                    <motion.div 
+                        animate={{ 
+                            y: [0, 20, 0],
+                            rotate: [0, -10, 0]
+                        }}
+                        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute bottom-20 right-10 w-16 h-16 bg-edufa-blue/10 rounded-full blur-sm -z-0"
+                    />
 
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-                        <span className="text-sm font-black text-edufa-blue tracking-[0.2em] uppercase bg-edufa-blue/10 px-4 py-1.5 rounded-full inline-block mb-6 shadow-sm border border-edufa-blue/20">Lokasi Kami</span>
+                        <motion.span 
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="text-sm font-black text-edufa-blue tracking-[0.2em] uppercase bg-edufa-blue/10 px-4 py-1.5 rounded-full inline-block mb-6 shadow-sm border border-edufa-blue/20"
+                        >
+                            Lokasi Kami
+                        </motion.span>
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight leading-tight mb-6">
-                            Temukan <span className="relative z-10 text-edufa-blue inline-block px-2">
-                                <span className="relative z-10 text-white">Layanan EDUfa</span>
-                                <span className="absolute inset-0 bg-edufa-blue -rotate-1 rounded-xl -z-10 shadow-lg shadow-edufa-blue/20"></span>
-                            </span> <br className="hidden md:block" /> Terdekat di Kota Anda
+                            <RevealText text="Temukan" /> 
+                            <span className="relative z-10 text-edufa-blue inline-block px-2 mx-1">
+                                <motion.span 
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: 0.5 }}
+                                    className="relative z-10 text-white"
+                                >
+                                    Layanan EDUfa
+                                </motion.span>
+                                <motion.span 
+                                    initial={{ width: 0 }}
+                                    animate={{ width: "100%" }}
+                                    transition={{ delay: 0.3, duration: 0.8 }}
+                                    className="absolute inset-0 bg-edufa-blue -rotate-1 rounded-xl -z-10 shadow-lg shadow-edufa-blue/20"
+                                ></motion.span>
+                            </span> 
+                            <br className="hidden md:block" /> 
+                            <RevealText text="Terdekat di Kota Anda" delay={0.8} />
                         </h1>
-                        <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-600 font-medium">
+                        <motion.p 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1.2 }}
+                            className="max-w-2xl mx-auto text-lg md:text-xl text-gray-600 font-medium"
+                        >
                             Dengan puluhan jaringan kantor cabang di berbagai penjuru Nusantara, kami selalu hadir lebih dekat untuk mendampingi keluarga Anda.
-                        </p>
+                        </motion.p>
                     </div>
                 </div>
 
                 {/* Map & Distance Control */}
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
+                <motion.div 
+                    initial={{ y: 50, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 1.5 }}
+                    className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 -mt-8 relative z-20"
+                >
                     <div className="bg-white rounded-3xl shadow-xl shadow-gray-200/50 p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center justify-between border border-gray-100">
                         <div className="w-full md:w-auto flex-1">
                             <div className="relative">
@@ -118,10 +192,12 @@ export default function Cabang({ branches = [] }) {
                         <div className="w-full md:w-auto hidden md:block w-px h-12 bg-gray-200"></div>
 
                         <div className="flex flex-col sm:flex-row items-center w-full md:w-auto gap-4">
-                            <button 
+                            <motion.button 
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
                                 onClick={findNearest}
                                 disabled={isLocating}
-                                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-gray-900 text-white px-6 py-4 rounded-2xl font-bold hover:bg-edufa-blue transition-all disabled:opacity-50 group hover:-translate-y-1 shadow-lg hover:shadow-edufa-blue/30 active:scale-95"
+                                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-gray-900 text-white px-6 py-4 rounded-2xl font-bold hover:bg-edufa-blue transition-all disabled:opacity-50 group shadow-lg hover:shadow-edufa-blue/30"
                             >
                                 {isLocating ? (
                                     <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
@@ -129,15 +205,22 @@ export default function Cabang({ branches = [] }) {
                                     <svg className="w-5 h-5 text-edufa-yellow group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                                 )}
                                 Temukan Cabang Terdekat Saya
-                            </button>
+                            </motion.button>
                         </div>
                     </div>
-                    {locationError && (
-                        <div className="mt-4 text-center text-sm font-semibold text-rose-500 bg-rose-50 py-3 rounded-xl border border-rose-100">
-                            {locationError}
-                        </div>
-                    )}
-                </div>
+                    <AnimatePresence>
+                        {locationError && (
+                            <motion.div 
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: "auto", opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                className="mt-4 text-center text-sm font-semibold text-rose-500 bg-rose-50 py-3 rounded-xl border border-rose-100 overflow-hidden"
+                            >
+                                {locationError}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </motion.div>
 
                 <div className="py-12 md:py-16">
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -165,7 +248,18 @@ export default function Cabang({ branches = [] }) {
                                         <h3 className="text-xl font-bold text-gray-900">Hasil Pencarian Terdekat:</h3>
                                      </div>
                                 )}
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <motion.div 
+                                    initial="hidden"
+                                    animate="visible"
+                                    variants={{
+                                        visible: {
+                                            transition: {
+                                                staggerChildren: 0.1
+                                            }
+                                        }
+                                    }}
+                                    className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+                                >
                                     {filteredBranches.map((branch, idx) => {
                                         const isSelected = selectedCity === branch.city;
                                         // Dynamic illustration id based on string to keep it stable
@@ -183,21 +277,30 @@ export default function Cabang({ branches = [] }) {
                                         ][hash % 9];
 
                                         return (
-                                            <div 
+                                            <motion.div 
                                                 key={idx}
+                                                variants={{
+                                                    hidden: { opacity: 0, scale: 0.9, y: 20 },
+                                                    visible: { opacity: 1, scale: 1, y: 0 }
+                                                }}
+                                                whileHover={{ y: -8, transition: { duration: 0.2 } }}
                                                 id={`card-${branch.city}`}
                                                 onClick={() => setSelectedCity(branch.city)}
                                                 className={cn(
-                                                    "bg-white rounded-3xl overflow-hidden border transition-all duration-300 cursor-pointer shadow-sm hover:shadow-xl hover:-translate-y-1 relative group flex flex-col",
-                                                    isSelected ? "border-edufa-blue ring-1 ring-edufa-blue" : "border-gray-200"
+                                                    "bg-white rounded-3xl overflow-hidden border transition-all duration-300 cursor-pointer shadow-sm hover:shadow-xl relative group flex flex-col",
+                                                    isSelected ? "border-edufa-blue ring-1 ring-edufa-blue scale-[1.02]" : "border-gray-200"
                                                 )}
                                             >
                                                 {/* Distance Badge */}
                                                 {branch.distance !== undefined && branch.distance !== null && (
-                                                    <div className="absolute top-4 right-4 z-20 bg-gray-900/80 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg flex items-center gap-1 border border-white/20">
+                                                    <motion.div 
+                                                        initial={{ scale: 0 }}
+                                                        animate={{ scale: 1 }}
+                                                        className="absolute top-4 right-4 z-20 bg-gray-900/80 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg flex items-center gap-1 border border-white/20"
+                                                    >
                                                         <svg className="w-3.5 h-3.5 text-edufa-yellow" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/></svg>
                                                         {branch.distance < 1 ? "< 1 KM" : `${Math.round(branch.distance)} KM`}
-                                                    </div>
+                                                    </motion.div>
                                                 )}
 
                                                 <div className="h-48 w-full relative overflow-hidden bg-gray-100 flex-none">
@@ -240,20 +343,24 @@ export default function Cabang({ branches = [] }) {
                                                         Buka di Google Maps
                                                     </a>
                                                 </div>
-                                            </div>
+                                            </motion.div>
                                         );
                                     })}
 
                                     {filteredBranches.length === 0 && (
-                                        <div className="col-span-1 md:col-span-2 text-center py-20 bg-white border border-gray-200 border-dashed rounded-3xl">
+                                        <motion.div 
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            className="col-span-1 md:col-span-2 text-center py-20 bg-white border border-gray-200 border-dashed rounded-3xl"
+                                        >
                                             <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4 text-gray-400">
                                                 <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                                             </div>
                                             <h3 className="text-lg font-bold text-gray-900 mb-1">Hasil Tidak Ditemukan</h3>
                                             <p className="text-gray-500">Cabang "{searchTerm}" tidak ada dalam daftar kami.</p>
-                                        </div>
+                                        </motion.div>
                                     )}
-                                </div>
+                                </motion.div>
                             </div>
 
                         </div>

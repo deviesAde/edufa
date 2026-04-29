@@ -4,6 +4,30 @@ import Header from '@/Components/Header';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { motion } from 'framer-motion';
 
+const RevealText = ({ text, className = "", delay = 0 }) => {
+    const words = text.split(" ");
+    return (
+        <span className={`inline-block ${className}`}>
+            {words.map((word, i) => (
+                <motion.span
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{
+                        duration: 0.8,
+                        delay: delay + i * 0.1,
+                        ease: [0.2, 0.65, 0.3, 0.9]
+                    }}
+                    className="inline-block mr-[0.25em]"
+                >
+                    {word}
+                </motion.span>
+            ))}
+        </span>
+    );
+};
+
 export default function Pelatihan() {
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased overflow-hidden">
@@ -11,43 +35,77 @@ export default function Pelatihan() {
             
             <Header />
 
-            <main className="pt-20 pb-0">
-                {/* Hero Section */}
-                <div className="relative bg-edufa-blue py-10 lg:py-16 overflow-hidden rounded-b-[2rem] sm:rounded-b-[3rem] shadow-sm">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-edufa-yellow/10 rounded-full blur-[100px] pointer-events-none"></div>
-                    <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+            <main className="pb-0">
+                {/* New Creative Hero Section */}
+                <div className="relative py-12 lg:py-20 overflow-hidden bg-white">
+                    {/* Background Mesh/Blobs */}
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
+                        <motion.div 
+                            animate={{ 
+                                scale: [1, 1.2, 1],
+                                rotate: [0, 90, 0],
+                                opacity: [0.1, 0.15, 0.1]
+                            }}
+                            transition={{ duration: 20, repeat: Infinity }}
+                            className="absolute -top-24 -left-24 w-[500px] h-[500px] bg-edufa-yellow rounded-full blur-[120px]"
+                        />
+                        <motion.div 
+                            animate={{ 
+                                scale: [1, 1.3, 1],
+                                rotate: [0, -90, 0],
+                                opacity: [0.05, 0.1, 0.05]
+                            }}
+                            transition={{ duration: 25, repeat: Infinity }}
+                            className="absolute top-0 -right-24 w-[600px] h-[600px] bg-edufa-blue rounded-full blur-[150px]"
+                        />
+                    </div>
                     
-                    <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
-                        <div className="mx-auto max-w-3xl text-center">
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.5 }}
-                                className="inline-flex items-center justify-center px-4 py-1.5 mb-4 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm text-edufa-yellow text-sm font-bold tracking-widest uppercase"
-                            >
-                                Pelayanan Kami
-                            </motion.div>
-                            <motion.h1 
-                                initial={{ opacity: 0, y: -20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.1 }}
-                                className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl text-balance"
-                            >
-                                Program <br className="hidden sm:block" />
-                                <span className="text-edufa-yellow relative inline-block mt-1 sm:mt-2">
-                                    Pelatihan
-                                    <div className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-1.5 sm:h-2 bg-edufa-yellow/30 rounded-full"></div>
-                                </span>
-                            </motion.h1>
-                            <motion.p 
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.2 }}
-                                className="mt-4 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-8 text-blue-50 text-balance"
-                            >
-                                Meningkatkan kapasitas, keterampilan, dan pengetahuan SDM, Pendidik, serta Orang Tua melalui metode interaktif dan profesional.
-                            </motion.p>
-                        </div>
+                    <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10 text-center">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                            className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-edufa-blue/5 border border-edufa-blue/10 text-edufa-blue text-xs font-black tracking-widest uppercase shadow-sm"
+                        >
+                            <span className="w-2 h-2 rounded-full bg-edufa-blue mr-3 animate-pulse"></span>
+                            Pelayanan Kami
+                        </motion.div>
+                        
+                        <motion.h1 
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                            className="text-3xl font-black tracking-tight text-gray-900 sm:text-5xl lg:text-6xl leading-[1.1]"
+                        >
+                            <RevealText text="Program" className="text-gray-900" />{' '}
+                            <span className="relative inline-block mt-2">
+                                <RevealText text="Pelatihan" className="text-edufa-blue" delay={0.5} />
+                                <motion.svg 
+                                    viewBox="0 0 300 20" 
+                                    className="absolute -bottom-2 left-0 w-full h-4 text-edufa-yellow"
+                                    initial={{ pathLength: 0, opacity: 0 }}
+                                    animate={{ pathLength: 1, opacity: 1 }}
+                                    transition={{ delay: 1.2, duration: 1 }}
+                                >
+                                    <motion.path 
+                                        d="M5 15 Q 150 5 295 15" 
+                                        fill="transparent" 
+                                        stroke="currentColor" 
+                                        strokeWidth="8" 
+                                        strokeLinecap="round" 
+                                    />
+                                </motion.svg>
+                            </span>
+                        </motion.h1>
+                        
+                        <motion.p 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1, delay: 1 }}
+                            className="mt-6 text-base sm:text-xl leading-relaxed text-gray-600 max-w-2xl mx-auto font-medium"
+                        >
+                            Meningkatkan kapasitas, keterampilan, dan pengetahuan SDM, Pendidik, serta Orang Tua melalui metode interaktif dan profesional.
+                        </motion.p>
                     </div>
                 </div>
 

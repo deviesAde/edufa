@@ -53,6 +53,13 @@ Route::get('/artikel', function () {
     return Inertia::render('Guest/Artikel');
 })->name('artikel');
 
+Route::get('/artikel/{slug}', function ($slug) {
+    return Inertia::render('Guest/DetailArtikel', [
+        'slug' => $slug
+    ]);
+})->name('artikel.show');
+
+
 
 Route::prefix('pelayanan')->name('pelayanan.')->group(function () {
     Route::get('/asesmen-psikologi', function () { return Inertia::render('Guest/Pelayanan/AsesmenPsikologi'); })->name('asesmen');
