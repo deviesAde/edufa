@@ -56,11 +56,16 @@ export default function Hero() {
                             className="items-start justify-start"
                         />
                         
-                        <p className="text-xl sm:text-2xl font-bold leading-relaxed text-white/90 max-w-2xl drop-shadow-sm">
-                            <BlurTextEffect>
-                                Menumbuhkan Harapan, Mencapai Masa Depan Terpercaya. Kami fokus pada solusi edukasi dan pengembangan potensi individu secara profesional.
-                            </BlurTextEffect>
-                        </p>
+                        <div className="space-y-6">
+                            <p className="text-2xl sm:text-3xl font-black text-white leading-tight drop-shadow-md">
+                                <BlurTextEffect>
+                                    Menumbuhkan Harapan, Meraih Masa Depan Terpercaya.
+                                </BlurTextEffect>
+                            </p>
+                            <p className="text-lg sm:text-xl font-medium leading-relaxed text-blue-50/90 max-w-2xl drop-shadow-sm border-l-4 border-edufa-blue pl-6">
+                                Kami hadir memberikan solusi edukasi dan pengembangan potensi individu yang dilakukan secara profesional dan terencana.
+                            </p>
+                        </div>
                     </div>
 
                     <div className="mt-12 flex flex-wrap items-center gap-8">

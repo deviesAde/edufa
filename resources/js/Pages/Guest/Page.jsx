@@ -6,6 +6,7 @@ import BranchSection from '@/Components/BranchSection';
 import FloatingShapes from '@/Components/FloatingShapes';
 import SEO from '@/Components/SEO';
 import { motion } from 'framer-motion';
+import { Link } from '@inertiajs/react';
 
 const RevealText = ({ text, className = "", delay = 0 }) => {
     const words = text.split(" ");
@@ -326,6 +327,43 @@ export default function Page({ branches }) {
                         </div>
                     </div>
                 </div>
+
+                {/* Artikel Hook Section */}
+                <div className="bg-white py-24 relative overflow-hidden">
+                    <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                        <motion.div 
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="relative rounded-[3rem] bg-edufa-blue px-8 py-16 sm:px-16 sm:py-24 shadow-3xl shadow-edufa-blue/20 overflow-hidden"
+                        >
+                            {/* Decorative background for the hook */}
+                            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-edufa-yellow/20 rounded-full blur-3xl"></div>
+                            <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-48 h-48 bg-white/10 rounded-full blur-2xl"></div>
+
+                            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
+                                <div className="text-center lg:text-left max-w-2xl">
+                                    <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight mb-6 leading-tight">
+                                        Dapatkan Informasi & Edukasi <br className="hidden sm:block" /> Seputar Tumbuh Kembang Anak
+                                    </h2>
+                                    <p className="text-lg text-blue-100 leading-relaxed mb-8">
+                                        Kami secara rutin membagikan artikel bermanfaat, tips parenting, dan informasi terbaru seputar layanan psikologi di EDUfa Centre.
+                                    </p>
+                                </div>
+                                <div className="flex-shrink-0">
+                                    <Link 
+                                        href={route('artikel')}
+                                        className="inline-flex items-center px-10 py-5 bg-edufa-yellow text-gray-900 font-black rounded-2xl hover:bg-white hover:scale-105 transition-all duration-300 shadow-xl shadow-edufa-yellow/20 group"
+                                    >
+                                        Jelajahi Artikel
+                                        <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                                    </Link>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+                </div>
+
 
                 <BranchSection branches={branches} />
 

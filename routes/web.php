@@ -33,95 +33,24 @@ Route::get('/sitemap.xml', function () {
     return $sitemap->toResponse(request());
 });
 
-Route::get('/', function () {
-    return Inertia::render('Guest/Page', [
-        'branches' => Branch::all()
-    ]);
-})->name('home');
+use App\Http\Controllers\GuestController;
 
-Route::get('/terapis', function () {
-    return Inertia::render('Guest/Terapis', [
-        'teamMembers' => \App\Models\TeamMember::all()
-    ]);
-})->name('terapis');
-
-Route::get('/kegiatan', function () {
-    return Inertia::render('Guest/Kegiatan', [
-        'activities' => \App\Models\Activity::latest()->get()
-    ]);
-})->name('kegiatan');
-
-Route::get('/artikel', function () {
-    return Inertia::render('Guest/Artikel', [
-        'articles' => \App\Models\Article::with('user')->where('status', 'published')->latest()->get()
-    ]);
-})->name('artikel');
-
-Route::get('/artikel/{slug}', function ($slug) {
-    $article = \App\Models\Article::with('user')->where('slug', $slug)->firstOrFail();
-    $relatedArticles = \App\Models\Article::where('id', '!=', $article->id)
-        ->where('status', 'published')
-        ->latest()
-        ->take(3)
-        ->get();
-        
-    return Inertia::render('Guest/DetailArtikel', [
-        'article' => $article,
-        'relatedArticles' => $relatedArticles
-    ]);
-})->name('artikel.show');
-
-
+Route::get('/', [GuestController::class, 'index'])->name('home');
+Route::get('/terapis', [GuestController::class, 'terapis'])->name('terapis');
+Route::get('/kegiatan', [GuestController::class, 'kegiatan'])->name('kegiatan');
+Route::get('/artikel', [GuestController::class, 'artikel'])->name('artikel');
+Route::get('/artikel/{slug}', [GuestController::class, 'showArtikel'])->name('artikel.show');
+Route::get('/cabang', [GuestController::class, 'cabang'])->name('cabang');
 
 Route::prefix('pelayanan')->name('pelayanan.')->group(function () {
-    Route::get('/asesmen-psikologi', function () { 
-        return Inertia::render('Guest/Pelayanan/AsesmenPsikologi', [
-            'service' => \App\Models\Service::where('slug', 'asesmen-psikologi')->first()
-        ]); 
-    })->name('asesmen');
-
-    Route::get('/pelatihan', function () { 
-        return Inertia::render('Guest/Pelayanan/Pelatihan', [
-            'service' => \App\Models\Service::where('slug', 'pelatihan')->first()
-        ]); 
-    })->name('pelatihan');
-
-    Route::get('/konseling', function () { 
-        return Inertia::render('Guest/Pelayanan/Konseling', [
-            'service' => \App\Models\Service::where('slug', 'konseling')->first()
-        ]); 
-    })->name('konseling');
-
-    Route::get('/terapi', function () { 
-        return Inertia::render('Guest/Pelayanan/Terapi', [
-            'service' => \App\Models\Service::where('slug', 'terapi')->first()
-        ]); 
-    })->name('terapi');
-
-    Route::get('/paud-edufa-kids', function () { 
-        return Inertia::render('Guest/Pelayanan/PAUDEDUfaKids', [
-            'service' => \App\Models\Service::where('slug', 'paud-edufa-kids')->first()
-        ]); 
-    })->name('paud');
-
-    Route::get('/pendampingan-abk', function () { 
-        return Inertia::render('Guest/Pelayanan/PendampinganABKdiSekolah', [
-            'service' => \App\Models\Service::where('slug', 'pendampingan-abk')->first()
-        ]); 
-    })->name('pendampingan');
-
-    Route::get('/balai-latihan-kerja', function () { 
-        return Inertia::render('Guest/Pelayanan/Balai', [
-            'service' => \App\Models\Service::where('slug', 'balai-latihan-kerja')->first()
-        ]); 
-    })->name('balai');
+    Route::get('/asesmen-psikologi', [GuestController::class, 'pelayanan'])->defaults('type', 'asesmen-psikologi')->name('asesmen');
+    Route::get('/pelatihan', [GuestController::class, 'pelayanan'])->defaults('type', 'pelatihan')->name('pelatihan');
+    Route::get('/konseling', [GuestController::class, 'pelayanan'])->defaults('type', 'konseling')->name('konseling');
+    Route::get('/terapi', [GuestController::class, 'pelayanan'])->defaults('type', 'terapi')->name('terapi');
+    Route::get('/paud-edufa-kids', [GuestController::class, 'pelayanan'])->defaults('type', 'paud-edufa-kids')->name('paud');
+    Route::get('/pendampingan-abk', [GuestController::class, 'pelayanan'])->defaults('type', 'pendampingan-abk')->name('pendampingan');
+    Route::get('/balai-latihan-kerja', [GuestController::class, 'pelayanan'])->defaults('type', 'balai-latihan-kerja')->name('balai');
 });
-
-Route::get('/cabang', function () {
-    return Inertia::render('Guest/Cabang', [
-        'branches' => Branch::all()
-    ]);
-})->name('cabang');
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', function () {
@@ -137,7 +66,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
         ]);
     })->name('dashboard');
 
-    // Service Management (G-Form Links)
+    
     Route::get('admin/services', [\App\Http\Controllers\ServiceController::class, 'index'])->name('admin.services.index');
     Route::put('admin/services/{service}', [\App\Http\Controllers\ServiceController::class, 'update'])->name('admin.services.update');
 
