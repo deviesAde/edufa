@@ -46,29 +46,75 @@ Route::get('/terapis', function () {
 })->name('terapis');
 
 Route::get('/kegiatan', function () {
-    return Inertia::render('Guest/Kegiatan');
+    return Inertia::render('Guest/Kegiatan', [
+        'activities' => \App\Models\Activity::latest()->get()
+    ]);
 })->name('kegiatan');
 
 Route::get('/artikel', function () {
-    return Inertia::render('Guest/Artikel');
+    return Inertia::render('Guest/Artikel', [
+        'articles' => \App\Models\Article::with('user')->where('status', 'published')->latest()->get()
+    ]);
 })->name('artikel');
 
 Route::get('/artikel/{slug}', function ($slug) {
+    $article = \App\Models\Article::with('user')->where('slug', $slug)->firstOrFail();
+    $relatedArticles = \App\Models\Article::where('id', '!=', $article->id)
+        ->where('status', 'published')
+        ->latest()
+        ->take(3)
+        ->get();
+        
     return Inertia::render('Guest/DetailArtikel', [
-        'slug' => $slug
+        'article' => $article,
+        'relatedArticles' => $relatedArticles
     ]);
 })->name('artikel.show');
 
 
 
 Route::prefix('pelayanan')->name('pelayanan.')->group(function () {
-    Route::get('/asesmen-psikologi', function () { return Inertia::render('Guest/Pelayanan/AsesmenPsikologi'); })->name('asesmen');
-    Route::get('/pelatihan', function () { return Inertia::render('Guest/Pelayanan/Pelatihan'); })->name('pelatihan');
-    Route::get('/konseling', function () { return Inertia::render('Guest/Pelayanan/Konseling'); })->name('konseling');
-    Route::get('/terapi', function () { return Inertia::render('Guest/Pelayanan/Terapi'); })->name('terapi');
-    Route::get('/paud-edufa-kids', function () { return Inertia::render('Guest/Pelayanan/PAUDEDUfaKids'); })->name('paud');
-    Route::get('/pendampingan-abk', function () { return Inertia::render('Guest/Pelayanan/PendampinganABKdiSekolah'); })->name('pendampingan');
-    Route::get('/balai-latihan-kerja', function () { return Inertia::render('Guest/Pelayanan/Balai'); })->name('balai');
+    Route::get('/asesmen-psikologi', function () { 
+        return Inertia::render('Guest/Pelayanan/AsesmenPsikologi', [
+            'service' => \App\Models\Service::where('slug', 'asesmen-psikologi')->first()
+        ]); 
+    })->name('asesmen');
+
+    Route::get('/pelatihan', function () { 
+        return Inertia::render('Guest/Pelayanan/Pelatihan', [
+            'service' => \App\Models\Service::where('slug', 'pelatihan')->first()
+        ]); 
+    })->name('pelatihan');
+
+    Route::get('/konseling', function () { 
+        return Inertia::render('Guest/Pelayanan/Konseling', [
+            'service' => \App\Models\Service::where('slug', 'konseling')->first()
+        ]); 
+    })->name('konseling');
+
+    Route::get('/terapi', function () { 
+        return Inertia::render('Guest/Pelayanan/Terapi', [
+            'service' => \App\Models\Service::where('slug', 'terapi')->first()
+        ]); 
+    })->name('terapi');
+
+    Route::get('/paud-edufa-kids', function () { 
+        return Inertia::render('Guest/Pelayanan/PAUDEDUfaKids', [
+            'service' => \App\Models\Service::where('slug', 'paud-edufa-kids')->first()
+        ]); 
+    })->name('paud');
+
+    Route::get('/pendampingan-abk', function () { 
+        return Inertia::render('Guest/Pelayanan/PendampinganABKdiSekolah', [
+            'service' => \App\Models\Service::where('slug', 'pendampingan-abk')->first()
+        ]); 
+    })->name('pendampingan');
+
+    Route::get('/balai-latihan-kerja', function () { 
+        return Inertia::render('Guest/Pelayanan/Balai', [
+            'service' => \App\Models\Service::where('slug', 'balai-latihan-kerja')->first()
+        ]); 
+    })->name('balai');
 });
 
 Route::get('/cabang', function () {
@@ -83,10 +129,17 @@ Route::middleware(['auth', 'admin'])->group(function () {
             'stats' => [
                 'totalBranches' => Branch::count(),
                 'totalTeamMembers' => TeamMember::count(),
-                'totalArticles' => 0, 
-            ]
+                'totalArticles' => \App\Models\Article::count(),
+                'totalActivities' => \App\Models\Activity::count(),
+            ],
+            'recentArticles' => \App\Models\Article::with('user')->latest()->take(5)->get(),
+            'recentActivities' => \App\Models\Activity::latest()->take(5)->get(),
         ]);
     })->name('dashboard');
+
+    // Service Management (G-Form Links)
+    Route::get('admin/services', [\App\Http\Controllers\ServiceController::class, 'index'])->name('admin.services.index');
+    Route::put('admin/services/{service}', [\App\Http\Controllers\ServiceController::class, 'update'])->name('admin.services.update');
 
     Route::resource('admin/branches', BranchController::class)->names([
         'index' => 'admin.branches.index',
@@ -106,6 +159,26 @@ Route::middleware(['auth', 'admin'])->group(function () {
         'edit' => 'admin.team-members.edit',
         'update' => 'admin.team-members.update',
         'destroy' => 'admin.team-members.destroy',
+    ]);
+
+    Route::resource('admin/activities', \App\Http\Controllers\ActivityController::class)->names([
+        'index' => 'admin.activities.index',
+        'create' => 'admin.activities.create',
+        'store' => 'admin.activities.store',
+        'show' => 'admin.activities.show',
+        'edit' => 'admin.activities.edit',
+        'update' => 'admin.activities.update',
+        'destroy' => 'admin.activities.destroy',
+    ]);
+
+    Route::resource('admin/articles', \App\Http\Controllers\ArticleController::class)->names([
+        'index' => 'admin.articles.index',
+        'create' => 'admin.articles.create',
+        'store' => 'admin.articles.store',
+        'show' => 'admin.articles.show',
+        'edit' => 'admin.articles.edit',
+        'update' => 'admin.articles.update',
+        'destroy' => 'admin.articles.destroy',
     ]);
 });
 

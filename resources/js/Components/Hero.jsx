@@ -15,6 +15,7 @@ export default function Hero() {
                 loop 
                 muted 
                 playsInline
+                preload="metadata"
             >
                 <source src="/hero/edufa.webm" type="video/webm" />
             </video>

@@ -163,26 +163,64 @@ export default function Page({ branches }) {
                         </div>
 
                         {/* Leader Section */}
-                        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-6 relative overflow-visible mt-20">
-                            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white flex items-center justify-center flex-none ring-4 ring-white shadow-xl relative z-20 overflow-hidden">
-                                <div className="flex items-center justify-center w-full h-full bg-gradient-to-tr from-edufa-blue/20 to-edufa-yellow/20">
-                                    <svg className="w-12 h-12 text-edufa-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
-                                </div>
-                            </div>
+                        <div className="mt-24 grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto px-4 sm:px-6">
+                            {[
+                                {
+                                    name: "Dr. Ernie C. Siregar, S.Psi., M.Pd., Psikolog",
+                                    image: "/penanggung/ernie-siregar.png",
+                                    role: "Pimpinan dan Psikolog Biro Psikologi dan Pusat Layanan Terapi EDUfa"
+                                },
+                                {
+                                    name: "Dr. Yoga Budi Santoso, M.Pd.",
+                                    image: "/penanggung/yoga-budi-santoso.jpg",
+                                    role: "Pimpinan dan Psikolog Biro Psikologi dan Pusat Layanan Terapi EDUfa"
+                                }
+                            ].map((leader, index) => (
+                                <motion.div 
+                                    key={index}
+                                    initial={{ opacity: 0, y: 40 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                                    className="group relative"
+                                >
+                                    <div className="relative flex flex-col items-center md:flex-row gap-8 bg-edufa-blue rounded-[3rem] p-8 md:p-10 shadow-3xl shadow-edufa-blue/40 overflow-hidden ring-1 ring-white/10 transition-all duration-500 hover:ring-white/20 hover:shadow-edufa-blue/30">
+                                        {/* Background Decor */}
+                                        <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 blur-[80px] -mr-24 -mt-24 group-hover:bg-white/20 transition-all duration-700"></div>
+                                        <div className="absolute bottom-0 left-0 w-32 h-32 bg-edufa-yellow/10 blur-[60px] -ml-16 -mb-16"></div>
+                                        
+                                        <div className="relative flex-none">
+                                            <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-[2rem] overflow-hidden ring-8 ring-white/5 shadow-2xl relative z-10">
+                                                <img 
+                                                    src={leader.image} 
+                                                    alt={leader.name}
+                                                    className="w-full h-full object-cover transition-transform duration-700 scale-105 group-hover:scale-115"
+                                                    loading="lazy"
+                                                    decoding="async"
+                                                />
+                                            </div>
+                                            {/* Decorative aura behind image */}
+                                            <div className="absolute -inset-6 bg-gradient-to-tr from-edufa-blue/30 via-transparent to-edufa-yellow/30 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-0"></div>
+                                        </div>
 
-                            <div className="text-center md:text-left relative z-10 flex-1 bg-gray-900 rounded-3xl p-6 md:p-8 md:-ml-12 shadow-xl shadow-gray-900/10 w-full pl-6 md:pl-16">
-                                <div className="inline-flex flex-wrap gap-2 items-center justify-center md:justify-start mb-3">
-                                    <span className="text-[10px] font-bold text-white uppercase tracking-widest bg-edufa-blue/80 px-2 py-0.5 rounded border border-edufa-blue">
-                                        Ketua Yayasan
-                                    </span>
-                                    <span className="text-[10px] font-bold text-white uppercase tracking-widest bg-amber-600/80 px-2 py-0.5 rounded border border-amber-500">
-                                        Penanggungjawab Biro
-                                    </span>
-                                </div>
-                                <p className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                                    Dr. Ernie C. Siregar, S.Psi, M.Pd, Psikolog
-                                </p>
-                            </div>
+                                        <div className="flex-1 text-center md:text-left relative z-10">
+                                            <div className="mb-4 flex justify-center md:justify-start">
+                                                <span className="inline-flex items-center text-[10px] font-black text-edufa-yellow uppercase tracking-[0.25em] bg-white/10 px-4 py-1.5 rounded-full border border-white/20">
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-edufa-yellow mr-2 animate-pulse"></span>
+                                                    Leadership
+                                                </span>
+                                            </div>
+                                            <h4 className="text-xl sm:text-2xl font-black text-white tracking-tight mb-3 leading-tight group-hover:text-edufa-yellow transition-colors duration-300">
+                                                {leader.name}
+                                            </h4>
+                                            <div className="h-px w-12 bg-gradient-to-r from-white/30 to-transparent mb-4 mx-auto md:mx-0"></div>
+                                            <p className="text-xs sm:text-[13px] font-bold text-blue-100/80 leading-relaxed uppercase tracking-wider max-w-[280px] mx-auto md:mx-0">
+                                                {leader.role}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -273,6 +311,8 @@ export default function Page({ branches }) {
                                                                 src={img.src}
                                                                 alt={img.alt}
                                                                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-110"
+                                                                loading="lazy"
+                                                                decoding="async"
                                                             />
                                                         </div>
                                                     </div>

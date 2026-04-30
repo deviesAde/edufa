@@ -165,6 +165,16 @@ export const RevealCardContainer = forwardRef(
 
     useGSAP(() => {
       gsap.set(overlayRef.current, { clipPath: startClip });
+      
+      // Fun Idle Animation: Floating
+      gsap.to(holderRef.current, {
+        y: -10,
+        duration: 2 + Math.random() * 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: Math.random() * 2
+      });
     }, { scope: holderRef });
 
     const reveal = () => {

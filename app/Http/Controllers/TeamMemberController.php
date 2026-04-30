@@ -24,7 +24,7 @@ class TeamMemberController extends Controller
             'type' => 'required|string|in:terapis,staf',
             'role' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'photo' => 'nullable|image|max:2048',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
 
         if ($request->hasFile('photo')) {
@@ -43,7 +43,7 @@ class TeamMemberController extends Controller
             'type' => 'required|string|in:terapis,staf',
             'role' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'photo' => 'nullable|image|max:2048',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
 
         if ($request->hasFile('photo')) {

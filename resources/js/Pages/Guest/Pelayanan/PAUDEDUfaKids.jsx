@@ -28,7 +28,8 @@ const RevealText = ({ text, className = "", delay = 0 }) => {
     );
 };
 
-export default function PAUDEDUfaKids() {
+export default function PAUDEDUfaKids({ service }) {
+    const gFormUrl = service?.google_form_url || "https://wa.me/6281234567890?text=Halo%20EDUfa,%20saya%20ingin%20info%20PAUD%20EDUfa%20Kids";
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased overflow-hidden">
             <Head title="PAUD EDUfa Kids - EDUfa Centre" />
@@ -138,12 +139,12 @@ export default function PAUDEDUfaKids() {
                                 ))}
                             </ul>
                             <a 
-                                href="https://wa.me/6281234567890?text=Halo%20EDUfa,%20saya%20ingin%20mendaftar%20PAUD%20EDUfa%20Kids" 
+                                href={gFormUrl} 
                                 target="_blank"
                                 rel="noreferrer"
                                 className="inline-block bg-edufa-blue text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:bg-blue-800 hover:shadow-edufa-blue/30 transition-all hover:-translate-y-1"
                             >
-                                Pendaftaran EDUfa Kids
+                                Daftar PAUD Sekarang
                             </a>
                         </motion.div>
                         

@@ -58,21 +58,21 @@ export function AppSidebar() {
     },
     {
       title: "Kegiatan",
-      url: "#",
+      url: route('admin.activities.index'),
       icon: Calendar,
-      active: route().current('admin.events.*'),
+      active: route().current('admin.activities.*'),
     },
     {
       title: "Artikel",
-      url: "#",
+      url: route('admin.articles.index'),
       icon: FileText,
       active: route().current('admin.articles.*'),
     },
     {
-      title: "Pelatihan",
-      url: "#",
+      title: "Layanan",
+      url: route('admin.services.index'),
       icon: GraduationCap,
-      active: route().current('admin.trainings.*'),
+      active: route().current('admin.services.*'),
     },
   ]
 

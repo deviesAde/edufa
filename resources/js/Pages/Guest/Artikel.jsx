@@ -28,11 +28,11 @@ const RevealText = ({ text, className = "", delay = 0 }) => {
     );
 };
 
-import { ARTICLES, CATEGORIES } from '@/constants/articles';
+// Removed static imports
+
 
 const PER_PAGE = 6;
 const PLACEHOLDER = 'https://via.placeholder.com/600/0f59bc/ffffff?text=EDUfa';
-
 
 /* ─────────────────────────────────────────────
    BADGE COLOR MAP
@@ -42,6 +42,8 @@ const BADGE_COLORS = {
     Terapi:    'bg-edufa-green text-white',
     Autisme:   'bg-edufa-red text-white',
     Konseling: 'bg-purple-600 text-white',
+    Edukasi:   'bg-amber-500 text-white',
+    Parenting: 'bg-rose-500 text-white',
     default:   'bg-gray-600 text-white',
 };
 
@@ -53,7 +55,7 @@ function badgeClass(cat) {
    AVATAR INITIALS
 ───────────────────────────────────────────── */
 function Avatar({ name }) {
-    const initials = name.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase();
+    const initials = name ? name.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase() : 'A';
     return (
         <div className="w-9 h-9 rounded-full bg-edufa-blue flex items-center justify-center flex-shrink-0 ring-2 ring-white shadow text-white text-xs font-bold">
             {initials}
@@ -65,6 +67,12 @@ function Avatar({ name }) {
    ARTICLE CARD
 ───────────────────────────────────────────── */
 function ArticleCard({ article }) {
+    const formattedDate = new Date(article.created_at).toLocaleDateString('id-ID', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    });
+
     return (
         <motion.div
             layout
@@ -77,7 +85,7 @@ function ArticleCard({ article }) {
             {/* Thumbnail */}
             <div className="relative aspect-[16/10] overflow-hidden">
                 <img
-                    src={article.image}
+                    src={article.thumbnail_path ? `/storage/${article.thumbnail_path}` : PLACEHOLDER}
                     alt={article.title}
                     onError={(e) => { e.target.src = PLACEHOLDER; }}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -87,15 +95,7 @@ function ArticleCard({ article }) {
 
                 {/* Category badge */}
                 <span className={`absolute top-3 right-3 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow ${badgeClass(article.category)}`}>
-                    {article.category}
-                </span>
-
-                {/* Read time */}
-                <span className="absolute bottom-3 left-3 text-[10px] font-semibold text-white bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full flex items-center gap-1">
-                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    {article.readTime}
+                    {article.category || 'Uncategorized'}
                 </span>
             </div>
 
@@ -103,26 +103,28 @@ function ArticleCard({ article }) {
             <div className="flex flex-col flex-1 p-5">
                 {/* Author row */}
                 <div className="flex items-center gap-3 mb-4">
-                    <Avatar name={article.author.name} />
+                    <Avatar name={!!article.show_expert_voice ? (article.author_name || "Dr. Ernie C. Siregar") : (article.user?.name || "Admin")} />
                     <div className="min-w-0">
-                        <p className="text-xs font-bold text-gray-900 truncate">{article.author.name}</p>
-                        <p className="text-[10px] text-gray-400">{article.author.role} · {article.date}</p>
+                        <p className="text-xs font-bold text-gray-900 truncate">
+                            {!!article.show_expert_voice ? (article.author_name || "Dr. Ernie C. Siregar") : (article.user?.name || "Admin")}
+                        </p>
+                        <p className="text-[10px] text-gray-400">{formattedDate}</p>
                     </div>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-base font-extrabold text-gray-900 leading-snug line-clamp-3 mb-2 group-hover:text-edufa-blue transition-colors duration-200">
+                <h3 className="text-base font-extrabold text-gray-900 leading-snug line-clamp-2 mb-2 group-hover:text-edufa-blue transition-colors duration-200 min-h-[3rem]">
                     {article.title}
                 </h3>
 
                 {/* Excerpt */}
                 <p className="text-sm text-gray-500 leading-relaxed line-clamp-3 flex-1 mb-5">
-                    {article.description}
+                    {article.content.replace(/<[^>]*>?/gm, '').substring(0, 150)}...
                 </p>
 
                 {/* Read More */}
                 <Link
-                    href={`/artikel/${article.slug}`}
+                    href={route('artikel.show', article.slug)}
                     className="inline-flex items-center gap-2 text-sm font-bold text-edufa-blue hover:text-white hover:bg-edufa-blue border-2 border-edufa-blue rounded-xl px-4 py-2 transition-all duration-200 self-start group/btn"
                 >
                     Baca Selengkapnya
@@ -136,9 +138,15 @@ function ArticleCard({ article }) {
 }
 
 /* ─────────────────────────────────────────────
-   FEATURED CARD (article[0])
+   FEATURED CARD
 ───────────────────────────────────────────── */
 function FeaturedCard({ article }) {
+    const formattedDate = new Date(article.created_at).toLocaleDateString('id-ID', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    });
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -149,7 +157,7 @@ function FeaturedCard({ article }) {
             {/* Image */}
             <div className="relative lg:w-1/2 aspect-[16/9] lg:aspect-auto overflow-hidden flex-shrink-0">
                 <img
-                    src={article.image}
+                    src={article.thumbnail_path ? `/storage/${article.thumbnail_path}` : PLACEHOLDER}
                     alt={article.title}
                     onError={(e) => { e.target.src = PLACEHOLDER; }}
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -163,21 +171,25 @@ function FeaturedCard({ article }) {
             {/* Content */}
             <div className="flex flex-col justify-center p-8 lg:p-10 lg:w-1/2">
                 <span className={`inline-block text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full mb-4 self-start ${badgeClass(article.category)}`}>
-                    {article.category}
+                    {article.category || 'Uncategorized'}
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 leading-snug mb-4 group-hover:text-edufa-blue transition-colors duration-200">
                     {article.title}
                 </h2>
-                <p className="text-gray-500 leading-relaxed mb-6 line-clamp-3">{article.description}</p>
+                <p className="text-gray-500 leading-relaxed mb-6 line-clamp-3">
+                    {article.content.replace(/<[^>]*>?/gm, '').substring(0, 200)}...
+                </p>
                 <div className="flex items-center gap-3 mb-6">
-                    <Avatar name={article.author.name} />
+                    <Avatar name={!!article.show_expert_voice ? (article.author_name || "Dr. Ernie C. Siregar") : (article.user?.name || "Admin")} />
                     <div>
-                        <p className="text-sm font-bold text-gray-900">{article.author.name}</p>
-                        <p className="text-xs text-gray-400">{article.author.role} · {article.date} · {article.readTime}</p>
+                        <p className="text-sm font-bold text-gray-900">
+                            {!!article.show_expert_voice ? (article.author_name || "Dr. Ernie C. Siregar") : (article.user?.name || "Admin")}
+                        </p>
+                        <p className="text-xs text-gray-400">{formattedDate}</p>
                     </div>
                 </div>
                 <Link
-                    href={`/artikel/${article.slug}`}
+                    href={route('artikel.show', article.slug)}
                     className="inline-flex items-center gap-2 text-sm font-bold text-white bg-edufa-blue hover:bg-blue-800 rounded-xl px-6 py-3 transition-all duration-200 self-start shadow-md hover:shadow-edufa-blue/30 hover:-translate-y-0.5 group/btn"
                 >
                     Baca Selengkapnya
@@ -193,26 +205,28 @@ function FeaturedCard({ article }) {
 /* ─────────────────────────────────────────────
    MAIN PAGE
 ───────────────────────────────────────────── */
-export default function Artikel() {
+export default function Artikel({ articles = [] }) {
     const [activeCategory, setActiveCategory] = useState('Semua');
     const [search, setSearch] = useState('');
     const [page, setPage] = useState(1);
 
+    const categories = ['Semua', ...new Set(articles.map(a => a.category).filter(Boolean))];
+
     const filtered = useMemo(() => {
-        return ARTICLES.filter((a) => {
+        return articles.filter((a) => {
             const matchCat = activeCategory === 'Semua' || a.category === activeCategory;
             const matchSearch = a.title.toLowerCase().includes(search.toLowerCase()) ||
-                                a.description.toLowerCase().includes(search.toLowerCase());
+                                a.content.toLowerCase().includes(search.toLowerCase());
             return matchCat && matchSearch;
         });
-    }, [activeCategory, search]);
+    }, [activeCategory, search, articles]);
 
     const paginated = filtered.slice(0, page * PER_PAGE);
     const hasMore = paginated.length < filtered.length;
 
-    // Featured = first article of full unfiltered list (only shown when no filter/search)
-    const showFeatured = activeCategory === 'Semua' && search === '' && page === 1;
-    const featuredArticle = ARTICLES[0];
+    // Featured = first article
+    const showFeatured = activeCategory === 'Semua' && search === '' && page === 1 && filtered.length > 0;
+    const featuredArticle = filtered[0];
     const gridArticles = showFeatured ? paginated.filter(a => a.id !== featuredArticle.id) : paginated;
 
     function handleCategoryChange(cat) {
@@ -338,8 +352,8 @@ export default function Artikel() {
                     {/* Filter tabs */}
                     <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
                         className="flex flex-wrap gap-3 justify-center mb-12">
-                        {CATEGORIES.map((cat) => {
-                            const count = cat === 'Semua' ? ARTICLES.length : ARTICLES.filter(a => a.category === cat).length;
+                        {categories.map((cat) => {
+                            const count = cat === 'Semua' ? articles.length : articles.filter(a => a.category === cat).length;
                             return (
                                 <button key={cat} onClick={() => handleCategoryChange(cat)}
                                     className={`px-5 py-2.5 rounded-full text-sm font-bold tracking-wide transition-all duration-200 shadow-sm ${activeCategory === cat ? 'bg-edufa-blue text-white shadow-edufa-blue/30 scale-105' : 'bg-white text-gray-600 hover:bg-gray-100 ring-1 ring-gray-200 hover:scale-105'}`}>

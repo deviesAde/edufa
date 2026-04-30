@@ -21,6 +21,7 @@ const FloatingShapes = () => {
                         left: shape.left,
                         right: shape.right,
                         bottom: shape.bottom,
+                        willChange: 'transform, opacity'
                     }}
                     animate={{
                         y: [0, -40, 0],

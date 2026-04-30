@@ -28,7 +28,8 @@ const RevealText = ({ text, className = "", delay = 0 }) => {
     );
 };
 
-export default function Balai() {
+export default function Balai({ service }) {
+    const gFormUrl = service?.google_form_url || "https://wa.me/6281234567890?text=Halo%20EDUfa,%20saya%20ingin%20info%20program%20BLK";
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased overflow-hidden">
             <Head title="Balai Latihan Kerja - EDUfa Centre" />
@@ -147,12 +148,12 @@ export default function Balai() {
                                 ))}
                             </ul>
                             <a 
-                                href="https://wa.me/6281234567890?text=Halo%20EDUfa,%20saya%20ingin%20info%20Balai%20Latihan%20Kerja" 
+                                href={gFormUrl} 
                                 target="_blank"
                                 rel="noreferrer"
                                 className="inline-block bg-edufa-blue text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:bg-blue-800 hover:shadow-edufa-blue/30 transition-all hover:-translate-y-1"
                             >
-                                Hubungi Kami
+                                Info Pendaftaran Sekarang
                             </a>
                         </motion.div>
                         
