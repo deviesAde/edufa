@@ -130,15 +130,14 @@ export default function Terapis({ teamMembers = [] }) {
                                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                                 className="text-3xl font-black tracking-tight text-gray-900 sm:text-5xl lg:text-6xl leading-[1.1]"
                             >
-                                <RevealText text="Mengenal Sosok" className="text-gray-900" /> <br />
-                                <span className="relative inline-block mt-2">
-                                    <RevealText text="Di Balik EDUfa" className="text-edufa-blue" delay={0.5} />
+                                <span className="relative inline-block">
+                                    <RevealText text="Tim Edufa Pusat" className="text-edufa-blue" />
                                     <motion.svg 
                                         viewBox="0 0 300 20" 
                                         className="absolute -bottom-2 left-0 w-full h-4 text-edufa-yellow"
                                         initial={{ pathLength: 0, opacity: 0 }}
                                         animate={{ pathLength: 1, opacity: 1 }}
-                                        transition={{ delay: 1.2, duration: 1 }}
+                                        transition={{ delay: 0.8, duration: 1 }}
                                     >
                                         <motion.path 
                                             d="M5 15 Q 150 5 295 15" 

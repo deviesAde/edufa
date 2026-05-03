@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { RevealCardContainer } from '@/Components/ui/animated-profile-card';
+import { FlippingCard } from '@/Components/ui/flipping-card';
 import { 
     ClipboardCheck, 
     HeartPulse, 
@@ -9,7 +9,7 @@ import {
     Users, 
     School, 
     Briefcase,
-    ArrowUpRight
+    ArrowRight
 } from 'lucide-react';
 
 const services = [
@@ -71,78 +71,75 @@ const services = [
     }
 ];
 
-const ServiceCardBody = ({ service, isAccent = false }) => {
-    return (
+const CardFront = ({ service }) => (
+    <div className="flex flex-col items-center justify-center h-full p-6 text-center">
         <div className={cn(
-            "flex flex-col h-full p-6 transition-all duration-500",
-            isAccent ? "bg-[var(--accent-color)]" : "bg-white",
+            "w-20 h-20 rounded-full flex items-center justify-center mb-5 shadow-inner border-4 border-white transition-all duration-500 group-hover/flipping-card:rotate-12 group-hover/flipping-card:scale-110",
+            service.lightBg, service.iconColor
         )}>
-            <div className="flex justify-between items-start mb-6">
-                <div className={cn(
-                    "w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-500 shadow-sm",
-                    isAccent ? "bg-white/20 text-white rotate-6" : cn(service.lightBg, service.iconColor)
-                )}>
-                    {React.cloneElement(service.icon, { size: 24, strokeWidth: 2.5 })}
-                </div>
-                {!isAccent && (
-                    <div className="opacity-20 group-hover:opacity-100 transition-opacity">
-                        <ArrowUpRight className="w-5 h-5 text-gray-400" />
-                    </div>
-                )}
-            </div>
+            {React.cloneElement(service.icon, { size: 36, strokeWidth: 2.5 })}
+        </div>
+        <h3 className="text-[10px] font-black tracking-[0.1em] uppercase leading-tight text-white bg-black/10 px-4 py-1.5 rounded-full border border-white/20 backdrop-blur-sm">
+            {service.title}
+        </h3>
+    </div>
+);
 
-            <div className="flex-grow">
-                <h3 className={cn(
-                    "text-lg font-black tracking-tight mb-3 leading-tight",
-                    isAccent ? "text-[var(--on-accent-foreground)]" : "text-gray-900"
-                )}>
-                    {service.title}
-                </h3>
-                <p className={cn(
-                    "text-sm leading-relaxed font-medium",
-                    isAccent ? "text-[var(--on-accent-foreground)]/90" : "text-gray-500"
-                )}>
-                    {service.description}
-                </p>
+const CardBack = ({ service }) => {
+    const isYellow = service.accentColor === "#ffd900";
+    return (
+        <div className="flex flex-col items-center justify-center h-full p-6 text-center">
+            <div className={cn(
+                "mb-4 p-3 rounded-full shadow-inner",
+                service.lightBg, service.iconColor
+            )}>
+                {React.cloneElement(service.icon, { size: 28, strokeWidth: 2.5 })}
             </div>
-            
-            {isAccent && (
-                <div className="mt-4 pt-4 border-t border-white/10">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-white/70">
-                        Explore Detail
-                    </span>
-                </div>
-            )}
+            <p className={cn(
+                "text-[12px] font-black leading-relaxed mb-5",
+                isYellow ? "text-amber-900" : "text-white"
+            )}>
+                {service.description}
+            </p>
+            <button className={cn(
+                "flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all shadow-lg",
+                isYellow ? "bg-amber-900 text-white hover:bg-amber-800" : "bg-white text-gray-900 hover:bg-gray-100"
+            )}>
+                Cek Yuk! <ArrowRight size={12} />
+            </button>
         </div>
     );
 };
 
 export default function ServiceCards() {
     return (
-        <section className="relative z-30 -mt-20 sm:-mt-28 px-6 lg:px-8">
-            <div className="mx-auto max-w-7xl">
-                <div className="flex flex-wrap justify-center gap-6 items-stretch">
-                    {services.map((service, index) => {
-                        const isYellow = service.accentColor === "#ffd900";
-                        const textOnAccent = isYellow ? "#422006" : "#ffffff";
-                        const mutedOnAccent = isYellow ? "rgba(66,32,6,0.6)" : "rgba(255,255,255,0.7)";
-                        
-                        return (
-                            <RevealCardContainer
-                                key={index}
-                                accent={service.accentColor}
-                                textOnAccent={textOnAccent}
-                                mutedOnAccent={mutedOnAccent}
-                                className={cn(
-                                    "w-full sm:w-[calc(50%-1.5rem)] lg:w-[280px] min-h-[220px] rounded-[2rem] border-0 ring-1 ring-black/5 shadow-xl shadow-gray-200/20 hover:shadow-2xl transition-all duration-500"
-                                )}
-                                base={<ServiceCardBody service={service} />}
-                                overlay={<ServiceCardBody service={service} isAccent={true} />}
+        <section className="relative z-30 -mt-28 px-4">
+            <div className="mx-auto max-w-[1400px]">
+                <div className="flex flex-nowrap overflow-x-auto pb-8 gap-4 no-scrollbar snap-x snap-mandatory justify-start lg:justify-center">
+                    {services.map((service, index) => (
+                        <div key={index} className="flex-shrink-0 snap-center">
+                            <FlippingCard
+                                width={180}
+                                height={240}
+                                accentColor={service.accentColor}
+                                className="border-0 shadow-lg shadow-black/5"
+                                frontContent={<CardFront service={service} />}
+                                backContent={<CardBack service={service} />}
                             />
-                        );
-                    })}
+                        </div>
+                    ))}
                 </div>
             </div>
+            
+            <style dangerouslySetInnerHTML={{ __html: `
+                .no-scrollbar::-webkit-scrollbar {
+                    display: none;
+                }
+                .no-scrollbar {
+                    -ms-overflow-style: none;
+                    scrollbar-width: none;
+                }
+            `}} />
         </section>
     );
 }

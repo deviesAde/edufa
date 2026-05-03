@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 export default function Hero() {
     return (
-        <div className="relative isolate overflow-hidden bg-gray-900 min-h-[85vh] flex items-center">
+        <div className="relative isolate overflow-hidden bg-gradient-to-b from-edufa-blue to-blue-600 min-h-[85vh] flex items-center">
             <FloatingShapes />
             {/* Background Video */}
             <video 
@@ -36,14 +36,14 @@ export default function Hero() {
             <div className="absolute inset-0 bg-radial-gradient from-transparent to-black/30 -z-10"></div>
             <div className="absolute inset-0 bg-edufa-yellow/10 -z-10"></div>
 
-            <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:px-8 relative z-10 w-full">
-                <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-4xl">
+            <div className="mx-auto max-w-7xl px-6 py-20 sm:py-32 lg:flex lg:px-8 relative z-10 w-full">
+                <div className="mx-auto max-w-3xl lg:mx-0 lg:max-w-5xl">
                     <div className="flex items-center space-x-6 mb-8">
-                        <span className="rounded-full bg-edufa-blue px-4 py-1.5 text-xs font-black uppercase tracking-[0.2em] text-white shadow-lg shadow-edufa-blue/30">
-                            EDUFA MELAYANI DENGAN HATI 
+                        <span className="rounded-full bg-edufa-blue px-6 py-2.5 text-base font-black uppercase tracking-[0.2em] text-white shadow-lg shadow-edufa-blue/30">
+                            Growing Together, Improving Better
                         </span>
                         <span className="h-0.5 w-12 bg-edufa-yellow animate-width-grow"></span>
-                        <span className="text-[10px] font-bold text-white uppercase tracking-widest drop-shadow-sm">
+                        <span className="text-sm font-bold text-white uppercase tracking-widest drop-shadow-sm">
                             Est. 2012
                         </span>
                     </div>
@@ -51,18 +51,18 @@ export default function Hero() {
                     <div className="space-y-8">
                         <AnimatedText
                             text="Biro Psikologi & Pusat Layanan Terapi EDUfa"
-                            textClassName="text-5xl font-black tracking-tight text-white sm:text-7xl text-left leading-[1.1] drop-shadow-sm"
-                            underlineClassName="text-edufa-yellow w-[105%] -left-[2.5%] h-4 sm:h-8"
+                            textClassName="text-6xl font-black tracking-tight text-white sm:text-8xl text-left leading-[1.05] drop-shadow-md"
+                            underlineClassName="text-edufa-yellow w-[105%] -left-[2.5%] h-5 sm:h-10"
                             className="items-start justify-start"
                         />
                         
                         <div className="space-y-6">
-                            <p className="text-2xl sm:text-3xl font-black text-white leading-tight drop-shadow-md">
+                            <p className="text-3xl sm:text-4xl font-black text-white leading-tight drop-shadow-lg">
                                 <BlurTextEffect>
                                     Menumbuhkan Harapan, Meraih Masa Depan Terpercaya.
                                 </BlurTextEffect>
                             </p>
-                            <p className="text-lg sm:text-xl font-medium leading-relaxed text-blue-50/90 max-w-2xl drop-shadow-sm border-l-4 border-edufa-blue pl-6">
+                            <p className="text-xl sm:text-2xl font-medium leading-relaxed text-blue-50 max-w-3xl drop-shadow-md border-l-4 border-edufa-yellow pl-6">
                                 Kami hadir memberikan solusi edukasi dan pengembangan potensi individu yang dilakukan secara profesional dan terencana.
                             </p>
                         </div>
@@ -73,7 +73,7 @@ export default function Hero() {
                             href="#"
                             whileHover={{ scale: 1.05, rotate: -1 }}
                             whileTap={{ scale: 0.95 }}
-                            className="group relative overflow-hidden rounded-full bg-edufa-blue px-12 py-5 text-sm font-black text-white shadow-2xl shadow-edufa-blue/40 transition-all bg-gradient-to-r from-edufa-blue to-blue-700"
+                            className="group relative overflow-hidden rounded-full bg-edufa-blue px-12 py-5 text-base font-black text-white shadow-2xl shadow-edufa-blue/40 transition-all bg-gradient-to-r from-edufa-blue to-blue-700"
                         >
                             <span className="relative z-10">Mulai Konsultasi</span>
                             <div className="absolute inset-0 bg-white/20 translate-y-full transition-transform group-hover:translate-y-0"></div>
@@ -83,7 +83,7 @@ export default function Hero() {
                             href="#" 
                             whileHover={{ scale: 1.05, rotate: 1 }}
                             whileTap={{ scale: 0.95 }}
-                            className="flex items-center gap-3 text-sm font-black text-white group bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full hover:bg-white/40 transition-all border border-white/30 shadow-xl shadow-black/5"
+                            className="flex items-center gap-4 text-base font-black text-white group bg-white/20 backdrop-blur-sm px-8 py-4 rounded-full hover:bg-white/40 transition-all border border-white/30 shadow-xl shadow-black/5"
                         >
                             <span className="relative">
                                 Cari Tahu Lebih Lanjut
