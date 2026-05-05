@@ -36,14 +36,15 @@ const PLACEHOLDER = 'https://via.placeholder.com/600/0f59bc/ffffff?text=EDUfa';
 
 /* ─────────────────────────────────────────────
    BADGE COLOR MAP
+   Consistent with 60/40 Blue/Red-Yellow brand
 ───────────────────────────────────────────── */
 const BADGE_COLORS = {
     Info:      'bg-edufa-blue text-white',
-    Terapi:    'bg-edufa-green text-white',
+    Terapi:    'bg-edufa-yellow text-gray-900',
     Autisme:   'bg-edufa-red text-white',
-    Konseling: 'bg-purple-600 text-white',
-    Edukasi:   'bg-amber-500 text-white',
-    Parenting: 'bg-rose-500 text-white',
+    Konseling: 'bg-edufa-blue text-white',
+    Edukasi:   'bg-edufa-yellow text-gray-900',
+    Parenting: 'bg-edufa-red text-white',
     default:   'bg-gray-600 text-white',
 };
 

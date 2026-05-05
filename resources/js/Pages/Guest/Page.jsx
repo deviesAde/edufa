@@ -65,23 +65,79 @@ export default function Page({ branches }) {
 
 
                 <div className="bg-white py-24 sm:py-32 overflow-hidden relative">
-                    <FloatingShapes />
-                    {/* Decorative Background Elements */}
-                    <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[800px] h-[800px] bg-edufa-yellow/5 rounded-full blur-3xl pointer-events-none"></div>
-                    <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[600px] h-[600px] bg-edufa-blue/5 rounded-full blur-3xl pointer-events-none"></div>
+                    {/* Artistic Background Elements */}
+                    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                        {/* Grid Pattern */}
+                        <div 
+                            className="absolute inset-0 opacity-[0.03]"
+                            style={{
+                                backgroundImage: `radial-gradient(#1A1953 0.5px, transparent 0.5px)`,
+                                backgroundSize: '24px 24px'
+                            }}
+                        ></div>
+                        
+                        {/* Colorful Blobs */}
+                        <motion.div 
+                            animate={{ 
+                                x: [0, 50, 0],
+                                y: [0, 30, 0],
+                                scale: [1, 1.1, 1]
+                            }}
+                            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute -top-24 -left-24 w-96 h-96 bg-edufa-blue/10 blur-[100px] rounded-full"
+                        ></motion.div>
+                        <motion.div 
+                            animate={{ 
+                                x: [0, -40, 0],
+                                y: [0, 60, 0],
+                                scale: [1, 1.2, 1]
+                            }}
+                            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute top-1/2 -right-24 w-80 h-80 bg-edufa-yellow/10 blur-[90px] rounded-full"
+                        ></motion.div>
+                        <motion.div 
+                            animate={{ 
+                                x: [0, 30, 0],
+                                y: [0, -50, 0]
+                            }}
+                            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute -bottom-24 left-1/3 w-[500px] h-[500px] bg-edufa-green/5 blur-[120px] rounded-full"
+                        ></motion.div>
+                        <motion.div 
+                            animate={{ 
+                                scale: [1, 1.15, 1],
+                                rotate: [0, 45, 0]
+                            }}
+                            transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute top-1/4 left-1/2 w-72 h-72 bg-edufa-red/5 blur-[80px] rounded-full"
+                        ></motion.div>
+
+                        {/* Floating Shapes */}
+                        <motion.div 
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                            className="absolute top-40 left-[10%] w-12 h-12 border-2 border-edufa-blue/10 rounded-xl"
+                        ></motion.div>
+                        <motion.div 
+                            animate={{ y: [0, -20, 0] }}
+                            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute bottom-20 right-[15%] w-8 h-8 bg-edufa-yellow/10 rounded-full"
+                        ></motion.div>
+                    </div>
 
                     <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
                         {/* Title and Intro */}
                         <div className="mx-auto max-w-3xl text-center mb-20">
                             <motion.h2 
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="text-sm font-bold tracking-widest text-edufa-blue uppercase mb-4 inline-block px-4 py-1.5 rounded-full bg-edufa-blue/10"
+                                className="text-sm font-black tracking-[0.3em] text-edufa-blue uppercase mb-6 inline-flex items-center gap-3 px-6 py-2 rounded-full bg-gradient-to-r from-edufa-blue/10 to-transparent border border-edufa-blue/10 shadow-sm backdrop-blur-sm"
                             >
+                                <span className="w-2 h-2 rounded-full bg-edufa-blue animate-ping"></span>
                                 Tentang Kami
                             </motion.h2>
-                            <h3 className="text-4xl md:text-5xl font-black tracking-tighter text-gray-900 mb-8">
+                            <h3 className="text-[clamp(2rem,6vw,3.5rem)] font-black tracking-tighter text-gray-900 mb-8">
                                 <RevealText text="TENTANG EDUfa Centre" />
                             </h3>
                             <p className="text-xl md:text-2xl leading-relaxed text-gray-600 font-medium">
@@ -110,10 +166,17 @@ export default function Page({ branches }) {
 
                             {/* Salamanca Card */}
                             <motion.div 
+                                initial={{ opacity: 0, x: -50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
                                 whileHover={{ y: -15, scale: 1.02, rotate: -1 }}
-                                transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                                className="bg-white rounded-[2rem] p-8 md:p-10 shadow-2xl shadow-gray-200/40 ring-1 ring-gray-900/5 group relative overflow-hidden flex flex-col justify-between"
+                                transition={{ 
+                                    initial: { duration: 0.8 },
+                                    whileHover: { type: "spring", stiffness: 300, damping: 15 }
+                                }}
+                                className="bg-white rounded-[2.5rem] p-[clamp(1.5rem,5vw,2.5rem)] shadow-2xl shadow-edufa-blue/10 ring-1 ring-gray-900/5 group relative overflow-hidden flex flex-col justify-between border-b-8 border-edufa-blue"
                             >
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-edufa-blue/5 rounded-full -mr-16 -mt-16 transition-transform duration-700 group-hover:scale-150"></div>
                                 <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
                                     <svg className="w-32 h-32 text-edufa-blue" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72l5 2.73 5-2.73v3.72z" /></svg>
                                 </div>
@@ -137,10 +200,17 @@ export default function Page({ branches }) {
 
                             {/* Counseling Card */}
                             <motion.div 
+                                initial={{ opacity: 0, x: 50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
                                 whileHover={{ y: -15, scale: 1.02, rotate: 1 }}
-                                transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                                className="bg-white rounded-[2rem] p-8 md:p-10 shadow-2xl shadow-gray-200/40 ring-1 ring-gray-900/5 group relative overflow-hidden flex flex-col justify-between"
+                                transition={{ 
+                                    initial: { duration: 0.8 },
+                                    whileHover: { type: "spring", stiffness: 300, damping: 15 }
+                                }}
+                                className="bg-white rounded-[2.5rem] p-[clamp(1.5rem,5vw,2.5rem)] shadow-2xl shadow-edufa-yellow/10 ring-1 ring-gray-900/5 group relative overflow-hidden flex flex-col justify-between border-b-8 border-edufa-yellow"
                             >
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-edufa-yellow/5 rounded-full -mr-16 -mt-16 transition-transform duration-700 group-hover:scale-150"></div>
                                 <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
                                     <svg className="w-32 h-32 text-edufa-yellow" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" /></svg>
                                 </div>
@@ -152,29 +222,35 @@ export default function Page({ branches }) {
                                         Biro Psikologi EDUfa Counseling
                                     </h3>
                                     <p className="text-lg text-gray-600 leading-relaxed">
-                                        Fokus pada membantu <span className="font-bold text-amber-600">mengembangkan potensi</span> anak / peserta didik / tenaga kerja secara optimal.
+                                        Fokus pada membantu <span className="font-bold text-[#ffd900]">mengembangkan potensi</span> anak / peserta didik / tenaga kerja secara optimal.
                                     </p>
                                 </div>
 
                                 <div className="pt-6 border-t border-gray-100 relative z-10">
                                     <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">SIPP No</p>
-                                    <p className="text-sm font-mono text-amber-600 font-bold">201220017-2025-04-0720</p>
+                                    <p className="text-sm font-mono text-[#ffd900] font-bold">201220017-2025-04-0720</p>
                                 </div>
                             </motion.div>
                         </div>
 
                         {/* Leader Section */}
-                        <div className="mt-24 grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto px-4 sm:px-6">
+                        <div className="mt-32 max-w-5xl mx-auto px-4 sm:px-6">
+                            <div className="text-center mb-16">
+                                <motion.h3 
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    className="text-2xl sm:text-3xl font-black text-edufa-blue uppercase tracking-[0.2em]"
+                                >
+                                    Pimpinan Kami
+                                </motion.h3>
+                                <div className="mt-4 h-1 w-20 bg-edufa-yellow mx-auto rounded-full"></div>
+                            </div>
                             {[
                                 {
                                     name: "Dr. Ernie C. Siregar, S.Psi., M.Pd., Psikolog",
                                     image: "/penanggung/ernie-siregar.png",
-                                    role: "Pimpinan dan Psikolog Biro Psikologi dan Pusat Layanan Terapi EDUfa"
-                                },
-                                {
-                                    name: "Dr. Yoga Budi Santoso, M.Pd.",
-                                    image: "/penanggung/yoga-budi-santoso.jpg",
-                                    role: "Pimpinan dan Psikolog Biro Psikologi dan Pusat Layanan Terapi EDUfa"
+                                    role: "Pimpinan sekaligus Psikolog di Biro Psikologi dan Pusat Layanan Terapi EDUfa"
                                 }
                             ].map((leader, index) => (
                                 <motion.div 
@@ -185,7 +261,7 @@ export default function Page({ branches }) {
                                     transition={{ delay: index * 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                                     className="group relative"
                                 >
-                                    <div className="relative flex flex-col items-center md:flex-row gap-8 bg-edufa-blue rounded-[3rem] p-8 md:p-10 shadow-3xl shadow-edufa-blue/40 overflow-hidden ring-1 ring-white/10 transition-all duration-500 hover:ring-white/20 hover:shadow-edufa-blue/30">
+                                    <div className="relative flex flex-col items-center md:flex-row gap-10 lg:gap-16 bg-edufa-blue rounded-[3.5rem] p-[clamp(1.5rem,8vw,4rem)] shadow-3xl shadow-edufa-blue/40 overflow-hidden ring-1 ring-white/10 transition-all duration-500 hover:ring-white/20 hover:shadow-edufa-blue/30">
                                         {/* Background Decor */}
                                         <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 blur-[80px] -mr-24 -mt-24 group-hover:bg-white/20 transition-all duration-700"></div>
                                         <div className="absolute bottom-0 left-0 w-32 h-32 bg-edufa-yellow/10 blur-[60px] -ml-16 -mb-16"></div>
@@ -269,7 +345,7 @@ export default function Page({ branches }) {
                                     Alasan Memilih Kami
                                 </motion.div>
 
-                                <h3 className="text-4xl font-black tracking-tighter text-white sm:text-5xl lg:text-6xl mb-10 leading-[1] uppercase">
+                                <h3 className="text-[clamp(2.5rem,8vw,4.5rem)] font-black tracking-tighter text-white mb-10 leading-[1] uppercase">
                                     <RevealText text="KEUNGGULAN" /> <br />
                                     <span className="text-edufa-yellow"><RevealText text="KAMI" delay={0.3} /></span>
                                 </h3>
@@ -315,28 +391,8 @@ export default function Page({ branches }) {
                                 </div>
                             </div>
                             
-                            {/* Right Grid: Enhanced Icons & Memory Wall */}
-                            <div className="lg:col-span-7 flex flex-col gap-10">
-                                <div className="grid grid-cols-2 gap-4">
-                                    {[
-                                        { title: "Layanan Lengkap", icon: "M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" },
-                                        { title: "Tempat Nyaman", icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" },
-                                        { title: "SDM Kredibel", icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" },
-                                        { title: "Manajemen Terpusat", icon: "M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" }
-                                    ].map((item, index) => (
-                                        <motion.div 
-                                            key={index}
-                                            whileHover={{ y: -5 }}
-                                            className="group flex flex-col items-center justify-center p-5 bg-white/5 backdrop-blur-md rounded-[2rem] border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all shadow-xl"
-                                        >
-                                            <div className="w-14 h-14 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center mb-4 ring-1 ring-white/5 shadow-inner transition-all duration-300 group-hover:scale-110 group-hover:bg-white/20">
-                                                <svg className="w-7 h-7 text-edufa-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24" dangerouslySetInnerHTML={{ __html: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="${item.icon}" />` }} />
-                                            </div>
-                                            <h3 className="text-sm font-black text-white leading-tight uppercase tracking-tight text-center">{item.title}</h3>
-                                        </motion.div>
-                                    ))}
-                                </div>
-
+                            {/* Right Grid: Memory Wall */}
+                            <div className="lg:col-span-7 flex flex-col justify-center">
                                 {/* Memory Wall / Gallery Strip - LARGER */}
                                 <div className="relative group">
                                     <div className="absolute -inset-4 bg-gradient-to-r from-edufa-yellow/10 to-blue-400/10 rounded-[3rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>

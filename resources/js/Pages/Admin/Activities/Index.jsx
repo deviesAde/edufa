@@ -150,7 +150,7 @@ export default function Index({ activities }) {
                                                 <p className="font-bold text-gray-900 leading-tight mb-1">{activity.title}</p>
                                                 <span className={cn(
                                                     "text-[10px] font-black uppercase px-2 py-0.5 rounded-full",
-                                                    activity.type === "terapi" ? "bg-edufa-blue/10 text-edufa-blue" : "bg-edufa-green/10 text-edufa-green"
+                                                    activity.type === "terapi" ? "bg-edufa-blue/10 text-edufa-blue" : "bg-edufa-yellow/10 text-amber-600"
                                                 )}>
                                                     {activity.type === "terapi" ? "Terapi" : "Kegiatan di Kelas"}
                                                 </span>

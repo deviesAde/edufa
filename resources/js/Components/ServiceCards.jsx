@@ -1,6 +1,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { FlippingCard } from '@/Components/ui/flipping-card';
+import { Link } from '@inertiajs/react';
 import { 
     ClipboardCheck, 
     HeartPulse, 
@@ -9,7 +10,9 @@ import {
     Users, 
     School, 
     Briefcase,
-    ArrowRight
+    ArrowRight,
+    ChevronLeft,
+    ChevronRight
 } from 'lucide-react';
 
 const services = [
@@ -20,6 +23,7 @@ const services = [
         accentColor: "#0f59bc", 
         lightBg: "bg-blue-50",
         iconColor: "text-edufa-blue",
+        href: route('pelayanan.asesmen')
     },
     {
         title: "TERAPI",
@@ -28,6 +32,7 @@ const services = [
         accentColor: "#ffd900", 
         lightBg: "bg-amber-50",
         iconColor: "text-amber-600",
+        href: route('pelayanan.terapi')
     },
     {
         title: "PELATIHAN",
@@ -36,6 +41,7 @@ const services = [
         accentColor: "#6cc02f", 
         lightBg: "bg-green-50",
         iconColor: "text-edufa-green",
+        href: route('pelayanan.pelatihan')
     },
     {
         title: "PAUD",
@@ -44,30 +50,34 @@ const services = [
         accentColor: "#ff0000", 
         lightBg: "bg-red-50",
         iconColor: "text-edufa-red",
+        href: route('pelayanan.paud')
     },
     {
         title: "KONSELING",
         description: "Dukungan psikologis profesional untuk individu, pasangan, dan keluarga.",
         icon: <Users />,
-        accentColor: "#9333ea", 
-        lightBg: "bg-purple-50",
-        iconColor: "text-purple-600",
+        accentColor: "#0f59bc", 
+        lightBg: "bg-blue-50",
+        iconColor: "text-edufa-blue",
+        href: route('pelayanan.konseling')
     },
     {
         title: "PENDAMPINGAN ABK",
         description: "Dukungan penuh untuk anak berkebutuhan khusus di lingkungan sekolah reguler.",
         icon: <School />,
-        accentColor: "#ea580c", 
-        lightBg: "bg-orange-50",
-        iconColor: "text-orange-600",
+        accentColor: "#ffd900", 
+        lightBg: "bg-amber-50",
+        iconColor: "text-amber-600",
+        href: route('pelayanan.pendampingan')
     },
     {
         title: "BALAI LATIHAN KERJA",
         description: "Pelatihan kemandirian dan keterampilan kerja untuk masa depan yang lebih baik.",
         icon: <Briefcase />,
-        accentColor: "#0d9488", 
-        lightBg: "bg-teal-50",
-        iconColor: "text-teal-600",
+        accentColor: "#6cc02f", 
+        lightBg: "bg-green-50",
+        iconColor: "text-edufa-green",
+        href: route('pelayanan.balai')
     }
 ];
 
@@ -88,46 +98,103 @@ const CardFront = ({ service }) => (
 const CardBack = ({ service }) => {
     const isYellow = service.accentColor === "#ffd900";
     return (
-        <div className="flex flex-col items-center justify-center h-full p-6 text-center">
+        <div className="relative flex flex-col items-center justify-between p-[clamp(1.5rem,4vw,2.5rem)] h-full text-center">
             <div className={cn(
-                "mb-4 p-3 rounded-full shadow-inner",
+                "mb-6 p-3 rounded-full shadow-inner",
                 service.lightBg, service.iconColor
             )}>
                 {React.cloneElement(service.icon, { size: 28, strokeWidth: 2.5 })}
             </div>
-            <p className={cn(
-                "text-[12px] font-black leading-relaxed mb-5",
-                isYellow ? "text-amber-900" : "text-white"
-            )}>
-                {service.description}
-            </p>
-            <button className={cn(
+            <Link href={service.href} className={cn(
                 "flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all shadow-lg",
                 isYellow ? "bg-amber-900 text-white hover:bg-amber-800" : "bg-white text-gray-900 hover:bg-gray-100"
             )}>
                 Cek Yuk! <ArrowRight size={12} />
-            </button>
+            </Link>
         </div>
     );
 };
 
 export default function ServiceCards() {
     return (
-        <section className="relative z-30 -mt-28 px-4">
+        <section id="layanan" className="relative z-30 -mt-[clamp(2.5rem,8vh,7rem)] px-0 lg:px-4">
             <div className="mx-auto max-w-[1400px]">
-                <div className="flex flex-nowrap overflow-x-auto pb-8 gap-4 no-scrollbar snap-x snap-mandatory justify-start lg:justify-center">
-                    {services.map((service, index) => (
-                        <div key={index} className="flex-shrink-0 snap-center">
-                            <FlippingCard
-                                width={180}
-                                height={240}
-                                accentColor={service.accentColor}
-                                className="border-0 shadow-lg shadow-black/5"
-                                frontContent={<CardFront service={service} />}
-                                backContent={<CardBack service={service} />}
-                            />
-                        </div>
-                    ))}
+                <div 
+                    id="service-scroll-container"
+                    className="flex flex-nowrap overflow-x-auto pb-8 pt-4 px-6 gap-5 no-scrollbar snap-x snap-mandatory justify-start lg:justify-center touch-pan-x scroll-smooth"
+                >
+                    {services.map((service, index) => {
+                        const isYellow = service.accentColor === "#ffd900";
+                        return (
+                            <div key={index} className="flex-shrink-0 snap-center group">
+                                {/* Desktop: Flipping Card */}
+                                <div className="hidden lg:block">
+                                    <FlippingCard
+                                        width={180}
+                                        height={240}
+                                        accentColor={service.accentColor}
+                                        className="border-0 shadow-lg shadow-black/5"
+                                        frontContent={<CardFront service={service} />}
+                                        backContent={<CardBack service={service} />}
+                                    />
+                                </div>
+                                
+                                {/* Mobile: Static Card with Button */}
+                                <Link href={service.href} className="lg:hidden flex flex-col items-center justify-center w-[160px] h-[210px] rounded-[2.5rem] p-5 text-center shadow-xl bg-white border border-gray-100 relative overflow-hidden hover:scale-105 transition-transform active:scale-95">
+                                    {/* Background Accent for Mobile */}
+                                    <div className="absolute top-0 left-0 w-full h-1.5" style={{ backgroundColor: service.accentColor }}></div>
+                                    
+                                    <div className={cn(
+                                        "w-14 h-14 rounded-2xl flex items-center justify-center mb-4 shadow-inner border border-white",
+                                        service.lightBg, service.iconColor
+                                    )}>
+                                        {React.cloneElement(service.icon, { size: 28, strokeWidth: 2.5 })}
+                                    </div>
+                                    <h3 className="text-xs font-black tracking-[0.05em] uppercase leading-tight text-gray-800 mb-4 px-1">
+                                        {service.title}
+                                    </h3>
+                                    <span className={cn(
+                                        "flex items-center gap-2 px-5 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-md transition-transform",
+                                        isYellow ? "bg-edufa-yellow text-gray-900" : "bg-edufa-blue text-white"
+                                    )}>
+                                        Cek <ArrowRight size={14} />
+                                    </span>
+                                </Link>
+                            </div>
+                        );
+                    })}
+                </div>
+
+                {/* Mobile Navigation Controls - Refined touch targets and spacing */}
+                <div className="flex lg:hidden items-center justify-center gap-6 mt-2 mb-8">
+                    <button 
+                        onClick={() => {
+                            const container = document.getElementById('service-scroll-container');
+                            container.scrollBy({ left: -240, behavior: 'smooth' });
+                        }}
+                        className="p-5 rounded-full bg-white shadow-lg border border-gray-100 text-edufa-blue active:scale-90 transition-transform touch-manipulation min-w-[50px] min-h-[50px] flex items-center justify-center"
+                        aria-label="Slide left"
+                    >
+                        <ChevronLeft size={24} />
+                    </button>
+                    
+                    {/* Visual Indicator Dots */}
+                    <div className="flex gap-2.5">
+                        {services.map((_, i) => (
+                            <div key={i} className="w-2 h-2 rounded-full bg-gray-200 transition-colors"></div>
+                        ))}
+                    </div>
+
+                    <button 
+                        onClick={() => {
+                            const container = document.getElementById('service-scroll-container');
+                            container.scrollBy({ left: 240, behavior: 'smooth' });
+                        }}
+                        className="p-4 rounded-full bg-white shadow-xl border border-gray-100 text-edufa-blue active:scale-90 transition-transform touch-manipulation"
+                        aria-label="Slide right"
+                    >
+                        <ChevronRight size={24} />
+                    </button>
                 </div>
             </div>
             

@@ -18,7 +18,7 @@ export default {
             },
             colors: {
                 edufa: {
-                    blue: '#0f59bc',
+                    blue: '#1A1953',
                     yellow: '#ffd900',
                     green: '#6cc02f',
                     red: '#ff0000',

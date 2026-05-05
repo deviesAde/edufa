@@ -56,12 +56,12 @@ export default function Dashboard({ stats, recentArticles, recentActivities }) {
                     </div>
 
                     {/* Stat Card 4 */}
-                    <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm shadow-gray-200/50 hover:shadow-xl hover:shadow-green-500/5 transition-all duration-500">
+                    <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm shadow-gray-200/50 hover:shadow-xl hover:shadow-edufa-yellow/5 transition-all duration-500">
                         <div className="flex items-center justify-between mb-4">
-                            <div className="p-3 rounded-2xl bg-green-50 text-edufa-green">
+                            <div className="p-3 rounded-2xl bg-edufa-yellow/10 text-amber-600">
                                 <Camera className="h-5 w-5" />
                             </div>
-                            <Link href={route('admin.activities.index')} className="text-edufa-green hover:underline text-[10px] font-black uppercase tracking-widest flex items-center gap-1">
+                            <Link href={route('admin.activities.index')} className="text-amber-600 hover:underline text-[10px] font-black uppercase tracking-widest flex items-center gap-1">
                                 Kelola <ArrowUpRight className="h-3 w-3" />
                             </Link>
                         </div>
@@ -79,7 +79,7 @@ export default function Dashboard({ stats, recentArticles, recentActivities }) {
                             <div className="flex gap-2">
                                 <Link href={route('admin.articles.index')} className="text-[10px] font-bold text-gray-400 hover:text-edufa-blue transition-colors">Semua Artikel</Link>
                                 <span className="text-gray-300">•</span>
-                                <Link href={route('admin.activities.index')} className="text-[10px] font-bold text-gray-400 hover:text-edufa-green transition-colors">Semua Kegiatan</Link>
+                                <Link href={route('admin.activities.index')} className="text-[10px] font-bold text-gray-400 hover:text-edufa-yellow transition-colors">Semua Kegiatan</Link>
                             </div>
                         </div>
 
@@ -115,7 +115,7 @@ export default function Dashboard({ stats, recentArticles, recentActivities }) {
                                         {recentActivities.map((activity) => (
                                             <div key={`act-${activity.id}`} className="p-6 flex items-center justify-between hover:bg-gray-50/50 transition-colors">
                                                 <div className="flex items-center gap-4">
-                                                    <div className="h-12 w-12 rounded-2xl bg-green-50 flex items-center justify-center text-edufa-green">
+                                                    <div className="h-12 w-12 rounded-2xl bg-edufa-yellow/10 flex items-center justify-center text-amber-600">
                                                         <Camera className="h-5 w-5" />
                                                     </div>
                                                     <div>
@@ -123,11 +123,11 @@ export default function Dashboard({ stats, recentArticles, recentActivities }) {
                                                         <div className="flex items-center gap-2 mt-0.5">
                                                             <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">{new Date(activity.created_at).toLocaleDateString('id-ID')}</span>
                                                             <span className="text-gray-200">•</span>
-                                                            <span className="text-[10px] font-bold text-edufa-green uppercase bg-green-50 px-2 py-0.5 rounded">Dokumentasi</span>
+                                                            <span className="text-[10px] font-bold text-amber-600 uppercase bg-edufa-yellow/10 px-2 py-0.5 rounded">Dokumentasi</span>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <Link href={route('admin.activities.index')} className="h-8 w-8 rounded-full border border-gray-100 flex items-center justify-center text-gray-400 hover:border-edufa-green hover:text-edufa-green transition-all">
+                                                <Link href={route('admin.activities.index')} className="h-8 w-8 rounded-full border border-gray-100 flex items-center justify-center text-gray-400 hover:border-edufa-yellow hover:text-edufa-yellow transition-all">
                                                     <ChevronRight className="h-4 w-4" />
                                                 </Link>
                                             </div>

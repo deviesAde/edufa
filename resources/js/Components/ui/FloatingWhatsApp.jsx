@@ -33,23 +33,23 @@ export default function FloatingWhatsApp() {
                                 initial={{ opacity: 0, y: 20, scale: 0.9, transformOrigin: 'bottom right' }}
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 exit={{ opacity: 0, y: 20, scale: 0.9 }}
-                                className="w-80 sm:w-96 bg-white rounded-[2.5rem] shadow-[0_20px_60px_-15px_rgba(34,197,94,0.3)] border border-gray-100 overflow-hidden pointer-events-auto flex flex-col"
+                                className="w-80 sm:w-96 bg-white rounded-[2.5rem] shadow-[0_20px_60px_-15px_rgba(15,89,188,0.3)] border border-gray-100 overflow-hidden pointer-events-auto flex flex-col"
                             >
                                 {/* Chat Header */}
-                                <div className="bg-green-600 p-5 flex items-center gap-4">
+                                <div className="bg-edufa-blue p-5 flex items-center gap-4">
                                     <div className="relative">
                                         <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center border border-white/30 backdrop-blur-sm">
                                             <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                             </svg>
                                         </div>
-                                        <span className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 border-2 border-green-600 rounded-full animate-pulse"></span>
+                                        <span className="absolute -bottom-1 -right-1 w-4 h-4 bg-edufa-green border-2 border-edufa-blue rounded-full animate-pulse"></span>
                                     </div>
                                     <div>
                                         <h4 className="text-base font-black text-white leading-tight">Admin EDUfa Center</h4>
                                         <div className="flex items-center gap-1.5 mt-0.5">
                                             <span className="w-1.5 h-1.5 rounded-full bg-green-300"></span>
-                                            <p className="text-[11px] text-green-100 font-bold uppercase tracking-wider">Online Sekarang</p>
+                                            <p className="text-[11px] text-blue-100 font-bold uppercase tracking-wider">Online Sekarang</p>
                                         </div>
                                     </div>
                                     <button 
@@ -80,7 +80,7 @@ export default function FloatingWhatsApp() {
                                         </p>
                                         <div className="flex items-center justify-end gap-1 mt-2">
                                             <span className="text-[10px] text-gray-400 font-medium">09:41</span>
-                                            <svg className="w-3 h-3 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                                            <svg className="w-3 h-3 text-edufa-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
                                         </div>
                                     </motion.div>
 
@@ -90,11 +90,11 @@ export default function FloatingWhatsApp() {
                                             href={waLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="group/input block w-full bg-white rounded-full px-5 py-3 text-sm text-gray-400 italic shadow-inner border border-gray-100 hover:text-gray-600 hover:border-green-200 transition-all"
+                                            className="group/input block w-full bg-white rounded-full px-5 py-3 text-sm text-gray-400 italic shadow-inner border border-gray-100 hover:text-gray-600 hover:border-edufa-blue/20 transition-all"
                                         >
                                             <span className="flex items-center justify-between">
                                                 Ketik pesan di sini...
-                                                <svg className="w-5 h-5 text-gray-300 group-hover/input:text-green-500 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                                                <svg className="w-5 h-5 text-gray-300 group-hover/input:text-edufa-blue transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
                                             </span>
                                         </a>
                                     </div>
@@ -105,9 +105,9 @@ export default function FloatingWhatsApp() {
                                     href={waLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="p-4 bg-white hover:bg-green-50 text-center transition-all border-t border-gray-100 group/footer"
+                                    className="p-4 bg-white hover:bg-edufa-blue/5 text-center transition-all border-t border-gray-100 group/footer"
                                 >
-                                    <span className="text-sm font-black text-green-600 uppercase tracking-[0.15em] flex items-center justify-center gap-3">
+                                    <span className="text-sm font-black text-edufa-blue uppercase tracking-[0.15em] flex items-center justify-center gap-3">
                                         HUBUNGI WHATSAPP KAMI
                                         <motion.svg 
                                             animate={{ x: [0, 5, 0] }}
@@ -135,17 +135,17 @@ export default function FloatingWhatsApp() {
                                     className="relative group pointer-events-auto"
                                 >
                                     {/* Ambient Glow */}
-                                    <div className="absolute -inset-1 bg-gradient-to-r from-green-500 to-edufa-blue rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                                    <div className="absolute -inset-1 bg-gradient-to-r from-edufa-yellow to-edufa-blue rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
                                     
                                     <button 
                                         onClick={() => setShowChat(true)}
-                                        className="relative bg-white px-8 py-4 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] border-2 border-green-500/10 flex items-center gap-3 transition-all hover:scale-105 hover:border-green-500 active:scale-95"
+                                        className="relative bg-white px-5 py-3 sm:px-8 sm:py-4 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] border-2 border-edufa-blue/10 flex items-center gap-3 transition-all hover:scale-105 hover:border-edufa-blue active:scale-95"
                                     >
-                                        <span className="flex h-3 w-3 relative">
-                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                                            <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                                        <span className="flex h-2 w-2 sm:h-3 sm:w-3 relative">
+                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-edufa-yellow opacity-75"></span>
+                                            <span className="relative inline-flex rounded-full h-2 w-2 sm:h-3 sm:w-3 bg-edufa-yellow"></span>
                                         </span>
-                                        <p className="text-base sm:text-lg font-black text-gray-800 whitespace-nowrap tracking-tight">
+                                        <p className="text-xs sm:text-lg font-black text-gray-800 whitespace-nowrap tracking-tight">
                                             Ingin mulai konsultasi sekarang?
                                         </p>
                                     </button>
@@ -162,7 +162,7 @@ export default function FloatingWhatsApp() {
                                     animate={{ opacity: 1, scale: 1 }}
                                     className="absolute -top-1 -right-1 z-10"
                                 >
-                                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-red-600 text-[12px] font-black text-white shadow-xl ring-4 ring-white animate-bounce">1</span>
+                                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-edufa-red text-[12px] font-black text-white shadow-xl ring-4 ring-white animate-bounce">1</span>
                                 </motion.div>
                             )}
 
@@ -173,11 +173,11 @@ export default function FloatingWhatsApp() {
                                 animate={{ scale: 1, rotate: 0 }}
                                 whileHover={{ scale: 1.15, rotate: 5 }}
                                 whileTap={{ scale: 0.9 }}
-                                className="group relative flex h-20 w-20 items-center justify-center rounded-[2rem] bg-green-500 shadow-[0_15px_40px_-10px_rgba(34,197,94,0.5)] transition-all ring-4 ring-white/80 backdrop-blur-sm"
+                                className="group relative flex h-14 w-14 sm:h-20 sm:w-20 items-center justify-center rounded-2xl sm:rounded-[2rem] bg-edufa-blue shadow-[0_15px_40px_-10px_rgba(15,89,188,0.5)] transition-all ring-4 ring-white/80 backdrop-blur-sm"
                             >
                                 {/* Aggressive Pulse Effect */}
-                                <span className="absolute inset-0 rounded-[2rem] bg-green-500 animate-[ping_2s_linear_infinite] opacity-30"></span>
-                                <span className="absolute -inset-2 rounded-[2.5rem] border-2 border-green-500/20 animate-pulse"></span>
+                                <span className="absolute inset-0 rounded-2xl sm:rounded-[2rem] bg-edufa-blue animate-[ping_2s_linear_infinite] opacity-30"></span>
+                                <span className="absolute -inset-2 rounded-[1.5rem] sm:rounded-[2.5rem] border-2 border-edufa-blue/20 animate-pulse"></span>
                                 
                                 {/* Icon Toggle */}
                                 <AnimatePresence mode="wait">
@@ -187,7 +187,7 @@ export default function FloatingWhatsApp() {
                                             initial={{ opacity: 0, rotate: -180, scale: 0.5 }}
                                             animate={{ opacity: 1, rotate: 0, scale: 1 }}
                                             exit={{ opacity: 0, rotate: 180, scale: 0.5 }}
-                                            className="h-9 w-9 text-white" 
+                                            className="h-7 w-7 sm:h-9 sm:w-9 text-white" 
                                             fill="none" 
                                             stroke="currentColor" 
                                             viewBox="0 0 24 24"
@@ -200,7 +200,7 @@ export default function FloatingWhatsApp() {
                                             initial={{ opacity: 0, rotate: 180, scale: 0.5 }}
                                             animate={{ opacity: 1, rotate: 0, scale: 1 }}
                                             exit={{ opacity: 0, rotate: -180, scale: 0.5 }}
-                                            className="h-11 w-11 text-white" 
+                                            className="h-8 w-8 sm:h-11 sm:w-11 text-white" 
                                             fill="currentColor" 
                                             viewBox="0 0 24 24"
                                         >
