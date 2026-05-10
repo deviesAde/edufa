@@ -39,7 +39,7 @@ function Sidebar({ article, related = [], waLink }) {
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    className="bg-white rounded-[3rem] p-10 shadow-2xl shadow-gray-200/50 ring-1 ring-gray-100 overflow-hidden relative group"
+                    className="bg-white rounded-[1.5rem] sm:rounded-[2rem] p-6 sm:p-10 shadow-2xl shadow-gray-200/50 ring-1 ring-gray-100 overflow-hidden relative group"
                 >
                     <div className="absolute top-0 right-0 w-40 h-40 bg-edufa-blue/5 rounded-full -mr-20 -mt-20 blur-3xl transition-transform duration-1000 group-hover:scale-150" />
                     <div className="relative z-10">
@@ -67,7 +67,7 @@ function Sidebar({ article, related = [], waLink }) {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="bg-white rounded-[3rem] p-10 shadow-2xl shadow-gray-200/50 ring-1 ring-gray-100"
+                className="bg-white rounded-[1.5rem] sm:rounded-[2rem] p-6 sm:p-10 shadow-2xl shadow-gray-200/50 ring-1 ring-gray-100"
             >
                 <h4 className="text-[10px] font-black text-edufa-yellow uppercase tracking-[0.3em] mb-10 flex items-center gap-4">
                     <span className="w-10 h-[2px] bg-edufa-yellow/30" />
@@ -118,7 +118,7 @@ function Sidebar({ article, related = [], waLink }) {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="bg-gradient-to-br from-[#0a1a3a] via-edufa-blue to-[#081530] rounded-[3rem] p-10 relative overflow-hidden text-white shadow-2xl shadow-edufa-blue/30 group"
+                className="bg-gradient-to-br from-[#0a1a3a] via-edufa-blue to-[#081530] rounded-[1.5rem] sm:rounded-[2rem] p-6 sm:p-10 relative overflow-hidden text-white shadow-2xl shadow-edufa-blue/30 group"
             >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-[0.03] rounded-full -mr-16 -mt-16 blur-2xl" />
                 
@@ -173,15 +173,16 @@ export default function DetailArtikel({ article, relatedArticles = [] }) {
 
             {/* Reading Progress Bar */}
             <motion.div 
-                className="fixed top-20 left-0 right-0 h-1.5 bg-edufa-yellow z-[60] origin-left"
+                className="fixed top-20 sm:top-24 left-0 right-0 h-1 bg-edufa-yellow z-[60] origin-left shadow-[0_0_10px_rgba(255,217,0,0.5)]"
                 style={{ scaleX }}
             />
 
             <main>
-                <div className="relative pt-24 pb-48 lg:pt-32 lg:pb-72 bg-edufa-blue overflow-hidden rounded-b-[5rem] lg:rounded-b-[8rem]">
+                <div className="relative pt-24 pb-32 sm:pb-48 lg:pt-32 lg:pb-72 bg-white overflow-hidden rounded-b-[2rem] sm:rounded-b-[3rem] lg:rounded-b-[5rem] border-b border-gray-100">
                     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-white opacity-10 rounded-full blur-[160px] translate-x-1/2 -translate-y-1/2" />
-                        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-edufa-yellow opacity-10 rounded-full blur-[140px] -translate-x-1/2 translate-y-1/2" />
+                        <div className="absolute -top-24 -left-24 w-[600px] h-[600px] bg-edufa-yellow/10 rounded-full blur-[120px]" />
+                        <div className="absolute top-0 -right-24 w-[700px] h-[700px] bg-edufa-blue/10 rounded-full blur-[150px]" />
+                        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.02]" />
                     </div>
 
                     <div className="mx-auto max-w-5xl px-6 lg:px-8 relative z-10">
@@ -199,7 +200,7 @@ export default function DetailArtikel({ article, relatedArticles = [] }) {
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1, duration: 0.8, ease: "easeOut" }}
-                            className="text-4xl sm:text-5xl lg:text-[4.5rem] font-black text-white leading-[1] tracking-tight text-center mb-16 max-w-5xl mx-auto"
+                            className="text-[clamp(2.25rem,8vw,4.5rem)] font-black text-gray-900 leading-[1.1] tracking-tight text-center mb-12 lg:mb-16 max-w-5xl mx-auto"
                         >
                             {article.title}
                         </motion.h1>
@@ -208,38 +209,38 @@ export default function DetailArtikel({ article, relatedArticles = [] }) {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.4 }}
-                            className="flex flex-wrap items-center justify-center gap-10 text-[10px] font-black text-blue-100 tracking-[0.25em] uppercase"
+                            className="flex items-center justify-between gap-6 text-[10px] font-black text-gray-400 tracking-[0.25em] uppercase border-t border-gray-100 pt-10 w-full"
                         >
                             <div className="flex items-center gap-4 group cursor-default">
-                                <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center backdrop-blur-xl transition-all duration-500 group-hover:bg-white/20 group-hover:scale-110 group-hover:rotate-6 ring-1 ring-white/20">
-                                    <svg className="w-6 h-6 text-edufa-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center transition-all duration-500 group-hover:bg-edufa-blue/5 group-hover:scale-110 group-hover:rotate-6 ring-1 ring-gray-100">
+                                    <svg className="w-5 h-5 text-edufa-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                     </svg>
                                 </div>
-                                <span>
+                                <span className="group-hover:text-edufa-blue transition-colors">
                                     {!!article.show_expert_voice ? (article.author_name || "Dr. Ernie C. Siregar") : (article.user?.name || "Admin")}
                                 </span>
                             </div>
-                            <div className="hidden sm:block w-2 h-2 rounded-full bg-edufa-yellow animate-pulse" />
+
                             <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center backdrop-blur-xl ring-1 ring-white/20">
-                                    <svg className="w-6 h-6 text-edufa-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <span className="text-gray-500">{formattedDate}</span>
+                                <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center ring-1 ring-gray-100">
+                                    <svg className="w-5 h-5 text-edufa-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                     </svg>
                                 </div>
-                                <span>{formattedDate}</span>
                             </div>
                         </motion.div>
                     </div>
                 </div>
 
-                <div className="mx-auto max-w-7xl px-6 lg:px-8 -mt-32 lg:-mt-56 pb-40">
+                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 -mt-32 lg:-mt-56 pb-40">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-start">
                         <motion.article 
                             initial={{ opacity: 0, y: 100 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                            className="lg:col-span-2 bg-white rounded-[4rem] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.12)] ring-1 ring-gray-100 overflow-hidden"
+                            className="lg:col-span-2 bg-white rounded-[1.5rem] sm:rounded-[2.5rem] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.12)] ring-1 ring-gray-100 overflow-hidden"
                         >
                             <div className="aspect-[16/9] overflow-hidden bg-gray-100 relative group">
                                 <img 
@@ -249,13 +250,13 @@ export default function DetailArtikel({ article, relatedArticles = [] }) {
                                 />
                             </div>
 
-                            <div className="p-10 sm:p-16 lg:p-24">
+                            <div className="p-8 sm:p-16 lg:p-24">
                                 <div 
-                                    className="prose prose-2xl max-w-none 
+                                    className="prose prose-lg sm:prose-2xl max-w-none 
                                     prose-headings:font-black prose-headings:tracking-tighter prose-headings:text-gray-900
-                                    prose-h2:text-4xl prose-h2:mt-24 prose-h2:mb-10 prose-h2:pb-4 prose-h2:border-b-4 prose-h2:border-edufa-blue/10
-                                    prose-p:text-gray-600 prose-p:leading-[1.9] prose-p:mb-10 prose-p:font-medium
-                                    prose-blockquote:border-l-[10px] prose-blockquote:border-edufa-blue prose-blockquote:bg-gradient-to-r prose-blockquote:from-blue-50/50 prose-blockquote:to-transparent prose-blockquote:px-12 prose-blockquote:py-10 prose-blockquote:rounded-r-[3rem] prose-blockquote:not-italic prose-blockquote:font-black prose-blockquote:text-gray-800 prose-blockquote:text-2xl"
+                                    prose-h2:text-2xl sm:prose-h2:text-4xl prose-h2:mt-16 sm:prose-h2:mt-24 prose-h2:mb-8 sm:prose-h2:mb-10 prose-h2:pb-4 prose-h2:border-b-4 prose-h2:border-edufa-blue/10
+                                    prose-p:text-gray-600 prose-p:leading-[1.8] sm:prose-p:leading-[1.9] prose-p:mb-8 sm:prose-p:mb-10 prose-p:font-medium prose-p:text-justify
+                                    prose-blockquote:border-l-[6px] sm:prose-blockquote:border-l-[10px] prose-blockquote:border-edufa-blue prose-blockquote:bg-gradient-to-r prose-blockquote:from-blue-50/50 prose-blockquote:to-transparent prose-blockquote:px-8 sm:prose-blockquote:px-12 prose-blockquote:py-6 sm:prose-blockquote:py-10 prose-blockquote:rounded-r-[2rem] sm:prose-blockquote:rounded-r-[3rem] prose-blockquote:not-italic prose-blockquote:font-black prose-blockquote:text-gray-800 prose-blockquote:text-xl sm:prose-blockquote:text-2xl"
                                     dangerouslySetInnerHTML={{ __html: article.content }}
                                 />
                             </div>

@@ -234,7 +234,7 @@ export default function Page({ branches }) {
                         </div>
 
                         {/* Leader Section */}
-                        <div className="mt-32 max-w-5xl mx-auto px-4 sm:px-6">
+                        <div className="mt-32 max-w-7xl mx-auto px-4 sm:px-6">
                             <div className="text-center mb-16">
                                 <motion.h3 
                                     initial={{ opacity: 0, y: 20 }}
@@ -242,62 +242,78 @@ export default function Page({ branches }) {
                                     viewport={{ once: true }}
                                     className="text-2xl sm:text-3xl font-black text-edufa-blue uppercase tracking-[0.2em]"
                                 >
-                                    Pimpinan Kami
+                                    Pimpinan Yayasan
                                 </motion.h3>
                                 <div className="mt-4 h-1 w-20 bg-edufa-yellow mx-auto rounded-full"></div>
                             </div>
-                            {[
-                                {
-                                    name: "Dr. Ernie C. Siregar, S.Psi., M.Pd., Psikolog",
-                                    image: "/penanggung/ernie-siregar.png",
-                                    role: "Pimpinan sekaligus Psikolog di Biro Psikologi dan Pusat Layanan Terapi EDUfa"
-                                }
-                            ].map((leader, index) => (
-                                <motion.div 
-                                    key={index}
-                                    initial={{ opacity: 0, y: 40 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                                    className="group relative"
-                                >
-                                    <div className="relative flex flex-col items-center md:flex-row gap-10 lg:gap-16 bg-edufa-blue rounded-[3.5rem] p-[clamp(1.5rem,8vw,4rem)] shadow-3xl shadow-edufa-blue/40 overflow-hidden ring-1 ring-white/10 transition-all duration-500 hover:ring-white/20 hover:shadow-edufa-blue/30">
-                                        {/* Background Decor */}
-                                        <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 blur-[80px] -mr-24 -mt-24 group-hover:bg-white/20 transition-all duration-700"></div>
-                                        <div className="absolute bottom-0 left-0 w-32 h-32 bg-edufa-yellow/10 blur-[60px] -ml-16 -mb-16"></div>
-                                        
-                                        <div className="relative flex-none">
-                                            <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-[2rem] overflow-hidden ring-8 ring-white/5 shadow-2xl relative z-10">
-                                                <img 
-                                                    src={leader.image} 
-                                                    alt={leader.name}
-                                                    className="w-full h-full object-cover transition-transform duration-700 scale-105 group-hover:scale-115"
-                                                    loading="lazy"
-                                                    decoding="async"
-                                                />
-                                            </div>
-                                            {/* Decorative aura behind image */}
-                                            <div className="absolute -inset-6 bg-gradient-to-tr from-edufa-blue/30 via-transparent to-edufa-yellow/30 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-0"></div>
-                                        </div>
 
-                                        <div className="flex-1 text-center md:text-left relative z-10">
-                                            <div className="mb-4 flex justify-center md:justify-start">
-                                                <span className="inline-flex items-center text-[10px] font-black text-edufa-yellow uppercase tracking-[0.25em] bg-white/10 px-4 py-1.5 rounded-full border border-white/20">
-                                                    <span className="w-1.5 h-1.5 rounded-full bg-edufa-yellow mr-2 animate-pulse"></span>
-                                                    Leadership
-                                                </span>
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+                                {[
+                                    {
+                                        name: "Brigjen TNI Dr. Bayu Aji Widodo., S.H.,M.IP",
+                                        image: "/penanggung/Brigjen TNI Dr. Bayu  Aji Widodo., S.H.,M.IP.png",
+                                        role: "Pembina Yayasan EDUfa Salamanca",
+                                        category: "Pembina",
+                                        imageStyle: { objectPosition: '50% 10%' }
+                                    },
+                                    {
+                                        name: "Dr. Ernie C. Siregar, S.Psi., M.Pd., Psikolog",
+                                        image: "/penanggung/ernie-siregar.png",
+                                        role: "Ketua Yayasan sekaligus Psikolog di Biro Psikologi dan Pusat Layanan Terapi EDUfa",
+                                        category: "Ketua",
+                                        imageStyle: { objectPosition: 'center' }
+                                    }
+                                ].map((leader, index) => (
+                                    <motion.div 
+                                        key={index}
+                                        initial={{ opacity: 0, y: 40 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: index * 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                                        className="group relative h-full"
+                                    >
+                                        <div className="relative h-full flex flex-col sm:flex-row items-center gap-8 bg-edufa-blue rounded-[3rem] p-8 lg:p-10 shadow-2xl shadow-edufa-blue/30 overflow-hidden ring-1 ring-white/10 transition-all duration-500 hover:ring-white/20 hover:shadow-edufa-blue/40">
+                                            {/* Background Decor */}
+                                            <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 blur-[50px] -mr-16 -mt-16 group-hover:bg-white/10 transition-all duration-700"></div>
+                                            <div className="absolute bottom-0 left-0 w-24 h-24 bg-edufa-yellow/5 blur-[40px] -ml-12 -mb-12"></div>
+                                            
+                                            <div className="relative flex-none">
+                                                <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden ring-4 ring-white/5 shadow-xl relative z-10 bg-white/5 flex items-center justify-center">
+                                                    <img 
+                                                        src={leader.image} 
+                                                        alt={leader.name}
+                                                        style={leader.imageStyle}
+                                                        className="w-full h-full object-cover transition-transform duration-700 scale-105 group-hover:scale-115"
+                                                        onError={(e) => {
+                                                            e.target.style.display = 'none';
+                                                        }}
+                                                        loading="lazy"
+                                                        decoding="async"
+                                                    />
+                                                </div>
+                                                {/* Decorative aura behind image */}
+                                                <div className="absolute -inset-4 bg-gradient-to-tr from-edufa-blue/20 via-transparent to-edufa-yellow/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-0"></div>
                                             </div>
-                                            <h4 className="text-xl sm:text-2xl font-black text-white tracking-tight mb-3 leading-tight group-hover:text-edufa-yellow transition-colors duration-300">
-                                                {leader.name}
-                                            </h4>
-                                            <div className="h-px w-12 bg-gradient-to-r from-white/30 to-transparent mb-4 mx-auto md:mx-0"></div>
-                                            <p className="text-xs sm:text-[13px] font-bold text-blue-100/80 leading-relaxed uppercase tracking-wider max-w-[280px] mx-auto md:mx-0">
-                                                {leader.role}
-                                            </p>
+
+                                            <div className="flex-1 text-center sm:text-left relative z-10">
+                                                <div className="mb-3 flex justify-center sm:justify-start">
+                                                    <span className="inline-flex items-center text-[9px] font-black text-edufa-yellow uppercase tracking-[0.2em] bg-white/10 px-3 py-1 rounded-full border border-white/10">
+                                                        <span className="w-1.5 h-1.5 rounded-full bg-edufa-yellow mr-2 animate-pulse"></span>
+                                                        {leader.category}
+                                                    </span>
+                                                </div>
+                                                <h4 className="text-lg font-black text-white tracking-tight mb-2 leading-tight group-hover:text-edufa-yellow transition-colors duration-300">
+                                                    {leader.name}
+                                                </h4>
+                                                <div className="h-px w-10 bg-gradient-to-r from-white/20 to-transparent mb-3 mx-auto sm:mx-0"></div>
+                                                <p className="text-[11px] sm:text-[12px] font-bold text-blue-100/70 leading-relaxed uppercase tracking-wider">
+                                                    {leader.role}
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </motion.div>
-                            ))}
+                                    </motion.div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>

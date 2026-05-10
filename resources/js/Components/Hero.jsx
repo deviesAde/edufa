@@ -20,7 +20,7 @@ const serviceLinks = [
     { title: "Balai Latihan Kerja", routeName: 'pelayanan.balai', icon: <Briefcase size={16} /> },
 ];
 
-const typewriterWords = ["asesmen", "terapi", "program pembelajaran"];
+const typewriterWords = ["Asesmen", "Terapi", "Program Pembelajaran Individual"];
 
 export default function Hero() {
     const [showEmailModal, setShowEmailModal] = useState(false);
@@ -73,7 +73,7 @@ export default function Hero() {
 
                 {/* Content Layer (z-50) - Explicitly flex-col for perfect centering */}
                 <div className="mx-auto max-w-7xl px-6 py-[clamp(4rem,12vh,9rem)] flex flex-col lg:px-8 relative z-50 w-full pointer-events-none items-center justify-center">
-                    <div className="mx-auto max-w-5xl pointer-events-auto text-center flex flex-col items-center">
+                    <div className="mx-auto max-w-6xl pointer-events-auto text-center flex flex-col items-center">
                         <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mb-10">
                             <span className="rounded-full bg-edufa-blue px-6 py-2.5 text-xs font-black uppercase tracking-[0.2em] text-white shadow-lg shadow-edufa-blue/30 border border-white/10">
                                 Growing Together, Improving Better
@@ -91,17 +91,22 @@ export default function Hero() {
                                 className="items-center justify-center"
                             />
                             
-                            <div className="mt-8 max-w-4xl mx-auto px-4">
+                            <div className="mt-8 max-w-5xl mx-auto px-4">
                                 <p className="text-[clamp(1rem,2.2vw,1.6rem)] font-medium leading-relaxed text-blue-50 drop-shadow-md">
-                                    Mendampingi anak, remaja, dan dewasa dengan kebutuhan khusus melalui{' '}
-                                    <Typewriter
-                                        text={typewriterWords}
-                                        speed={70}
-                                        className="text-edufa-yellow font-black"
-                                        waitTime={2000}
-                                        deleteSpeed={40}
-                                        showCursor={false}
-                                    />
+                                    Mendampingi Anak, Remaja, Dan Dewasa Dengan Kebutuhan Khusus Melalui{' '}
+                                    <span className="inline-grid grid-cols-1 grid-rows-1 align-baseline">
+                                        <span className="invisible row-start-1 col-start-1 pointer-events-none font-black whitespace-pre">
+                                            {typewriterWords.reduce((a, b) => a.length > b.length ? a : b)}
+                                        </span>
+                                        <Typewriter
+                                            text={typewriterWords}
+                                            speed={70}
+                                            className="text-edufa-yellow font-black row-start-1 col-start-1"
+                                            waitTime={2000}
+                                            deleteSpeed={40}
+                                            showCursor={false}
+                                        />
+                                    </span>
                                 </p>
                             </div>
                         </div>

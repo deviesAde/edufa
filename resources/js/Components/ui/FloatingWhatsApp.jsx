@@ -15,8 +15,6 @@ export default function FloatingWhatsApp() {
         // Show after a short delay
         const timer = setTimeout(() => {
             setIsVisible(true);
-            // Auto-open chat after another short delay to grab attention
-            setTimeout(() => setShowChat(true), 1200);
         }, 1500);
 
         return () => clearTimeout(timer);
@@ -33,7 +31,7 @@ export default function FloatingWhatsApp() {
                                 initial={{ opacity: 0, y: 20, scale: 0.9, transformOrigin: 'bottom right' }}
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 exit={{ opacity: 0, y: 20, scale: 0.9 }}
-                                className="w-80 sm:w-96 bg-white rounded-[2.5rem] shadow-[0_20px_60px_-15px_rgba(15,89,188,0.3)] border border-gray-100 overflow-hidden pointer-events-auto flex flex-col"
+                                className="w-72 sm:w-80 bg-white rounded-[1.5rem] shadow-[0_20px_60px_-15px_rgba(15,89,188,0.3)] border border-gray-100 overflow-hidden pointer-events-auto flex flex-col"
                             >
                                 {/* Chat Header */}
                                 <div className="bg-edufa-blue p-5 flex items-center gap-4">
@@ -146,7 +144,7 @@ export default function FloatingWhatsApp() {
                                             <span className="relative inline-flex rounded-full h-2 w-2 sm:h-3 sm:w-3 bg-edufa-yellow"></span>
                                         </span>
                                         <p className="text-xs sm:text-lg font-black text-gray-800 whitespace-nowrap tracking-tight">
-                                            Ingin mulai konsultasi sekarang?
+                                            Apakah ingin memulai konsultasi sekarang?
                                         </p>
                                     </button>
                                 </motion.div>
