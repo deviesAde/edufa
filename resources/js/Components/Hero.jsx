@@ -87,13 +87,13 @@ export default function Hero() {
                             <AnimatedText
                                 text={<>Biro Psikologi<br /><span className="whitespace-nowrap">& Pusat Layanan Terapi EDUfa</span></>}
                                 textClassName="text-[clamp(1.75rem,7vw,6.5rem)] font-black tracking-tight text-white leading-[1.1] drop-shadow-md text-center"
-                                underlineClassName="text-edufa-yellow w-[105%] -left-[2.5%] h-[clamp(0.75rem,3vw,2rem)]"
+                                underlineClassName="hidden"
                                 className="items-center justify-center"
                             />
                             
                             <div className="mt-8 max-w-5xl mx-auto px-4">
                                 <p className="text-[clamp(1rem,2.2vw,1.6rem)] font-medium leading-relaxed text-blue-50 drop-shadow-md">
-                                    Mendampingi Anak, Remaja, Dan Dewasa Dengan Kebutuhan Khusus Melalui{' '}
+                                    Mendampingi Anak, Remaja, Dan Dewasa Dengan Kebutuhan Khusus melalui{' '}
                                     <span className="inline-grid grid-cols-1 grid-rows-1 align-baseline">
                                         <span className="invisible row-start-1 col-start-1 pointer-events-none font-black whitespace-pre">
                                             {typewriterWords.reduce((a, b) => a.length > b.length ? a : b)}

@@ -277,13 +277,23 @@ export default function Page({ branches }) {
                                             <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 blur-[50px] -mr-16 -mt-16 group-hover:bg-white/10 transition-all duration-700"></div>
                                             <div className="absolute bottom-0 left-0 w-24 h-24 bg-edufa-yellow/5 blur-[40px] -ml-12 -mb-12"></div>
                                             
-                                            <div className="relative flex-none">
-                                                <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden ring-4 ring-white/5 shadow-xl relative z-10 bg-white/5 flex items-center justify-center">
+                                            <div className="relative flex-none mt-4 sm:mt-0 group/img">
+                                                <div 
+                                                    className="w-32 h-40 sm:w-36 sm:h-44 relative flex items-end justify-center rounded-t-full border-t border-l border-r border-white/20 bg-gradient-to-b from-white/10 to-transparent transition-all duration-700 group-hover/img:border-edufa-yellow/40 overflow-hidden pt-4"
+                                                    style={{
+                                                        WebkitMaskImage: 'linear-gradient(to bottom, black 65%, transparent 100%)',
+                                                        maskImage: 'linear-gradient(to bottom, black 65%, transparent 100%)'
+                                                    }}
+                                                >
+                                                    {/* Subtle Glowing Aura */}
+                                                    <div className="absolute inset-0 bg-edufa-yellow/20 blur-2xl opacity-0 group-hover/img:opacity-100 transition-opacity duration-700"></div>
+
+                                                    {/* The Image */}
                                                     <img 
                                                         src={leader.image} 
                                                         alt={leader.name}
                                                         style={leader.imageStyle}
-                                                        className="w-full h-full object-cover transition-transform duration-700 scale-105 group-hover:scale-115"
+                                                        className="w-full h-full object-contain relative z-10 drop-shadow-xl transition-transform duration-700 group-hover/img:scale-110 group-hover/img:-translate-y-1"
                                                         onError={(e) => {
                                                             e.target.style.display = 'none';
                                                         }}
@@ -291,22 +301,20 @@ export default function Page({ branches }) {
                                                         decoding="async"
                                                     />
                                                 </div>
-                                                {/* Decorative aura behind image */}
-                                                <div className="absolute -inset-4 bg-gradient-to-tr from-edufa-blue/20 via-transparent to-edufa-yellow/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-0"></div>
                                             </div>
 
                                             <div className="flex-1 text-center sm:text-left relative z-10">
-                                                <div className="mb-3 flex justify-center sm:justify-start">
-                                                    <span className="inline-flex items-center text-[9px] font-black text-edufa-yellow uppercase tracking-[0.2em] bg-white/10 px-3 py-1 rounded-full border border-white/10">
-                                                        <span className="w-1.5 h-1.5 rounded-full bg-edufa-yellow mr-2 animate-pulse"></span>
+                                                <div className="mb-4 flex justify-center sm:justify-start">
+                                                    <span className="inline-flex items-center text-[10px] font-black text-edufa-yellow uppercase tracking-[0.2em] bg-white/5 px-4 py-1.5 rounded-full border border-white/10 shadow-lg backdrop-blur-md transition-transform duration-500 group-hover:scale-105">
+                                                        <span className="w-1.5 h-1.5 rounded-full bg-edufa-yellow mr-2 animate-pulse shadow-[0_0_8px_rgba(255,217,0,0.8)]"></span>
                                                         {leader.category}
                                                     </span>
                                                 </div>
-                                                <h4 className="text-lg font-black text-white tracking-tight mb-2 leading-tight group-hover:text-edufa-yellow transition-colors duration-300">
+                                                <h4 className="text-xl sm:text-2xl font-black text-white tracking-tight mb-3 leading-tight group-hover:text-edufa-yellow transition-colors duration-500">
                                                     {leader.name}
                                                 </h4>
-                                                <div className="h-px w-10 bg-gradient-to-r from-white/20 to-transparent mb-3 mx-auto sm:mx-0"></div>
-                                                <p className="text-[11px] sm:text-[12px] font-bold text-blue-100/70 leading-relaxed uppercase tracking-wider">
+                                                <div className="h-px w-12 bg-gradient-to-r from-edufa-yellow/60 to-transparent mb-4 mx-auto sm:mx-0 transition-all duration-500 group-hover:w-20"></div>
+                                                <p className="text-xs sm:text-[13px] font-bold text-blue-100/80 leading-relaxed uppercase tracking-widest">
                                                     {leader.role}
                                                 </p>
                                             </div>
