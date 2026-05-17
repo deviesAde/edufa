@@ -279,14 +279,13 @@ export default function Page({ branches }) {
                                             
                                             <div className="relative flex-none mt-4 sm:mt-0 group/img">
                                                 <div 
-                                                    className="w-32 h-40 sm:w-36 sm:h-44 relative flex items-end justify-center rounded-t-full border-t border-l border-r border-white/20 bg-gradient-to-b from-white/10 to-transparent transition-all duration-700 group-hover/img:border-edufa-yellow/40 overflow-hidden pt-4"
+                                                    className="w-32 h-40 sm:w-36 sm:h-44 relative flex items-end justify-center rounded-t-full bg-transparent transition-all duration-700 overflow-hidden pt-4"
                                                     style={{
                                                         WebkitMaskImage: 'linear-gradient(to bottom, black 65%, transparent 100%)',
                                                         maskImage: 'linear-gradient(to bottom, black 65%, transparent 100%)'
                                                     }}
                                                 >
-                                                    {/* Subtle Glowing Aura */}
-                                                    <div className="absolute inset-0 bg-edufa-yellow/20 blur-2xl opacity-0 group-hover/img:opacity-100 transition-opacity duration-700"></div>
+
 
                                                     {/* The Image */}
                                                     <img 

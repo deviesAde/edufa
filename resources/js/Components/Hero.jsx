@@ -20,7 +20,15 @@ const serviceLinks = [
     { title: "Balai Latihan Kerja", routeName: 'pelayanan.balai', icon: <Briefcase size={16} /> },
 ];
 
-const typewriterWords = ["Asesmen", "Terapi", "Program Pembelajaran Individual"];
+const typewriterWords = [
+    "Asesmen Psikologi", 
+    "Pelatihan", 
+    "Konseling", 
+    "Terapi", 
+    "PAUD", 
+    "Pendampingan ABK Di Sekolah", 
+    "Balai Latihan Kerja & Kehidupan"
+];
 
 export default function Hero() {
     const [showEmailModal, setShowEmailModal] = useState(false);
@@ -92,22 +100,22 @@ export default function Hero() {
                             />
                             
                             <div className="mt-8 max-w-5xl mx-auto px-4">
-                                <p className="text-[clamp(1rem,2.2vw,1.6rem)] font-medium leading-relaxed text-blue-50 drop-shadow-md">
-                                    Mendampingi Anak, Remaja, Dan Dewasa Dengan Kebutuhan Khusus melalui{' '}
-                                    <span className="inline-grid grid-cols-1 grid-rows-1 align-baseline">
-                                        <span className="invisible row-start-1 col-start-1 pointer-events-none font-black whitespace-pre">
+                                <div className="text-[clamp(1rem,2.2vw,1.6rem)] font-medium leading-relaxed text-blue-50 drop-shadow-md flex flex-col items-center justify-center gap-1 sm:gap-2">
+                                    <span>Mendampingi Individu Berkebutuhan Khusus melalui</span>
+                                    <span className="inline-grid grid-cols-1 grid-rows-1 items-center">
+                                        <span className="invisible row-start-1 col-start-1 pointer-events-none font-black whitespace-pre text-center">
                                             {typewriterWords.reduce((a, b) => a.length > b.length ? a : b)}
                                         </span>
                                         <Typewriter
                                             text={typewriterWords}
                                             speed={70}
-                                            className="text-edufa-yellow font-black row-start-1 col-start-1"
+                                            className="text-edufa-yellow font-black row-start-1 col-start-1 text-center"
                                             waitTime={2000}
                                             deleteSpeed={40}
                                             showCursor={false}
                                         />
                                     </span>
-                                </p>
+                                </div>
                             </div>
                         </div>
 
