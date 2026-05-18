@@ -33,27 +33,14 @@ const RevealText = ({ text, className = "", delay = 0 }) => {
 };
 
 export default function Page({ branches }) {
-    // const schema = {
-    //     "@context": "https://schema.org",
-    //     "@type": "LocalBusiness",
-    //     "name": "EDUfa Centre",
-    //     "image": "https://edufa.com/hero/logo.png",
-    //     "@id": "https://edufa.com",
-    //     "url": "https://edufa.com",
-    //     "address": {
-    //         "@type": "PostalAddress",
-    //         "addressLocality": "Bandung",
-    //         "addressRegion": "Jawa Barat",
-    //         "addressCountry": "ID"
-    //     }
-    // };
-
+    // Schema is now automatically generated in SEO component based on schemaType="LocalBusiness"
+    
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased">
             <SEO
                 title="Beranda"
                 description="EDUfa Centre adalah Biro Psikologi & Pusat Layanan Terapi di Bandung. Kami melayani asesmen psikologi, pelatihan, konseling, dan terapi ABK."
-                // schema={schema}
+                schemaType="LocalBusiness"
             />
 
             <Header />
@@ -135,11 +122,11 @@ export default function Page({ branches }) {
                                 className="text-sm font-black tracking-[0.3em] text-edufa-blue uppercase mb-6 inline-flex items-center gap-3 px-6 py-2 rounded-full bg-gradient-to-r from-edufa-blue/10 to-transparent border border-edufa-blue/10 shadow-sm backdrop-blur-sm"
                             >
                                 <span className="w-2 h-2 rounded-full bg-edufa-blue animate-ping"></span>
-                                Tentang Kami
+                                Tentangnya Kami
                             </motion.h2>
-                            <h3 className="text-[clamp(2rem,6vw,3.5rem)] font-black tracking-tighter text-gray-900 mb-8">
+                            <h2 className="text-[clamp(2rem,6vw,3.5rem)] font-black tracking-tighter text-gray-900 mb-8">
                                 <RevealText text="TENTANG EDUfa Centre" />
-                            </h3>
+                            </h2>
                             <p className="text-xl md:text-2xl leading-relaxed text-gray-600 font-medium">
                                 <RevealText 
                                     text="Yayasan EDUfa Salamanca dan Biro Psikologi EDUfa Counseling berdiri pada tanggal" 
@@ -368,10 +355,10 @@ export default function Page({ branches }) {
                                     Alasan Memilih Kami
                                 </motion.div>
 
-                                <h3 className="text-[clamp(2.5rem,8vw,4.5rem)] font-black tracking-tighter text-white mb-10 leading-[1] uppercase">
+                                <h2 className="text-[clamp(2.5rem,8vw,4.5rem)] font-black tracking-tighter text-white mb-10 leading-[1] uppercase">
                                     <RevealText text="KEUNGGULAN" /> <br />
                                     <span className="text-edufa-yellow"><RevealText text="KAMI" delay={0.3} /></span>
-                                </h3>
+                                </h2>
 
                                 <div className="relative space-y-8">
                                     <motion.div 
@@ -404,7 +391,7 @@ export default function Page({ branches }) {
                                         className="p-1 inline-block bg-gradient-to-tr from-edufa-yellow to-white/20 rounded-2xl"
                                     >
                                         <div className="bg-edufa-blue px-6 py-3 rounded-[0.9rem] flex items-center gap-4">
-                                            <img src="/hero/logo edufa putih.png" alt="EDUfa Logo" className="h-12 w-auto" />
+                                            <img src="/hero/logo edufa putih.png" alt="Logo EDUfa Centre - Biro Psikologi dan Pusat Terapi" className="h-12 w-auto" />
                                             <div>
                                                 <p className="text-[9px] font-black uppercase tracking-widest text-edufa-yellow mb-0.5">Terpercaya Sejak</p>
                                                 <p className="text-xl font-black text-white leading-none">2012</p>

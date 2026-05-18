@@ -139,7 +139,7 @@ export default function Index({ branches }) {
                                         <td className="px-6 py-5">
                                             <div className="h-12 w-20 rounded-lg overflow-hidden bg-gray-100 border border-gray-100">
                                                 {branch.photo_url ? (
-                                                    <img src={branch.photo_url} alt="" className="w-full h-full object-cover" />
+                                                    <img src={branch.photo_url} alt={`Foto Cabang ${branch.city}`} className="w-full h-full object-cover" />
                                                 ) : (
                                                     <div className="w-full h-full flex items-center justify-center text-gray-300">
                                                         <MapPin className="h-4 w-4" />

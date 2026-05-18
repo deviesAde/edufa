@@ -1,5 +1,6 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/react';
+import SEO from '@/Components/SEO';
 import Header from '@/Components/Header';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { motion } from 'framer-motion';
@@ -32,7 +33,7 @@ export default function Balai({ service }) {
     const gFormUrl = service?.google_form_url || "https://wa.me/6281234567890?text=Halo%20EDUfa,%20saya%20ingin%20info%20program%20BLK";
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased overflow-hidden">
-            <Head title="Balai Latihan Kerja - EDUfa Centre" />
+            <SEO title="Balai Latihan Kerja" description="Balai Latihan Kerja untuk mengembangkan potensi dan skill." />
             
             <Header />
 

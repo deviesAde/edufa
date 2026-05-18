@@ -137,7 +137,7 @@ export default function Index({ activities }) {
                                         <td className="px-6 py-5">
                                             <div className="h-12 w-20 rounded-lg overflow-hidden bg-gray-100 border border-gray-100 relative group/media">
                                                 {activity.media_type === "photo" ? (
-                                                    <img src={`/storage/${activity.media_path}`} alt="" className="w-full h-full object-cover" />
+                                                    <img src={`/storage/${activity.media_path}`} alt={`Dokumentasi ${activity.title}`} className="w-full h-full object-cover" />
                                                 ) : (
                                                     <div className="w-full h-full flex items-center justify-center bg-gray-900 text-white">
                                                         <Video className="h-5 w-5" />
@@ -290,7 +290,7 @@ export default function Index({ activities }) {
                                                     className="w-full h-full object-cover"
                                                 />
                                             ) : (editingActivity?.media_type === "photo" ? (
-                                                <img src={`/storage/${editingActivity.media_path}`} alt="Current" className="w-full h-full object-cover" />
+                                                <img src={`/storage/${editingActivity.media_path}`} alt={`Media Saat Ini ${editingActivity.title}`} className="w-full h-full object-cover" />
                                             ) : (
                                                 <div className="text-center p-6">
                                                     <div className="h-10 w-10 rounded-full bg-gray-50 flex items-center justify-center mx-auto mb-2 text-gray-400">

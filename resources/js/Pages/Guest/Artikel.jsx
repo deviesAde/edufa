@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Head, Link } from '@inertiajs/react';
+import SEO from '@/Components/SEO';
 import Header from '@/Components/Header';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -34,10 +35,7 @@ const RevealText = ({ text, className = "", delay = 0 }) => {
 const PER_PAGE = 6;
 const PLACEHOLDER = 'https://via.placeholder.com/600/0f59bc/ffffff?text=EDUfa';
 
-/* ─────────────────────────────────────────────
-   BADGE COLOR MAP
-   Consistent with 60/40 Blue/Red-Yellow brand
-───────────────────────────────────────────── */
+
 const BADGE_COLORS = {
     Info:      'bg-edufa-blue text-white',
     Terapi:    'bg-edufa-yellow text-gray-900',
@@ -242,7 +240,10 @@ export default function Artikel({ articles = [] }) {
 
     return (
         <div className="min-h-screen bg-gray-50 font-sans text-gray-900 antialiased">
-            <Head title="Artikel & Blog - EDUfa Centre" />
+            <SEO 
+                title="Artikel & Blog" 
+                description="Temukan informasi, tips, dan pengetahuan seputar psikologi, terapi, dan tumbuh kembang anak dari para ahli EDUfa."
+            />
             <Header />
 
             <main>

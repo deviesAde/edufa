@@ -145,7 +145,7 @@ export default function Index({ articles }) {
                                         <td className="px-6 py-5">
                                             <div className="h-12 w-20 rounded-lg overflow-hidden bg-gray-100 border border-gray-100">
                                                 {article.thumbnail_path ? (
-                                                    <img src={`/storage/${article.thumbnail_path}`} alt="" className="w-full h-full object-cover" />
+                                                    <img src={`/storage/${article.thumbnail_path}`} alt={`Thumbnail ${article.title}`} className="w-full h-full object-cover" />
                                                 ) : (
                                                     <div className="w-full h-full flex items-center justify-center text-gray-300">
                                                         <FileText className="h-5 w-5" />
@@ -353,7 +353,7 @@ export default function Index({ articles }) {
                                             className="w-full h-full object-cover"
                                         />
                                     ) : (editingArticle?.thumbnail_path ? (
-                                        <img src={`/storage/${editingArticle.thumbnail_path}`} alt="Current" className="w-full h-full object-cover" />
+                                        <img src={`/storage/${editingArticle.thumbnail_path}`} alt={`Thumbnail Saat Ini ${editingArticle.title}`} className="w-full h-full object-cover" />
                                     ) : (
                                         <div className="text-center p-6">
                                             <div className="h-12 w-12 rounded-full bg-gray-50 flex items-center justify-center mx-auto mb-3 text-gray-400 group-hover:text-edufa-blue transition-all">

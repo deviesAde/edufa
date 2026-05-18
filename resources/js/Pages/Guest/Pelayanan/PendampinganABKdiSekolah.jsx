@@ -1,5 +1,6 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/react';
+import SEO from '@/Components/SEO';
 import Header from '@/Components/Header';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { motion } from 'framer-motion';
@@ -32,7 +33,7 @@ export default function PendampinganABKdiSekolah({ service }) {
     const gFormUrl = service?.google_form_url || "https://wa.me/6281234567890?text=Halo%20EDUfa,%20saya%20ingin%20info%20pendampingan%20ABK";
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased overflow-hidden">
-            <Head title="Pendampingan ABK di Sekolah - EDUfa Centre" />
+            <SEO title="Pendampingan ABK di Sekolah" description="Layanan pendampingan Anak Berkebutuhan Khusus di sekolah oleh tim EDUfa Centre." />
             
             <Header />
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Head } from '@inertiajs/react';
+import SEO from '@/Components/SEO';
 import Header from '@/Components/Header';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -238,7 +239,10 @@ export default function Kegiatan({ activities = [] }) {
 
     return (
         <div className="min-h-screen bg-gray-50/50 font-sans text-gray-900 antialiased selection:bg-edufa-blue selection:text-white">
-            <Head title="Kegiatan EDUfa - Centre Psikologi & Terapi" />
+            <SEO 
+                title="Kegiatan EDUfa" 
+                description="Jelajahi galeri kegiatan EDUfa Centre, mulai dari sesi terapi intensif hingga keceriaan belajar di dalam kelas."
+            />
             <Header />
 
             <main className="pb-24">

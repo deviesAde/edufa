@@ -1,28 +1,66 @@
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 
 export default function SEO({ 
     title, 
-    description = "Biro Psikologi & Pusat Layanan Terapi EDUfa. Menumbuhkan Harapan, Mencapai Masa Depan Terpercaya.", 
+    description = "EDUfa Centre adalah Biro Psikologi & Pusat Layanan Terapi di Bandung. Kami melayani asesmen psikologi, pelatihan, konseling, dan terapi ABK untuk anak hingga dewasa.", 
     image = "/hero/logo.png", 
     canonical, 
-    schema 
+    schemaType = 'LocalBusiness',
+    schemaData = null,
+    keywords = "biro psikologi bandung, terapi abk bandung, psikolog anak bandung, pusat layanan terapi, asesmen psikologi bandung, edufa centre, paud inklusi"
 }) {
-    // Basic defaults
+    // Get the base url from inertia page props if available, otherwise fallback
+    const { url } = usePage();
+    const appUrl = (typeof window !== 'undefined' ? window.location.origin : 'https://edufa.com');
+    const pageUrl = canonical || (appUrl + url);
+    const fullImageUrl = image.startsWith('http') ? image : `${appUrl}${image.startsWith('/') ? image : `/${image}`}`;
+
     const siteName = "EDUfa Centre";
     const defaultTitle = `${title} | ${siteName}`;
-    const pageUrl = canonical || (typeof window !== 'undefined' ? window.location.href : '');
+
+    
+    let finalSchema = schemaData;
+    if (!finalSchema) {
+        if (schemaType === 'LocalBusiness') {
+            finalSchema = {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "name": siteName,
+                "image": fullImageUrl,
+                "@id": appUrl,
+                "url": appUrl,
+                "telephone": "+62811223344", 
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Bandung",
+                    "addressRegion": "Jawa Barat",
+                    "addressCountry": "ID"
+                },
+                "openingHoursSpecification": {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": [
+                        "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+                    ],
+                    "opens": "08:00",
+                    "closes": "16:00"
+                }
+            };
+        }
+    }
 
     return (
         <Head>
             <title>{defaultTitle}</title>
             <meta name="description" content={description} />
+            <meta name="keywords" content={keywords} />
+            <meta name="robots" content="index, follow" />
             
             {/* Open Graph / Facebook */}
-            <meta property="og:type" content="website" />
+            <meta property="og:type" content={schemaType === 'Article' ? 'article' : 'website'} />
             <meta property="og:url" content={pageUrl} />
             <meta property="og:title" content={defaultTitle} />
             <meta property="og:description" content={description} />
-            <meta property="og:image" content={image} />
+            <meta property="og:image" content={fullImageUrl} />
             <meta property="og:site_name" content={siteName} />
 
             {/* Twitter */}
@@ -30,15 +68,15 @@ export default function SEO({
             <meta name="twitter:url" content={pageUrl} />
             <meta name="twitter:title" content={defaultTitle} />
             <meta name="twitter:description" content={description} />
-            <meta name="twitter:image" content={image} />
+            <meta name="twitter:image" content={fullImageUrl} />
 
             {/* Canonical Link */}
-            {canonical && <link rel="canonical" href={canonical} />}
+            <link rel="canonical" href={pageUrl} />
 
             {/* Structured Data / JSON-LD */}
-            {schema && (
+            {finalSchema && (
                 <script type="application/ld+json">
-                    {JSON.stringify(schema)}
+                    {JSON.stringify(finalSchema)}
                 </script>
             )}
         </Head>

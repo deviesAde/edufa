@@ -1,5 +1,6 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/react';
+import SEO from '@/Components/SEO';
 import Header from '@/Components/Header';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { motion } from 'framer-motion';
@@ -31,7 +32,7 @@ const RevealText = ({ text, className = "", delay = 0 }) => {
 export default function Pelatihan({ service }) {
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased overflow-hidden">
-            <Head title="Pelatihan & Workshop - EDUfa Centre" />
+            <SEO title="Pelatihan & Workshop" description="Layanan pelatihan dan workshop di bidang psikologi oleh pakar dari EDUfa Centre." />
             
             <Header />
 

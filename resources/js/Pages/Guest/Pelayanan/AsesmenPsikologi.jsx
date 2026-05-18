@@ -1,5 +1,6 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/react';
+import SEO from '@/Components/SEO';
 import Header from '@/Components/Header';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { motion } from 'framer-motion';
@@ -32,7 +33,7 @@ export default function AsesmenPsikologi({ service }) {
     const gFormUrl = service?.google_form_url || "https://wa.me/6281234567890?text=Halo%20EDUfa,%20saya%20ingin%20info%20asesmen%20psikologi";
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased overflow-hidden">
-            <Head title="Asesmen Psikologi - EDUfa Centre" />
+            <SEO title="Asesmen Psikologi" description="Layanan asesmen psikologi komprehensif dari EDUfa Centre." />
             
             <Header />
 

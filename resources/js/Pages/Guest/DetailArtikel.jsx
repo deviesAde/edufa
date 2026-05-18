@@ -1,5 +1,6 @@
 import React, { useMemo, useEffect, useState } from 'react';
 import { Head, Link } from '@inertiajs/react';
+import SEO from '@/Components/SEO';
 import Header from '@/Components/Header';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { motion, useScroll, useSpring } from 'framer-motion';
@@ -168,7 +169,25 @@ export default function DetailArtikel({ article, relatedArticles = [] }) {
 
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased selection:bg-edufa-yellow selection:text-gray-900">
-            <Head title={`${article.title} - EDUfa Centre`} />
+            <SEO 
+                title={article.title} 
+                description={article.content.replace(/<[^>]*>?/gm, '').substring(0, 150) + "..."}
+                image={article.thumbnail_path ? `/storage/${article.thumbnail_path}` : "/hero/logo.png"}
+                schemaType="Article"
+                schemaData={{
+                    "@context": "https://schema.org",
+                    "@type": "Article",
+                    "headline": article.title,
+                    "image": article.thumbnail_path ? [ `${typeof window !== 'undefined' ? window.location.origin : 'https://edufa.com'}/storage/${article.thumbnail_path}` ] : [],
+                    "datePublished": article.created_at,
+                    "dateModified": article.updated_at,
+                    "author": [{
+                        "@type": "Person",
+                        "name": !!article.show_expert_voice ? (article.author_name || "Dr. Ernie C. Siregar") : (article.user?.name || "Admin"),
+                        "url": typeof window !== 'undefined' ? window.location.origin : 'https://edufa.com'
+                    }]
+                }}
+            />
             <Header />
 
             {/* Reading Progress Bar */}

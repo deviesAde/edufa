@@ -1,5 +1,6 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/react';
+import SEO from '@/Components/SEO';
 import Header from '@/Components/Header';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { motion } from 'framer-motion';
@@ -32,7 +33,7 @@ export default function Terapi({ service }) {
     const gFormUrl = service?.google_form_url || "https://wa.me/6281234567890?text=Halo%20EDUfa,%20saya%20ingin%20info%20layanan%20terapi";
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased overflow-hidden">
-            <Head title="Layanan Terapi - EDUfa Centre" />
+            <SEO title="Layanan Terapi" description="Layanan Terapi di EDUfa Centre yang ditangani oleh terapis profesional dan berpengalaman." />
             
             <Header />
 
