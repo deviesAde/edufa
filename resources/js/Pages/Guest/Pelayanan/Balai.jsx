@@ -1,95 +1,164 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/react';
+import SEO from '@/Components/SEO';
 import Header from '@/Components/Header';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { motion } from 'framer-motion';
 
-export default function Balai() {
+const RevealText = ({ text, className = "", delay = 0 }) => {
+    const words = text.split(" ");
+    return (
+        <span className={`inline-block ${className}`}>
+            {words.map((word, i) => (
+                <motion.span
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{
+                        duration: 0.8,
+                        delay: delay + i * 0.1,
+                        ease: [0.2, 0.65, 0.3, 0.9]
+                    }}
+                    className="inline-block mr-[0.25em]"
+                >
+                    {word}
+                </motion.span>
+            ))}
+        </span>
+    );
+};
+
+export default function Balai({ service }) {
+    const gFormUrl = service?.google_form_url || "https://wa.me/6281111160600?text=Halo%20EDUfa,%20saya%20ingin%20info%20program%20BLK";
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased overflow-hidden">
-            <Head title="Balai Latihan Kerja - EDUfa Centre" />
-            
+            <SEO title="Balai Latihan Kerja" description="Balai Latihan Kerja untuk mengembangkan potensi dan skill." />
+
             <Header />
 
-            <main className="pt-20 pb-0">
-                {/* Hero Section */}
-                <div className="relative bg-edufa-blue py-20 lg:py-28 overflow-hidden rounded-b-[3rem] shadow-sm">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-edufa-yellow/10 rounded-full blur-[100px] pointer-events-none"></div>
-                    <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
-                    
-                    <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
-                        <div className="mx-auto max-w-3xl text-center">
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.5 }}
-                                className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm text-edufa-yellow text-sm font-bold tracking-widest uppercase"
-                            >
-                                Pelayanan Kami
-                            </motion.div>
-                            <motion.h1 
-                                initial={{ opacity: 0, y: -20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.1 }}
-                                className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl text-balance"
-                            >
-                                Balai Latihan <br className="hidden sm:block" />
-                                <span className="text-edufa-yellow relative inline-block mt-2">
-                                    Kerja & Kehidupan
-                                    <div className="absolute -bottom-2 left-0 w-full h-2 bg-edufa-yellow/30 rounded-full"></div>
-                                </span>
-                            </motion.h1>
-                            <motion.p 
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.2 }}
-                                className="mt-8 text-lg sm:text-xl leading-8 text-blue-50 text-balance"
-                            >
-                                Memberikan keterampilan praktis vokasional dan kemandirian agar setiap individu siap menghadapi tantangan dunia kerja dan kehidupan nyata.
-                            </motion.p>
-                        </div>
+            <main className="pb-0">
+                {/* New Creative Hero Section */}
+                <div className="relative py-12 lg:py-20 overflow-hidden bg-white">
+                    {/* Background Mesh/Blobs */}
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
+                        <motion.div
+                            animate={{
+                                scale: [1, 1.2, 1],
+                                rotate: [0, 90, 0],
+                                opacity: [0.1, 0.15, 0.1]
+                            }}
+                            transition={{ duration: 20, repeat: Infinity }}
+                            className="absolute -top-24 -left-24 w-[500px] h-[500px] bg-edufa-yellow rounded-full blur-[120px]"
+                        />
+                        <motion.div
+                            animate={{
+                                scale: [1, 1.3, 1],
+                                rotate: [0, -90, 0],
+                                opacity: [0.05, 0.1, 0.05]
+                            }}
+                            transition={{ duration: 25, repeat: Infinity }}
+                            className="absolute top-0 -right-24 w-[600px] h-[600px] bg-edufa-blue rounded-full blur-[150px]"
+                        />
+                    </div>
+
+                    <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10 text-center">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                            className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-edufa-blue/5 border border-edufa-blue/10 text-edufa-blue text-xs font-black tracking-widest uppercase shadow-sm"
+                        >
+                            <span className="w-2 h-2 rounded-full bg-edufa-blue mr-3 animate-pulse"></span>
+                            Pelayanan Kami
+                        </motion.div>
+
+                        <motion.h1
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                            className="text-3xl font-black tracking-tight text-gray-900 sm:text-5xl lg:text-6xl leading-[1.1]"
+                        >
+                            <RevealText text="Balai Latihan" className="text-gray-900" />{' '}
+                            <span className="relative inline-block mt-2">
+                                <RevealText text="Kerja & Kehidupan" className="text-edufa-blue" delay={0.5} />
+                                <motion.svg
+                                    viewBox="0 0 450 20"
+                                    className="absolute -bottom-2 left-0 w-full h-4 text-edufa-yellow"
+                                    initial={{ pathLength: 0, opacity: 0 }}
+                                    animate={{ pathLength: 1, opacity: 1 }}
+                                    transition={{ delay: 1.2, duration: 1 }}
+                                >
+                                    <motion.path
+                                        d="M5 15 Q 225 5 445 15"
+                                        fill="transparent"
+                                        stroke="currentColor"
+                                        strokeWidth="8"
+                                        strokeLinecap="round"
+                                    />
+                                </motion.svg>
+                            </span>
+                        </motion.h1>
+
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1, delay: 1 }}
+                            className="mt-6 text-base sm:text-xl leading-relaxed text-gray-600 max-w-2xl mx-auto font-medium"
+                        >
+                            Memberikan keterampilan praktis vokasional dan kemandirian agar setiap individu siap menghadapi tantangan dunia kerja dan kehidupan nyata.
+                        </motion.p>
                     </div>
                 </div>
 
                 {/* Content Section */}
                 <div className="mx-auto max-w-7xl px-6 lg:px-8 mt-24 mb-32">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                        <motion.div 
+                        <motion.div
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8 }}
                         >
-                            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-6">Menuju Kemandirian Penuh</h2>
-                            <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                                Balai Latihan Kerja dan Kehidupan adalah program unggulan kami untuk remaja dan dewasa muda berkebutuhan khusus maupun tipikal, membekali mereka dengan life skills dan kemampuan vokasional (bekerja).
+                            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-6">Mengenal Balai Latihan Kerja</h2>
+                            <p className="text-lg text-gray-600 mb-4 leading-relaxed text-justify">
+                                <strong>BLKK EDUfa</strong> adalah tempat dimana Individu dengan Autisme yang menginjak usia diatas 13 tahun belajar bekerja dan membantu dirinya sendiri dan dapat berfungsi secara sosial dan ekonomi.
                             </p>
+                            <p className="text-lg text-gray-600 mb-6 leading-relaxed text-justify">
+                                Semua program untuk mengajarkan bekerja dan membantu diri dirancang dengan pendekatan yang terstruktur dan individual, serta didampingi oleh tim profesional dari EDUfa Autism Therapy Centre.
+                            </p>
+                            <h3 className="text-xl font-semibold text-gray-900 mb-4">Program Kelas :</h3>
                             <ul className="space-y-4 mb-8">
                                 {[
-                                    "Pelatihan Vokasional & Kewirausahaan",
-                                    "Keterampilan Bina Diri (Daily Living Skills)",
-                                    "Magang Terstruktur & Penyaluran Kerja",
-                                    "Pelatihan Sosial & Komunikasi di Tempat Kerja"
+                                    { title: "Kelas Bantu Diri", desc: "Belajar merawat dan mengatur diri sendiri" },
+                                    { title: "Kelas Musik / Seni", desc: "Menyalurkan emosi dan hobi secara positif" },
+                                    { title: "Kelas Memasak", desc: "Kemandirian dan keterampilan praktis" },
+                                    { title: "Kelas Peternakan / Pertanian", desc: "Melatih tanggung jawab dan rutinitas" },
+                                    { title: "Kelas Komputer / Percetakan / Finansial / Media", desc: "Kemampuan kerja dan kreativitas" },
+                                    { title: "Kelas Kerajinan Tangan", desc: "Meningkatkan fokus dan motorik halus" }
                                 ].map((item, index) => (
-                                    <li key={index} className="flex items-center gap-3">
-                                        <div className="w-8 h-8 rounded-full bg-edufa-yellow/20 flex items-center justify-center flex-shrink-0">
-                                            <svg className="w-5 h-5 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                                    <li key={index} className="flex items-start gap-3">
+                                        <div className="w-8 h-8 rounded-full bg-edufa-yellow/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                            <svg className="w-5 h-5 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
                                         </div>
-                                        <span className="text-gray-800 font-medium">{item}</span>
+                                        <div>
+                                            <span className="text-gray-900 font-bold block">{item.title}</span>
+                                            <span className="text-gray-600 text-sm block">{item.desc}</span>
+                                        </div>
                                     </li>
                                 ))}
                             </ul>
-                            <a 
-                                href="https://wa.me/6281234567890?text=Halo%20EDUfa,%20saya%20ingin%20info%20Balai%20Latihan%20Kerja" 
+                            <a
+                                href={gFormUrl}
                                 target="_blank"
                                 rel="noreferrer"
                                 className="inline-block bg-edufa-blue text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:bg-blue-800 hover:shadow-edufa-blue/30 transition-all hover:-translate-y-1"
                             >
-                                Hubungi Kami
+                                Info Pendaftaran Sekarang
                             </a>
                         </motion.div>
-                        
-                        <motion.div 
+
+                        <motion.div
                             initial={{ opacity: 0, x: 30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
@@ -98,9 +167,9 @@ export default function Balai() {
                         >
                             <div className="absolute inset-0 bg-edufa-yellow/20 rounded-[3rem] transform translate-x-4 translate-y-4 -z-10"></div>
                             <div className="aspect-square w-full rounded-[3rem] overflow-hidden bg-gray-100 ring-1 ring-gray-900/5">
-                                <img 
-                                    src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                                    alt="Balai Latihan Kerja dan Kehidupan" 
+                                <img
+                                    src="/images/Salinan IMG_0899.jpg"
+                                    alt="Balai Latihan Kerja dan Kehidupan"
                                     className="w-full h-full object-cover"
                                 />
                             </div>

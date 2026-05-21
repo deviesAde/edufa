@@ -13,16 +13,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name' => 'Admin',
-            'email' => 'admin@edufa.com',
-            'password' => Hash::make('password'),
-            'role' => 'admin',
-            'email_verified_at' => now(),
-        ]);
+        User::firstOrCreate(
+            ['email' => env('ADMIN_EMAIL')],
+            [
+                'name'              => env('ADMIN_NAME'),
+                'password'          => Hash::make(env('ADMIN_PASSWORD')),
+                'role'              => 'admin',
+                'email_verified_at' => now(),
+            ]
+        );
 
         $this->call([
             BranchSeeder::class,
+            ServiceSeeder::class,
         ]);
     }
 }

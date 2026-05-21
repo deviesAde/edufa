@@ -1,75 +1,143 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/react';
+import SEO from '@/Components/SEO';
 import Header from '@/Components/Header';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { motion } from 'framer-motion';
 
-export default function AsesmenPsikologi() {
+const RevealText = ({ text, className = "", delay = 0 }) => {
+    const words = text.split(" ");
+    return (
+        <span className={`inline-block ${className}`}>
+            {words.map((word, i) => (
+                <motion.span
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{
+                        duration: 0.8,
+                        delay: delay + i * 0.1,
+                        ease: [0.2, 0.65, 0.3, 0.9]
+                    }}
+                    className="inline-block mr-[0.25em]"
+                >
+                    {word}
+                </motion.span>
+            ))}
+        </span>
+    );
+};
+
+export default function AsesmenPsikologi({ service }) {
+    const gFormUrl = service?.google_form_url || "https://wa.me/6281111160600?text=Halo%20EDUfa,%20saya%20ingin%20info%20asesmen%20psikologi";
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased overflow-hidden">
-            <Head title="Asesmen Psikologi - EDUfa Centre" />
-            
+            <SEO title="Asesmen Psikologi" description="Layanan asesmen psikologi komprehensif dari EDUfa Centre." />
+
             <Header />
 
-            <main className="pt-20 pb-0">
-                {/* Hero Section */}
-                <div className="relative bg-edufa-blue py-20 lg:py-28 overflow-hidden rounded-b-[3rem] shadow-sm">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-edufa-yellow/10 rounded-full blur-[100px] pointer-events-none"></div>
-                    <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
-                    
-                    <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
-                        <div className="mx-auto max-w-3xl text-center">
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.5 }}
-                                className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm text-edufa-yellow text-sm font-bold tracking-widest uppercase"
-                            >
-                                Pelayanan Kami
-                            </motion.div>
-                            <motion.h1 
-                                initial={{ opacity: 0, y: -20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.1 }}
-                                className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl text-balance"
-                            >
-                                Asesmen <br className="hidden sm:block" />
-                                <span className="text-edufa-yellow relative inline-block mt-2">
-                                    Psikologi
-                                    <div className="absolute -bottom-2 left-0 w-full h-2 bg-edufa-yellow/30 rounded-full"></div>
-                                </span>
-                            </motion.h1>
-                            <motion.p 
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.2 }}
-                                className="mt-8 text-lg sm:text-xl leading-8 text-blue-50 text-balance"
-                            >
-                                Mengungkap potensi, kepribadian, kecerdasan, dan minat bakat secara komprehensif melalui evaluasi profesional.
-                            </motion.p>
-                        </div>
+            <main className="pb-0">
+                {/* New Creative Hero Section */}
+                <div className="relative py-12 lg:py-20 overflow-hidden bg-white">
+                    {/* Background Mesh/Blobs */}
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
+                        <motion.div
+                            animate={{
+                                scale: [1, 1.2, 1],
+                                rotate: [0, 90, 0],
+                                opacity: [0.1, 0.15, 0.1]
+                            }}
+                            transition={{ duration: 20, repeat: Infinity }}
+                            className="absolute -top-24 -left-24 w-[500px] h-[500px] bg-edufa-yellow rounded-full blur-[120px]"
+                        />
+                        <motion.div
+                            animate={{
+                                scale: [1, 1.3, 1],
+                                rotate: [0, -90, 0],
+                                opacity: [0.05, 0.1, 0.05]
+                            }}
+                            transition={{ duration: 25, repeat: Infinity }}
+                            className="absolute top-0 -right-24 w-[600px] h-[600px] bg-edufa-blue rounded-full blur-[150px]"
+                        />
+                    </div>
+
+                    <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10 text-center">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                            className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-edufa-blue/5 border border-edufa-blue/10 text-edufa-blue text-xs font-black tracking-widest uppercase shadow-sm"
+                        >
+                            <span className="w-2 h-2 rounded-full bg-edufa-blue mr-3 animate-pulse"></span>
+                            Pelayanan Kami
+                        </motion.div>
+
+                        <motion.h1
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                            className="text-3xl font-black tracking-tight text-gray-900 sm:text-5xl lg:text-6xl leading-[1.1]"
+                        >
+                            <RevealText text="Asesmen" className="text-gray-900" />{' '}
+                            <span className="relative inline-block mt-2">
+                                <RevealText text="Psikologi" className="text-edufa-blue" delay={0.5} />
+                                <motion.svg
+                                    viewBox="0 0 300 20"
+                                    className="absolute -bottom-2 left-0 w-full h-4 text-edufa-yellow"
+                                    initial={{ pathLength: 0, opacity: 0 }}
+                                    animate={{ pathLength: 1, opacity: 1 }}
+                                    transition={{ delay: 1.2, duration: 1 }}
+                                >
+                                    <motion.path
+                                        d="M5 15 Q 150 5 295 15"
+                                        fill="transparent"
+                                        stroke="currentColor"
+                                        strokeWidth="8"
+                                        strokeLinecap="round"
+                                    />
+                                </motion.svg>
+                            </span>
+                        </motion.h1>
+
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1, delay: 1 }}
+                            className="mt-6 text-base sm:text-xl leading-relaxed text-gray-600 max-w-2xl mx-auto font-medium"
+                        >
+                            Mengungkap potensi, kepribadian, kecerdasan, dan minat bakat secara komprehensif melalui evaluasi profesional.
+                        </motion.p>
                     </div>
                 </div>
 
                 {/* Content Section */}
                 <div className="mx-auto max-w-7xl px-6 lg:px-8 mt-24 mb-32">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                        <motion.div 
+                        <motion.div
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8 }}
                         >
-                            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-6">Mengenal Potensi Diri Lebih Dalam</h2>
-                            <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                                Asesmen Psikologi di EDUfa Centre dirancang untuk membantu anak-anak, remaja, hingga orang dewasa dalam memahami kondisi psikologis mereka yang sebenarnya. Kami menggunakan serangkaian alat ukur psikologis yang valid dan reliabel.
+                            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-6">Mengenal Asesmen Psikologi</h2>
+                            <p className="text-lg text-gray-600 mb-4 leading-relaxed text-justify">
+                                <strong>Asesmen Psikologi</strong> adalah proses evaluasi komprehensif yang dilakukan oleh tenaga profesional untuk memahami potensi, kepribadian, kecerdasan, serta minat dan bakat seseorang menggunakan metode dan alat tes psikologis yang objektif.
                             </p>
+                            <p className="text-lg text-gray-600 mb-4 leading-relaxed text-justify">
+                                Biro Psikologi EDUfa menyediakan Jasa layanan psikologi untuk individu, sekolah dengan tujuan membantu orang tua/pendidik mengembangkan potensi anak/peserta didik secara optimal.
+                            </p>
+                            <p className="text-lg text-gray-600 mb-6 leading-relaxed text-justify">
+                                Praktisi dan akademisi yang bergabung di Biro Psikologi EDUfa adalah psikolog yang bergerak di bidang pendidikan yang sudah berpengalaman dibidangnya dengan visi membantu orang tua/pendidik mengembangkan potensi anak/peserta didik.
+                            </p>
+                            <h3 className="text-xl font-semibold text-gray-900 mb-4">Layanan Asesmen Psikologi :</h3>
                             <ul className="space-y-4 mb-8">
                                 {[
-                                    "Tes IQ & Kecerdasan Majemuk",
-                                    "Tes Kesiapan Masuk Sekolah Dasar",
-                                    "Tes Minat & Bakat (Penjurusan Sekolah/Kuliah)",
-                                    "Asesmen Karyawan / Rekrutmen"
+                                    "Tes Kepribadian",
+                                    "Tes Intelegensi",
+                                    "Tes Kesiapan Belajar",
+                                    "Tes Minat & Bakat",
+                                    "Asesmen Perkembangan"
                                 ].map((item, index) => (
                                     <li key={index} className="flex items-center gap-3">
                                         <div className="w-8 h-8 rounded-full bg-edufa-yellow/20 flex items-center justify-center flex-shrink-0">
@@ -79,8 +147,8 @@ export default function AsesmenPsikologi() {
                                     </li>
                                 ))}
                             </ul>
-                            <a 
-                                href="https://wa.me/6281234567890?text=Halo%20EDUfa,%20saya%20ingin%20mendaftar%20Asesmen%20Psikologi" 
+                            <a
+                                href={gFormUrl}
                                 target="_blank"
                                 rel="noreferrer"
                                 className="inline-block bg-edufa-blue text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:bg-blue-800 hover:shadow-edufa-blue/30 transition-all hover:-translate-y-1"
@@ -88,8 +156,8 @@ export default function AsesmenPsikologi() {
                                 Daftar Asesmen Sekarang
                             </a>
                         </motion.div>
-                        
-                        <motion.div 
+
+                        <motion.div
                             initial={{ opacity: 0, x: 30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
@@ -98,9 +166,9 @@ export default function AsesmenPsikologi() {
                         >
                             <div className="absolute inset-0 bg-edufa-yellow/20 rounded-[3rem] transform translate-x-4 translate-y-4 -z-10"></div>
                             <div className="aspect-square w-full rounded-[3rem] overflow-hidden bg-gray-100 ring-1 ring-gray-900/5">
-                                <img 
-                                    src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                                    alt="Asesmen Psikologi" 
+                                <img
+                                    src="/images/Salinan IMG_0871.jpg"
+                                    alt="Asesmen Psikologi"
                                     className="w-full h-full object-cover"
                                 />
                             </div>

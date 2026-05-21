@@ -3,13 +3,46 @@ import Hero from '@/Components/Hero';
 import ServiceCards from '@/Components/ServiceCards';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import BranchSection from '@/Components/BranchSection';
-import { Head } from '@inertiajs/react';
+import FloatingShapes from '@/Components/FloatingShapes';
+import SEO from '@/Components/SEO';
+import { motion } from 'framer-motion';
+import { Link } from '@inertiajs/react';
+
+const RevealText = ({ text, className = "", delay = 0 }) => {
+    const words = text.split(" ");
+    return (
+        <span className={`inline-block ${className}`}>
+            {words.map((word, i) => (
+                <motion.span
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{
+                        duration: 0.8,
+                        delay: delay + i * 0.1,
+                        ease: [0.2, 0.65, 0.3, 0.9]
+                    }}
+                    className="inline-block mr-[0.25em]"
+                >
+                    {word}
+                </motion.span>
+            ))}
+        </span>
+    );
+};
 
 export default function Page({ branches }) {
+    // Schema is now automatically generated in SEO component based on schemaType="LocalBusiness"
+    
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased">
-            <Head title="Biro Psikologi & Pusat Layanan Terapi EDUfa" />
-            
+            <SEO
+                title="Beranda"
+                description="EDUfa Centre adalah Biro Psikologi & Pusat Layanan Terapi di Bandung. Kami melayani asesmen psikologi, pelatihan, konseling, dan terapi ABK."
+                schemaType="LocalBusiness"
+            />
+
             <Header />
 
             <main>
@@ -17,23 +50,99 @@ export default function Page({ branches }) {
 
                 <ServiceCards />
 
-                
+
                 <div className="bg-white py-24 sm:py-32 overflow-hidden relative">
-                    {/* Decorative Background Elements */}
-                    <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[800px] h-[800px] bg-edufa-yellow/5 rounded-full blur-3xl pointer-events-none"></div>
-                    <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[600px] h-[600px] bg-edufa-blue/5 rounded-full blur-3xl pointer-events-none"></div>
+                    {/* Artistic Background Elements */}
+                    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                        {/* Grid Pattern */}
+                        <div 
+                            className="absolute inset-0 opacity-[0.03]"
+                            style={{
+                                backgroundImage: `radial-gradient(#1A1953 0.5px, transparent 0.5px)`,
+                                backgroundSize: '24px 24px'
+                            }}
+                        ></div>
+                        
+                        {/* Colorful Blobs */}
+                        <motion.div 
+                            animate={{ 
+                                x: [0, 50, 0],
+                                y: [0, 30, 0],
+                                scale: [1, 1.1, 1]
+                            }}
+                            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute -top-24 -left-24 w-96 h-96 bg-edufa-blue/10 blur-[100px] rounded-full"
+                        ></motion.div>
+                        <motion.div 
+                            animate={{ 
+                                x: [0, -40, 0],
+                                y: [0, 60, 0],
+                                scale: [1, 1.2, 1]
+                            }}
+                            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute top-1/2 -right-24 w-80 h-80 bg-edufa-yellow/10 blur-[90px] rounded-full"
+                        ></motion.div>
+                        <motion.div 
+                            animate={{ 
+                                x: [0, 30, 0],
+                                y: [0, -50, 0]
+                            }}
+                            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute -bottom-24 left-1/3 w-[500px] h-[500px] bg-edufa-green/5 blur-[120px] rounded-full"
+                        ></motion.div>
+                        <motion.div 
+                            animate={{ 
+                                scale: [1, 1.15, 1],
+                                rotate: [0, 45, 0]
+                            }}
+                            transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute top-1/4 left-1/2 w-72 h-72 bg-edufa-red/5 blur-[80px] rounded-full"
+                        ></motion.div>
+
+                        {/* Floating Shapes */}
+                        <motion.div 
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                            className="absolute top-40 left-[10%] w-12 h-12 border-2 border-edufa-blue/10 rounded-xl"
+                        ></motion.div>
+                        <motion.div 
+                            animate={{ y: [0, -20, 0] }}
+                            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute bottom-20 right-[15%] w-8 h-8 bg-edufa-yellow/10 rounded-full"
+                        ></motion.div>
+                    </div>
 
                     <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
                         {/* Title and Intro */}
                         <div className="mx-auto max-w-3xl text-center mb-20">
-                            <h2 className="text-sm font-bold tracking-widest text-edufa-blue uppercase mb-4 inline-block px-4 py-1.5 rounded-full bg-edufa-blue/10">
-                                Tentang Kami
+                            <motion.h2 
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="text-sm font-black tracking-[0.3em] text-edufa-blue uppercase mb-6 inline-flex items-center gap-3 px-6 py-2 rounded-full bg-gradient-to-r from-edufa-blue/10 to-transparent border border-edufa-blue/10 shadow-sm backdrop-blur-sm"
+                            >
+                                <span className="w-2 h-2 rounded-full bg-edufa-blue animate-ping"></span>
+                                Tentangnya Kami
+                            </motion.h2>
+                            <h2 className="text-[clamp(2rem,6vw,3.5rem)] font-black tracking-tighter text-gray-900 mb-8">
+                                <RevealText text="TENTANG EDUfa Centre" />
                             </h2>
-                            <h3 className="text-4xl md:text-5xl font-black tracking-tighter text-gray-900 mb-8">
-                                TENTANG EDUfa Centre
-                            </h3>
                             <p className="text-xl md:text-2xl leading-relaxed text-gray-600 font-medium">
-                                Yayasan EDUfa Salamanca dan Biro Psikologi EDUfa Counseling berdiri pada tanggal <span className="text-edufa-blue font-bold px-1 relative inline-block"><span className="relative z-10">31 Mei 2012</span><span className="absolute bottom-1 left-0 w-full h-3 bg-edufa-yellow/40 -z-10 rounded-sm"></span></span> di Bandung.
+                                <RevealText 
+                                    text="Yayasan EDUfa Salamanca dan Biro Psikologi EDUfa Counseling berdiri pada tanggal" 
+                                    delay={0.5} 
+                                />
+                                <span className="text-edufa-blue font-bold px-1 relative inline-block mx-2">
+                                    <span className="relative z-10">31 Mei 2012</span>
+                                    <motion.span 
+                                        initial={{ width: 0 }}
+                                        whileInView={{ width: "100%" }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 1.5, duration: 0.8 }}
+                                        className="absolute bottom-1 left-0 h-3 bg-edufa-yellow/40 -z-10 rounded-sm"
+                                    ></motion.span>
+                                </span> 
+                                <RevealText text="di Bandung." delay={1.8} />
                             </p>
                         </div>
 
@@ -43,11 +152,21 @@ export default function Page({ branches }) {
                             <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-px h-3/4 bg-gradient-to-b from-transparent via-gray-200 to-transparent"></div>
 
                             {/* Salamanca Card */}
-                            <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-2xl shadow-gray-200/40 ring-1 ring-gray-900/5 group hover:-translate-y-2 transition-transform duration-500 relative overflow-hidden flex flex-col justify-between">
+                            <motion.div 
+                                initial={{ opacity: 0, x: -50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                whileHover={{ y: -15, scale: 1.02, rotate: -1 }}
+                                transition={{ 
+                                    initial: { duration: 0.8 },
+                                    whileHover: { type: "spring", stiffness: 300, damping: 15 }
+                                }}
+                                className="bg-white rounded-[2.5rem] p-[clamp(1.5rem,5vw,2.5rem)] shadow-2xl shadow-edufa-blue/10 ring-1 ring-gray-900/5 group relative overflow-hidden flex flex-col justify-between border-b-8 border-edufa-blue"
+                            >
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-edufa-blue/5 rounded-full -mr-16 -mt-16 transition-transform duration-700 group-hover:scale-150"></div>
                                 <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
-                                    <svg className="w-32 h-32 text-edufa-blue" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72l5 2.73 5-2.73v3.72z"/></svg>
+                                    <svg className="w-32 h-32 text-edufa-blue" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72l5 2.73 5-2.73v3.72z" /></svg>
                                 </div>
-                                
                                 <div className="relative z-10 mb-8">
                                     <div className="w-16 h-16 rounded-2xl bg-edufa-blue/10 flex items-center justify-center mb-8">
                                         <svg className="w-8 h-8 text-edufa-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l9-5-9-5-9 5 9 5z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" /></svg>
@@ -59,19 +178,29 @@ export default function Page({ branches }) {
                                         Fokus pada menyediakan <span className="font-bold text-edufa-blue">pendidikan inklusi</span> untuk semua anak.
                                     </p>
                                 </div>
-                                
+
                                 <div className="pt-6 border-t border-gray-100 relative z-10">
                                     <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Nomor Akte Yayasan</p>
                                     <p className="text-sm font-mono text-edufa-blue font-bold">AHU-AH.01.06-0040306</p>
                                 </div>
-                            </div>
+                            </motion.div>
 
                             {/* Counseling Card */}
-                            <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-2xl shadow-gray-200/40 ring-1 ring-gray-900/5 group hover:-translate-y-2 transition-transform duration-500 relative overflow-hidden flex flex-col justify-between">
+                            <motion.div 
+                                initial={{ opacity: 0, x: 50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                whileHover={{ y: -15, scale: 1.02, rotate: 1 }}
+                                transition={{ 
+                                    initial: { duration: 0.8 },
+                                    whileHover: { type: "spring", stiffness: 300, damping: 15 }
+                                }}
+                                className="bg-white rounded-[2.5rem] p-[clamp(1.5rem,5vw,2.5rem)] shadow-2xl shadow-edufa-yellow/10 ring-1 ring-gray-900/5 group relative overflow-hidden flex flex-col justify-between border-b-8 border-edufa-yellow"
+                            >
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-edufa-yellow/5 rounded-full -mr-16 -mt-16 transition-transform duration-700 group-hover:scale-150"></div>
                                 <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
-                                    <svg className="w-32 h-32 text-edufa-yellow" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                                    <svg className="w-32 h-32 text-edufa-yellow" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" /></svg>
                                 </div>
-
                                 <div className="relative z-10 mb-8">
                                     <div className="w-16 h-16 rounded-2xl bg-edufa-yellow/10 flex items-center justify-center mb-8">
                                         <svg className="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
@@ -80,37 +209,104 @@ export default function Page({ branches }) {
                                         Biro Psikologi EDUfa Counseling
                                     </h3>
                                     <p className="text-lg text-gray-600 leading-relaxed">
-                                        Fokus pada membantu <span className="font-bold text-amber-600">mengembangkan potensi</span> anak / peserta didik / tenaga kerja secara optimal.
+                                        Fokus pada membantu <span className="font-bold text-[#ffd900]">mengembangkan potensi</span> anak / peserta didik / tenaga kerja secara optimal.
                                     </p>
                                 </div>
-                                    
+
                                 <div className="pt-6 border-t border-gray-100 relative z-10">
                                     <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">SIPP No</p>
-                                    <p className="text-sm font-mono text-amber-600 font-bold">201220017-2025-04-0720</p>
+                                    <p className="text-sm font-mono text-[#ffd900] font-bold">201220017-2025-04-0720</p>
                                 </div>
-                            </div>
+                            </motion.div>
                         </div>
 
                         {/* Leader Section */}
-                        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-6 relative overflow-visible mt-20">
-                            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white flex items-center justify-center flex-none ring-4 ring-white shadow-xl relative z-20 overflow-hidden">
-                                <div className="flex items-center justify-center w-full h-full bg-gradient-to-tr from-edufa-blue/20 to-edufa-yellow/20">
-                                     <svg className="w-12 h-12 text-edufa-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-                                </div>
+                        <div className="mt-32 max-w-7xl mx-auto px-4 sm:px-6">
+                            <div className="text-center mb-16">
+                                <motion.h3 
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    className="text-2xl sm:text-3xl font-black text-edufa-blue uppercase tracking-[0.2em]"
+                                >
+                                    Pimpinan Yayasan
+                                </motion.h3>
+                                <div className="mt-4 h-1 w-20 bg-edufa-yellow mx-auto rounded-full"></div>
                             </div>
-                            
-                            <div className="text-center md:text-left relative z-10 flex-1 bg-gray-900 rounded-3xl p-6 md:p-8 md:-ml-12 shadow-xl shadow-gray-900/10 w-full pl-6 md:pl-16">
-                                <div className="inline-flex flex-wrap gap-2 items-center justify-center md:justify-start mb-3">
-                                    <span className="text-[10px] font-bold text-white uppercase tracking-widest bg-edufa-blue/80 px-2 py-0.5 rounded border border-edufa-blue">
-                                        Ketua Yayasan
-                                    </span>
-                                    <span className="text-[10px] font-bold text-white uppercase tracking-widest bg-amber-600/80 px-2 py-0.5 rounded border border-amber-500">
-                                        Penanggungjawab Biro
-                                    </span>
-                                </div>
-                                <p className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                                    Dr. Ernie C. Siregar, S.Psi, M.Pd, Psikolog
-                                </p>
+
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+                                {[
+                                    {
+                                        name: "Brigjen TNI Dr. Bayu Aji Widodo., S.H.,M.IP",
+                                        image: "/penanggung/Brigjen TNI Dr. Bayu  Aji Widodo., S.H.,M.IP.png",
+                                        role: "Pembina Yayasan EDUfa Salamanca",
+                                        category: "Pembina",
+                                        imageStyle: { objectPosition: '50% 10%' }
+                                    },
+                                    {
+                                        name: "Dr. Ernie C. Siregar, S.Psi., M.Pd., Psikolog",
+                                        image: "/penanggung/ernie-siregar.png",
+                                        role: "Ketua Yayasan sekaligus Psikolog di Biro Psikologi dan Pusat Layanan Terapi EDUfa",
+                                        category: "Ketua",
+                                        imageStyle: { objectPosition: 'center' }
+                                    }
+                                ].map((leader, index) => (
+                                    <motion.div 
+                                        key={index}
+                                        initial={{ opacity: 0, y: 40 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: index * 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                                        className="group relative h-full"
+                                    >
+                                        <div className="relative h-full flex flex-col sm:flex-row items-center gap-8 bg-edufa-blue rounded-[3rem] p-8 lg:p-10 shadow-2xl shadow-edufa-blue/30 overflow-hidden ring-1 ring-white/10 transition-all duration-500 hover:ring-white/20 hover:shadow-edufa-blue/40">
+                                            {/* Background Decor */}
+                                            <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 blur-[50px] -mr-16 -mt-16 group-hover:bg-white/10 transition-all duration-700"></div>
+                                            <div className="absolute bottom-0 left-0 w-24 h-24 bg-edufa-yellow/5 blur-[40px] -ml-12 -mb-12"></div>
+                                            
+                                            <div className="relative flex-none mt-4 sm:mt-0 group/img">
+                                                <div 
+                                                    className="w-32 h-40 sm:w-36 sm:h-44 relative flex items-end justify-center rounded-t-full bg-transparent transition-all duration-700 overflow-hidden pt-4"
+                                                    style={{
+                                                        WebkitMaskImage: 'linear-gradient(to bottom, black 65%, transparent 100%)',
+                                                        maskImage: 'linear-gradient(to bottom, black 65%, transparent 100%)'
+                                                    }}
+                                                >
+
+
+                                                    {/* The Image */}
+                                                    <img 
+                                                        src={leader.image} 
+                                                        alt={leader.name}
+                                                        style={leader.imageStyle}
+                                                        className="w-full h-full object-contain relative z-10 drop-shadow-xl transition-transform duration-700 group-hover/img:scale-110 group-hover/img:-translate-y-1"
+                                                        onError={(e) => {
+                                                            e.target.style.display = 'none';
+                                                        }}
+                                                        loading="lazy"
+                                                        decoding="async"
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div className="flex-1 text-center sm:text-left relative z-10">
+                                                <div className="mb-4 flex justify-center sm:justify-start">
+                                                    <span className="inline-flex items-center text-[10px] font-black text-edufa-yellow uppercase tracking-[0.2em] bg-white/5 px-4 py-1.5 rounded-full border border-white/10 shadow-lg backdrop-blur-md transition-transform duration-500 group-hover:scale-105">
+                                                        <span className="w-1.5 h-1.5 rounded-full bg-edufa-yellow mr-2 animate-pulse shadow-[0_0_8px_rgba(255,217,0,0.8)]"></span>
+                                                        {leader.category}
+                                                    </span>
+                                                </div>
+                                                <h4 className="text-xl sm:text-2xl font-black text-white tracking-tight mb-3 leading-tight group-hover:text-edufa-yellow transition-colors duration-500">
+                                                    {leader.name}
+                                                </h4>
+                                                <div className="h-px w-12 bg-gradient-to-r from-edufa-yellow/60 to-transparent mb-4 mx-auto sm:mx-0 transition-all duration-500 group-hover:w-20"></div>
+                                                <p className="text-xs sm:text-[13px] font-bold text-blue-100/80 leading-relaxed uppercase tracking-widest">
+                                                    {leader.role}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                ))}
                             </div>
                         </div>
                     </div>
@@ -118,64 +314,189 @@ export default function Page({ branches }) {
 
                 {/* KEUNGGULAN KAMI */}
                 <div className="bg-edufa-blue py-24 sm:py-32 relative overflow-hidden">
-                    <div className="absolute -bottom-1/2 left-1/2 -translate-x-1/2 w-full max-w-5xl h-96 bg-edufa-yellow/10 blur-[120px] rounded-full pointer-events-none"></div>
-                    <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 blur-[100px] rounded-full pointer-events-none"></div>
+                    {/* Artistic Background Elements */}
+                    <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+                        <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                            <defs>
+                                <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                                    <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" strokeWidth="0.5"/>
+                                </pattern>
+                            </defs>
+                            <rect width="100" height="100" fill="url(#grid)" />
+                        </svg>
+                    </div>
+                    <div className="absolute -bottom-1/4 left-1/4 w-full max-w-5xl h-[600px] bg-edufa-yellow/20 blur-[150px] rounded-full pointer-events-none"></div>
+                    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/10 blur-[120px] rounded-full pointer-events-none"></div>
                     
-                    <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 items-center">
-                            
-                            {/* Left Text Detail */}
-                            <div className="lg:col-span-5 relative">
-                                <h2 className="text-sm font-black leading-7 text-edufa-yellow uppercase tracking-[0.2em] mb-4">
-                                    Alasan Memilih Kami
-                                </h2>
-                                
-                                <h3 className="text-3xl font-black tracking-tight text-white sm:text-4xl lg:text-5xl mb-8 leading-[1.1]">
-                                    Keunggulan Kami
-                                </h3>
+                    {/* Floating Decorative Shapes */}
+                    <motion.div 
+                        animate={{ y: [0, -30, 0], rotate: [0, 90, 0] }}
+                        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                        className="absolute top-20 right-[5%] w-24 h-24 border border-white/20 rounded-full hidden lg:block"
+                    />
+                    <motion.div 
+                        animate={{ y: [0, 30, 0], scale: [1, 1.2, 1] }}
+                        transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+                        className="absolute bottom-40 left-[5%] w-16 h-16 bg-edufa-yellow/10 rounded-2xl hidden lg:block"
+                    />
 
-                                <div className="mb-10 inline-block relative group">
-                                    <div className="bg-edufa-yellow rounded-[2rem] shadow-2xl p-6 md:p-8 relative z-10 group-hover:-translate-y-2 group-hover:shadow-edufa-yellow/30 transition-all duration-300">
-                                        <ApplicationLogo/>
-                                    </div>
-                                </div>
-                                
-                                <div className="text-lg leading-relaxed text-blue-100 space-y-6">
-                                    <p>
-                                        <strong className="text-white font-bold">Layanan yang lengkap, terintegrasi, dan berkelanjutan.</strong> EDUfa tidak hanya memberikan asesmen dan terapi, tetapi juga mendukung proses perkembangan melalui pelatihan, konseling, PAUD transisi, pendampingan ABK di sekolah, hingga program kemandirian melalui Balai Latihan Kerja dan Kehidupan untuk remaja dan dewasa.
-                                    </p>
-                                    <p>
-                                        EDUfa didukung oleh tenaga profesional yang kompeten dan kredibel, pendekatan yang terstruktur, dan jaringan cabang di berbagai kota.
-                                    </p>
-                                    <p>
-                                        EDUfa hadir sebagai mitra orang tua, pendidik, dan institusi dalam mengembangkan potensi anak dan peserta didik secara optimal.
-                                    </p>
+                    <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+
+                            {/* Left Content: More Informative & Bold */}
+                            <div className="lg:col-span-5 relative">
+                                <motion.div
+                                    initial={{ opacity: 0, x: -30 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/10 border border-white/20 text-edufa-yellow text-xs font-black uppercase tracking-[0.3em] mb-6 shadow-xl backdrop-blur-sm"
+                                >
+                                    <span className="w-2 h-2 rounded-full bg-edufa-yellow animate-ping"></span>
+                                    Alasan Memilih Kami
+                                </motion.div>
+
+                                <h2 className="text-[clamp(2.5rem,8vw,4.5rem)] font-black tracking-tighter text-white mb-10 leading-[1] uppercase">
+                                    <RevealText text="KEUNGGULAN" /> <br />
+                                    <span className="text-edufa-yellow"><RevealText text="KAMI" delay={0.3} /></span>
+                                </h2>
+
+                                <div className="relative space-y-8">
+                                    <motion.div 
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.5 }}
+                                        className="text-lg md:text-xl leading-relaxed text-blue-50 font-medium border-l-4 border-edufa-yellow pl-6 text-justify"
+                                    >
+                                        <p>
+                                            Menghadirkan layanan yang <strong className="text-edufa-yellow">lengkap, terintegrasi, dan berkelanjutan</strong> dari proses asesmen awal hingga program kemandirian.
+                                        </p>
+                                    </motion.div>
+                                    
+                                    <motion.p 
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.7 }}
+                                        className="text-base text-blue-100/80 leading-relaxed font-medium text-justify"
+                                    >
+                                        Didukung tenaga profesional yang kredibel, pendekatan terstruktur, dan jaringan cabang yang luas, kami hadir sebagai mitra orang tua, pendidik, dan institusi untuk mengembangkan potensi anak secara optimal.
+                                    </motion.p>
+
+                                    <motion.div 
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        whileInView={{ opacity: 1, scale: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.9 }}
+                                        className="p-1 inline-block bg-gradient-to-tr from-edufa-yellow to-white/20 rounded-2xl"
+                                    >
+                                        <div className="bg-edufa-blue px-6 py-3 rounded-[0.9rem] flex items-center gap-4">
+                                            <img src="/hero/logo edufa putih.png" alt="Logo EDUfa Centre - Biro Psikologi dan Pusat Terapi" className="h-12 w-auto" />
+                                            <div>
+                                                <p className="text-[9px] font-black uppercase tracking-widest text-edufa-yellow mb-0.5">Terpercaya Sejak</p>
+                                                <p className="text-xl font-black text-white leading-none">2012</p>
+                                            </div>
+                                        </div>
+                                    </motion.div>
                                 </div>
                             </div>
                             
-                            {/* Right Grid Icons */}
-                            <div className="lg:col-span-7">
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                                    {[
-                                        { title: "Layanan Lengkap", icon: "M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" },
-                                        { title: "Jangkauan Luas & Nyaman", icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" },
-                                        { title: "SDM Profesional", icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" },
-                                        { title: "Pendekatan Terstruktur", icon: "M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" }
-                                    ].map((item, index) => (
-                                        <div key={index} className="flex flex-row sm:flex-col items-center sm:items-start p-6 bg-white/5 backdrop-blur-sm rounded-[2rem] border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all group">
-                                            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-edufa-yellow/10 flex items-center justify-center mb-0 sm:mb-6 mr-6 sm:mr-0 ring-1 ring-edufa-yellow/30 group-hover:scale-110 group-hover:bg-edufa-yellow/20 transition-all duration-300 flex-none">
-                                                <svg className="w-7 h-7 sm:w-8 sm:h-8 text-edufa-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24" dangerouslySetInnerHTML={{ __html: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="${item.icon}" />` }} />
-                                            </div>
-                                            <h3 className="text-xl font-bold text-white leading-tight">{item.title}</h3>
-                                        </div>
-                                    ))}
+                            {/* Right Grid: Memory Wall */}
+                            <div className="lg:col-span-7 flex flex-col justify-center">
+                                {/* Memory Wall / Gallery Strip - LARGER */}
+                                <div className="relative group">
+                                    <div className="absolute -inset-4 bg-gradient-to-r from-edufa-yellow/10 to-blue-400/10 rounded-[3rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                                    <div className="relative w-full h-[400px] sm:h-[480px] overflow-hidden rounded-[3rem] bg-black/20 border border-white/10 shadow-3xl">
+                                        <style dangerouslySetInnerHTML={{__html: `
+                                            @keyframes slideGaleri {
+                                                0% { transform: translateX(0); }
+                                                100% { transform: translateX(-50%); }
+                                            }
+                                            .animate-slide-galeri {
+                                                animation: slideGaleri 50s linear infinite;
+                                            }
+                                            .group:hover .animate-slide-galeri {
+                                                animation-play-state: paused;
+                                            }
+                                        `}} />
+                                        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-edufa-blue to-transparent z-10 pointer-events-none"></div>
+                                        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-edufa-blue to-transparent z-10 pointer-events-none"></div>
+                                        
+                                        {(() => {
+                                            const images = [
+                                                { src: "/images/Salinan IMG_0871.jpg", alt: "1" },
+                                                { src: "/images/Salinan IMG_0899.jpg", alt: "2" },
+                                                { src: "/images/Salinan IMG_0981.jpg", alt: "3" },
+                                                { src: "/images/Salinan IMG_1025.jpg", alt: "4" },
+                                                { src: "/images/Salinan IMG_1295.jpg", alt: "5" },
+                                                { src: "/images/IMG_0937.jpg", alt: "6" },
+                                            ];
+                                            return (
+                                                <div className="flex h-full w-max animate-slide-galeri items-center">
+                                                    {[...images, ...images].map((img, i) => (
+                                                        <div key={i} className="h-full w-[320px] sm:w-[400px] p-4">
+                                                            <div className="w-full h-full rounded-[2.5rem] overflow-hidden relative shadow-2xl group/img">
+                                                                <div className="absolute inset-0 bg-edufa-blue/20 mix-blend-overlay group-hover/img:bg-transparent transition-all duration-500 z-10"></div>
+                                                                <img 
+                                                                    src={img.src}
+                                                                    alt={img.alt}
+                                                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover/img:scale-110"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            );
+                                        })()}
+                                    </div>
+                                    {/* Gallery Caption Label */}
+                                    <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-8 py-3 bg-edufa-yellow rounded-full shadow-2xl">
+                                        <p className="text-xs font-black text-gray-900 uppercase tracking-[0.2em]">Dokumentasi Kegiatan</p>
+                                    </div>
                                 </div>
                             </div>
 
                         </div>
                     </div>
                 </div>
-                
+
+                {/* Artikel Hook Section */}
+                <div className="bg-white py-24 relative overflow-hidden">
+                    <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                        <motion.div 
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="relative rounded-[3rem] bg-edufa-blue px-8 py-16 sm:px-16 sm:py-24 shadow-3xl shadow-edufa-blue/20 overflow-hidden"
+                        >
+                            {/* Decorative background for the hook */}
+                            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-edufa-yellow/20 rounded-full blur-3xl"></div>
+                            <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-48 h-48 bg-white/10 rounded-full blur-2xl"></div>
+
+                            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
+                                <div className="text-center lg:text-left max-w-2xl">
+                                    <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight mb-6 leading-tight">
+                                        Dapatkan Informasi & Edukasi <br className="hidden sm:block" /> Seputar Tumbuh Kembang Anak
+                                    </h2>
+                                    <p className="text-lg text-blue-100 leading-relaxed mb-8">
+                                        Kami secara rutin membagikan artikel bermanfaat, tips parenting, dan informasi terbaru seputar layanan psikologi di EDUfa Centre.
+                                    </p>
+                                </div>
+                                <div className="flex-shrink-0">
+                                    <Link 
+                                        href={route('artikel')}
+                                        className="inline-flex items-center px-10 py-5 bg-edufa-yellow text-gray-900 font-black rounded-2xl hover:bg-white hover:scale-105 transition-all duration-300 shadow-xl shadow-edufa-yellow/20 group"
+                                    >
+                                        Jelajahi Artikel
+                                        <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                                    </Link>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+                </div>
+
+
                 <BranchSection branches={branches} />
 
             </main>

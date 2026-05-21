@@ -1,123 +1,212 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { RevealCardContainer } from '@/Components/ui/animated-profile-card';
+import { FlippingCard } from '@/Components/ui/flipping-card';
+import { Link } from '@inertiajs/react';
+import { 
+    ClipboardCheck, 
+    HeartPulse, 
+    GraduationCap, 
+    Baby, 
+    Users, 
+    School, 
+    Briefcase,
+    ArrowRight,
+    ChevronLeft,
+    ChevronRight
+} from 'lucide-react';
 
 const services = [
     {
-        title: "ASESMEN",
-        description: "Evaluasi psikologis & diagnostik",
-        icon: (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-            </svg>
-        ),
+        title: "ASESMEN PSIKOLOGI",
+        description: "Evaluasi psikologis & diagnostik mendalam untuk memahami potensi unik anak.",
+        icon: <ClipboardCheck />,
         accentColor: "#0f59bc", 
-        textColor: "text-edufa-blue",
-        lightBg: "bg-edufa-blue/5",
+        lightBg: "bg-blue-50",
+        iconColor: "text-edufa-blue",
+        href: route('pelayanan.asesmen')
     },
     {
         title: "TERAPI",
-        description: "Layanan terapi terpadu",
-        icon: (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-            </svg>
-        ),
-        accentColor: "#ffd900", // edufa-yellow
-        textColor: "text-amber-600",
+        description: "Layanan terapi terpadu yang dirancang khusus sesuai kebutuhan tumbuh kembang.",
+        icon: <HeartPulse />,
+        accentColor: "#ffd900", 
         lightBg: "bg-amber-50",
+        iconColor: "text-amber-600",
+        href: route('pelayanan.terapi')
     },
     {
         title: "PELATIHAN",
-        description: "Pengembangan kompetensi & SDM",
-        icon: (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-            </svg>
-        ),
-        accentColor: "#6cc02f", // edufa-green
-        textColor: "text-edufa-green",
-        lightBg: "bg-edufa-green/5",
+        description: "Program pengembangan kompetensi untuk guru, orang tua, dan profesional.",
+        icon: <GraduationCap />,
+        accentColor: "#6cc02f", 
+        lightBg: "bg-green-50",
+        iconColor: "text-edufa-green",
+        href: route('pelayanan.pelatihan')
     },
     {
         title: "PAUD",
-        description: "Pendidikan anak usia dini",
-        icon: (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-        ),
-        accentColor: "#ff0000", // edufa-red
-        textColor: "text-edufa-red",
-        lightBg: "bg-edufa-red/5",
+        description: "Pendidikan anak usia dini dengan pendekatan inklusi dan kasih sayang.",
+        icon: <Baby />,
+        accentColor: "#ff0000", 
+        lightBg: "bg-red-50",
+        iconColor: "text-edufa-red",
+        href: route('pelayanan.paud')
+    },
+    {
+        title: "KONSELING",
+        description: "Dukungan psikologis profesional untuk individu, pasangan, dan keluarga.",
+        icon: <Users />,
+        accentColor: "#0f59bc", 
+        lightBg: "bg-blue-50",
+        iconColor: "text-edufa-blue",
+        href: route('pelayanan.konseling')
+    },
+    {
+        title: "PENDAMPINGAN ABK",
+        description: "Dukungan penuh untuk anak berkebutuhan khusus di lingkungan sekolah reguler.",
+        icon: <School />,
+        accentColor: "#ffd900", 
+        lightBg: "bg-amber-50",
+        iconColor: "text-amber-600",
+        href: route('pelayanan.pendampingan')
+    },
+    {
+        title: "BALAI LATIHAN KERJA",
+        description: "Pelatihan kemandirian dan keterampilan kerja untuk masa depan yang lebih baik.",
+        icon: <Briefcase />,
+        accentColor: "#6cc02f", 
+        lightBg: "bg-green-50",
+        iconColor: "text-edufa-green",
+        href: route('pelayanan.balai')
     }
 ];
 
-const ServiceCardBody = ({ service, isAccent = false }) => {
-
-    const isYellow = isAccent && service.title === "TERAPI";
-    const titleColor = isYellow ? "text-gray-900" : (isAccent ? "text-white" : "text-gray-900");
-    const descColor = isYellow ? "text-gray-800" : (isAccent ? "text-white/90" : "text-gray-600");
-    const iconBg = isYellow ? "bg-black/10 text-gray-900" : (isAccent ? "bg-white/20 text-white" : cn(service.lightBg, service.textColor));
-
-    return (
+const CardFront = ({ service }) => (
+    <div className="flex flex-col items-center justify-center h-full p-6 text-center">
         <div className={cn(
-            "flex flex-col h-full p-6",
-            isAccent ? "bg-[var(--accent-color)] text-[var(--on-accent-foreground)]" : "bg-white text-gray-900",
+            "w-20 h-20 rounded-full flex items-center justify-center mb-5 shadow-inner border-4 border-white transition-all duration-500 group-hover/flipping-card:rotate-12 group-hover/flipping-card:scale-110",
+            service.lightBg, service.iconColor
         )}>
-            <div className="flex flex-col items-start gap-4 mb-3">
-                <div className={cn(
-                    "p-3 rounded-xl transition-colors duration-300",
-                    iconBg
-                )}>
-                    {service.icon}
-                </div>
-                <h3 className={cn(
-                    "text-lg font-bold tracking-tight",
-                    titleColor
-                )}>
-                    {service.title}
-                </h3>
-            </div>
-            
-            <p className={cn(
-                "text-sm leading-relaxed font-medium",
-                descColor
+            {React.cloneElement(service.icon, { size: 36, strokeWidth: 2.5 })}
+        </div>
+        <h3 className="text-[10px] font-black tracking-[0.1em] uppercase leading-tight text-white bg-black/10 px-4 py-1.5 rounded-full border border-white/20 backdrop-blur-sm">
+            {service.title}
+        </h3>
+    </div>
+);
+
+const CardBack = ({ service }) => {
+    const isYellow = service.accentColor === "#ffd900";
+    return (
+        <div className="relative flex flex-col items-center justify-between p-[clamp(1.5rem,4vw,2.5rem)] h-full text-center">
+            <div className={cn(
+                "mb-6 p-3 rounded-full shadow-inner",
+                service.lightBg, service.iconColor
             )}>
-                {service.description}
-            </p>
+                {React.cloneElement(service.icon, { size: 28, strokeWidth: 2.5 })}
+            </div>
+            <Link href={service.href} className={cn(
+                "flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all shadow-lg",
+                isYellow ? "bg-amber-900 text-white hover:bg-amber-800" : "bg-white text-gray-900 hover:bg-gray-100"
+            )}>
+                Cek Yuk! <ArrowRight size={12} />
+            </Link>
         </div>
     );
 };
 
 export default function ServiceCards() {
     return (
-        <section className="relative z-30 -mt-16 sm:-mt-24 px-6 lg:px-8">
-            <div className="mx-auto max-w-7xl">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 items-stretch">
+        <section id="layanan" className="relative z-30 -mt-[clamp(2.5rem,8vh,7rem)] px-0 lg:px-4">
+            <div className="mx-auto max-w-[1400px]">
+                <div 
+                    id="service-scroll-container"
+                    className="flex flex-nowrap overflow-x-auto pb-8 pt-4 px-6 gap-5 no-scrollbar snap-x snap-mandatory justify-start lg:justify-center touch-pan-x scroll-smooth"
+                >
                     {services.map((service, index) => {
-                        const isYellow = service.title === "TERAPI";
-                        const textOnAccent = isYellow ? "#1f2937" : "#ffffff";
-                        const mutedOnAccent = isYellow ? "rgba(31,41,55,0.8)" : "rgba(255,255,255,0.8)";
-                        
+                        const isYellow = service.accentColor === "#ffd900";
                         return (
-                            <RevealCardContainer
-                                key={index}
-                                accent={service.accentColor}
-                                textOnAccent={textOnAccent}
-                                mutedOnAccent={mutedOnAccent}
-                                className="border-gray-100/50 ring-1 ring-gray-900/5 shadow-sm hover:shadow-md transition-shadow h-full min-h-[220px]"
-                                base={
-                                    <ServiceCardBody service={service} />
-                                }
-                                overlay={
-                                    <ServiceCardBody service={service} isAccent={true} />
-                                }
-                            />
+                            <div key={index} className="flex-shrink-0 snap-center group">
+                                {/* Desktop: Flipping Card */}
+                                <div className="hidden lg:block">
+                                    <FlippingCard
+                                        width={180}
+                                        height={240}
+                                        accentColor={service.accentColor}
+                                        className="border-0 shadow-lg shadow-black/5"
+                                        frontContent={<CardFront service={service} />}
+                                        backContent={<CardBack service={service} />}
+                                    />
+                                </div>
+                                
+                                {/* Mobile: Static Card with Button */}
+                                <Link href={service.href} className="lg:hidden flex flex-col items-center justify-center w-[160px] h-[210px] rounded-[2.5rem] p-5 text-center shadow-xl bg-white border border-gray-100 relative overflow-hidden hover:scale-105 transition-transform active:scale-95">
+                                    {/* Background Accent for Mobile */}
+                                    <div className="absolute top-0 left-0 w-full h-1.5" style={{ backgroundColor: service.accentColor }}></div>
+                                    
+                                    <div className={cn(
+                                        "w-14 h-14 rounded-2xl flex items-center justify-center mb-4 shadow-inner border border-white",
+                                        service.lightBg, service.iconColor
+                                    )}>
+                                        {React.cloneElement(service.icon, { size: 28, strokeWidth: 2.5 })}
+                                    </div>
+                                    <h3 className="text-xs font-black tracking-[0.05em] uppercase leading-tight text-gray-800 mb-4 px-1">
+                                        {service.title}
+                                    </h3>
+                                    <span className={cn(
+                                        "flex items-center gap-2 px-5 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-md transition-transform",
+                                        isYellow ? "bg-edufa-yellow text-gray-900" : "bg-edufa-blue text-white"
+                                    )}>
+                                        Cek <ArrowRight size={14} />
+                                    </span>
+                                </Link>
+                            </div>
                         );
                     })}
                 </div>
+
+                {/* Mobile Navigation Controls - Refined touch targets and spacing */}
+                <div className="flex lg:hidden items-center justify-center gap-6 mt-2 mb-8">
+                    <button 
+                        onClick={() => {
+                            const container = document.getElementById('service-scroll-container');
+                            container.scrollBy({ left: -240, behavior: 'smooth' });
+                        }}
+                        className="p-5 rounded-full bg-white shadow-lg border border-gray-100 text-edufa-blue active:scale-90 transition-transform touch-manipulation min-w-[50px] min-h-[50px] flex items-center justify-center"
+                        aria-label="Slide left"
+                    >
+                        <ChevronLeft size={24} />
+                    </button>
+                    
+                    {/* Visual Indicator Dots */}
+                    <div className="flex gap-2.5">
+                        {services.map((_, i) => (
+                            <div key={i} className="w-2 h-2 rounded-full bg-gray-200 transition-colors"></div>
+                        ))}
+                    </div>
+
+                    <button 
+                        onClick={() => {
+                            const container = document.getElementById('service-scroll-container');
+                            container.scrollBy({ left: 240, behavior: 'smooth' });
+                        }}
+                        className="p-4 rounded-full bg-white shadow-xl border border-gray-100 text-edufa-blue active:scale-90 transition-transform touch-manipulation"
+                        aria-label="Slide right"
+                    >
+                        <ChevronRight size={24} />
+                    </button>
+                </div>
             </div>
+            
+            <style dangerouslySetInnerHTML={{ __html: `
+                .no-scrollbar::-webkit-scrollbar {
+                    display: none;
+                }
+                .no-scrollbar {
+                    -ms-overflow-style: none;
+                    scrollbar-width: none;
+                }
+            `}} />
         </section>
     );
 }
