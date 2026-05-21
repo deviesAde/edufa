@@ -30,7 +30,7 @@ const RevealText = ({ text, className = "", delay = 0 }) => {
 };
 
 export default function PendampinganABKdiSekolah({ service }) {
-    const gFormUrl = service?.google_form_url || "https://wa.me/6281234567890?text=Halo%20EDUfa,%20saya%20ingin%20info%20pendampingan%20ABK";
+    const gFormUrl = service?.google_form_url || "https://wa.me/6281111160600?text=Halo%20EDUfa,%20saya%20ingin%20info%20pendampingan%20ABK";
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased overflow-hidden">
             <SEO title="Pendampingan ABK di Sekolah" description="Layanan pendampingan Anak Berkebutuhan Khusus di sekolah oleh tim EDUfa Centre." />
@@ -160,7 +160,7 @@ export default function PendampinganABKdiSekolah({ service }) {
                             <div className="absolute inset-0 bg-edufa-blue/10 rounded-[3rem] transform -translate-x-4 translate-y-4 -z-10"></div>
                             <div className="aspect-square w-full rounded-[3rem] overflow-hidden bg-gray-100 ring-1 ring-gray-900/5">
                                 <img 
-                                    src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                                    src="/images/pendampingan.png" 
                                     alt="Pendampingan ABK di Sekolah" 
                                     className="w-full h-full object-cover"
                                 />

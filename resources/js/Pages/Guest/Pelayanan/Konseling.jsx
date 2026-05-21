@@ -30,11 +30,11 @@ const RevealText = ({ text, className = "", delay = 0 }) => {
 };
 
 export default function Konseling({ service }) {
-    const gFormUrl = service?.google_form_url || "https://wa.me/6281234567890?text=Halo%20EDUfa,%20saya%20ingin%20info%20layanan%20konseling";
+    const gFormUrl = service?.google_form_url || "https://wa.me/6281111160600?text=Halo%20EDUfa,%20saya%20ingin%20info%20layanan%20konseling";
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased overflow-hidden">
             <SEO title="Konseling Psikologi" description="Layanan konseling psikologi profesional untuk anak, remaja, hingga dewasa." />
-            
+
             <Header />
 
             <main className="pb-0">
@@ -42,8 +42,8 @@ export default function Konseling({ service }) {
                 <div className="relative py-12 lg:py-20 overflow-hidden bg-white">
                     {/* Background Mesh/Blobs */}
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
-                        <motion.div 
-                            animate={{ 
+                        <motion.div
+                            animate={{
                                 scale: [1, 1.2, 1],
                                 rotate: [0, 90, 0],
                                 opacity: [0.1, 0.15, 0.1]
@@ -51,8 +51,8 @@ export default function Konseling({ service }) {
                             transition={{ duration: 20, repeat: Infinity }}
                             className="absolute -top-24 -left-24 w-[500px] h-[500px] bg-edufa-yellow rounded-full blur-[120px]"
                         />
-                        <motion.div 
-                            animate={{ 
+                        <motion.div
+                            animate={{
                                 scale: [1, 1.3, 1],
                                 rotate: [0, -90, 0],
                                 opacity: [0.05, 0.1, 0.05]
@@ -61,7 +61,7 @@ export default function Konseling({ service }) {
                             className="absolute top-0 -right-24 w-[600px] h-[600px] bg-edufa-blue rounded-full blur-[150px]"
                         />
                     </div>
-                    
+
                     <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10 text-center">
                         <motion.div
                             initial={{ opacity: 0, scale: 0.8 }}
@@ -72,8 +72,8 @@ export default function Konseling({ service }) {
                             <span className="w-2 h-2 rounded-full bg-edufa-blue mr-3 animate-pulse"></span>
                             Pelayanan Kami
                         </motion.div>
-                        
-                        <motion.h1 
+
+                        <motion.h1
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -82,25 +82,25 @@ export default function Konseling({ service }) {
                             <RevealText text="Layanan" className="text-gray-900" />{' '}
                             <span className="relative inline-block mt-2">
                                 <RevealText text="Konseling" className="text-edufa-blue" delay={0.5} />
-                                <motion.svg 
-                                    viewBox="0 0 300 20" 
+                                <motion.svg
+                                    viewBox="0 0 300 20"
                                     className="absolute -bottom-2 left-0 w-full h-4 text-edufa-yellow"
                                     initial={{ pathLength: 0, opacity: 0 }}
                                     animate={{ pathLength: 1, opacity: 1 }}
                                     transition={{ delay: 1.2, duration: 1 }}
                                 >
-                                    <motion.path 
-                                        d="M5 15 Q 150 5 295 15" 
-                                        fill="transparent" 
-                                        stroke="currentColor" 
-                                        strokeWidth="8" 
-                                        strokeLinecap="round" 
+                                    <motion.path
+                                        d="M5 15 Q 150 5 295 15"
+                                        fill="transparent"
+                                        stroke="currentColor"
+                                        strokeWidth="8"
+                                        strokeLinecap="round"
                                     />
                                 </motion.svg>
                             </span>
                         </motion.h1>
-                        
-                        <motion.p 
+
+                        <motion.p
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 1, delay: 1 }}
@@ -114,7 +114,7 @@ export default function Konseling({ service }) {
                 {/* Content Section */}
                 <div className="mx-auto max-w-7xl px-6 lg:px-8 mt-24 mb-32">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                        <motion.div 
+                        <motion.div
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
@@ -145,8 +145,8 @@ export default function Konseling({ service }) {
                                     </li>
                                 ))}
                             </ul>
-                            <a 
-                                href={gFormUrl} 
+                            <a
+                                href={gFormUrl}
                                 target="_blank"
                                 rel="noreferrer"
                                 className="inline-block bg-edufa-blue text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:bg-blue-800 hover:shadow-edufa-blue/30 transition-all hover:-translate-y-1"
@@ -154,8 +154,8 @@ export default function Konseling({ service }) {
                                 Daftar Konseling Sekarang
                             </a>
                         </motion.div>
-                        
-                        <motion.div 
+
+                        <motion.div
                             initial={{ opacity: 0, x: 30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
@@ -164,9 +164,9 @@ export default function Konseling({ service }) {
                         >
                             <div className="absolute inset-0 bg-edufa-yellow/20 rounded-[3rem] transform translate-x-4 translate-y-4 -z-10"></div>
                             <div className="aspect-square w-full rounded-[3rem] overflow-hidden bg-gray-100 ring-1 ring-gray-900/5">
-                                <img 
-                                    src="https://images.unsplash.com/photo-1573164574572-cb89e39749b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                                    alt="Layanan Konseling Psikologi" 
+                                <img
+                                    src="/images/Salinan IMG_0981.jpg"
+                                    alt="Layanan Konseling Psikologi"
                                     className="w-full h-full object-cover"
                                 />
                             </div>

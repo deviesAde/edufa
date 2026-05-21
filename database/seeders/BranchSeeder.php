@@ -59,7 +59,7 @@ class BranchSeeder extends Seeder
                 'address' => $branch['address'],
                 'latitude' => $branch['latitude'],
                 'longitude' => $branch['longitude'],
-                'photo_path' => null, // Placeholder for future admin uploads
+                'photo_path' => null,
             ]);
         }
     }
