@@ -34,7 +34,7 @@ export default function Hero() {
     const [showEmailModal, setShowEmailModal] = useState(false);
     const [showServicesMenu, setShowServicesMenu] = useState(false);
     const [copied, setCopied] = useState(false);
-    const email = "admin@edufa.com";
+    const email = "biropsikologiedufa@gmail.com";
 
     const handleCopy = () => {
         navigator.clipboard.writeText(email);

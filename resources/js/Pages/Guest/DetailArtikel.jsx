@@ -159,7 +159,7 @@ export default function DetailArtikel({ article, relatedArticles = [] }) {
         restDelta: 0.001
     });
 
-    const waLink = "https://wa.me/6281234567890?text=Halo%20EDUfa,%20saya%20ingin%20tanya%20tentang%20" + encodeURIComponent(article.title);
+    const waLink = "https://wa.me/6281111160600?text=Halo%20EDUfa,%20saya%20ingin%20tanya%20tentang%20" + encodeURIComponent(article.title);
 
     const formattedDate = new Date(article.created_at).toLocaleDateString('id-ID', {
         day: 'numeric',
@@ -178,13 +178,13 @@ export default function DetailArtikel({ article, relatedArticles = [] }) {
                     "@context": "https://schema.org",
                     "@type": "Article",
                     "headline": article.title,
-                    "image": article.thumbnail_path ? [ `${typeof window !== 'undefined' ? window.location.origin : 'https://edufa.com'}/storage/${article.thumbnail_path}` ] : [],
+                    "image": article.thumbnail_path ? [ `${typeof window !== 'undefined' ? window.location.origin : 'https://edufa.co.id'}/storage/${article.thumbnail_path}` ] : [],
                     "datePublished": article.created_at,
                     "dateModified": article.updated_at,
                     "author": [{
                         "@type": "Person",
                         "name": !!article.show_expert_voice ? (article.author_name || "Dr. Ernie C. Siregar") : (article.user?.name || "Admin"),
-                        "url": typeof window !== 'undefined' ? window.location.origin : 'https://edufa.com'
+                        "url": typeof window !== 'undefined' ? window.location.origin : 'https://edufa.co.id'
                     }]
                 }}
             />

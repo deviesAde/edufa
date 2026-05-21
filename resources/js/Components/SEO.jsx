@@ -11,7 +11,7 @@ export default function SEO({
 }) {
     // Get the base url from inertia page props if available, otherwise fallback
     const { url } = usePage();
-    const appUrl = (typeof window !== 'undefined' ? window.location.origin : 'https://edufa.com');
+    const appUrl = (typeof window !== 'undefined' ? window.location.origin : 'https://edufa.co.id');
     const pageUrl = canonical || (appUrl + url);
     const fullImageUrl = image.startsWith('http') ? image : `${appUrl}${image.startsWith('/') ? image : `/${image}`}`;
 
@@ -29,7 +29,7 @@ export default function SEO({
                 "image": fullImageUrl,
                 "@id": appUrl,
                 "url": appUrl,
-                "telephone": "+62811223344", 
+                "telephone": "+6281111160600", 
                 "address": {
                     "@type": "PostalAddress",
                     "addressLocality": "Bandung",

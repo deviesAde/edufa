@@ -134,10 +134,7 @@ export default function Login({ status }) {
                             </div>
 
                             <div className="space-y-2">
-                                <div className="flex items-center justify-between ml-1">
-                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Password</label>
-                                    <Link href={route('password.request')} className="text-xs font-bold text-edufa-blue hover:text-edufa-blue/70 transition-colors">Lupa sandi?</Link>
-                                </div>
+                                <label className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">Password</label>
                                 <div className="relative group">
                                     <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-edufa-blue transition-colors">
                                         <Lock className="w-5 h-5" />
