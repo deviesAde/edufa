@@ -9,6 +9,7 @@ use App\Models\Service;
 use App\Models\TeamMember;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 
 class GuestController extends Controller
 {
@@ -47,8 +48,14 @@ class GuestController extends Controller
      */
     public function artikel()
     {
+        $articles = Article::with('user')->where('status', 'published')->latest()->get()->map(function ($article) {
+            $article->excerpt = Str::limit(strip_tags($article->content), 200);
+            unset($article->content);
+            return $article;
+        });
+
         return Inertia::render('Guest/Artikel', [
-            'articles' => Article::with('user')->where('status', 'published')->latest()->get()
+            'articles' => $articles
         ]);
     }
 
@@ -62,7 +69,12 @@ class GuestController extends Controller
             ->where('status', 'published')
             ->latest()
             ->take(3)
-            ->get();
+            ->get()
+            ->map(function ($art) {
+                $art->excerpt = Str::limit(strip_tags($art->content), 150);
+                unset($art->content);
+                return $art;
+            });
             
         return Inertia::render('Guest/DetailArtikel', [
             'article' => $article,

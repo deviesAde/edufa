@@ -13,20 +13,13 @@ import {
     ExternalLink,
     MoreHorizontal
 } from "lucide-react"
-import {
-    Sheet,
-    SheetContent,
-    SheetHeader,
-    SheetTitle,
-    SheetDescription,
-    SheetFooter,
-} from "@/Components/ui/sheet"
 import { Label } from "@/Components/ui/label"
 import { cn } from "@/lib/utils"
+import Modal from "@/Components/Modal"
 
 export default function Index({ branches }) {
     const [searchTerm, setSearchTerm] = React.useState("")
-    const [isSheetOpen, setIsSheetOpen] = React.useState(false)
+    const [isModalOpen, setIsModalOpen] = React.useState(false)
     const [editingBranch, setEditingBranch] = React.useState(null)
 
     const filteredBranches = branches.filter(branch => 
@@ -49,7 +42,7 @@ export default function Index({ branches }) {
         setEditingBranch(null)
         reset()
         setData("_method", "POST")
-        setIsSheetOpen(true)
+        setIsModalOpen(true)
     }
 
     const openEdit = (branch) => {
@@ -63,7 +56,7 @@ export default function Index({ branches }) {
             photo_path: branch.photo_path || "",
             _method: "PUT"
         })
-        setIsSheetOpen(true)
+        setIsModalOpen(true)
     }
 
     const submit = (e) => {
@@ -73,14 +66,14 @@ export default function Index({ branches }) {
             post(route("admin.branches.update", editingBranch.id), {
                 forceFormData: true,
                 onSuccess: () => {
-                    setIsSheetOpen(false)
+                    setIsModalOpen(false)
                     reset()
                 }
             })
         } else {
             post(route("admin.branches.store"), {
                 onSuccess: () => {
-                    setIsSheetOpen(false)
+                    setIsModalOpen(false)
                     reset()
                 }
             })
@@ -202,20 +195,32 @@ export default function Index({ branches }) {
                 </div>
             </div>
 
-            {/* Create/Edit Sheet */}
-            <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-                <SheetContent side="right" className="sm:max-w-md bg-white border-l">
-                    <SheetHeader className="pb-8 border-b">
-                        <SheetTitle className="text-2xl font-black tracking-tight">
-                            {editingBranch ? "Edit Cabang" : "Tambah Cabang"}
-                        </SheetTitle>
-                        <SheetDescription>
-                            Isi detail cabang di bawah ini. Pastikan alamat dan koordinat sesuai untuk tampilan peta.
-                        </SheetDescription>
-                    </SheetHeader>
+            {/* Create/Edit Modal */}
+            <Modal show={isModalOpen} onClose={() => setIsModalOpen(false)} maxWidth="lg">
+                <div className="p-6">
+                    {/* Header */}
+                    <div className="pb-6 border-b flex items-center justify-between">
+                        <div>
+                            <h2 className="text-xl font-black tracking-tight text-gray-900">
+                                {editingBranch ? "Edit Cabang" : "Tambah Cabang"}
+                            </h2>
+                            <p className="text-xs text-gray-500 mt-1">
+                                Isi detail cabang di bawah ini. Pastikan alamat dan koordinat sesuai untuk tampilan peta.
+                            </p>
+                        </div>
+                        <Button 
+                            type="button"
+                            variant="ghost" 
+                            size="icon" 
+                            onClick={() => setIsModalOpen(false)}
+                            className="h-8 w-8 rounded-lg text-gray-400 hover:text-gray-900 hover:bg-gray-100"
+                        >
+                            <X className="h-4 w-4" />
+                        </Button>
+                    </div>
 
-                    <form onSubmit={submit} className="py-8 space-y-6">
-                        <div className="space-y-4">
+                    <form onSubmit={submit} className="py-6 space-y-6">
+                        <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-2">
                             <div className="grid gap-2">
                                 <Label htmlFor="city" className="text-sm font-bold text-gray-700">Nama Kota / Wilayah</Label>
                                 <Input 
@@ -318,8 +323,8 @@ export default function Index({ branches }) {
                             </p>
                         </div>
 
-                        <div className="pt-8 border-t flex items-center justify-end gap-3">
-                            <Button type="button" variant="ghost" onClick={() => setIsSheetOpen(false)} className="rounded-xl font-bold">
+                        <div className="pt-6 border-t flex items-center justify-end gap-3">
+                            <Button type="button" variant="ghost" onClick={() => setIsModalOpen(false)} className="rounded-xl font-bold">
                                 Batal
                             </Button>
                             <Button type="submit" disabled={processing} className="bg-edufa-blue hover:bg-edufa-blue/90 text-white rounded-xl shadow-lg shadow-edufa-blue/20 px-8 font-bold">
@@ -327,8 +332,8 @@ export default function Index({ branches }) {
                             </Button>
                         </div>
                     </form>
-                </SheetContent>
-            </Sheet>
+                </div>
+            </Modal>
         </AuthenticatedLayout>
     )
 }

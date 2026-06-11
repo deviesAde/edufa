@@ -15,19 +15,13 @@ import {
     Play,
     CheckCircle2
 } from "lucide-react"
-import {
-    Sheet,
-    SheetContent,
-    SheetHeader,
-    SheetTitle,
-    SheetDescription,
-} from "@/Components/ui/sheet"
 import { Label } from "@/Components/ui/label"
 import { cn } from "@/lib/utils"
+import Modal from "@/Components/Modal"
 
 export default function Index({ activities }) {
     const [searchTerm, setSearchTerm] = React.useState("")
-    const [isSheetOpen, setIsSheetOpen] = React.useState(false)
+    const [isModalOpen, setIsModalOpen] = React.useState(false)
     const [editingActivity, setEditingActivity] = React.useState(null)
 
     const filteredActivities = activities.filter(activity => 
@@ -49,7 +43,7 @@ export default function Index({ activities }) {
         setEditingActivity(null)
         reset()
         setData("_method", "POST")
-        setIsSheetOpen(true)
+        setIsModalOpen(true)
     }
 
     const openEdit = (activity) => {
@@ -63,7 +57,7 @@ export default function Index({ activities }) {
             media_file: null,
             _method: "POST" // We use POST with _method=PUT for file uploads in Inertia
         })
-        setIsSheetOpen(true)
+        setIsModalOpen(true)
     }
 
     const submit = (e) => {
@@ -72,7 +66,7 @@ export default function Index({ activities }) {
         const config = {
             forceFormData: true,
             onSuccess: () => {
-                setIsSheetOpen(false)
+                setIsModalOpen(false)
                 reset()
             }
         }
@@ -193,20 +187,32 @@ export default function Index({ activities }) {
                 </div>
             </div>
 
-            {/* Create/Edit Sheet */}
-            <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-                <SheetContent side="right" className="sm:max-w-md bg-white border-l overflow-y-auto">
-                    <SheetHeader className="pb-8 border-b">
-                        <SheetTitle className="text-2xl font-black tracking-tight">
-                            {editingActivity ? "Edit Kegiatan" : "Tambah Kegiatan"}
-                        </SheetTitle>
-                        <SheetDescription>
-                            Kelola detail kegiatan, mulai dari judul, kategori, hingga media pendukung.
-                        </SheetDescription>
-                    </SheetHeader>
+            {/* Create/Edit Modal */}
+            <Modal show={isModalOpen} onClose={() => setIsModalOpen(false)} maxWidth="lg">
+                <div className="p-6">
+                    {/* Header */}
+                    <div className="pb-6 border-b flex items-center justify-between">
+                        <div>
+                            <h2 className="text-xl font-black tracking-tight text-gray-900">
+                                {editingActivity ? "Edit Kegiatan" : "Tambah Kegiatan"}
+                            </h2>
+                            <p className="text-xs text-gray-500 mt-1">
+                                Kelola detail kegiatan, mulai dari judul, kategori, hingga media pendukung.
+                            </p>
+                        </div>
+                        <Button 
+                            type="button"
+                            variant="ghost" 
+                            size="icon" 
+                            onClick={() => setIsModalOpen(false)}
+                            className="h-8 w-8 rounded-lg text-gray-400 hover:text-gray-900 hover:bg-gray-100"
+                        >
+                            <X className="h-4 w-4" />
+                        </Button>
+                    </div>
 
-                    <form onSubmit={submit} className="py-8 space-y-6 pb-20">
-                        <div className="space-y-5">
+                    <form onSubmit={submit} className="py-6 space-y-6">
+                        <div className="space-y-5 max-h-[60vh] overflow-y-auto pr-2">
                             <div className="grid gap-2">
                                 <Label htmlFor="title" className="text-sm font-bold text-gray-700">Judul Kegiatan</Label>
                                 <Input 
@@ -330,8 +336,8 @@ export default function Index({ activities }) {
                             </div>
                         </div>
 
-                        <div className="pt-8 border-t flex items-center justify-end gap-3 sticky bottom-0 bg-white">
-                            <Button type="button" variant="ghost" onClick={() => setIsSheetOpen(false)} className="rounded-xl font-bold">
+                        <div className="pt-6 border-t flex items-center justify-end gap-3">
+                            <Button type="button" variant="ghost" onClick={() => setIsModalOpen(false)} className="rounded-xl font-bold">
                                 Batal
                             </Button>
                             <Button type="submit" disabled={processing} className="bg-edufa-blue hover:bg-edufa-blue/90 text-white rounded-xl shadow-lg shadow-edufa-blue/20 px-8 font-bold">
@@ -339,8 +345,8 @@ export default function Index({ activities }) {
                             </Button>
                         </div>
                     </form>
-                </SheetContent>
-            </Sheet>
+                </div>
+            </Modal>
         </AuthenticatedLayout>
     )
 }

@@ -118,7 +118,7 @@ function ArticleCard({ article }) {
 
                 {/* Excerpt */}
                 <p className="text-sm text-gray-500 leading-relaxed line-clamp-3 flex-1 mb-5">
-                    {article.content.replace(/<[^>]*>?/gm, '').substring(0, 150)}...
+                    {article.excerpt}
                 </p>
 
                 {/* Read More */}
@@ -176,7 +176,7 @@ function FeaturedCard({ article }) {
                     {article.title}
                 </h2>
                 <p className="text-gray-500 leading-relaxed mb-6 line-clamp-3">
-                    {article.content.replace(/<[^>]*>?/gm, '').substring(0, 200)}...
+                    {article.excerpt}
                 </p>
                 <div className="flex items-center gap-3 mb-6">
                     <Avatar name={!!article.show_expert_voice ? (article.author_name || "Dr. Ernie C. Siregar") : (article.user?.name || "Admin")} />
@@ -215,7 +215,7 @@ export default function Artikel({ articles = [] }) {
         return articles.filter((a) => {
             const matchCat = activeCategory === 'Semua' || a.category === activeCategory;
             const matchSearch = a.title.toLowerCase().includes(search.toLowerCase()) ||
-                                a.content.toLowerCase().includes(search.toLowerCase());
+                                (a.excerpt && a.excerpt.toLowerCase().includes(search.toLowerCase()));
             return matchCat && matchSearch;
         });
     }, [activeCategory, search, articles]);

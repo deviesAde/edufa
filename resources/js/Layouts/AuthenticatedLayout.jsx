@@ -11,6 +11,17 @@ import { AppSidebar } from '@/Components/AppSidebar';
 export default function AuthenticatedLayout({ header, children }) {
     const user = usePage().props.auth.user;
 
+    React.useEffect(() => {
+        // Send a keep-alive ping every 5 minutes to prevent session expiration/timeout
+        const interval = setInterval(() => {
+            fetch('/ping')
+                .then(res => res.json())
+                .catch(err => console.error('Keep-alive failed', err));
+        }, 5 * 60 * 1000); // 5 minutes
+
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <SidebarProvider>
             <AppSidebar />

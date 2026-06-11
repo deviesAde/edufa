@@ -14,7 +14,9 @@ Route::get('/sitemap.xml', function () {
     $sitemap = Sitemap::create()
         ->add(Url::create('/')->setPriority(1.0)->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY))
         ->add(Url::create('/terapis')->setPriority(0.8)->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY))
-        ->add(Url::create('/cabang')->setPriority(0.8)->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY));
+        ->add(Url::create('/cabang')->setPriority(0.8)->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY))
+        ->add(Url::create('/kegiatan')->setPriority(0.8)->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY))
+        ->add(Url::create('/artikel')->setPriority(0.9)->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY));
     
     $pelayanan = [
         '/pelayanan/asesmen-psikologi',
@@ -28,6 +30,17 @@ Route::get('/sitemap.xml', function () {
 
     foreach ($pelayanan as $path) {
         $sitemap->add(Url::create($path)->setPriority(0.9)->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY));
+    }
+
+    // Add published articles dynamically
+    $articles = \App\Models\Article::where('status', 'published')->get();
+    foreach ($articles as $article) {
+        $sitemap->add(
+            Url::create("/artikel/{$article->slug}")
+                ->setPriority(0.7)
+                ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                ->setLastModificationDate($article->updated_at)
+        );
     }
 
     return $sitemap->toResponse(request());
@@ -115,6 +128,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/ping', function () {
+        return response()->json(['status' => 'active']);
+    })->name('ping');
 });
 
 require __DIR__ . '/auth.php';
