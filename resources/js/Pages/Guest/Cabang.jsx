@@ -96,9 +96,14 @@ export default function Cabang({ branches = [] }) {
 
     return (
         <div className="min-h-screen bg-gray-50 font-sans text-gray-900 antialiased selection:bg-edufa-yellow/30">
-            <SEO 
-                title="Cabang Kami - Lokasi & Peta" 
-                description="Temukan cabang terdekat EDUfa Centre di kota Anda. Dengan puluhan jaringan kantor cabang, kami hadir lebih dekat untuk mendampingi keluarga Anda."
+            <SEO
+                title="Cabang EDUfa Centre - Lokasi Terdekat di Kota Anda | Peta & Alamat"
+                description="Temukan kantor cabang EDUfa Centre terdekat di kota Anda. Hadir di berbagai kota di Indonesia dengan layanan asesmen psikologi, terapi ABK, dan konseling. Lihat lokasi & alamat lengkap."
+                keywords="cabang edufa centre, lokasi edufa centre, alamat edufa centre, biro psikologi terdekat, terapi abk terdekat, kantor edufa bandung, cabang edufa indonesia, pusat terapi anak terdekat"
+                breadcrumbs={[
+                    { name: "Beranda", url: "/" },
+                    { name: "Cabang", url: "/cabang" }
+                ]}
             />
             
             <Header />

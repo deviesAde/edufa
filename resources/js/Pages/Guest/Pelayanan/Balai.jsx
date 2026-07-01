@@ -33,7 +33,20 @@ export default function Balai({ service }) {
     const gFormUrl = service?.google_form_url || "https://wa.me/6281111160600?text=Halo%20EDUfa,%20saya%20ingin%20info%20program%20BLK";
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased overflow-hidden">
-            <SEO title="Balai Latihan Kerja" description="Balai Latihan Kerja untuk mengembangkan potensi dan skill." />
+            <SEO
+                title="Balai Latihan Kerja (BLK) untuk ABK & Disabilitas di Bandung"
+                description="Balai Latihan Kerja EDUfa Centre: program pelatihan keterampilan & vokasional untuk ABK dan penyandang disabilitas. Kemandirian & keterampilan kerja untuk masa depan. Info & pendaftaran di sini!"
+                keywords="balai latihan kerja bandung, blk disabilitas, pelatihan keterampilan abk, pelatihan vokasional disabilitas, program kemandirian abk, kursus keterampilan bandung, life skills training bandung, pelatihan kerja disabilitas, program vocational bandung, terapi anak"
+                breadcrumbs={[
+                    { name: "Beranda", url: "/" },
+                    { name: "Pelayanan", url: "/#pelayanan" },
+                    { name: "Balai Latihan Kerja", url: "/pelayanan/balai-latihan-kerja" }
+                ]}
+                faqItems={[
+                    { question: "Siapa yang bisa mengikuti program BLK EDUfa Centre?", answer: "Program Balai Latihan Kerja EDUfa Centre ditujukan untuk remaja dan dewasa berkebutuhan khusus serta penyandang disabilitas yang ingin mengembangkan keterampilan kerja dan kemandirian." },
+                    { question: "Keterampilan apa saja yang diajarkan di BLK EDUfa?", answer: "Program BLK mencakup pelatihan memasak, menjahit, kerajinan tangan, berkebun, dan keterampilan dasar lainnya yang disesuaikan dengan minat dan kemampuan peserta." }
+                ]}
+            />
 
             <Header />
 

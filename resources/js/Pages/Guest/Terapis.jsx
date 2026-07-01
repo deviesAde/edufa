@@ -68,9 +68,14 @@ export default function Terapis({ teamMembers = [] }) {
 
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased">
-            <SEO 
-                title="Tim Terapis & Staf" 
-                description="Mengenal lebih dekat tim terapis profesional dan staf manajemen yang berdedikasi tinggi di EDUfa Centre."
+            <SEO
+                title="Tim Psikolog & Terapis Profesional Berpengalaman | EDUfa Centre"
+                description="Kenali tim psikolog klinis, terapis okupasi, terapis wicara, dan pendamping ABK profesional di EDUfa Centre. Berpengalaman menangani anak berkebutuhan khusus sejak 2012."
+                keywords="psikolog bandung, terapis abk bandung, terapis okupasi bandung, terapis wicara bandung, psikolog anak bandung, tim terapis profesional, psikolog klinis bandung, pendamping abk, staf edufa centre, terapi anak"
+                breadcrumbs={[
+                    { name: "Beranda", url: "/" },
+                    { name: "Tim Terapis & Staf", url: "/terapis" }
+                ]}
             />
             
             <Header />

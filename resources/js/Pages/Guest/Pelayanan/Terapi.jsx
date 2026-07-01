@@ -33,7 +33,20 @@ export default function Terapi({ service }) {
     const gFormUrl = service?.google_form_url || "https://wa.me/6281111160600?text=Halo%20EDUfa,%20saya%20ingin%20info%20layanan%20terapi";
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased overflow-hidden">
-            <SEO title="Layanan Terapi" description="Layanan Terapi di EDUfa Centre yang ditangani oleh terapis profesional dan berpengalaman." />
+            <SEO
+                title="Terapi Okupasi, Wicara & Behavior untuk Anak ABK di Bandung"
+                description="Layanan terapi profesional di EDUfa Centre Bandung: terapi okupasi, terapi wicara, dan terapi perilaku (behavior) untuk anak berkebutuhan khusus. Terapis berpengalaman & bersertifikat. Daftar sekarang!"
+                keywords="terapi okupasi bandung, terapi wicara bandung, terapi perilaku anak bandung, terapi abk bandung, terapis anak berkebutuhan khusus, terapi sensori integrasi, terapi perilaku bandung, klinik terapi anak bandung, speech therapy bandung, occupational therapy bandung"
+                breadcrumbs={[
+                    { name: "Beranda", url: "/" },
+                    { name: "Pelayanan", url: "/#pelayanan" },
+                    { name: "Layanan Terapi", url: "/pelayanan/terapi" }
+                ]}
+                faqItems={[
+                    { question: "Jenis terapi apa saja yang tersedia di EDUfa Centre?", answer: "EDUfa Centre menyediakan terapi okupasi, terapi wicara (speech therapy), terapi perilaku (behavior therapy), dan sensori integrasi untuk anak berkebutuhan khusus." },
+                    { question: "Berapa kali seminggu anak perlu terapi?", answer: "Frekuensi terapi ditentukan berdasarkan hasil asesmen, umumnya 2-3 kali seminggu dengan durasi 45-60 menit per sesi." }
+                ]}
+            />
 
             <Header />
 

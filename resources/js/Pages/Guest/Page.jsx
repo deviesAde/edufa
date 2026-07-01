@@ -33,14 +33,40 @@ const RevealText = ({ text, className = "", delay = 0 }) => {
 };
 
 export default function Page({ branches }) {
-    // Schema is now automatically generated in SEO component based on schemaType="LocalBusiness"
+    const faqItems = [
+        {
+            question: "Apa itu EDUfa Centre?",
+            answer: "EDUfa Centre adalah Biro Psikologi & Pusat Layanan Terapi Anak Berkebutuhan Khusus (ABK) yang berdiri sejak 31 Mei 2012 di Bandung. Kami menyediakan layanan asesmen psikologi, konseling, terapi, pelatihan, dan PAUD inklusi."
+        },
+        {
+            question: "Layanan apa saja yang tersedia di EDUfa Centre?",
+            answer: "EDUfa Centre menyediakan Asesmen Psikologi, Konseling Psikologi, Terapi (Okupasi, Wicara, Behavior), Pelatihan & Workshop, PAUD EDUfa Kids, Pendampingan ABK di Sekolah, dan Balai Latihan Kerja."
+        },
+        {
+            question: "Di mana saja cabang EDUfa Centre?",
+            answer: "EDUfa Centre memiliki beberapa kantor cabang yang tersebar di Indonesia, dengan kantor pusat di Bandung. Kunjungi halaman Cabang untuk melihat lokasi terdekat."
+        },
+        {
+            question: "Berapa usia anak yang bisa mengikuti terapi di EDUfa Centre?",
+            answer: "EDUfa Centre melayani terapi dan asesmen untuk anak usia dini (mulai 2 tahun) hingga dewasa, dengan pendekatan yang disesuaikan untuk setiap rentang usia dan kebutuhan."
+        },
+        {
+            question: "Apakah EDUfa Centre melayani konsultasi online?",
+            answer: "Ya, EDUfa Centre menyediakan layanan konsultasi online dan offline. Hubungi kami melalui WhatsApp untuk informasi lebih lanjut mengenai jadwal dan pendaftaran."
+        }
+    ];
     
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased">
             <SEO
-                title="Beranda"
-                description="EDUfa Centre adalah Biro Psikologi & Pusat Layanan Terapi di Bandung. Kami melayani asesmen psikologi, pelatihan, konseling, dan terapi ABK."
+                title="Biro Psikologi & Pusat Terapi ABK di Bandung | Asesmen, Konseling, Terapi"
+                description="EDUfa Centre adalah Biro Psikologi & Pusat Layanan Terapi Anak Berkebutuhan Khusus (ABK) terkemuka di Bandung sejak 2012. Layanan: Asesmen Psikologi, Konseling, Terapi Okupasi & Wicara, PAUD Inklusi, dan Pendampingan ABK. Konsultasi sekarang!"
                 schemaType="LocalBusiness"
+                keywords="biro psikologi bandung, terapi abk bandung, psikolog anak bandung, asesmen psikologi, terapi okupasi bandung, terapi wicara bandung, konseling psikologi bandung, paud inklusi bandung, pendampingan abk, edufa centre, psikolog abk bandung, pusat terapi anak bandung, sekolah inklusi bandung, klinik psikologi bandung"
+                faqItems={faqItems}
+                breadcrumbs={[
+                    { name: "Beranda", url: "/" }
+                ]}
             />
 
             <Header />

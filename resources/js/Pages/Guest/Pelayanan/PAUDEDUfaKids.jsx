@@ -33,7 +33,20 @@ export default function PAUDEDUfaKids({ service }) {
     const gFormUrl = service?.google_form_url || "https://wa.me/6281111160600?text=Halo%20EDUfa,%20saya%20ingin%20info%20PAUD%20EDUfa%20Kids";
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased overflow-hidden">
-            <SEO title="PAUD EDUfa Kids" description="Pendidikan Anak Usia Dini berbasis inklusi di EDUfa Kids." />
+            <SEO
+                title="PAUD EDUfa Kids - Sekolah Inklusi Anak Usia Dini di Bandung"
+                description="PAUD EDUfa Kids adalah Pendidikan Anak Usia Dini berbasis inklusi di Bandung. Program belajar sambil bermain untuk anak usia 2-6 tahun dengan pendekatan individual. Kurikulum nasional & internasional. Daftar sekarang!"
+                keywords="paud inklusi bandung, sekolah anak usia dini bandung, tk inklusi bandung, paud edufa kids, pendidikan anak berkebutuhan khusus, preschool bandung, sekolah ramah anak bandung, paud terbaik bandung, taman kanak-kanak inklusi, early childhood education bandung, terapi anak"
+                breadcrumbs={[
+                    { name: "Beranda", url: "/" },
+                    { name: "Pelayanan", url: "/#pelayanan" },
+                    { name: "PAUD EDUfa Kids", url: "/pelayanan/paud-edufa-kids" }
+                ]}
+                faqItems={[
+                    { question: "Berapa usia minimal masuk PAUD EDUfa Kids?", answer: "PAUD EDUfa Kids menerima anak mulai usia 2 tahun hingga 6 tahun dengan program yang disesuaikan sesuai tahap perkembangan masing-masing anak." },
+                    { question: "Apakah PAUD EDUfa Kids menerima anak berkebutuhan khusus?", answer: "Ya, PAUD EDUfa Kids adalah sekolah inklusi yang menerima semua anak, termasuk anak berkebutuhan khusus, dengan pendekatan pembelajaran yang disesuaikan." }
+                ]}
+            />
 
             <Header />
 

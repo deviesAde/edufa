@@ -115,4 +115,47 @@ class GuestController extends Controller
             'service' => Service::where('slug', $type)->first()
         ]);
     }
+
+    /**
+     * Tag-based article filter (legacy SEO URLs like /tag/terapi-anak)
+     */
+    public function tagArtikel($slug)
+    {
+        // Convert slug to search keywords: "terapi-anak" → "terapi anak"
+        $keyword = str_replace('-', ' ', $slug);
+        $tagTitle = ucwords(str_replace('-', ' ', $slug));
+
+        $articles = Article::with('user')
+            ->where('status', 'published')
+            ->where(function ($query) use ($keyword) {
+                $query->where('title', 'LIKE', "%{$keyword}%")
+                    ->orWhere('content', 'LIKE', "%{$keyword}%")
+                    ->orWhere('category', 'LIKE', "%{$keyword}%");
+            })
+            ->latest()
+            ->get()
+            ->map(function ($article) {
+                $article->excerpt = Str::limit(strip_tags($article->content), 200);
+                unset($article->content);
+                return $article;
+            });
+
+        // If no articles found for this tag, show all articles as fallback
+        if ($articles->isEmpty()) {
+            $articles = Article::with('user')
+                ->where('status', 'published')
+                ->latest()
+                ->get()
+                ->map(function ($article) {
+                    $article->excerpt = Str::limit(strip_tags($article->content), 200);
+                    unset($article->content);
+                    return $article;
+                });
+        }
+
+        return Inertia::render('Guest/Artikel', [
+            'articles' => $articles,
+            'tagFilter' => $tagTitle,
+        ]);
+    }
 }

@@ -33,7 +33,20 @@ export default function PendampinganABKdiSekolah({ service }) {
     const gFormUrl = service?.google_form_url || "https://wa.me/6281111160600?text=Halo%20EDUfa,%20saya%20ingin%20info%20pendampingan%20ABK";
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased overflow-hidden">
-            <SEO title="Pendampingan ABK di Sekolah" description="Layanan pendampingan Anak Berkebutuhan Khusus di sekolah oleh tim EDUfa Centre." />
+            <SEO
+                title="Pendampingan ABK di Sekolah Inklusi | Shadow Teacher Bandung"
+                description="Layanan pendampingan Anak Berkebutuhan Khusus (ABK) di sekolah reguler oleh shadow teacher profesional EDUfa Centre. Program terstruktur untuk keberhasilan belajar anak di sekolah. Konsultasi gratis!"
+                keywords="pendampingan abk di sekolah, shadow teacher bandung, guru pendamping khusus, pendamping anak berkebutuhan khusus, sekolah inklusi bandung, guru pendamping abk, program inklusi sekolah, gpk bandung, pendampingan autisme di sekolah, terapi anak"
+                breadcrumbs={[
+                    { name: "Beranda", url: "/" },
+                    { name: "Pelayanan", url: "/#pelayanan" },
+                    { name: "Pendampingan ABK", url: "/pelayanan/pendampingan-abk" }
+                ]}
+                faqItems={[
+                    { question: "Apa itu shadow teacher di EDUfa Centre?", answer: "Shadow teacher adalah guru pendamping khusus yang ditugaskan untuk mendampingi anak berkebutuhan khusus di sekolah reguler, membantu anak mengikuti proses belajar mengajar dengan baik." },
+                    { question: "Apakah sekolah anak harus sekolah inklusi?", answer: "Tidak harus. Layanan pendampingan ABK EDUfa Centre bisa dilakukan di sekolah reguler maupun sekolah inklusi, tergantung kebutuhan dan kesiapan anak." }
+                ]}
+            />
             
             <Header />
 

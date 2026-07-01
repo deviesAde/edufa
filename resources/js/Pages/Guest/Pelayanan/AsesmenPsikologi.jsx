@@ -33,7 +33,20 @@ export default function AsesmenPsikologi({ service }) {
     const gFormUrl = service?.google_form_url || "https://wa.me/6281111160600?text=Halo%20EDUfa,%20saya%20ingin%20info%20asesmen%20psikologi";
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased overflow-hidden">
-            <SEO title="Asesmen Psikologi" description="Layanan asesmen psikologi komprehensif dari EDUfa Centre." />
+            <SEO 
+                title="Asesmen Psikologi Anak & Dewasa di Bandung | Tes IQ, Diagnosa ABK"
+                description="Layanan asesmen psikologi komprehensif di EDUfa Centre Bandung: tes IQ, diagnosa autisme, ADHD, gangguan belajar, dan asesmen kesiapan sekolah. Ditangani psikolog klinis berpengalaman. Daftar sekarang!"
+                keywords="asesmen psikologi bandung, tes iq anak bandung, diagnosa autisme bandung, psikolog anak bandung, asesmen abk, tes kesiapan sekolah, psikodiagnostik bandung, asesmen adhd bandung, tes psikologi anak, biro psikologi bandung, terapi anak"
+                breadcrumbs={[
+                    { name: "Beranda", url: "/" },
+                    { name: "Pelayanan", url: "/#pelayanan" },
+                    { name: "Asesmen Psikologi", url: "/pelayanan/asesmen-psikologi" }
+                ]}
+                faqItems={[
+                    { question: "Apa saja jenis asesmen psikologi di EDUfa Centre?", answer: "EDUfa Centre menyediakan asesmen IQ, asesmen kesiapan sekolah, diagnosa autisme/ADHD/gangguan belajar, asesmen bakat minat, dan psikodiagnostik untuk anak hingga dewasa." },
+                    { question: "Berapa lama proses asesmen psikologi?", answer: "Proses asesmen psikologi di EDUfa Centre biasanya membutuhkan 2-3 sesi, masing-masing 60-90 menit, tergantung jenis asesmen yang dibutuhkan." }
+                ]}
+            />
 
             <Header />
 

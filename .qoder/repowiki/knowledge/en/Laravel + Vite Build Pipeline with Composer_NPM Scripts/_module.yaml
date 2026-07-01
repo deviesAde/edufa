@@ -1,0 +1,14 @@
+schema_version: 1
+module_path: build_system
+title: Laravel + Vite Build Pipeline with Composer/NPM Scripts
+scope: []
+source_files:
+    - composer.json
+    - package.json
+    - vite.config.js
+    - phpunit.xml
+    - tailwind.config.js
+    - postcss.config.js
+    - artisan
+depends_on: []
+related_to: []

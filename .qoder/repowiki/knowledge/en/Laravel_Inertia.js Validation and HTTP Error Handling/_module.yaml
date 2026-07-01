@@ -1,0 +1,15 @@
+schema_version: 1
+module_path: error_handling
+title: Laravel/Inertia.js Validation and HTTP Error Handling
+scope: []
+source_files:
+    - app/Http/Requests/Auth/LoginRequest.php
+    - app/Http/Controllers/Auth/ConfirmablePasswordController.php
+    - app/Http/Middleware/AdminOnly.php
+    - app/Http/Controllers/GuestController.php
+    - app/Http/Controllers/BranchController.php
+    - resources/js/Components/InputError.jsx
+    - resources/js/Pages/Auth/Login.jsx
+    - app/Http/Middleware/HandleInertiaRequests.php
+depends_on: []
+related_to: []

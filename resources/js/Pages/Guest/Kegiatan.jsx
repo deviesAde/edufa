@@ -239,9 +239,14 @@ export default function Kegiatan({ activities = [] }) {
 
     return (
         <div className="min-h-screen bg-gray-50/50 font-sans text-gray-900 antialiased selection:bg-edufa-blue selection:text-white">
-            <SEO 
-                title="Kegiatan EDUfa" 
-                description="Jelajahi galeri kegiatan EDUfa Centre, mulai dari sesi terapi intensif hingga keceriaan belajar di dalam kelas."
+            <SEO
+                title="Kegiatan & Galeri Aktivitas EDUfa Centre | Terapi, Workshop, Kelas"
+                description="Lihat galeri kegiatan EDUfa Centre: sesi terapi intensif, workshop psikologi, kelas PAUD inklusi, dan aktivitas seru anak berkebutuhan khusus. Dokumentasi lengkap kegiatan kami."
+                keywords="kegiatan edufa centre, galeri terapi abk, workshop psikologi bandung, kelas inklusi, aktivitas anak berkebutuhan khusus, dokumentasi edufa, sesi terapi anak, pelatihan psikologi"
+                breadcrumbs={[
+                    { name: "Beranda", url: "/" },
+                    { name: "Kegiatan", url: "/kegiatan" }
+                ]}
             />
             <Header />
 

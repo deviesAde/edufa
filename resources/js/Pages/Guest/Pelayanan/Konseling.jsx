@@ -33,7 +33,20 @@ export default function Konseling({ service }) {
     const gFormUrl = service?.google_form_url || "https://wa.me/6281111160600?text=Halo%20EDUfa,%20saya%20ingin%20info%20layanan%20konseling";
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased overflow-hidden">
-            <SEO title="Konseling Psikologi" description="Layanan konseling psikologi profesional untuk anak, remaja, hingga dewasa." />
+            <SEO
+                title="Konseling Psikologi Anak, Remaja & Dewasa di Bandung | Online & Offline"
+                description="Layanan konseling psikologi profesional di EDUfa Centre Bandung untuk anak, remaja, dan dewasa. Konseling individu, keluarga, dan pasangan. Bisa online & offline. Buat janji sekarang!"
+                keywords="konseling psikologi bandung, psikolog anak bandung, konseling keluarga bandung, konseling remaja bandung, terapi psikologi bandung, konseling online indonesia, psikolog bandung, konsultasi psikologi, konseling pernikahan bandung, terapi anak"
+                breadcrumbs={[
+                    { name: "Beranda", url: "/" },
+                    { name: "Pelayanan", url: "/#pelayanan" },
+                    { name: "Konseling Psikologi", url: "/pelayanan/konseling" }
+                ]}
+                faqItems={[
+                    { question: "Siapa yang perlu mengikuti konseling psikologi?", answer: "Konseling psikologi bermanfaat untuk anak dengan masalah perilaku, remaja dengan masalah emosional, dewasa dengan stres/kecemasan, serta keluarga yang mengalami konflik." },
+                    { question: "Apakah EDUfa Centre menyediakan konseling online?", answer: "Ya, EDUfa Centre menyediakan layanan konseling online via video call dan konseling offline di kantor kami di Bandung." }
+                ]}
+            />
 
             <Header />
 

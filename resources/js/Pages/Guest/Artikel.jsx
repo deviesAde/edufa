@@ -204,7 +204,7 @@ function FeaturedCard({ article }) {
 /* ─────────────────────────────────────────────
    MAIN PAGE
 ───────────────────────────────────────────── */
-export default function Artikel({ articles = [] }) {
+export default function Artikel({ articles = [], tagFilter = null }) {
     const [activeCategory, setActiveCategory] = useState('Semua');
     const [search, setSearch] = useState('');
     const [page, setPage] = useState(1);
@@ -240,9 +240,18 @@ export default function Artikel({ articles = [] }) {
 
     return (
         <div className="min-h-screen bg-gray-50 font-sans text-gray-900 antialiased">
-            <SEO 
-                title="Artikel & Blog" 
-                description="Temukan informasi, tips, dan pengetahuan seputar psikologi, terapi, dan tumbuh kembang anak dari para ahli EDUfa."
+            <SEO
+                title={tagFilter ? `Tag: ${tagFilter} - Artikel Psikologi & Tumbuh Kembang Anak` : "Artikel Psikologi & Tips Tumbuh Kembang Anak | Blog EDUfa Centre"}
+                description={tagFilter ? `Baca artikel seputar ${tagFilter.toLowerCase()} dari psikolog & ahli EDUfa Centre. Tips, informasi, dan panduan lengkap.` : "Baca artikel terbaru seputar psikologi anak, tips parenting, terapi ABK, tumbuh kembang, dan pendidikan inklusi dari psikolog & ahli EDUfa Centre. Update mingguan!"}
+                keywords={`artikel psikologi anak, blog terapi abk, tips parenting anak berkebutuhan khusus, artikel pendidikan inklusi, informasi psikologi bandung, blog edufa centre, tips tumbuh kembang anak, artikel autisme indonesia, terapi anak${tagFilter ? `, ${tagFilter.toLowerCase()}` : ''}`}
+                breadcrumbs={tagFilter ? [
+                    { name: "Beranda", url: "/" },
+                    { name: "Artikel", url: "/artikel" },
+                    { name: `Tag: ${tagFilter}`, url: `/tag/${tagFilter.toLowerCase().replace(/\s+/g, '-')}` }
+                ] : [
+                    { name: "Beranda", url: "/" },
+                    { name: "Artikel", url: "/artikel" }
+                ]}
             />
             <Header />
 
@@ -281,6 +290,20 @@ export default function Artikel({ articles = [] }) {
                             <span className="w-2 h-2 rounded-full bg-edufa-blue mr-3 animate-pulse"></span>
                             Pengetahuan & Edukasi
                         </motion.div>
+
+                        {tagFilter && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.3 }}
+                                className="inline-flex items-center gap-2 px-4 py-2 mb-4 rounded-full bg-edufa-yellow/20 border border-edufa-yellow text-gray-800 text-sm font-bold"
+                            >
+                                <svg className="w-4 h-4 text-edufa-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z" />
+                                </svg>
+                                Tag: {tagFilter}
+                            </motion.div>
+                        )}
                         
                         <motion.h1 
                             initial={{ opacity: 0, y: 30 }}

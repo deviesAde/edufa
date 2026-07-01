@@ -1,0 +1,1 @@
+A Laravel-based monolith delivering a public-facing educational service portal and an admin dashboard via Inertia.js and React.

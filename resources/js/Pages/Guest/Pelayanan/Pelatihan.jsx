@@ -32,7 +32,20 @@ const RevealText = ({ text, className = "", delay = 0 }) => {
 export default function Pelatihan({ service }) {
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased overflow-hidden">
-            <SEO title="Pelatihan & Workshop" description="Layanan pelatihan dan workshop di bidang psikologi oleh pakar dari EDUfa Centre." />
+            <SEO
+                title="Pelatihan & Workshop Psikologi di Bandung | Sertifikat Resmi"
+                description="Ikuti pelatihan & workshop psikologi, parenting, pendidikan inklusi, dan penanganan ABK oleh pakar EDUfa Centre. Sertifikat resmi, materi aplikatif. Jadwal & pendaftaran klik di sini!"
+                keywords="pelatihan psikologi bandung, workshop parenting bandung, pelatihan guru inklusi, pelatihan penanganan abk, seminar psikologi bandung, workshop terapi anak, pelatihan pendampingan abk, sertifikat psikologi"
+                breadcrumbs={[
+                    { name: "Beranda", url: "/" },
+                    { name: "Pelayanan", url: "/#pelayanan" },
+                    { name: "Pelatihan & Workshop", url: "/pelayanan/pelatihan" }
+                ]}
+                faqItems={[
+                    { question: "Siapa yang bisa mengikuti pelatihan di EDUfa Centre?", answer: "Pelatihan kami terbuka untuk orang tua, guru, terapis, mahasiswa psikologi, dan profesional yang tertarik dengan penanganan anak berkebutuhan khusus." },
+                    { question: "Apakah pelatihan EDUfa Centre mendapat sertifikat?", answer: "Ya, setiap peserta pelatihan akan mendapatkan sertifikat resmi dari EDUfa Centre yang diakui secara profesional." }
+                ]}
+            />
 
             <Header />
 

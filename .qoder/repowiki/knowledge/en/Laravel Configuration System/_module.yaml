@@ -1,0 +1,19 @@
+schema_version: 1
+module_path: configuration_system
+title: Laravel Configuration System
+scope: []
+source_files:
+    - .env
+    - bootstrap/app.php
+    - config/app.php
+    - config/database.php
+    - config/auth.php
+    - config/cache.php
+    - config/session.php
+    - config/filesystems.php
+    - config/logging.php
+    - config/mail.php
+    - config/queue.php
+    - config/services.php
+depends_on: []
+related_to: []

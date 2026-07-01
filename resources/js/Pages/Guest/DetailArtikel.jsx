@@ -169,15 +169,25 @@ export default function DetailArtikel({ article, relatedArticles = [] }) {
 
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 antialiased selection:bg-edufa-yellow selection:text-gray-900">
-            <SEO 
-                title={article.title} 
-                description={article.content.replace(/<[^>]*>?/gm, '').substring(0, 150) + "..."}
-                image={article.thumbnail_path ? `/storage/${article.thumbnail_path}` : "/hero/logo.png"}
+            <SEO
+                title={article.title}
+                description={article.content.replace(/<[^>]*>?/gm, '').substring(0, 155) + "..."}
+                image={article.thumbnail_path ? `/storage/${article.thumbnail_path}` : "/logo.png"}
                 schemaType="Article"
+                publishedTime={article.created_at}
+                modifiedTime={article.updated_at}
+                author={!!article.show_expert_voice ? (article.author_name || "Dr. Ernie C. Siregar") : (article.user?.name || "Admin EDUfa Centre")}
+                keywords={`${article.title.toLowerCase()}, artikel psikologi anak, terapi abk, tumbuh kembang anak, pendidikan inklusi, blog edufa centre, tips parenting, psikolog bandung`}
+                breadcrumbs={[
+                    { name: "Beranda", url: "/" },
+                    { name: "Artikel", url: "/artikel" },
+                    { name: article.title, url: `/artikel/${article.slug}` }
+                ]}
                 schemaData={{
                     "@context": "https://schema.org",
                     "@type": "Article",
                     "headline": article.title,
+                    "description": article.content.replace(/<[^>]*>?/gm, '').substring(0, 155),
                     "image": article.thumbnail_path ? [ `${typeof window !== 'undefined' ? window.location.origin : 'https://edufa.co.id'}/storage/${article.thumbnail_path}` ] : [],
                     "datePublished": article.created_at,
                     "dateModified": article.updated_at,
@@ -185,7 +195,22 @@ export default function DetailArtikel({ article, relatedArticles = [] }) {
                         "@type": "Person",
                         "name": !!article.show_expert_voice ? (article.author_name || "Dr. Ernie C. Siregar") : (article.user?.name || "Admin"),
                         "url": typeof window !== 'undefined' ? window.location.origin : 'https://edufa.co.id'
-                    }]
+                    }],
+                    "publisher": {
+                        "@type": "Organization",
+                        "name": "EDUfa Centre",
+                        "logo": {
+                            "@type": "ImageObject",
+                            "url": `${typeof window !== 'undefined' ? window.location.origin : 'https://edufa.co.id'}/logo.png`
+                        }
+                    },
+                    "mainEntityOfPage": {
+                        "@type": "WebPage",
+                        "@id": `${typeof window !== 'undefined' ? window.location.origin : 'https://edufa.co.id'}/artikel/${article.slug}`
+                    },
+                    "inLanguage": "id-ID",
+                    "wordCount": article.content.replace(/<[^>]*>?/gm, '').split(/\s+/).length,
+                    "articleSection": "Psikologi & Tumbuh Kembang Anak"
                 }}
             />
             <Header />

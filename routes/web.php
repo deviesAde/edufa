@@ -10,13 +10,15 @@ use Inertia\Inertia;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 
+Route::get('/tag/{slug}', [GuestController::class, 'tagArtikel'])->name('tag.artikel');
+
 Route::get('/sitemap.xml', function () {
     $sitemap = Sitemap::create()
         ->add(Url::create('/')->setPriority(1.0)->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY))
         ->add(Url::create('/terapis')->setPriority(0.8)->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY))
         ->add(Url::create('/cabang')->setPriority(0.8)->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY))
         ->add(Url::create('/kegiatan')->setPriority(0.8)->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY))
-        ->add(Url::create('/artikel')->setPriority(0.9)->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY));
+        ->add(Url::create('/artikel')->setPriority(0.9)->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY));
     
     $pelayanan = [
         '/pelayanan/asesmen-psikologi',
@@ -32,7 +34,7 @@ Route::get('/sitemap.xml', function () {
         $sitemap->add(Url::create($path)->setPriority(0.9)->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY));
     }
 
-    // Add published articles dynamically
+    
     $articles = \App\Models\Article::where('status', 'published')->get();
     foreach ($articles as $article) {
         $sitemap->add(
@@ -41,6 +43,22 @@ Route::get('/sitemap.xml', function () {
                 ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
                 ->setLastModificationDate($article->updated_at)
         );
+    }
+
+    
+    $tags = [
+        '/tag/terapi-anak',
+        '/tag/autisme',
+        '/tag/adhd',
+        '/tag/pendidikan-inklusi',
+        '/tag/parenting',
+        '/tag/tumbuh-kembang',
+        '/tag/psikologi-anak',
+        '/tag/terapi-wicara',
+        '/tag/terapi-okupasi',
+    ];
+    foreach ($tags as $tagPath) {
+        $sitemap->add(Url::create($tagPath)->setPriority(0.5)->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY));
     }
 
     return $sitemap->toResponse(request());

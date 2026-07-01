@@ -5,7 +5,13 @@ import { AnimatedText } from '@/Components/ui/animated-underline-text-one';
 // import { BlurTextEffect } from '@/Components/ui/blur-text-effect';
 import FloatingShapes from '@/Components/FloatingShapes';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Mail, Copy, Check, ClipboardCheck, HeartPulse, GraduationCap, Baby, Users, School, Briefcase, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, ClipboardCheck, HeartPulse, GraduationCap, Baby, Users, School, Briefcase, ChevronDown } from 'lucide-react';
+
+const WhatsAppIcon = ({ className = "w-5 h-5" }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+);
 import { BlurFade } from '@/Components/ui/blur-fade';
 import { Link } from '@inertiajs/react';
 import { Typewriter } from '@/Components/ui/typewriter';
@@ -33,14 +39,12 @@ const typewriterWords = [
 export default function Hero() {
     const [showEmailModal, setShowEmailModal] = useState(false);
     const [showServicesMenu, setShowServicesMenu] = useState(false);
-    const [copied, setCopied] = useState(false);
-    const email = "biropsikologiedufa@gmail.com";
 
-    const handleCopy = () => {
-        navigator.clipboard.writeText(email);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-    };
+    const waMessage = encodeURIComponent("Halo EDUfa, saya ingin mendapatkan informasi");
+    const waAdmins = [
+        { label: "Admin 1", phone: "0811-1116-0600", waNumber: "6281111160600" },
+        { label: "Admin 2", phone: "0878-3390-0800", waNumber: "6287833900800" },
+    ];
 
     return (
         <>
@@ -215,7 +219,7 @@ export default function Hero() {
                 </div>
             </div>
 
-            {/* Email Modal Using Portal */}
+            {/* WhatsApp Modal Using Portal */}
             {typeof document !== 'undefined' && createPortal(
                 <AnimatePresence>
                     {showEmailModal && (
@@ -233,8 +237,8 @@ export default function Hero() {
                                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
                                 className="relative w-full max-w-md bg-white rounded-[2.5rem] p-8 shadow-2xl overflow-hidden"
                             >
-                                {/* Decorative background for modal */}
-                                <div className="absolute top-0 right-0 -mr-12 -mt-12 w-32 h-32 bg-edufa-blue/10 rounded-full blur-2xl"></div>
+                                {/* Decorative background */}
+                                <div className="absolute top-0 right-0 -mr-12 -mt-12 w-32 h-32 bg-green-500/10 rounded-full blur-2xl"></div>
                                 <div className="absolute bottom-0 left-0 -ml-12 -mb-12 w-24 h-24 bg-edufa-yellow/10 rounded-full blur-xl"></div>
 
                                 <button 
@@ -245,42 +249,34 @@ export default function Hero() {
                                 </button>
 
                                 <div className="text-center">
-                                    <div className="mx-auto w-16 h-16 bg-edufa-blue/10 rounded-2xl flex items-center justify-center mb-6">
-                                        <Mail className="w-8 h-8 text-edufa-blue" />
+                                    <div className="mx-auto w-16 h-16 bg-green-500/10 rounded-2xl flex items-center justify-center mb-6">
+                                        <WhatsAppIcon className="w-9 h-9 text-green-600" />
                                     </div>
-                                    <h3 className="text-2xl font-black text-gray-900 mb-2 uppercase tracking-tight">Kirim Pesan</h3>
-                                    <p className="text-gray-500 mb-8 font-medium">Hubungi kami melalui email resmi EDUfa Centre</p>
+                                    <p className="text-gray-500 mb-8 font-medium">Hubungi admin EDUfa Centre via WhatsApp</p>
 
-                                    <div className="relative group mb-8">
-                                        <div className="flex items-center justify-between bg-gray-50 border-2 border-gray-100 rounded-2xl p-4 transition-all group-hover:border-edufa-blue/20">
-                                            <span className="text-lg font-bold text-gray-700 font-mono">{email}</span>
-                                            <button 
-                                                onClick={handleCopy}
-                                                className="p-2 bg-white rounded-xl shadow-sm hover:shadow-md transition-all active:scale-95 text-edufa-blue"
+                                    <div className="space-y-4 mb-2">
+                                        {waAdmins.map((admin) => (
+                                            <a
+                                                key={admin.label}
+                                                href={`https://wa.me/${admin.waNumber}?text=${waMessage}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center justify-between bg-gray-50 border-2 border-gray-100 rounded-2xl p-4 hover:border-green-400 hover:bg-green-50 transition-all group"
                                             >
-                                                {copied ? <Check className="w-5 h-5 text-green-500" /> : <Copy className="w-5 h-5" />}
-                                            </button>
-                                        </div>
-                                        <AnimatePresence>
-                                            {copied && (
-                                                <motion.span 
-                                                    initial={{ opacity: 0, y: 10 }}
-                                                    animate={{ opacity: 1, y: 0 }}
-                                                    exit={{ opacity: 0 }}
-                                                    className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-black text-green-500 uppercase tracking-widest"
-                                                >
-                                                    Berhasil Disalin!
-                                                </motion.span>
-                                            )}
-                                        </AnimatePresence>
+                                                <div className="text-left">
+                                                    <span className="text-xs font-black text-green-600 uppercase tracking-widest">{admin.label}</span>
+                                                    <p className="text-lg font-bold text-gray-700 font-mono">{admin.phone}</p>
+                                                </div>
+                                                <div className="p-3 bg-[#25D366] rounded-xl text-white group-hover:scale-110 transition-transform">
+                                                    <WhatsAppIcon className="w-6 h-6" />
+                                                </div>
+                                            </a>
+                                        ))}
                                     </div>
 
-                                    <a 
-                                        href={`mailto:${email}`}
-                                        className="block w-full py-4 bg-edufa-blue text-white font-black rounded-2xl shadow-xl shadow-edufa-blue/20 hover:bg-blue-800 transition-all active:scale-[0.98] uppercase tracking-widest text-sm"
-                                    >
-                                        Buka Aplikasi Email
-                                    </a>
+                                    <p className="text-xs text-gray-400 mt-6">
+Pesan otomatis: <span className="italic">"Halo EDUfa, saya ingin mendapatkan informasi"</span>
+                                    </p>
                                 </div>
                             </motion.div>
                         </div>

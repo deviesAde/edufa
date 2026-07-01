@@ -1,0 +1,2 @@
+- `composer run setup`: Installs dependencies, generates app key, runs migrations, installs npm packages, and builds assets.
+- `composer run dev`: Concurrently starts the PHP server, queue listener, and Vite dev server using `concurrently`.
