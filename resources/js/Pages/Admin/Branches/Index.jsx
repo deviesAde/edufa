@@ -29,6 +29,49 @@ export default function Index({ branches }) {
     const [localBranches, setLocalBranches] = React.useState(branches)
     const [sortBy, setSortBy] = React.useState("manual") // manual, name, date
     const [sortOrder, setSortOrder] = React.useState("asc") // asc, desc
+    const [isDragging, setIsDragging] = React.useState(false)
+
+    React.useEffect(() => {
+        if (!isDragging) return;
+
+        let requestAnimationId;
+        const edgeThreshold = 100; // Distance from edge to start scrolling
+        const maxSpeed = 15; // Max scroll speed
+
+        const handleMouseMove = (e) => {
+            const { clientY } = e;
+            const windowHeight = window.innerHeight;
+            
+            const scrollPage = () => {
+                let scrollAmount = 0;
+                
+                if (clientY < edgeThreshold) {
+                    // Scroll up
+                    scrollAmount = -maxSpeed * (1 - Math.max(0, clientY) / edgeThreshold);
+                } else if (clientY > windowHeight - edgeThreshold) {
+                    // Scroll down
+                    scrollAmount = maxSpeed * (1 - Math.max(0, windowHeight - clientY) / edgeThreshold);
+                }
+
+                if (scrollAmount !== 0) {
+                    window.scrollBy({ top: scrollAmount, behavior: 'instant' });
+                    requestAnimationId = requestAnimationFrame(scrollPage);
+                }
+            };
+
+            cancelAnimationFrame(requestAnimationId);
+            if (clientY < edgeThreshold || clientY > windowHeight - edgeThreshold) {
+                requestAnimationId = requestAnimationFrame(scrollPage);
+            }
+        };
+
+        window.addEventListener('mousemove', handleMouseMove);
+        
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+            cancelAnimationFrame(requestAnimationId);
+        };
+    }, [isDragging]);
 
     React.useEffect(() => {
         setLocalBranches(branches)
@@ -38,7 +81,7 @@ export default function Index({ branches }) {
     const isDragDisabled = isFilterActive
 
     const getFilteredBranches = () => {
-        let filtered = localBranches
+        let filtered = [...(localBranches || [])]
 
         // Apply search filter
         if (searchTerm.length > 0) {
@@ -67,10 +110,21 @@ export default function Index({ branches }) {
 
     const displayBranches = getFilteredBranches()
 
+    const handleBeforeCapture = () => {
+        if (typeof document !== 'undefined' && document.activeElement instanceof HTMLElement) {
+            document.activeElement.blur()
+        }
+    }
+
+    const handleDragStart = () => {
+        setIsDragging(true)
+    }
+
     const handleDragEnd = (result) => {
+        setIsDragging(false)
         if (!result.destination) return
 
-        const items = Array.from(localBranches)
+        const items = Array.from(localBranches || [])
         const [reorderedItem] = items.splice(result.source.index, 1)
         items.splice(result.destination.index, 0, reorderedItem)
 
@@ -256,7 +310,11 @@ export default function Index({ branches }) {
                                     <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-widest text-right">Aksi</th>
                                 </tr>
                             </thead>
-                            <DragDropContext onDragEnd={handleDragEnd}>
+                            <DragDropContext 
+                                onBeforeCapture={handleBeforeCapture}
+                                onDragStart={handleDragStart} 
+                                onDragEnd={handleDragEnd}
+                            >
                                 <Droppable droppableId="branches-list" isDropDisabled={isDragDisabled}>
                                     {(provided) => (
                                         <tbody 
@@ -271,6 +329,14 @@ export default function Index({ branches }) {
                                                             className={cn("hover:bg-gray-50/50 transition-colors group bg-white", snapshot.isDragging && "shadow-lg bg-gray-50/80 z-50 relative")}
                                                             ref={provided.innerRef}
                                                             {...provided.draggableProps}
+                                                            style={Object.assign(
+                                                                {},
+                                                                provided.draggableProps.style || {},
+                                                                {
+                                                                    display: snapshot.isDragging ? 'table' : '',
+                                                                    tableLayout: snapshot.isDragging ? 'fixed' : '',
+                                                                }
+                                                            )}
                                                         >
                                                             <td className="px-3 py-5 w-10">
                                                                 <div 
