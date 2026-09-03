@@ -317,7 +317,18 @@ export default function Index({ activities }) {
                                                 accept="image/*"
                                             />
                                         </div>
-                                        {errors.media_file && <p className="text-xs text-rose-500 font-medium">{errors.media_file}</p>}
+                                        <div className="space-y-2">
+                                            {errors.media_file && <p className="text-xs text-rose-500 font-medium">{errors.media_file}</p>}
+                                            <div className="flex items-center justify-between">
+                                                <p className="text-[10px] text-gray-500 font-medium">Format: JPG, PNG, WebP</p>
+                                                <p className="text-[10px] text-gray-500 font-medium">Max: 5 MB</p>
+                                            </div>
+                                            {data.media_file && (
+                                                <p className="text-[10px] text-edufa-blue font-medium">
+                                                    File size: {(data.media_file.size / 1024 / 1024).toFixed(2)} MB
+                                                </p>
+                                            )}
+                                        </div>
                                     </div>
                                 ) : (
                                     <div className="space-y-3">

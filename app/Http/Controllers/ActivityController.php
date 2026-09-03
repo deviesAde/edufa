@@ -29,8 +29,8 @@ class ActivityController extends Controller
             'description' => 'nullable|string',
             'type' => 'required|in:terapi,asesmen,pelatihan,pendidikan anak usia dini,pendamping ABK di Sekolah,balai latihan kerja & kehidupan,internal',
             'media_type' => 'required|in:photo,video',
-            'media_file' => 'required_if:media_type,photo|nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
-            'video_url' => 'required_if:media_type,video|nullable|url',
+            'media_file' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'video_url' => 'nullable|url',
         ]);
 
         $mediaPath = '';
@@ -62,7 +62,7 @@ class ActivityController extends Controller
             'type' => 'required|in:terapi,asesmen,pelatihan,pendidikan anak usia dini,pendamping ABK di Sekolah,balai latihan kerja & kehidupan,internal',
             'media_type' => 'required|in:photo,video',
             'media_file' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
-            'video_url' => 'required_if:media_type,video|nullable|url',
+            'video_url' => 'nullable|url',
         ]);
 
         $mediaPath = $activity->media_path;
