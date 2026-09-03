@@ -1,1 +1,0 @@
-Laravel 13 with Inertia.js v2, React 18, Vite 7, Tailwind CSS 3, Radix UI primitives, Tiptap rich-text editor, Leaflet maps, and Spatie Sitemap generator.

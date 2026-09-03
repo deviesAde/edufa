@@ -9,8 +9,8 @@ export default function FloatingWhatsApp() {
     const [isVisible, setIsVisible] = useState(false);
     const [showChat, setShowChat] = useState(false);
 
-    const waLink1 = "https://wa.me/6281111160600?text=Halo%20EDUfa,%20saya%20ingin%20konsultasi%20dan%20daftar";
-    const waLink2 = "https://wa.me/6287833900800?text=Halo%20EDUfa,%20saya%20ingin%20konsultasi%20dan%20daftar";
+    const waLink1 = "https://wa.me/6281111160600?text=Halo%20EDUfa,%20saya%20ingin%20mendapatkan%20informasi";
+    const waLink2 = "https://wa.me/6287833900800?text=Halo%20EDUfa,%20saya%20ingin%20mendapatkan%20informasi";
 
     useEffect(() => {
         // Show after a short delay

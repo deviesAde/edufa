@@ -130,7 +130,7 @@ export default function Error({ status = 404 }) {
                         {[
                             { name: 'Cabang', href: '/cabang' },
                             { name: 'Terapis', href: '/terapis' },
-                            { name: 'Kegiatan', href: '/kegiatan' },
+                            { name: 'Dokumentasi', href: '/kegiatan' },
                             { name: 'Asesmen', href: '/pelayanan/asesmen-psikologi' },
                             { name: 'Terapi', href: '/pelayanan/terapi' },
                         ].map((link) => (

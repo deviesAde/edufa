@@ -258,7 +258,8 @@ export default function Terapis({ teamMembers = [] }) {
                             className="flex flex-wrap justify-center gap-4 sm:gap-8 lg:gap-12"
                         >
                             {staffs.map((person) => (
-                                <motion.div key={`staf-${person.id}`} variants={itemVariants} className="w-[calc(50%-0.5rem)] sm:w-[calc(50%-1rem)] md:w-[calc(33.333%-1.5rem)] lg:w-[calc(20%-2rem)] group relative bg-white p-4 sm:p-6 rounded-2xl sm:rounded-[2rem] shadow-sm ring-1 ring-gray-900/5 hover:shadow-xl hover:shadow-gray-200/50 hover:-translate-y-3 transition-all duration-300">
+                                <motion.div key={`staf-${person.id}`} variants={itemVariants} className="w-[calc(50%-0.5rem)] sm:w-[calc(50%-1rem)] md:w-[calc(33.333%-1.5rem)] lg:w-[calc(20%-2rem)] group relative bg-white p-4 sm:p-6 rounded-2xl sm:rounded-[2rem] shadow-sm ring-1 ring-gray-900/5 hover:shadow-xl hover:shadow-gray-200/50 hover:-translate-y-3 transition-all duration-300 overflow-hidden">
+                                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
                                     <div className="absolute top-0 right-0 translate-x-2 -translate-y-2 w-12 h-12 bg-edufa-yellow/10 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                     <div className="w-16 h-16 sm:w-28 sm:h-28 mx-auto overflow-hidden rounded-full bg-gray-50 mb-4 sm:mb-6 ring-2 sm:ring-4 ring-gray-50 group-hover:ring-edufa-yellow/30 transition-all duration-300 relative">
                                         <img
@@ -267,6 +268,14 @@ export default function Terapis({ teamMembers = [] }) {
                                             className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500"
                                             loading="lazy"
                                         />
+                                    </div>
+                                    <div className="absolute bottom-0 left-0 right-0 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 z-20">
+                                        <button 
+                                            onClick={() => setSelectedPerson(person)}
+                                            className="w-full bg-white text-edufa-blue font-bold py-3 sm:py-4 rounded-b-2xl sm:rounded-b-[2rem] text-xs sm:text-sm shadow-lg hover:bg-edufa-yellow hover:text-gray-900 transition-colors"
+                                        >
+                                            Perbesar
+                                        </button>
                                     </div>
                                     <div className="text-center relative z-10">
                                         <h3 className="text-xs sm:text-base font-bold text-gray-900 group-hover:text-edufa-blue transition-colors leading-tight">{person.name}</h3>

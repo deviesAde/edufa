@@ -19,7 +19,7 @@ class GuestController extends Controller
     public function index()
     {
         return Inertia::render('Guest/Page', [
-            'branches' => Branch::all(),
+            'branches' => Branch::orderBy('sort_order', 'asc')->get(),
         ]);
     }
 
@@ -29,7 +29,7 @@ class GuestController extends Controller
     public function terapis()
     {
         return Inertia::render('Guest/Terapis', [
-            'teamMembers' => TeamMember::all()
+            'teamMembers' => TeamMember::orderBy('sort_order', 'asc')->get()
         ]);
     }
 
@@ -88,8 +88,16 @@ class GuestController extends Controller
     public function cabang()
     {
         return Inertia::render('Guest/Cabang', [
-            'branches' => Branch::all()
+            'branches' => Branch::orderBy('sort_order', 'asc')->get()
         ]);
+    }
+
+    /**
+     * Konsultan page
+     */
+    public function konsultan()
+    {
+        return Inertia::render('Guest/Konsultan');
     }
 
     /**

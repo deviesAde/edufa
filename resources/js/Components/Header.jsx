@@ -34,7 +34,7 @@ export default function Header() {
                                     { name: 'Home', href: route('home'), active: route().current('home') },
                                     { name: 'Cabang', href: route('cabang'), active: route().current('cabang') },
                                     { name: 'Terapis', href: route('terapis'), active: route().current('terapis') },
-                                    { name: 'Kegiatan', href: route('kegiatan'), active: route().current('kegiatan') },
+                                    { name: 'Dokumentasi', href: route('kegiatan'), active: route().current('kegiatan') },
                                     { name: 'Artikel', href: route('artikel'), active: route().current('artikel') },
                                 ].map((item, i) => (
                                     <motion.div
@@ -61,7 +61,7 @@ export default function Header() {
                                 >
                                     <Dropdown>
                                         <Dropdown.Trigger>
-                                            <button className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-base lg:text-lg font-bold leading-5 text-gray-500 transition duration-150 ease-in-out hover:border-edufa-yellow hover:text-gray-900 focus:outline-none">
+                                            <button className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-base lg:text-lg font-bold leading-5 text-gray-500 transition duration-150 ease-in-out hover:border-gray-400 hover:text-gray-500 focus:outline-none focus:border-edufa-yellow focus:text-gray-900">
                                                 Pelayanan
                                                 <svg className="ml-1 h-5 w-5 fill-current text-edufa-blue" viewBox="0 0 20 20">
                                                     <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -78,6 +78,20 @@ export default function Header() {
                                             <Dropdown.Link href={route('pelayanan.balai')} className="hover:bg-edufa-blue hover:text-white font-bold transition-colors py-3">Balai Latihan Kerja dan Kehidupan</Dropdown.Link>
                                         </Dropdown.Content>
                                     </Dropdown>
+                                </motion.div>
+                                
+                                <motion.div 
+                                    initial={{ opacity: 0, y: -20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.7 }}
+                                >
+                                    <NavLink 
+                                        href={route('konsultan')} 
+                                        active={route().current('konsultan')}
+                                        className="text-base lg:text-lg font-bold"
+                                    >
+                                        Konsultan
+                                    </NavLink>
                                 </motion.div>
                             </div>
                         </div>
@@ -143,7 +157,7 @@ export default function Header() {
                                     href={route('kegiatan')}
                                     className={`block w-full border-l-4 py-3 pl-3 pr-4 text-left text-base transition duration-150 ease-in-out ${route().current('kegiatan') ? 'border-edufa-yellow font-bold text-gray-900 bg-edufa-yellow/10' : 'border-transparent font-medium text-gray-600 hover:border-edufa-yellow hover:bg-edufa-yellow/5 hover:text-gray-900'}`}
                                 >
-                                    Kegiatan
+                                    Dokumentasi
                                 </Link>
                                 
                                 <Link
@@ -173,6 +187,13 @@ export default function Header() {
                                         <Link href={route('pelayanan.balai')} className="block py-3 pl-8 pr-4 text-sm font-medium text-gray-600 hover:bg-edufa-blue hover:text-white transition-colors">Balai Latihan Kerja dan Kehidupan</Link>
                                     </div>
                                 </div>
+                                
+                                <Link
+                                    href={route('konsultan')}
+                                    className={`block w-full border-l-4 py-3 pl-3 pr-4 text-left text-base transition duration-150 ease-in-out ${route().current('konsultan') ? 'border-edufa-yellow font-bold text-gray-900 bg-edufa-yellow/10' : 'border-transparent font-medium text-gray-600 hover:border-edufa-yellow hover:bg-edufa-yellow/5 hover:text-gray-900'}`}
+                                >
+                                    Konsultan
+                                </Link>
                             </div>
                         </motion.div>
                     )}

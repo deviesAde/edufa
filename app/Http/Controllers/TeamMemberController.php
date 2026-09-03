@@ -13,7 +13,7 @@ class TeamMemberController extends Controller
     public function index()
     {
         return Inertia::render('Admin/TeamMembers/Index', [
-            'teamMembers' => TeamMember::orderBy('type')->orderBy('name')->get(),
+            'teamMembers' => TeamMember::orderBy('sort_order', 'asc')->orderBy('name')->get(),
         ]);
     }
 
@@ -67,5 +67,22 @@ class TeamMemberController extends Controller
         $teamMember->delete();
 
         return Redirect::back()->with('success', 'Anggota tim berhasil dihapus.');
+    }
+
+    /**
+     * Reorder team members.
+     */
+    public function reorder(Request $request)
+    {
+        $validated = $request->validate([
+            'members' => 'required|array',
+            'members.*' => 'required|integer|exists:team_members,id',
+        ]);
+
+        foreach ($validated['members'] as $index => $id) {
+            TeamMember::where('id', $id)->update(['sort_order' => $index]);
+        }
+
+        return Redirect::back()->with('success', 'Urutan anggota tim berhasil diperbarui.');
     }
 }

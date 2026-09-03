@@ -25,8 +25,8 @@ export default function Index({ activities }) {
     const [editingActivity, setEditingActivity] = React.useState(null)
 
     const filteredActivities = activities.filter(activity => 
-        activity.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        activity.type.toLowerCase().includes(searchTerm.toLowerCase())
+        (activity.title || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (activity.type || "").toLowerCase().includes(searchTerm.toLowerCase())
     )
 
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -49,9 +49,9 @@ export default function Index({ activities }) {
     const openEdit = (activity) => {
         setEditingActivity(activity)
         setData({
-            title: activity.title,
+            title: activity.title || "",
             description: activity.description || "",
-            type: activity.type,
+            type: activity.type || "terapi",
             media_type: activity.media_type,
             video_url: activity.media_type === "video" ? activity.media_path : "",
             media_file: null,
@@ -141,12 +141,11 @@ export default function Index({ activities }) {
                                         </td>
                                         <td className="px-6 py-5">
                                             <div>
-                                                <p className="font-bold text-gray-900 leading-tight mb-1">{activity.title}</p>
-                                                <span className={cn(
-                                                    "text-[10px] font-black uppercase px-2 py-0.5 rounded-full",
-                                                    activity.type === "terapi" ? "bg-edufa-blue/10 text-edufa-blue" : "bg-edufa-yellow/10 text-amber-600"
-                                                )}>
-                                                    {activity.type === "terapi" ? "Terapi" : "Kegiatan di Kelas"}
+                                                {activity.title && (
+                                                    <p className="font-bold text-gray-900 leading-tight mb-1">{activity.title}</p>
+                                                )}
+                                                <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-edufa-blue/10 text-edufa-blue">
+                                                    {activity.type}
                                                 </span>
                                             </div>
                                         </td>
@@ -214,7 +213,7 @@ export default function Index({ activities }) {
                     <form onSubmit={submit} className="py-6 space-y-6">
                         <div className="space-y-5 max-h-[60vh] overflow-y-auto pr-2">
                             <div className="grid gap-2">
-                                <Label htmlFor="title" className="text-sm font-bold text-gray-700">Judul Kegiatan</Label>
+                                <Label htmlFor="title" className="text-sm font-bold text-gray-700">Judul Kegiatan <span className="text-gray-400 font-normal text-xs">(Opsional)</span></Label>
                                 <Input 
                                     id="title" 
                                     value={data.title}
@@ -234,13 +233,18 @@ export default function Index({ activities }) {
                                     className="h-11 rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-edufa-blue"
                                 >
                                     <option value="terapi">Terapi</option>
-                                    <option value="kelas">Kegiatan di Kelas</option>
+                                    <option value="asesmen">Asesmen</option>
+                                    <option value="pelatihan">Pelatihan</option>
+                                    <option value="pendidikan anak usia dini">Pendidikan Anak Usia Dini</option>
+                                    <option value="pendamping ABK di Sekolah">Pendamping ABK di Sekolah</option>
+                                    <option value="balai latihan kerja & kehidupan">Balai Latihan Kerja & Kehidupan</option>
+                                    <option value="internal">Internal</option>
                                 </select>
                                 {errors.type && <p className="text-xs text-rose-500 font-medium">{errors.type}</p>}
                             </div>
 
                             <div className="grid gap-2">
-                                <Label htmlFor="description" className="text-sm font-bold text-gray-700">Deskripsi</Label>
+                                <Label htmlFor="description" className="text-sm font-bold text-gray-700">Deskripsi <span className="text-gray-400 font-normal text-xs">(Opsional)</span></Label>
                                 <textarea 
                                     id="description" 
                                     value={data.description}
@@ -296,7 +300,7 @@ export default function Index({ activities }) {
                                                     className="w-full h-full object-cover"
                                                 />
                                             ) : (editingActivity?.media_type === "photo" ? (
-                                                <img src={`/storage/${editingActivity.media_path}`} alt={`Media Saat Ini ${editingActivity.title}`} className="w-full h-full object-cover" />
+                                                <img src={`/storage/${editingActivity.media_path}`} alt="Media Saat Ini" className="w-full h-full object-cover" />
                                             ) : (
                                                 <div className="text-center p-6">
                                                     <div className="h-10 w-10 rounded-full bg-gray-50 flex items-center justify-center mx-auto mb-2 text-gray-400">

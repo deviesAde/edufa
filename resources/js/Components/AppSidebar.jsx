@@ -1,4 +1,4 @@
-import * as React from "react"
+ import * as React from "react"
 import { 
   Sidebar,
   SidebarContent,
@@ -33,7 +33,7 @@ import Dropdown from "@/Components/Dropdown"
 import { cn } from "@/lib/utils"
 
 export function AppSidebar() {
-  const { user } = usePage().props.auth;
+  const { user } = usePage().props.auth || {};
   const { state } = useSidebar();
 
   
@@ -51,7 +51,7 @@ export function AppSidebar() {
       active: route().current('admin.branches.*'),
     },
     {
-      title: "Terapis",
+      title: "Staff",
       url: route('admin.team-members.index'),
       icon: Users,
       active: route().current('admin.team-members.*'),
@@ -140,10 +140,10 @@ export function AppSidebar() {
               </div>
               <div className="flex flex-1 flex-col items-start overflow-hidden text-left">
                 <span className="truncate text-sm font-semibold text-sidebar-foreground">
-                  {user.name}
+                  {user?.name || 'Guest'}
                 </span>
                 <span className="truncate text-[10px] text-muted-foreground">
-                  {user.email}
+                  {user?.email || ''}
                 </span>
               </div>
             </SidebarMenuButton>

@@ -1,4 +1,0 @@
-- Backend: Laravel 13 MVC with Eloquent models, resource controllers, and custom middleware (`AdminOnly`, `HandleInertiaRequests`) registered in `bootstrap/app.php`.
-- Frontend: Single-page application using Inertia.js v2 bridging Laravel to React 18 components in `resources/js/Pages`, built with Vite.
-- Routing: `routes/web.php` defines public guest routes, authenticated profile routes, and protected admin resource routes under the `admin` middleware alias.
-- Data: SQLite database with migrations for core entities (Users, Branches, TeamMembers, Articles, Activities, Services) and seeders for initial data.

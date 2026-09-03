@@ -25,9 +25,9 @@ class ActivityController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'nullable|string|max:255',
             'description' => 'nullable|string',
-            'type' => 'required|in:terapi,kelas',
+            'type' => 'required|in:terapi,asesmen,pelatihan,pendidikan anak usia dini,pendamping ABK di Sekolah,balai latihan kerja & kehidupan,internal',
             'media_type' => 'required|in:photo,video',
             'media_file' => 'required_if:media_type,photo|nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'video_url' => 'required_if:media_type,video|nullable|url',
@@ -57,9 +57,9 @@ class ActivityController extends Controller
     public function update(Request $request, Activity $activity)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'nullable|string|max:255',
             'description' => 'nullable|string',
-            'type' => 'required|in:terapi,kelas',
+            'type' => 'required|in:terapi,asesmen,pelatihan,pendidikan anak usia dini,pendamping ABK di Sekolah,balai latihan kerja & kehidupan,internal',
             'media_type' => 'required|in:photo,video',
             'media_file' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'video_url' => 'required_if:media_type,video|nullable|url',

@@ -11,7 +11,11 @@ import {
     User, 
     X,
     ExternalLink,
-    MoreHorizontal
+    MoreHorizontal,
+    ArrowUp,
+    ArrowDown,
+    Calendar,
+    GripVertical
 } from "lucide-react"
 import { Label } from "@/Components/ui/label"
 import { cn } from "@/lib/utils"
@@ -19,18 +23,74 @@ import Modal from "@/Components/Modal"
 import SecondaryButton from "@/Components/SecondaryButton"
 import DangerButton from "@/Components/DangerButton"
 import PrimaryButton from "@/Components/PrimaryButton"
+import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd"
 
 export default function Index({ teamMembers }) {
     const [searchTerm, setSearchTerm] = React.useState("")
     const [isModalOpen, setIsModalOpen] = React.useState(false)
     const [editingMember, setEditingMember] = React.useState(null)
     const [confirmModal, setConfirmModal] = React.useState({ isOpen: false, type: '', data: null })
+    const [sortBy, setSortBy] = React.useState("default") // default, name, date
+    const [sortOrder, setSortOrder] = React.useState("asc") // asc, desc
+    const [localTeamMembers, setLocalTeamMembers] = React.useState(teamMembers)
 
-    const filteredMembers = teamMembers.filter(member => 
-        member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        member.role.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        member.type.toLowerCase().includes(searchTerm.toLowerCase())
-    )
+    React.useEffect(() => {
+        setLocalTeamMembers(teamMembers)
+    }, [teamMembers])
+
+    const isFilterActive = searchTerm.length > 0 || sortBy !== "default"
+    const isDragDisabled = isFilterActive
+
+    const getFilteredTeamMembers = () => {
+        let filtered = isDragDisabled ? localTeamMembers : localTeamMembers
+
+        // Apply search filter
+        if (searchTerm.length > 0) {
+            filtered = filtered.filter(member => 
+                member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                member.role.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                member.type.toLowerCase().includes(searchTerm.toLowerCase())
+            )
+        }
+
+        // Apply sort
+        if (sortBy === "name") {
+            filtered.sort((a, b) => {
+                const comparison = a.name.localeCompare(b.name)
+                return sortOrder === "asc" ? comparison : -comparison
+            })
+        } else if (sortBy === "date") {
+            filtered.sort((a, b) => {
+                const dateA = new Date(a.created_at || 0)
+                const dateB = new Date(b.created_at || 0)
+                return sortOrder === "asc" ? dateA - dateB : dateB - dateA
+            })
+        }
+
+        return filtered
+    }
+
+    const filteredMembers = getFilteredTeamMembers()
+
+    const handleDragEnd = (result) => {
+        if (!result.destination) return
+
+        const items = Array.from(localTeamMembers)
+        const [reorderedItem] = items.splice(result.source.index, 1)
+        items.splice(result.destination.index, 0, reorderedItem)
+
+        setLocalTeamMembers(items)
+
+        router.post(route('admin.team-members.reorder'), {
+            members: items.map(item => item.id)
+        }, {
+            preserveScroll: true,
+            onSuccess: () => {
+                // Refresh halaman untuk memastikan data dari database yang dimuat
+                router.reload()
+            }
+        })
+    }
 
     const { data, setData, post, put, processing, errors, reset } = useForm({
         name: "",
@@ -123,15 +183,84 @@ export default function Index({ teamMembers }) {
             <Head title="Manajemen Tim (Terapis & Staf)" />
 
             <div className="space-y-6">
-                {/* Search Bar */}
-                <div className="relative max-w-md">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-                    <Input 
-                        placeholder="Cari nama, jabatan, atau tipe..."
-                        className="pl-10 h-11 bg-white border-gray-100 rounded-xl shadow-sm focus:ring-edufa-blue"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
+                {/* Search Bar & Filter Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+                    <div className="relative max-w-md">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                        <Input 
+                            placeholder="Cari nama, jabatan, atau tipe..."
+                            className="pl-10 h-11 bg-white border-gray-100 rounded-xl shadow-sm focus:ring-edufa-blue"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
+                    </div>
+
+                    {/* Filter Buttons */}
+                    <div className="flex gap-2 items-center">
+                        {/* Sort by Name Button */}
+                        <Button
+                            onClick={() => {
+                                if (sortBy === "name") {
+                                    setSortOrder(sortOrder === "asc" ? "desc" : "asc")
+                                } else {
+                                    setSortBy("name")
+                                    setSortOrder("asc")
+                                }
+                            }}
+                            variant={sortBy === "name" ? "default" : "outline"}
+                            className={cn(
+                                "rounded-lg h-10 font-bold text-sm transition-all",
+                                sortBy === "name" 
+                                    ? "bg-edufa-blue text-white hover:bg-edufa-blue/90 shadow-md" 
+                                    : "border-gray-200 hover:bg-gray-50"
+                            )}
+                        >
+                            {sortBy === "name" && (
+                                sortOrder === "asc" ? <ArrowUp className="h-4 w-4 mr-1.5" /> : <ArrowDown className="h-4 w-4 mr-1.5" />
+                            )}
+                            A-Z
+                        </Button>
+
+                        {/* Sort by Date Button */}
+                        <Button
+                            onClick={() => {
+                                if (sortBy === "date") {
+                                    setSortOrder(sortOrder === "asc" ? "desc" : "asc")
+                                } else {
+                                    setSortBy("date")
+                                    setSortOrder("desc")
+                                }
+                            }}
+                            variant={sortBy === "date" ? "default" : "outline"}
+                            className={cn(
+                                "rounded-lg h-10 font-bold text-sm transition-all",
+                                sortBy === "date" 
+                                    ? "bg-edufa-blue text-white hover:bg-edufa-blue/90 shadow-md" 
+                                    : "border-gray-200 hover:bg-gray-50"
+                            )}
+                        >
+                            {sortBy === "date" && (
+                                sortOrder === "asc" ? <ArrowUp className="h-4 w-4 mr-1.5" /> : <ArrowDown className="h-4 w-4 mr-1.5" />
+                            )}
+                            <Calendar className="h-4 w-4 mr-1.5" />
+                            Tanggal
+                        </Button>
+
+                        {/* Reset Button - Show when filter is active */}
+                        {sortBy !== "default" && (
+                            <Button
+                                onClick={() => {
+                                    setSortBy("default")
+                                    setSortOrder("asc")
+                                }}
+                                variant="ghost"
+                                className="rounded-lg h-10 px-3 text-gray-500 hover:text-gray-900 hover:bg-gray-100"
+                                title="Reset ke urutan default"
+                            >
+                                ✕
+                            </Button>
+                        )}
+                    </div>
                 </div>
 
                 {/* Table / Grid */}
@@ -140,66 +269,94 @@ export default function Index({ teamMembers }) {
                         <table className="w-full text-left">
                             <thead className="bg-gray-50/50 border-b border-gray-100">
                                 <tr>
+                                    <th className="w-10 px-3 py-4"></th>
                                     <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-widest">Foto</th>
                                     <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-widest">Nama & Tipe</th>
                                     <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-widest">Jabatan / Status</th>
                                     <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-widest text-right">Aksi</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-gray-100">
-                                {filteredMembers.map((member) => (
-                                    <tr key={member.id} className="hover:bg-gray-50/50 transition-colors group">
-                                        <td className="px-6 py-5">
-                                            <div className="h-14 w-14 rounded-xl overflow-hidden bg-gray-100 border border-gray-100">
-                                                {member.photo_url ? (
-                                                    <img src={member.photo_url} alt={member.name} className="w-full h-full object-cover" />
-                                                ) : (
-                                                    <div className="w-full h-full flex items-center justify-center text-gray-300">
-                                                        <User className="h-6 w-6" />
-                                                    </div>
-                                                )}
-                                            </div>
-                                        </td>
-                                        <td className="px-6 py-5">
-                                            <div className="flex flex-col">
-                                                <p className="font-bold text-gray-900">{member.name}</p>
-                                                <span className={cn(
-                                                    "mt-1 text-[10px] font-bold uppercase w-max px-2 py-0.5 rounded",
-                                                    member.type === 'terapis' ? "bg-edufa-blue/10 text-edufa-blue" : "bg-edufa-yellow/20 text-edufa-yellow"
-                                                )}>
-                                                    {member.type}
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td className="px-6 py-5">
-                                            <p className="font-medium text-gray-700">{member.role}</p>
-                                            {member.description && (
-                                                <p className="text-xs text-gray-500 mt-1 line-clamp-1 max-w-xs">{member.description}</p>
-                                            )}
-                                        </td>
-                                        <td className="px-6 py-5 text-right">
-                                            <div className="flex items-center justify-end gap-2">
-                                                <Button 
-                                                    variant="ghost" 
-                                                    size="icon"
-                                                    onClick={() => openEdit(member)}
-                                                    className="h-9 w-9 rounded-lg hover:bg-edufa-blue/10 hover:text-edufa-blue transition-colors"
-                                                >
-                                                    <Edit2 className="h-4 w-4" />
-                                                </Button>
-                                                <Button 
-                                                    variant="ghost" 
-                                                    size="icon"
-                                                    onClick={() => deleteMember(member.id)}
-                                                    className="h-9 w-9 rounded-lg hover:bg-rose-50 hover:text-rose-600 transition-colors"
-                                                >
-                                                    <Trash2 className="h-4 w-4" />
-                                                </Button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
+                            <DragDropContext onDragEnd={handleDragEnd}>
+                                <Droppable droppableId="team-members-list" isDropDisabled={isDragDisabled}>
+                                    {(provided) => (
+                                        <tbody 
+                                            className="divide-y divide-gray-100"
+                                            {...provided.droppableProps}
+                                            ref={provided.innerRef}
+                                        >
+                                            {filteredMembers.map((member, index) => (
+                                                <Draggable key={member.id} draggableId={member.id.toString()} index={index} isDragDisabled={isDragDisabled}>
+                                                    {(provided, snapshot) => (
+                                                        <tr 
+                                                            className={cn("hover:bg-gray-50/50 transition-colors group bg-white", snapshot.isDragging && "shadow-lg bg-gray-50/80 z-50 relative")}
+                                                            ref={provided.innerRef}
+                                                            {...provided.draggableProps}
+                                                        >
+                                                            <td className="px-3 py-5 w-10">
+                                                                <div 
+                                                                    {...provided.dragHandleProps} 
+                                                                    className={cn("text-gray-300 hover:text-gray-500 transition-colors p-2 cursor-grab active:cursor-grabbing", isDragDisabled && "opacity-50 cursor-not-allowed")}
+                                                                >
+                                                                    <GripVertical className="h-5 w-5" />
+                                                                </div>
+                                                            </td>
+                                                            <td className="px-6 py-5">
+                                                                <div className="h-14 w-14 rounded-xl overflow-hidden bg-gray-100 border border-gray-100">
+                                                                    {member.photo_url ? (
+                                                                        <img src={member.photo_url} alt={member.name} className="w-full h-full object-cover" />
+                                                                    ) : (
+                                                                        <div className="w-full h-full flex items-center justify-center text-gray-300">
+                                                                            <User className="h-6 w-6" />
+                                                                        </div>
+                                                                    )}
+                                                                </div>
+                                                            </td>
+                                                            <td className="px-6 py-5">
+                                                                <div className="flex flex-col">
+                                                                    <p className="font-bold text-gray-900">{member.name}</p>
+                                                                    <span className={cn(
+                                                                        "mt-1 text-[10px] font-bold uppercase w-max px-2 py-0.5 rounded",
+                                                                        member.type === 'terapis' ? "bg-edufa-blue/10 text-edufa-blue" : "bg-edufa-yellow/20 text-edufa-yellow"
+                                                                    )}>
+                                                                        {member.type}
+                                                                    </span>
+                                                                </div>
+                                                            </td>
+                                                            <td className="px-6 py-5">
+                                                                <p className="font-medium text-gray-700">{member.role}</p>
+                                                                {member.description && (
+                                                                    <p className="text-xs text-gray-500 mt-1 line-clamp-1 max-w-xs">{member.description}</p>
+                                                                )}
+                                                            </td>
+                                                            <td className="px-6 py-5 text-right">
+                                                                <div className="flex items-center justify-end gap-2">
+                                                                    <Button 
+                                                                        variant="ghost" 
+                                                                        size="icon"
+                                                                        onClick={() => openEdit(member)}
+                                                                        className="h-9 w-9 rounded-lg hover:bg-edufa-blue/10 hover:text-edufa-blue transition-colors"
+                                                                    >
+                                                                        <Edit2 className="h-4 w-4" />
+                                                                    </Button>
+                                                                    <Button 
+                                                                        variant="ghost" 
+                                                                        size="icon"
+                                                                        onClick={() => deleteMember(member.id)}
+                                                                        className="h-9 w-9 rounded-lg hover:bg-rose-50 hover:text-rose-600 transition-colors"
+                                                                    >
+                                                                        <Trash2 className="h-4 w-4" />
+                                                                    </Button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    )}
+                                                </Draggable>
+                                            ))}
+                                            {provided.placeholder}
+                                        </tbody>
+                                    )}
+                                </Droppable>
+                            </DragDropContext>
                         </table>
                         {filteredMembers.length === 0 && (
                             <div className="py-20 text-center">

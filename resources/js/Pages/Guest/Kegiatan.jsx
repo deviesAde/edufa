@@ -4,7 +4,7 @@ import SEO from '@/Components/SEO';
 import Header from '@/Components/Header';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ImageIcon, Video, Play, CheckCircle2, X } from 'lucide-react';
+import { Image as ImageIcon, Video, Play, CheckCircle2, X } from 'lucide-react';
 
 const RevealText = ({ text, className = "", delay = 0 }) => {
     const words = text.split(" ");
@@ -70,7 +70,7 @@ function GalleryCard({ item, onClick }) {
                 <div className="w-12 h-12 rounded-full bg-white/20 mb-4 flex items-center justify-center text-white scale-0 group-hover:scale-100 transition-transform duration-500 delay-100">
                     <ImageIcon className="w-6 h-6" />
                 </div>
-                <p className="text-white text-xl font-black leading-tight mb-2">{item.title}</p>
+                {item.title && <p className="text-white text-xl font-black leading-tight mb-2">{item.title}</p>}
                 <p className="text-blue-50 text-sm line-clamp-3 font-medium">{item.desc}</p>
             </div>
             <div className="absolute top-4 left-4 z-10">
@@ -79,7 +79,7 @@ function GalleryCard({ item, onClick }) {
                 </span>
             </div>
             <div className="p-6">
-                <h3 className="text-lg font-black text-gray-900 truncate leading-none mb-1">{item.title}</h3>
+                {item.title && <h3 className="text-lg font-black text-gray-900 truncate leading-none mb-1">{item.title}</h3>}
                 <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">{item.kategori}</p>
             </div>
         </motion.div>
@@ -115,7 +115,7 @@ function VideoCard({ item, onClick }) {
                 </div>
             </div>
             <div className="p-6">
-                <h3 className="text-lg font-black text-gray-900 truncate leading-none mb-1">{item.title}</h3>
+                {item.title && <h3 className="text-lg font-black text-gray-900 truncate leading-none mb-1">{item.title}</h3>}
                 <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">{item.kategori}</p>
             </div>
         </motion.div>
@@ -148,7 +148,7 @@ function PhotoModal({ item, onClose }) {
                     </div>
                     <div className="lg:w-1/3 p-8 sm:p-10 flex flex-col justify-center">
                         <span className="inline-block text-[10px] font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full bg-edufa-yellow text-gray-900 mb-6 w-fit">{item.kategori}</span>
-                        <h2 className="text-3xl font-black text-gray-900 mb-4 leading-tight">{item.title}</h2>
+                        {item.title && <h2 className="text-3xl font-black text-gray-900 mb-4 leading-tight">{item.title}</h2>}
                         <p className="text-gray-500 font-medium leading-relaxed">{item.desc || 'Tidak ada deskripsi.'}</p>
                     </div>
                 </div>
@@ -188,7 +188,7 @@ function VideoModal({ item, onClose }) {
                 </div>
                 <div className="p-8 sm:p-10 border-t border-white/5">
                     <span className="inline-block text-[10px] font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full bg-edufa-blue text-white mb-4">{item.kategori}</span>
-                    <h2 className="text-2xl font-black text-white mb-2">{item.title}</h2>
+                    {item.title && <h2 className="text-2xl font-black text-white mb-2">{item.title}</h2>}
                     <p className="text-gray-400 font-medium text-sm leading-relaxed">{item.desc || 'Tidak ada deskripsi.'}</p>
                 </div>
             </motion.div>
@@ -205,8 +205,6 @@ export default function Kegiatan({ activities = [] }) {
     const [selectedPhoto, setSelectedPhoto] = useState(null);
     const [selectedVideo, setSelectedVideo] = useState(null);
 
-    const categories = ['Semua', 'Kegiatan di Kelas', 'Terapi'];
-
     const getEmbedUrl = (url) => {
         if (!url) return '';
         const ytMatch = url.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/|v\/|.+\/|)([a-zA-Z0-9_-]{11})/);
@@ -217,17 +215,22 @@ export default function Kegiatan({ activities = [] }) {
     };
 
     const getThumbnailUrl = (item) => {
-        if (item.media_type === 'photo') return `/storage/${item.media_path}`;
-        const ytMatch = item.media_path.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/|v\/|.+\/|)([a-zA-Z0-9_-]{11})/);
+        if (item.media_type === 'photo') return item.media_path ? `/storage/${item.media_path}` : '';
+        const ytMatch = (item.media_path || '').match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/|v\/|.+\/|)([a-zA-Z0-9_-]{11})/);
         if (ytMatch && ytMatch[1]) return `https://img.youtube.com/vi/${ytMatch[1]}/maxresdefault.jpg`;
         return 'https://via.placeholder.com/1280x720/0f59bc/ffffff?text=Video+EDUfa';
     };
 
+    // Extract unique types from activities and capitalize them
+    const uniqueTypes = [...new Set(activities.map(a => a.type))].filter(Boolean);
+    const categories = ['Semua', ...uniqueTypes];
+
     const displayActivities = activities.map(item => ({
         ...item,
-        display_type: item.type === 'kelas' ? 'Kegiatan di Kelas' : 'Terapi',
+        display_type: item.type,
         thumbnail: getThumbnailUrl(item),
-        embed_url: item.media_type === 'video' ? getEmbedUrl(item.media_path) : null
+        embed_url: item.media_type === 'video' ? getEmbedUrl(item.media_path) : null,
+        title: item.title || ''
     }));
 
     const filteredActivities = activeCategory === 'Semua'

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
+use App\Http\Controllers\GuestController;
 
 Route::get('/tag/{slug}', [GuestController::class, 'tagArtikel'])->name('tag.artikel');
 
@@ -64,14 +65,13 @@ Route::get('/sitemap.xml', function () {
     return $sitemap->toResponse(request());
 });
 
-use App\Http\Controllers\GuestController;
-
 Route::get('/', [GuestController::class, 'index'])->name('home');
 Route::get('/terapis', [GuestController::class, 'terapis'])->name('terapis');
 Route::get('/kegiatan', [GuestController::class, 'kegiatan'])->name('kegiatan');
 Route::get('/artikel', [GuestController::class, 'artikel'])->name('artikel');
 Route::get('/artikel/{slug}', [GuestController::class, 'showArtikel'])->name('artikel.show');
 Route::get('/cabang', [GuestController::class, 'cabang'])->name('cabang');
+Route::get('/konsultan', [GuestController::class, 'konsultan'])->name('konsultan');
 
 Route::prefix('pelayanan')->name('pelayanan.')->group(function () {
     Route::get('/asesmen-psikologi', [GuestController::class, 'pelayanan'])->defaults('type', 'asesmen-psikologi')->name('asesmen');
@@ -82,6 +82,8 @@ Route::prefix('pelayanan')->name('pelayanan.')->group(function () {
     Route::get('/pendampingan-abk', [GuestController::class, 'pelayanan'])->defaults('type', 'pendampingan-abk')->name('pendampingan');
     Route::get('/balai-latihan-kerja', [GuestController::class, 'pelayanan'])->defaults('type', 'balai-latihan-kerja')->name('balai');
 });
+
+Route::redirect('/admin', '/dashboard');
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', function () {
@@ -101,6 +103,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('admin/services', [\App\Http\Controllers\ServiceController::class, 'index'])->name('admin.services.index');
     Route::put('admin/services/{service}', [\App\Http\Controllers\ServiceController::class, 'update'])->name('admin.services.update');
 
+    Route::post('admin/branches/reorder', [BranchController::class, 'reorder'])->name('admin.branches.reorder');
     Route::resource('admin/branches', BranchController::class)->names([
         'index' => 'admin.branches.index',
         'create' => 'admin.branches.create',
@@ -111,6 +114,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
         'destroy' => 'admin.branches.destroy',
     ]);
 
+    Route::post('admin/team-members/reorder', [\App\Http\Controllers\TeamMemberController::class, 'reorder'])->name('admin.team-members.reorder');
     Route::resource('admin/team-members', \App\Http\Controllers\TeamMemberController::class)->names([
         'index' => 'admin.team-members.index',
         'create' => 'admin.team-members.create',

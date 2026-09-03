@@ -17,7 +17,7 @@ class BranchController extends Controller
     public function index()
     {
         return Inertia::render('Admin/Branches/Index', [
-            'branches' => Branch::orderBy('city')->get(),
+            'branches' => Branch::orderBy('sort_order', 'asc')->get(),
         ]);
     }
 
@@ -83,5 +83,22 @@ class BranchController extends Controller
         $branch->delete();
 
         return Redirect::back()->with('success', 'Cabang berhasil dihapus.');
+    }
+
+    /**
+     * Reorder branches.
+     */
+    public function reorder(Request $request)
+    {
+        $validated = $request->validate([
+            'branches' => 'required|array',
+            'branches.*' => 'required|integer|exists:branches,id',
+        ]);
+
+        foreach ($validated['branches'] as $index => $id) {
+            Branch::where('id', $id)->update(['sort_order' => $index]);
+        }
+
+        return Redirect::back()->with('success', 'Urutan cabang berhasil diperbarui.');
     }
 }

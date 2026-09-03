@@ -16,6 +16,7 @@ class Branch extends Model
         'latitude',
         'longitude',
         'photo_path',
+        'sort_order',
     ];
 
     protected $appends = ['photo_url'];

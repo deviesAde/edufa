@@ -12,6 +12,7 @@ class TeamMember extends Model
         'role',
         'description',
         'image_path',
+        'sort_order',
     ];
 
     protected $appends = ['photo_url'];
