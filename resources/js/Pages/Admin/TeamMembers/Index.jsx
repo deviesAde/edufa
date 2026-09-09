@@ -71,22 +71,36 @@ export default function Index({ teamMembers }) {
     }
 
     const filteredMembers = getFilteredTeamMembers()
+    const filteredTerapis = filteredMembers.filter(m => m.type === 'terapis')
+    const filteredStaf = filteredMembers.filter(m => m.type === 'staf')
 
     const handleDragEnd = (result) => {
-        if (!result.destination) return
+        const { source, destination } = result;
 
-        const items = Array.from(localTeamMembers)
-        const [reorderedItem] = items.splice(result.source.index, 1)
-        items.splice(result.destination.index, 0, reorderedItem)
+        if (!destination) return;
 
-        setLocalTeamMembers(items)
+        if (source.droppableId !== destination.droppableId) {
+             return;
+        }
+
+        const droppableId = source.droppableId;
+        
+        const membersOfType = localTeamMembers.filter(m => m.type === droppableId);
+        const [reorderedItem] = membersOfType.splice(source.index, 1);
+        membersOfType.splice(destination.index, 0, reorderedItem);
+
+        const terapisMembers = droppableId === 'terapis' ? membersOfType : localTeamMembers.filter(m => m.type === 'terapis');
+        const stafMembers = droppableId === 'staf' ? membersOfType : localTeamMembers.filter(m => m.type === 'staf');
+        
+        const newLocalTeamMembers = [...terapisMembers, ...stafMembers];
+
+        setLocalTeamMembers(newLocalTeamMembers);
 
         router.post(route('admin.team-members.reorder'), {
-            members: items.map(item => item.id)
+            members: newLocalTeamMembers.map(item => item.id)
         }, {
             preserveScroll: true,
             onSuccess: () => {
-                // Refresh halaman untuk memastikan data dari database yang dimuat
                 router.reload()
             }
         })
@@ -165,6 +179,112 @@ export default function Index({ teamMembers }) {
             })
         }
     }
+
+    const renderTable = (droppableId, title, members) => (
+        <div className="bg-white rounded-3xl border border-gray-100 shadow-sm shadow-gray-200/50 overflow-hidden">
+            <div className="p-5 border-b border-gray-100 bg-gray-50/50">
+                <h3 className="font-black text-gray-900 text-lg">{title}</h3>
+            </div>
+            <div className="overflow-x-auto">
+                <table className="w-full text-left">
+                    <thead className="bg-gray-50/50 border-b border-gray-100">
+                        <tr>
+                            <th className="w-10 px-3 py-4"></th>
+                            <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-widest">Foto</th>
+                            <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-widest">Nama & Tipe</th>
+                            <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-widest">Jabatan / Status</th>
+                            <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-widest text-right">Aksi</th>
+                        </tr>
+                    </thead>
+                    <Droppable droppableId={droppableId} isDropDisabled={isDragDisabled}>
+                        {(provided) => (
+                            <tbody 
+                                className="divide-y divide-gray-100"
+                                {...provided.droppableProps}
+                                ref={provided.innerRef}
+                            >
+                                {members.map((member, index) => (
+                                    <Draggable key={member.id} draggableId={member.id.toString()} index={index} isDragDisabled={isDragDisabled}>
+                                        {(provided, snapshot) => (
+                                            <tr 
+                                                className={cn("hover:bg-gray-50/50 transition-colors group bg-white", snapshot.isDragging && "shadow-lg bg-gray-50/80 z-50 relative")}
+                                                ref={provided.innerRef}
+                                                {...provided.draggableProps}
+                                            >
+                                                <td className="px-3 py-5 w-10">
+                                                    <div 
+                                                        {...provided.dragHandleProps} 
+                                                        className={cn("text-gray-300 hover:text-gray-500 transition-colors p-2 cursor-grab active:cursor-grabbing", isDragDisabled && "opacity-50 cursor-not-allowed")}
+                                                    >
+                                                        <GripVertical className="h-5 w-5" />
+                                                    </div>
+                                                </td>
+                                                <td className="px-6 py-5">
+                                                    <div className="h-14 w-14 rounded-xl overflow-hidden bg-gray-100 border border-gray-100">
+                                                        {member.photo_url ? (
+                                                            <img src={member.photo_url} alt={member.name} className="w-full h-full object-cover" />
+                                                        ) : (
+                                                            <div className="w-full h-full flex items-center justify-center text-gray-300">
+                                                                <User className="h-6 w-6" />
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                </td>
+                                                <td className="px-6 py-5">
+                                                    <div className="flex flex-col">
+                                                        <p className="font-bold text-gray-900">{member.name}</p>
+                                                        <span className={cn(
+                                                            "mt-1 text-[10px] font-bold uppercase w-max px-2 py-0.5 rounded",
+                                                            member.type === 'terapis' ? "bg-edufa-blue/10 text-edufa-blue" : "bg-edufa-yellow/20 text-edufa-yellow"
+                                                        )}>
+                                                            {member.type}
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                                <td className="px-6 py-5">
+                                                    <p className="font-medium text-gray-700">{member.role}</p>
+                                                    {member.description && (
+                                                        <p className="text-xs text-gray-500 mt-1 line-clamp-1 max-w-xs">{member.description}</p>
+                                                    )}
+                                                </td>
+                                                <td className="px-6 py-5 text-right">
+                                                    <div className="flex items-center justify-end gap-2">
+                                                        <Button 
+                                                            variant="ghost" 
+                                                            size="icon"
+                                                            onClick={() => openEdit(member)}
+                                                            className="h-9 w-9 rounded-lg hover:bg-edufa-blue/10 hover:text-edufa-blue transition-colors"
+                                                        >
+                                                            <Edit2 className="h-4 w-4" />
+                                                        </Button>
+                                                        <Button 
+                                                            variant="ghost" 
+                                                            size="icon"
+                                                            onClick={() => deleteMember(member.id)}
+                                                            className="h-9 w-9 rounded-lg hover:bg-rose-50 hover:text-rose-600 transition-colors"
+                                                        >
+                                                            <Trash2 className="h-4 w-4" />
+                                                        </Button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        )}
+                                    </Draggable>
+                                ))}
+                                {provided.placeholder}
+                            </tbody>
+                        )}
+                    </Droppable>
+                </table>
+                {members.length === 0 && (
+                    <div className="py-20 text-center">
+                        <User className="h-12 w-12 text-gray-200 mx-auto mb-4" />
+                        <p className="text-gray-500 font-medium">Tidak ada {title.toLowerCase()} ditemukan.</p>
+                    </div>
+                )}
+            </div>
+        </div>
+    )
 
     return (
         <>
@@ -263,109 +383,13 @@ export default function Index({ teamMembers }) {
                     </div>
                 </div>
 
-                {/* Table / Grid */}
-                <div className="bg-white rounded-3xl border border-gray-100 shadow-sm shadow-gray-200/50 overflow-hidden">
-                    <div className="overflow-x-auto">
-                        <table className="w-full text-left">
-                            <thead className="bg-gray-50/50 border-b border-gray-100">
-                                <tr>
-                                    <th className="w-10 px-3 py-4"></th>
-                                    <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-widest">Foto</th>
-                                    <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-widest">Nama & Tipe</th>
-                                    <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-widest">Jabatan / Status</th>
-                                    <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-widest text-right">Aksi</th>
-                                </tr>
-                            </thead>
-                            <DragDropContext onDragEnd={handleDragEnd}>
-                                <Droppable droppableId="team-members-list" isDropDisabled={isDragDisabled}>
-                                    {(provided) => (
-                                        <tbody 
-                                            className="divide-y divide-gray-100"
-                                            {...provided.droppableProps}
-                                            ref={provided.innerRef}
-                                        >
-                                            {filteredMembers.map((member, index) => (
-                                                <Draggable key={member.id} draggableId={member.id.toString()} index={index} isDragDisabled={isDragDisabled}>
-                                                    {(provided, snapshot) => (
-                                                        <tr 
-                                                            className={cn("hover:bg-gray-50/50 transition-colors group bg-white", snapshot.isDragging && "shadow-lg bg-gray-50/80 z-50 relative")}
-                                                            ref={provided.innerRef}
-                                                            {...provided.draggableProps}
-                                                        >
-                                                            <td className="px-3 py-5 w-10">
-                                                                <div 
-                                                                    {...provided.dragHandleProps} 
-                                                                    className={cn("text-gray-300 hover:text-gray-500 transition-colors p-2 cursor-grab active:cursor-grabbing", isDragDisabled && "opacity-50 cursor-not-allowed")}
-                                                                >
-                                                                    <GripVertical className="h-5 w-5" />
-                                                                </div>
-                                                            </td>
-                                                            <td className="px-6 py-5">
-                                                                <div className="h-14 w-14 rounded-xl overflow-hidden bg-gray-100 border border-gray-100">
-                                                                    {member.photo_url ? (
-                                                                        <img src={member.photo_url} alt={member.name} className="w-full h-full object-cover" />
-                                                                    ) : (
-                                                                        <div className="w-full h-full flex items-center justify-center text-gray-300">
-                                                                            <User className="h-6 w-6" />
-                                                                        </div>
-                                                                    )}
-                                                                </div>
-                                                            </td>
-                                                            <td className="px-6 py-5">
-                                                                <div className="flex flex-col">
-                                                                    <p className="font-bold text-gray-900">{member.name}</p>
-                                                                    <span className={cn(
-                                                                        "mt-1 text-[10px] font-bold uppercase w-max px-2 py-0.5 rounded",
-                                                                        member.type === 'terapis' ? "bg-edufa-blue/10 text-edufa-blue" : "bg-edufa-yellow/20 text-edufa-yellow"
-                                                                    )}>
-                                                                        {member.type}
-                                                                    </span>
-                                                                </div>
-                                                            </td>
-                                                            <td className="px-6 py-5">
-                                                                <p className="font-medium text-gray-700">{member.role}</p>
-                                                                {member.description && (
-                                                                    <p className="text-xs text-gray-500 mt-1 line-clamp-1 max-w-xs">{member.description}</p>
-                                                                )}
-                                                            </td>
-                                                            <td className="px-6 py-5 text-right">
-                                                                <div className="flex items-center justify-end gap-2">
-                                                                    <Button 
-                                                                        variant="ghost" 
-                                                                        size="icon"
-                                                                        onClick={() => openEdit(member)}
-                                                                        className="h-9 w-9 rounded-lg hover:bg-edufa-blue/10 hover:text-edufa-blue transition-colors"
-                                                                    >
-                                                                        <Edit2 className="h-4 w-4" />
-                                                                    </Button>
-                                                                    <Button 
-                                                                        variant="ghost" 
-                                                                        size="icon"
-                                                                        onClick={() => deleteMember(member.id)}
-                                                                        className="h-9 w-9 rounded-lg hover:bg-rose-50 hover:text-rose-600 transition-colors"
-                                                                    >
-                                                                        <Trash2 className="h-4 w-4" />
-                                                                    </Button>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    )}
-                                                </Draggable>
-                                            ))}
-                                            {provided.placeholder}
-                                        </tbody>
-                                    )}
-                                </Droppable>
-                            </DragDropContext>
-                        </table>
-                        {filteredMembers.length === 0 && (
-                            <div className="py-20 text-center">
-                                <User className="h-12 w-12 text-gray-200 mx-auto mb-4" />
-                                <p className="text-gray-500 font-medium">Tidak ada anggota tim ditemukan.</p>
-                            </div>
-                        )}
+                {/* Lists */}
+                <DragDropContext onDragEnd={handleDragEnd}>
+                    <div className="space-y-8">
+                        {renderTable('terapis', 'Daftar Terapis', filteredTerapis)}
+                        {renderTable('staf', 'Daftar Staf', filteredStaf)}
                     </div>
-                </div>
+                </DragDropContext>
             </div>
 
             {/* Create/Edit Modal */}
