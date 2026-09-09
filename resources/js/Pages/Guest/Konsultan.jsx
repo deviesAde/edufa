@@ -5,13 +5,8 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ZoomIn } from 'lucide-react';
 
-export default function Konsultan() {
+export default function Konsultan({ images }) {
     const [selectedImage, setSelectedImage] = useState(null);
-
-    const images = [
-        "/portofolio/porto%20bu%20ernie%20dan%20pak%20yoga_pages-to-jpg-0001.jpg",
-        "/portofolio/porto%20bu%20ernie%20dan%20pak%20yoga_pages-to-jpg-0002.jpg"
-    ];
 
     return (
         <div className="min-h-screen bg-gray-50 font-sans text-gray-900 antialiased selection:bg-edufa-yellow/30">
@@ -42,17 +37,17 @@ export default function Konsultan() {
                     </motion.div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-                        {images.map((src, index) => (
+                        {images.map((image, index) => (
                             <motion.div
-                                key={index}
+                                key={image.id || index}
                                 initial={{ opacity: 0, x: index === 0 ? -50 : 50 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8, delay: 0.2 + (index * 0.2) }}
                                 className="bg-white rounded-3xl overflow-hidden shadow-xl shadow-gray-200/50 border border-gray-100 p-2 cursor-pointer relative group"
-                                onClick={() => setSelectedImage(src)}
+                                onClick={() => setSelectedImage(image.image_path)}
                             >
                                 <img 
-                                    src={src} 
+                                    src={image.image_path} 
                                     alt={`Profil Konsultan ${index + 1}`} 
                                     className="w-full h-auto rounded-2xl object-contain transition-transform duration-500 group-hover:scale-[1.02]"
                                 />
@@ -61,7 +56,7 @@ export default function Konsultan() {
                                         className="bg-white text-gray-900 px-4 py-2 rounded-xl font-bold flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 hover:bg-gray-100"
                                         onClick={(e) => {
                                             e.stopPropagation();
-                                            setSelectedImage(src);
+                                            setSelectedImage(image.image_path);
                                         }}
                                     >
                                         <ZoomIn className="w-5 h-5" />

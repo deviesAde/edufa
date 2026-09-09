@@ -97,7 +97,9 @@ class GuestController extends Controller
      */
     public function konsultan()
     {
-        return Inertia::render('Guest/Konsultan');
+        return Inertia::render('Guest/Konsultan', [
+            'images' => \App\Models\ConsultantImage::orderBy('sort_order', 'asc')->get()
+        ]);
     }
 
     /**

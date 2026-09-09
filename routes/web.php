@@ -144,6 +144,16 @@ Route::middleware(['auth', 'admin'])->group(function () {
         'update' => 'admin.articles.update',
         'destroy' => 'admin.articles.destroy',
     ]);
+
+    Route::post('admin/consultants/reorder', [\App\Http\Controllers\ConsultantImageController::class, 'reorder'])->name('admin.consultants.reorder');
+    Route::resource('admin/consultants', \App\Http\Controllers\ConsultantImageController::class)->names([
+        'index' => 'admin.consultants.index',
+        'create' => 'admin.consultants.create',
+        'store' => 'admin.consultants.store',
+        'edit' => 'admin.consultants.edit',
+        'update' => 'admin.consultants.update',
+        'destroy' => 'admin.consultants.destroy',
+    ])->except(['show']);
 });
 
 Route::middleware('auth')->group(function () {

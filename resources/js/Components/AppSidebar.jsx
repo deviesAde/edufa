@@ -24,7 +24,8 @@ import {
   Settings, 
   LogOut,
   ChevronUp,
-  User2 
+  User2,
+  ImageIcon
 } from "lucide-react"
 
 import { Link, usePage } from "@inertiajs/react"
@@ -73,6 +74,12 @@ export function AppSidebar() {
       url: route('admin.services.index'),
       icon: GraduationCap,
       active: route().current('admin.services.*'),
+    },
+    {
+      title: "Konsultan",
+      url: route('admin.consultants.index'),
+      icon: ImageIcon,
+      active: route().current('admin.consultants.*'),
     },
   ]
 
