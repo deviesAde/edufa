@@ -37,12 +37,12 @@ const PLACEHOLDER = 'https://via.placeholder.com/600/0f59bc/ffffff?text=EDUfa';
 
 
 const BADGE_COLORS = {
-    Info:      'bg-edufa-blue text-white',
-    Terapi:    'bg-edufa-yellow text-gray-900',
-    Autisme:   'bg-edufa-red text-white',
-    Konseling: 'bg-edufa-blue text-white',
-    Edukasi:   'bg-edufa-yellow text-gray-900',
-    Parenting: 'bg-edufa-red text-white',
+    Info:      'bg-EDUfa-blue text-white',
+    Terapi:    'bg-EDUfa-yellow text-gray-900',
+    Autisme:   'bg-EDUfa-red text-white',
+    Konseling: 'bg-EDUfa-blue text-white',
+    Edukasi:   'bg-EDUfa-yellow text-gray-900',
+    Parenting: 'bg-EDUfa-red text-white',
     default:   'bg-gray-600 text-white',
 };
 
@@ -56,7 +56,7 @@ function badgeClass(cat) {
 function Avatar({ name }) {
     const initials = name ? name.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase() : 'A';
     return (
-        <div className="w-9 h-9 rounded-full bg-edufa-blue flex items-center justify-center flex-shrink-0 ring-2 ring-white shadow text-white text-xs font-bold">
+        <div className="w-9 h-9 rounded-full bg-EDUfa-blue flex items-center justify-center flex-shrink-0 ring-2 ring-white shadow text-white text-xs font-bold">
             {initials}
         </div>
     );
@@ -112,7 +112,7 @@ function ArticleCard({ article }) {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-base font-extrabold text-gray-900 leading-snug line-clamp-2 mb-2 group-hover:text-edufa-blue transition-colors duration-200 min-h-[3rem]">
+                <h3 className="text-base font-extrabold text-gray-900 leading-snug line-clamp-2 mb-2 group-hover:text-EDUfa-blue transition-colors duration-200 min-h-[3rem]">
                     {article.title}
                 </h3>
 
@@ -124,7 +124,7 @@ function ArticleCard({ article }) {
                 {/* Read More */}
                 <Link
                     href={route('artikel.show', article.slug)}
-                    className="inline-flex items-center gap-2 text-sm font-bold text-edufa-blue hover:text-white hover:bg-edufa-blue border-2 border-edufa-blue rounded-xl px-4 py-2 transition-all duration-200 self-start group/btn"
+                    className="inline-flex items-center gap-2 text-sm font-bold text-EDUfa-blue hover:text-white hover:bg-EDUfa-blue border-2 border-EDUfa-blue rounded-xl px-4 py-2 transition-all duration-200 self-start group/btn"
                 >
                     Baca Selengkapnya
                     <svg className="w-4 h-4 transition-transform duration-200 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -162,7 +162,7 @@ function FeaturedCard({ article }) {
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-gray-900/20 to-transparent" />
-                <span className="absolute top-4 left-4 text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-lg bg-edufa-yellow text-gray-900">
+                <span className="absolute top-4 left-4 text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-lg bg-EDUfa-yellow text-gray-900">
                     ✨ Pilihan Redaksi
                 </span>
             </div>
@@ -172,7 +172,7 @@ function FeaturedCard({ article }) {
                 <span className={`inline-block text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full mb-4 self-start ${badgeClass(article.category)}`}>
                     {article.category || 'Uncategorized'}
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 leading-snug mb-4 group-hover:text-edufa-blue transition-colors duration-200">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 leading-snug mb-4 group-hover:text-EDUfa-blue transition-colors duration-200">
                     {article.title}
                 </h2>
                 <p className="text-gray-500 leading-relaxed mb-6 line-clamp-3">
@@ -189,7 +189,7 @@ function FeaturedCard({ article }) {
                 </div>
                 <Link
                     href={route('artikel.show', article.slug)}
-                    className="inline-flex items-center gap-2 text-sm font-bold text-white bg-edufa-blue hover:bg-blue-800 rounded-xl px-6 py-3 transition-all duration-200 self-start shadow-md hover:shadow-edufa-blue/30 hover:-translate-y-0.5 group/btn"
+                    className="inline-flex items-center gap-2 text-sm font-bold text-white bg-EDUfa-blue hover:bg-blue-800 rounded-xl px-6 py-3 transition-all duration-200 self-start shadow-md hover:shadow-EDUfa-blue/30 hover:-translate-y-0.5 group/btn"
                 >
                     Baca Selengkapnya
                     <svg className="w-4 h-4 transition-transform duration-200 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -243,7 +243,7 @@ export default function Artikel({ articles = [], tagFilter = null }) {
             <SEO
                 title={tagFilter ? `Tag: ${tagFilter} - Artikel Psikologi & Tumbuh Kembang Anak` : "Artikel Psikologi & Tips Tumbuh Kembang Anak | Blog EDUfa Centre"}
                 description={tagFilter ? `Baca artikel seputar ${tagFilter.toLowerCase()} dari psikolog & ahli EDUfa Centre. Tips, informasi, dan panduan lengkap.` : "Baca artikel terbaru seputar psikologi anak, tips parenting, terapi ABK, tumbuh kembang, dan pendidikan inklusi dari psikolog & ahli EDUfa Centre. Update mingguan!"}
-                keywords={`artikel psikologi anak, blog terapi abk, tips parenting anak berkebutuhan khusus, artikel pendidikan inklusi, informasi psikologi bandung, blog edufa centre, tips tumbuh kembang anak, artikel autisme indonesia, terapi anak${tagFilter ? `, ${tagFilter.toLowerCase()}` : ''}`}
+                keywords={`artikel psikologi anak, blog terapi abk, tips parenting anak berkebutuhan khusus, artikel pendidikan inklusi, informasi psikologi bandung, blog EDUfa centre, tips tumbuh kembang anak, artikel autisme indonesia, terapi anak${tagFilter ? `, ${tagFilter.toLowerCase()}` : ''}`}
                 breadcrumbs={tagFilter ? [
                     { name: "Beranda", url: "/" },
                     { name: "Artikel", url: "/artikel" },
@@ -267,7 +267,7 @@ export default function Artikel({ articles = [], tagFilter = null }) {
                                 opacity: [0.1, 0.15, 0.1]
                             }}
                             transition={{ duration: 20, repeat: Infinity }}
-                            className="absolute -top-24 -left-24 w-[500px] h-[500px] bg-edufa-yellow rounded-full blur-[120px]"
+                            className="absolute -top-24 -left-24 w-[500px] h-[500px] bg-EDUfa-yellow rounded-full blur-[120px]"
                         />
                         <motion.div 
                             animate={{ 
@@ -276,7 +276,7 @@ export default function Artikel({ articles = [], tagFilter = null }) {
                                 opacity: [0.05, 0.1, 0.05]
                             }}
                             transition={{ duration: 25, repeat: Infinity }}
-                            className="absolute top-0 -right-24 w-[600px] h-[600px] bg-edufa-blue rounded-full blur-[150px]"
+                            className="absolute top-0 -right-24 w-[600px] h-[600px] bg-EDUfa-blue rounded-full blur-[150px]"
                         />
                     </div>
                     
@@ -285,9 +285,9 @@ export default function Artikel({ articles = [], tagFilter = null }) {
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                            className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-edufa-blue/5 border border-edufa-blue/10 text-edufa-blue text-xs font-black tracking-widest uppercase shadow-sm"
+                            className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-EDUfa-blue/5 border border-EDUfa-blue/10 text-EDUfa-blue text-xs font-black tracking-widest uppercase shadow-sm"
                         >
-                            <span className="w-2 h-2 rounded-full bg-edufa-blue mr-3 animate-pulse"></span>
+                            <span className="w-2 h-2 rounded-full bg-EDUfa-blue mr-3 animate-pulse"></span>
                             Pengetahuan & Edukasi
                         </motion.div>
 
@@ -296,9 +296,9 @@ export default function Artikel({ articles = [], tagFilter = null }) {
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.3 }}
-                                className="inline-flex items-center gap-2 px-4 py-2 mb-4 rounded-full bg-edufa-yellow/20 border border-edufa-yellow text-gray-800 text-sm font-bold"
+                                className="inline-flex items-center gap-2 px-4 py-2 mb-4 rounded-full bg-EDUfa-yellow/20 border border-EDUfa-yellow text-gray-800 text-sm font-bold"
                             >
-                                <svg className="w-4 h-4 text-edufa-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-4 h-4 text-EDUfa-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z" />
                                 </svg>
                                 Tag: {tagFilter}
@@ -313,10 +313,10 @@ export default function Artikel({ articles = [], tagFilter = null }) {
                         >
                             <RevealText text="Artikel &" className="text-gray-900" />{' '}
                             <span className="relative inline-block mt-2">
-                                <RevealText text="Blog EDUfa" className="text-edufa-blue" delay={0.5} />
+                                <RevealText text="Blog EDUfa" className="text-EDUfa-blue" delay={0.5} />
                                 <motion.svg 
                                     viewBox="0 0 300 20" 
-                                    className="absolute -bottom-2 left-0 w-full h-4 text-edufa-yellow"
+                                    className="absolute -bottom-2 left-0 w-full h-4 text-EDUfa-yellow"
                                     initial={{ pathLength: 0, opacity: 0 }}
                                     animate={{ pathLength: 1, opacity: 1 }}
                                     transition={{ delay: 1.2, duration: 1 }}
@@ -349,7 +349,7 @@ export default function Artikel({ articles = [], tagFilter = null }) {
                             className="mt-10 max-w-md mx-auto"
                         >
                             <div className="relative group">
-                                <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-edufa-blue transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-EDUfa-blue transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
                                 <input
@@ -357,7 +357,7 @@ export default function Artikel({ articles = [], tagFilter = null }) {
                                     value={search}
                                     onChange={handleSearch}
                                     placeholder="Cari artikel menarik..."
-                                    className="w-full pl-12 pr-12 py-4 rounded-2xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-edufa-blue focus:bg-white transition-all text-sm font-medium shadow-sm"
+                                    className="w-full pl-12 pr-12 py-4 rounded-2xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-EDUfa-blue focus:bg-white transition-all text-sm font-medium shadow-sm"
                                 />
                                 {search && (
                                     <button onClick={() => setSearch('')} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-rose-500 transition-colors">
@@ -381,7 +381,7 @@ export default function Artikel({ articles = [], tagFilter = null }) {
                             const count = cat === 'Semua' ? articles.length : articles.filter(a => a.category === cat).length;
                             return (
                                 <button key={cat} onClick={() => handleCategoryChange(cat)}
-                                    className={`px-5 py-2.5 rounded-full text-sm font-bold tracking-wide transition-all duration-200 shadow-sm ${activeCategory === cat ? 'bg-edufa-blue text-white shadow-edufa-blue/30 scale-105' : 'bg-white text-gray-600 hover:bg-gray-100 ring-1 ring-gray-200 hover:scale-105'}`}>
+                                    className={`px-5 py-2.5 rounded-full text-sm font-bold tracking-wide transition-all duration-200 shadow-sm ${activeCategory === cat ? 'bg-EDUfa-blue text-white shadow-EDUfa-blue/30 scale-105' : 'bg-white text-gray-600 hover:bg-gray-100 ring-1 ring-gray-200 hover:scale-105'}`}>
                                     {cat}
                                     <span className={`ml-2 text-[10px] rounded-full px-1.5 py-0.5 ${activeCategory === cat ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-500'}`}>
                                         {count}
@@ -398,8 +398,8 @@ export default function Artikel({ articles = [], tagFilter = null }) {
                     {(search || activeCategory !== 'Semua') && (
                         <p className="text-sm text-gray-500 mb-6">
                             Menampilkan <span className="font-bold text-gray-900">{filtered.length}</span> artikel
-                            {search && <> untuk "<span className="font-bold text-edufa-blue">{search}</span>"</>}
-                            {activeCategory !== 'Semua' && <> dalam kategori <span className="font-bold text-edufa-blue">{activeCategory}</span></>}
+                            {search && <> untuk "<span className="font-bold text-EDUfa-blue">{search}</span>"</>}
+                            {activeCategory !== 'Semua' && <> dalam kategori <span className="font-bold text-EDUfa-blue">{activeCategory}</span></>}
                         </p>
                     )}
 
@@ -412,7 +412,7 @@ export default function Artikel({ articles = [], tagFilter = null }) {
                             <p className="text-lg font-semibold mb-1">Artikel tidak ditemukan</p>
                             <p className="text-sm">Coba kata kunci lain atau pilih kategori berbeda.</p>
                             <button onClick={() => { setSearch(''); setActiveCategory('Semua'); }}
-                                className="mt-4 px-5 py-2 rounded-full bg-edufa-blue text-white text-sm font-bold hover:bg-blue-800 transition-colors">
+                                className="mt-4 px-5 py-2 rounded-full bg-EDUfa-blue text-white text-sm font-bold hover:bg-blue-800 transition-colors">
                                 Reset Filter
                             </button>
                         </motion.div>
@@ -432,7 +432,7 @@ export default function Artikel({ articles = [], tagFilter = null }) {
                                     <motion.button
                                         whileTap={{ scale: 0.96 }}
                                         onClick={() => setPage(p => p + 1)}
-                                        className="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl bg-edufa-blue text-white font-bold text-sm shadow-lg shadow-edufa-blue/20 hover:bg-blue-800 hover:-translate-y-0.5 transition-all duration-200"
+                                        className="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl bg-EDUfa-blue text-white font-bold text-sm shadow-lg shadow-EDUfa-blue/20 hover:bg-blue-800 hover:-translate-y-0.5 transition-all duration-200"
                                     >
                                         Muat Lebih Banyak
                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -455,8 +455,7 @@ export default function Artikel({ articles = [], tagFilter = null }) {
                     <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
                         <div className="flex items-center">
                             <ApplicationLogo className="h-8 w-auto" />
-                            <span className="ml-2 text-lg font-bold">EDU<span className="text-edufa-blue">fa</span></span>
-                        </div>
+                            </div>
                         <p className="text-sm leading-5 text-gray-500">
                             &copy; {new Date().getFullYear()} EDUfa Centre. Menumbuhkan Harapan, Mencapai Masa Depan Terpercaya.
                         </p>

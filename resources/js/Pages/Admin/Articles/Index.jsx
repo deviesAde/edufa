@@ -31,7 +31,7 @@ export default function Index({ articles }) {
         (article.category && article.category.toLowerCase().includes(searchTerm.toLowerCase()))
     )
 
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, post, processing, errors, reset, setError, clearErrors } = useForm({
         title: "",
         content: "",
         category: "",
@@ -100,7 +100,7 @@ export default function Index({ articles }) {
                     <h2 className="text-xl font-black leading-tight text-gray-900 tracking-tight">
                         Manajemen Artikel
                     </h2>
-                    <Button onClick={openCreate} className="bg-edufa-blue hover:bg-edufa-blue/90 text-white rounded-xl shadow-lg shadow-edufa-blue/20 px-6 font-bold">
+                    <Button onClick={openCreate} className="bg-EDUfa-blue hover:bg-EDUfa-blue/90 text-white rounded-xl shadow-lg shadow-EDUfa-blue/20 px-6 font-bold">
                         <Plus className="mr-2 h-4 w-4" /> Tulis Artikel
                     </Button>
                 </div>
@@ -114,7 +114,7 @@ export default function Index({ articles }) {
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                     <Input 
                         placeholder="Cari judul atau kategori..."
-                        className="pl-10 h-11 bg-white border-gray-100 rounded-xl shadow-sm focus:ring-edufa-blue"
+                        className="pl-10 h-11 bg-white border-gray-100 rounded-xl shadow-sm focus:ring-EDUfa-blue"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
@@ -151,7 +151,7 @@ export default function Index({ articles }) {
                                         <td className="px-6 py-5">
                                             <div>
                                                 <p className="font-bold text-gray-900 leading-tight mb-1">{article.title}</p>
-                                                <span className="text-[10px] font-bold text-edufa-blue uppercase bg-edufa-blue/5 px-2 py-0.5 rounded">
+                                                <span className="text-[10px] font-bold text-EDUfa-blue uppercase bg-EDUfa-blue/5 px-2 py-0.5 rounded">
                                                     {article.category || "Uncategorized"}
                                                 </span>
                                             </div>
@@ -196,7 +196,7 @@ export default function Index({ articles }) {
                                                     variant="ghost" 
                                                     size="icon"
                                                     onClick={() => openEdit(article)}
-                                                    className="h-9 w-9 rounded-lg hover:bg-edufa-blue/10 hover:text-edufa-blue transition-colors"
+                                                    className="h-9 w-9 rounded-lg hover:bg-EDUfa-blue/10 hover:text-EDUfa-blue transition-colors"
                                                 >
                                                     <Edit2 className="h-4 w-4" />
                                                 </Button>
@@ -279,7 +279,7 @@ export default function Index({ articles }) {
                                         id="status"
                                         value={data.status}
                                         onChange={e => setData("status", e.target.value)}
-                                        className="h-11 rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-edufa-blue"
+                                        className="h-11 rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-EDUfa-blue"
                                     >
                                         <option value="draft">Draft (Simpan Saja)</option>
                                         <option value="published">Published (Terbitkan)</option>
@@ -297,7 +297,7 @@ export default function Index({ articles }) {
                             </div>
 
                             <div className="grid gap-6 p-6 bg-blue-50/50 rounded-3xl border border-blue-100">
-                                <Label className="text-sm font-black text-edufa-blue uppercase tracking-wider">Kustom Penulis (Expert Voice)</Label>
+                                <Label className="text-sm font-black text-EDUfa-blue uppercase tracking-wider">Kustom Penulis (Expert Voice)</Label>
                                 
                                 <div className="flex items-center space-x-3 mb-2">
                                     <input 
@@ -305,7 +305,7 @@ export default function Index({ articles }) {
                                         id="show_expert_voice"
                                         checked={data.show_expert_voice}
                                         onChange={e => setData("show_expert_voice", e.target.checked)}
-                                        className="w-5 h-5 rounded border-gray-300 text-edufa-blue focus:ring-edufa-blue transition-all cursor-pointer"
+                                        className="w-5 h-5 rounded border-gray-300 text-EDUfa-blue focus:ring-EDUfa-blue transition-all cursor-pointer"
                                     />
                                     <Label htmlFor="show_expert_voice" className="text-sm font-bold text-gray-700 cursor-pointer">Tampilkan Expert Voice di artikel ini</Label>
                                 </div>
@@ -341,16 +341,16 @@ export default function Index({ articles }) {
                                             onChange={e => setData("author_bio", e.target.value)}
                                             rows={3}
                                             placeholder="Tuliskan biografi singkat expert..."
-                                            className="w-full rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-edufa-blue leading-relaxed"
+                                            className="w-full rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-EDUfa-blue leading-relaxed"
                                         />
                                     </div>
                                 </div>
                             </div>
 
                             <div className="grid gap-4 p-6 bg-gray-50 rounded-3xl border border-gray-100">
-                                <Label className="text-sm font-black text-gray-900 uppercase tracking-wider">Thumbnail Artikel</Label>
+                                <Label className="text-sm font-black text-gray-900 uppercase tracking-wider">Thumbnail Artikel <span className="text-gray-400 font-normal text-xs normal-case">(Maks 5MB)</span></Label>
                                 <div 
-                                    className="relative aspect-video rounded-2xl overflow-hidden border-2 border-dashed border-gray-200 bg-white group transition-all hover:border-edufa-blue/50 flex flex-col items-center justify-center cursor-pointer"
+                                    className="relative aspect-video rounded-2xl overflow-hidden border-2 border-dashed border-gray-200 bg-white group transition-all hover:border-EDUfa-blue/50 flex flex-col items-center justify-center cursor-pointer"
                                     onClick={() => document.getElementById('thumb-upload').click()}
                                 >
                                     {data.thumbnail ? (
@@ -363,7 +363,7 @@ export default function Index({ articles }) {
                                         <img src={`/storage/${editingArticle.thumbnail_path}`} alt={`Thumbnail Saat Ini ${editingArticle.title}`} className="w-full h-full object-cover" />
                                     ) : (
                                         <div className="text-center p-6">
-                                            <div className="h-12 w-12 rounded-full bg-gray-50 flex items-center justify-center mx-auto mb-3 text-gray-400 group-hover:text-edufa-blue transition-all">
+                                            <div className="h-12 w-12 rounded-full bg-gray-50 flex items-center justify-center mx-auto mb-3 text-gray-400 group-hover:text-EDUfa-blue transition-all">
                                                 <Plus className="h-6 w-6" />
                                             </div>
                                             <p className="text-xs font-bold text-gray-500">Klik untuk upload thumbnail</p>
@@ -373,7 +373,17 @@ export default function Index({ articles }) {
                                         id="thumb-upload"
                                         type="file" 
                                         className="hidden" 
-                                        onChange={e => setData("thumbnail", e.target.files[0])}
+                                        onChange={e => {
+                                            const file = e.target.files[0];
+                                            if (file && file.size > 5 * 1024 * 1024) {
+                                                setError("thumbnail", "Ukuran thumbnail tidak boleh lebih dari 5MB!");
+                                                setData("thumbnail", null);
+                                                e.target.value = null;
+                                            } else {
+                                                clearErrors("thumbnail");
+                                                setData("thumbnail", file);
+                                            }
+                                        }}
                                         accept="image/*"
                                     />
                                 </div>
@@ -385,7 +395,7 @@ export default function Index({ articles }) {
                             <Button type="button" variant="ghost" onClick={() => setIsModalOpen(false)} className="rounded-xl font-bold">
                                 Batal
                             </Button>
-                            <Button type="submit" disabled={processing} className="bg-edufa-blue hover:bg-edufa-blue/90 text-white rounded-xl shadow-lg shadow-edufa-blue/20 px-8 font-bold">
+                            <Button type="submit" disabled={processing} className="bg-EDUfa-blue hover:bg-EDUfa-blue/90 text-white rounded-xl shadow-lg shadow-EDUfa-blue/20 px-8 font-bold">
                                 {processing ? "Menyimpan..." : (editingArticle ? "Update Artikel" : "Terbitkan Artikel")}
                             </Button>
                         </div>

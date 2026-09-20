@@ -35,7 +35,7 @@ class ServiceSeeder extends Seeder
             ],
             [
                 'title' => 'PAUD EDUfa Kids',
-                'slug' => 'paud-edufa-kids',
+                'slug' => 'paud-EDUfa-kids',
                 'google_form_url' => 'https://docs.google.com/forms/d/e/1FAIpQLSfw7f1x...',
             ],
             [

@@ -7,7 +7,7 @@ export default function SEO({
     canonical, 
     schemaType = 'LocalBusiness',
     schemaData = null,
-    keywords = "biro psikologi bandung, terapi abk bandung, psikolog anak bandung, pusat layanan terapi, asesmen psikologi bandung, edufa centre, paud inklusi, terapi anak, terapi anak bandung",
+    keywords = "biro psikologi bandung, terapi abk bandung, psikolog anak bandung, pusat layanan terapi, asesmen psikologi bandung, EDUfa centre, paud inklusi, terapi anak, terapi anak bandung",
     noindex = false,
     publishedTime,
     modifiedTime,
@@ -16,7 +16,7 @@ export default function SEO({
     faqItems = [],
 }) {
     const { url } = usePage();
-    const appUrl = (typeof window !== 'undefined' ? window.location.origin : 'https://edufa.co.id');
+    const appUrl = (typeof window !== 'undefined' ? window.location.origin : 'https://EDUfa.co.id');
     const pageUrl = canonical || (appUrl + url);
     const fullImageUrl = image.startsWith('http') ? image : `${appUrl}${image.startsWith('/') ? image : `/${image}`}`;
     const logoUrl = `${appUrl}/logo.png`;
@@ -43,7 +43,7 @@ export default function SEO({
         "image": fullImageUrl,
         "description": "EDUfa Centre adalah Biro Psikologi & Pusat Layanan Terapi Anak Berkebutuhan Khusus (ABK) terkemuka di Bandung yang menyediakan asesmen psikologi, pelatihan, konseling, terapi, dan PAUD inklusi.",
         "telephone": "+6281111160600",
-        "email": "info@edufa.co.id",
+        "email": "info@EDUfa.co.id",
         "address": {
             "@type": "PostalAddress",
             "addressLocality": "Bandung",
@@ -51,7 +51,7 @@ export default function SEO({
             "addressCountry": "ID"
         },
         "sameAs": [
-            "https://www.instagram.com/edufa_pusat/"
+            "https://www.instagram.com/EDUfa_pusat/"
         ],
         "contactPoint": {
             "@type": "ContactPoint",
@@ -107,7 +107,7 @@ export default function SEO({
             "@id": appUrl,
             "url": appUrl,
             "telephone": "+6281111160600",
-            "email": "info@edufa.co.id",
+            "email": "info@EDUfa.co.id",
             "priceRange": "$$",
             "address": {
                 "@type": "PostalAddress",

@@ -44,14 +44,14 @@ function ServiceLinkRow({ service }) {
                     <div className="relative flex-1 group/input">
                         <LinkIcon className={cn(
                             "absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 transition-colors",
-                            isActive ? "text-edufa-blue" : "text-gray-400"
+                            isActive ? "text-EDUfa-blue" : "text-gray-400"
                         )} />
                         <Input 
                             value={data.google_form_url}
                             onChange={e => setData("google_form_url", e.target.value)}
                             placeholder="https://docs.google.com/forms/..."
                             className={cn(
-                                "pl-9 h-10 bg-white border-gray-100 rounded-xl text-sm transition-all focus:ring-edufa-blue",
+                                "pl-9 h-10 bg-white border-gray-100 rounded-xl text-sm transition-all focus:ring-EDUfa-blue",
                                 isActive && "border-emerald-100 focus:border-emerald-500"
                             )}
                         />
@@ -63,7 +63,7 @@ function ServiceLinkRow({ service }) {
                             "h-10 px-4 rounded-xl font-bold transition-all duration-300 shadow-sm",
                             recentlySuccessful 
                                 ? "bg-emerald-500 hover:bg-emerald-600 text-white scale-95 shadow-emerald-200" 
-                                : "bg-edufa-blue hover:bg-edufa-blue/90 text-white"
+                                : "bg-EDUfa-blue hover:bg-EDUfa-blue/90 text-white"
                         )}
                     >
                         {recentlySuccessful ? (
@@ -78,7 +78,7 @@ function ServiceLinkRow({ service }) {
                         target="_blank" 
                         rel="noreferrer"
                         className={cn(
-                            "h-10 w-10 rounded-xl border border-gray-100 flex items-center justify-center text-gray-400 hover:text-edufa-blue hover:border-edufa-blue transition-all",
+                            "h-10 w-10 rounded-xl border border-gray-100 flex items-center justify-center text-gray-400 hover:text-EDUfa-blue hover:border-EDUfa-blue transition-all",
                             !data.google_form_url && "opacity-20 pointer-events-none"
                         )}
                         title="Buka Link di Tab Baru"
@@ -104,7 +104,7 @@ export default function Index({ services }) {
 
             <div className="space-y-6">
                 <div className="bg-blue-50/50 border border-blue-100 p-6 rounded-[2rem]">
-                    <h3 className="text-sm font-black text-edufa-blue uppercase tracking-widest mb-2">Informasi</h3>
+                    <h3 className="text-sm font-black text-EDUfa-blue uppercase tracking-widest mb-2">Informasi</h3>
                     <p className="text-sm text-gray-600 font-medium leading-relaxed">
                         Halaman ini digunakan untuk memperbarui link Google Form pendaftaran pada setiap layanan. 
                         Pastikan link yang dimasukkan adalah link valid (dimulai dengan http:// atau https://).

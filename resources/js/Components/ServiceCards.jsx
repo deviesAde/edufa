@@ -22,7 +22,7 @@ const services = [
         icon: <ClipboardCheck />,
         accentColor: "#0f59bc", 
         lightBg: "bg-blue-50",
-        iconColor: "text-edufa-blue",
+        iconColor: "text-EDUfa-blue",
         href: route('pelayanan.asesmen')
     },
     {
@@ -40,7 +40,7 @@ const services = [
         icon: <GraduationCap />,
         accentColor: "#6cc02f", 
         lightBg: "bg-green-50",
-        iconColor: "text-edufa-green",
+        iconColor: "text-EDUfa-green",
         href: route('pelayanan.pelatihan')
     },
     {
@@ -49,7 +49,7 @@ const services = [
         icon: <Baby />,
         accentColor: "#ff0000", 
         lightBg: "bg-red-50",
-        iconColor: "text-edufa-red",
+        iconColor: "text-EDUfa-red",
         href: route('pelayanan.paud')
     },
     {
@@ -58,7 +58,7 @@ const services = [
         icon: <Users />,
         accentColor: "#0f59bc", 
         lightBg: "bg-blue-50",
-        iconColor: "text-edufa-blue",
+        iconColor: "text-EDUfa-blue",
         href: route('pelayanan.konseling')
     },
     {
@@ -76,7 +76,7 @@ const services = [
         icon: <Briefcase />,
         accentColor: "#6cc02f", 
         lightBg: "bg-green-50",
-        iconColor: "text-edufa-green",
+        iconColor: "text-EDUfa-green",
         href: route('pelayanan.balai')
     }
 ];
@@ -155,7 +155,7 @@ export default function ServiceCards() {
                                     </h3>
                                     <span className={cn(
                                         "flex items-center gap-2 px-5 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-md transition-transform",
-                                        isYellow ? "bg-edufa-yellow text-gray-900" : "bg-edufa-blue text-white"
+                                        isYellow ? "bg-EDUfa-yellow text-gray-900" : "bg-EDUfa-blue text-white"
                                     )}>
                                         Cek <ArrowRight size={14} />
                                     </span>
@@ -172,7 +172,7 @@ export default function ServiceCards() {
                             const container = document.getElementById('service-scroll-container');
                             container.scrollBy({ left: -240, behavior: 'smooth' });
                         }}
-                        className="p-5 rounded-full bg-white shadow-lg border border-gray-100 text-edufa-blue active:scale-90 transition-transform touch-manipulation min-w-[50px] min-h-[50px] flex items-center justify-center"
+                        className="p-5 rounded-full bg-white shadow-lg border border-gray-100 text-EDUfa-blue active:scale-90 transition-transform touch-manipulation min-w-[50px] min-h-[50px] flex items-center justify-center"
                         aria-label="Slide left"
                     >
                         <ChevronLeft size={24} />
@@ -190,7 +190,7 @@ export default function ServiceCards() {
                             const container = document.getElementById('service-scroll-container');
                             container.scrollBy({ left: 240, behavior: 'smooth' });
                         }}
-                        className="p-4 rounded-full bg-white shadow-xl border border-gray-100 text-edufa-blue active:scale-90 transition-transform touch-manipulation"
+                        className="p-4 rounded-full bg-white shadow-xl border border-gray-100 text-EDUfa-blue active:scale-90 transition-transform touch-manipulation"
                         aria-label="Slide right"
                     >
                         <ChevronRight size={24} />

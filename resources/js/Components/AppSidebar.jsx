@@ -90,7 +90,7 @@ export function AppSidebar() {
           {state !== "collapsed" && (
             <div className="flex flex-col">
               <span className="text-sm font-black leading-none text-sidebar-foreground">
-                EDU<span className="text-edufa-blue">FA</span>
+                EDU<span className="text-EDUfa-blue">FA</span>
               </span>
               <span className="text-[10px] text-muted-foreground font-medium">CENTRE ADMIN</span>
             </div>
@@ -112,7 +112,7 @@ export function AppSidebar() {
                     className={cn(
                       "transition-all duration-200 rounded-xl px-4 py-2.5 h-11",
                       item.active 
-                        ? "!bg-edufa-yellow text-gray-900 font-bold shadow-md shadow-edufa-yellow/20" 
+                        ? "!bg-EDUfa-yellow text-gray-900 font-bold shadow-md shadow-EDUfa-yellow/20" 
                         : "hover:bg-sidebar-accent text-muted-foreground hover:text-sidebar-foreground"
                     )}
                   >
@@ -142,7 +142,7 @@ export function AppSidebar() {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" className="w-full">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-edufa-blue/10 text-edufa-blue">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-EDUfa-blue/10 text-EDUfa-blue">
                 <User2 className="h-4 w-4" />
               </div>
               <div className="flex flex-1 flex-col items-start overflow-hidden text-left">

@@ -57,7 +57,7 @@ export default function Index({ images }) {
         })
     }
 
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, post, processing, errors, reset, setError, clearErrors } = useForm({
         image: null,
         _method: "POST",
     })
@@ -111,7 +111,7 @@ export default function Index({ images }) {
                     <h2 className="text-xl font-black leading-tight text-gray-900 tracking-tight">
                         Manajemen Gambar Konsultan
                     </h2>
-                    <Button onClick={openCreate} className="bg-edufa-blue hover:bg-edufa-blue/90 text-white rounded-xl shadow-lg shadow-edufa-blue/20 px-6 font-bold">
+                    <Button onClick={openCreate} className="bg-EDUfa-blue hover:bg-EDUfa-blue/90 text-white rounded-xl shadow-lg shadow-EDUfa-blue/20 px-6 font-bold">
                         <Plus className="mr-2 h-4 w-4" /> Tambah Gambar
                     </Button>
                 </div>
@@ -182,7 +182,7 @@ export default function Index({ images }) {
                                                                         variant="ghost" 
                                                                         size="icon"
                                                                         onClick={() => openEdit(img)}
-                                                                        className="h-9 w-9 rounded-lg hover:bg-edufa-blue/10 hover:text-edufa-blue transition-colors"
+                                                                        className="h-9 w-9 rounded-lg hover:bg-EDUfa-blue/10 hover:text-EDUfa-blue transition-colors"
                                                                     >
                                                                         <Edit2 className="h-4 w-4" />
                                                                     </Button>
@@ -239,10 +239,10 @@ export default function Index({ images }) {
                     <form onSubmit={submit} className="py-6 space-y-6">
                         <div className="space-y-4">
                             <div className="grid gap-2">
-                                <Label className="text-sm font-bold text-gray-700">File Gambar</Label>
+                                <Label className="text-sm font-bold text-gray-700">File Gambar <span className="text-gray-400 font-normal text-xs">(Maks 5MB)</span></Label>
                                 <div className="space-y-4">
                                     <div 
-                                        className="relative aspect-video rounded-2xl overflow-hidden border-2 border-dashed border-gray-200 bg-gray-50 group transition-all hover:border-edufa-blue/50 flex flex-col items-center justify-center cursor-pointer"
+                                        className="relative aspect-video rounded-2xl overflow-hidden border-2 border-dashed border-gray-200 bg-gray-50 group transition-all hover:border-EDUfa-blue/50 flex flex-col items-center justify-center cursor-pointer"
                                         onClick={() => document.getElementById('image-upload').click()}
                                     >
                                         {data.image || editingImage?.image_path ? (
@@ -253,7 +253,7 @@ export default function Index({ images }) {
                                             />
                                         ) : (
                                             <div className="text-center p-6">
-                                                <div className="h-12 w-12 rounded-full bg-white shadow-sm flex items-center justify-center mx-auto mb-3 text-gray-400 group-hover:text-edufa-blue group-hover:scale-110 transition-all">
+                                                <div className="h-12 w-12 rounded-full bg-white shadow-sm flex items-center justify-center mx-auto mb-3 text-gray-400 group-hover:text-EDUfa-blue group-hover:scale-110 transition-all">
                                                     <Plus className="h-6 w-6" />
                                                 </div>
                                                 <p className="text-xs font-bold text-gray-500">Klik untuk upload gambar</p>
@@ -264,7 +264,17 @@ export default function Index({ images }) {
                                             id="image-upload"
                                             type="file" 
                                             className="hidden" 
-                                            onChange={e => setData("image", e.target.files[0])}
+                                            onChange={e => {
+                                                const file = e.target.files[0];
+                                                if (file && file.size > 5 * 1024 * 1024) {
+                                                    setError("image", "Ukuran gambar tidak boleh lebih dari 5MB!");
+                                                    setData("image", null);
+                                                    e.target.value = null;
+                                                } else {
+                                                    clearErrors("image");
+                                                    setData("image", file);
+                                                }
+                                            }}
                                             accept="image/*"
                                         />
                                     </div>
@@ -277,7 +287,7 @@ export default function Index({ images }) {
                             <Button type="button" variant="ghost" onClick={() => setIsModalOpen(false)} className="rounded-xl font-bold">
                                 Batal
                             </Button>
-                            <Button type="submit" disabled={processing} className="bg-edufa-blue hover:bg-edufa-blue/90 text-white rounded-xl shadow-lg shadow-edufa-blue/20 px-8 font-bold">
+                            <Button type="submit" disabled={processing} className="bg-EDUfa-blue hover:bg-EDUfa-blue/90 text-white rounded-xl shadow-lg shadow-EDUfa-blue/20 px-8 font-bold">
                                 {processing ? "Menyimpan..." : "Simpan Gambar"}
                             </Button>
                         </div>

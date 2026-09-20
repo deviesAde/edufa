@@ -35,14 +35,14 @@ export default function FloatingWhatsApp() {
                                 className="w-72 sm:w-80 bg-white rounded-[1.5rem] shadow-[0_20px_60px_-15px_rgba(15,89,188,0.3)] border border-gray-100 overflow-hidden pointer-events-auto flex flex-col"
                             >
                                 {/* Chat Header */}
-                                <div className="bg-edufa-blue p-5 flex items-center gap-4">
+                                <div className="bg-EDUfa-blue p-5 flex items-center gap-4">
                                     <div className="relative">
                                         <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center border border-white/30 backdrop-blur-sm">
                                             <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                             </svg>
                                         </div>
-                                        <span className="absolute -bottom-1 -right-1 w-4 h-4 bg-edufa-green border-2 border-edufa-blue rounded-full animate-pulse"></span>
+                                        <span className="absolute -bottom-1 -right-1 w-4 h-4 bg-EDUfa-green border-2 border-EDUfa-blue rounded-full animate-pulse"></span>
                                     </div>
                                     <div>
                                         <h4 className="text-base font-black text-white leading-tight">Admin EDUfa Center</h4>
@@ -79,7 +79,7 @@ export default function FloatingWhatsApp() {
                                         </p>
                                         <div className="flex items-center justify-end gap-1 mt-2">
                                             <span className="text-[10px] text-gray-400 font-medium">09:41</span>
-                                            <svg className="w-3 h-3 text-edufa-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+                                            <svg className="w-3 h-3 text-EDUfa-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
                                         </div>
                                     </motion.div>
                                 </div>
@@ -90,11 +90,11 @@ export default function FloatingWhatsApp() {
                                         href={waLink1}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="p-4 hover:bg-edufa-blue/5 text-center transition-all group/footer"
+                                        className="p-4 hover:bg-EDUfa-blue/5 text-center transition-all group/footer"
                                     >
-                                        <span className="text-sm font-black text-edufa-blue uppercase tracking-[0.12em] flex items-center justify-center gap-3">
+                                        <span className="text-sm font-black text-EDUfa-blue uppercase tracking-[0.12em] flex items-center justify-center gap-3">
                                             Admin 1 (0811 1116 0600)
-                                            <svg className="w-4 h-4 text-edufa-blue group-hover/footer:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
+                                            <svg className="w-4 h-4 text-EDUfa-blue group-hover/footer:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7-7 7M5 12h16" />
                                             </svg>
                                         </span>
@@ -103,11 +103,11 @@ export default function FloatingWhatsApp() {
                                         href={waLink2}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="p-4 hover:bg-edufa-blue/5 text-center transition-all group/footer"
+                                        className="p-4 hover:bg-EDUfa-blue/5 text-center transition-all group/footer"
                                     >
-                                        <span className="text-sm font-black text-edufa-blue uppercase tracking-[0.12em] flex items-center justify-center gap-3">
+                                        <span className="text-sm font-black text-EDUfa-blue uppercase tracking-[0.12em] flex items-center justify-center gap-3">
                                             Admin 2 (0878 3390 0800)
-                                            <svg className="w-4 h-4 text-edufa-blue group-hover/footer:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
+                                            <svg className="w-4 h-4 text-EDUfa-blue group-hover/footer:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7-7 7M5 12h16" />
                                             </svg>
                                         </span>
@@ -130,15 +130,15 @@ export default function FloatingWhatsApp() {
                                     className="relative group pointer-events-auto"
                                 >
                                     {/* Ambient Glow */}
-                                    <div className="absolute -inset-1 bg-gradient-to-r from-edufa-yellow to-edufa-blue rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                                    <div className="absolute -inset-1 bg-gradient-to-r from-EDUfa-yellow to-EDUfa-blue rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
 
                                     <button
                                         onClick={() => setShowChat(true)}
-                                        className="relative bg-white px-5 py-3 sm:px-8 sm:py-4 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] border-2 border-edufa-blue/10 flex items-center gap-3 transition-all hover:scale-105 hover:border-edufa-blue active:scale-95"
+                                        className="relative bg-white px-5 py-3 sm:px-8 sm:py-4 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] border-2 border-EDUfa-blue/10 flex items-center gap-3 transition-all hover:scale-105 hover:border-EDUfa-blue active:scale-95"
                                     >
                                         <span className="flex h-2 w-2 sm:h-3 sm:w-3 relative">
-                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-edufa-yellow opacity-75"></span>
-                                            <span className="relative inline-flex rounded-full h-2 w-2 sm:h-3 sm:w-3 bg-edufa-yellow"></span>
+                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-EDUfa-yellow opacity-75"></span>
+                                            <span className="relative inline-flex rounded-full h-2 w-2 sm:h-3 sm:w-3 bg-EDUfa-yellow"></span>
                                         </span>
                                         <p className="text-xs sm:text-lg font-black text-gray-800 whitespace-nowrap tracking-tight">
                                             Apakah ingin memulai konsultasi sekarang?
@@ -157,7 +157,7 @@ export default function FloatingWhatsApp() {
                                     animate={{ opacity: 1, scale: 1 }}
                                     className="absolute -top-1 -right-1 z-10"
                                 >
-                                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-edufa-red text-[12px] font-black text-white shadow-xl ring-4 ring-white animate-bounce">1</span>
+                                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-EDUfa-red text-[12px] font-black text-white shadow-xl ring-4 ring-white animate-bounce">1</span>
                                 </motion.div>
                             )}
 
@@ -168,11 +168,11 @@ export default function FloatingWhatsApp() {
                                 animate={{ scale: 1, rotate: 0 }}
                                 whileHover={{ scale: 1.15, rotate: 5 }}
                                 whileTap={{ scale: 0.9 }}
-                                className="group relative flex h-14 w-14 sm:h-20 sm:w-20 items-center justify-center rounded-2xl sm:rounded-[2rem] bg-edufa-blue shadow-[0_15px_40px_-10px_rgba(15,89,188,0.5)] transition-all ring-4 ring-white/80 backdrop-blur-sm"
+                                className="group relative flex h-14 w-14 sm:h-20 sm:w-20 items-center justify-center rounded-2xl sm:rounded-[2rem] bg-EDUfa-blue shadow-[0_15px_40px_-10px_rgba(15,89,188,0.5)] transition-all ring-4 ring-white/80 backdrop-blur-sm"
                             >
                                 {/* Aggressive Pulse Effect */}
-                                <span className="absolute inset-0 rounded-2xl sm:rounded-[2rem] bg-edufa-blue animate-[ping_2s_linear_infinite] opacity-30"></span>
-                                <span className="absolute -inset-2 rounded-[1.5rem] sm:rounded-[2.5rem] border-2 border-edufa-blue/20 animate-pulse"></span>
+                                <span className="absolute inset-0 rounded-2xl sm:rounded-[2rem] bg-EDUfa-blue animate-[ping_2s_linear_infinite] opacity-30"></span>
+                                <span className="absolute -inset-2 rounded-[1.5rem] sm:rounded-[2.5rem] border-2 border-EDUfa-blue/20 animate-pulse"></span>
 
                                 {/* Icon Toggle */}
                                 <AnimatePresence mode="wait">

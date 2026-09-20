@@ -37,7 +37,7 @@ const RevealText = ({ text, className = "", delay = 0 }) => {
 function SectionHeading({ icon, title, subtitle }) {
     return (
         <div className="flex items-center gap-4 mb-8">
-            <div className="w-12 h-12 rounded-2xl bg-edufa-blue flex items-center justify-center flex-shrink-0 shadow-lg shadow-edufa-blue/20 text-white">
+            <div className="w-12 h-12 rounded-2xl bg-EDUfa-blue flex items-center justify-center flex-shrink-0 shadow-lg shadow-EDUfa-blue/20 text-white">
                 {icon}
             </div>
             <div>
@@ -66,7 +66,7 @@ function GalleryCard({ item, onClick }) {
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
             </div>
-            <div className="absolute inset-0 bg-edufa-blue/80 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-center p-8 text-center backdrop-blur-sm">
+            <div className="absolute inset-0 bg-EDUfa-blue/80 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-center p-8 text-center backdrop-blur-sm">
                 <div className="w-12 h-12 rounded-full bg-white/20 mb-4 flex items-center justify-center text-white scale-0 group-hover:scale-100 transition-transform duration-500 delay-100">
                     <ImageIcon className="w-6 h-6" />
                 </div>
@@ -74,7 +74,7 @@ function GalleryCard({ item, onClick }) {
                 <p className="text-blue-50 text-sm line-clamp-3 font-medium">{item.desc}</p>
             </div>
             <div className="absolute top-4 left-4 z-10">
-                <span className="text-[10px] font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full bg-edufa-yellow text-gray-900 shadow-lg">
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full bg-EDUfa-yellow text-gray-900 shadow-lg">
                     {item.kategori}
                 </span>
             </div>
@@ -104,12 +104,12 @@ function VideoCard({ item, onClick }) {
                 />
                 <div className="absolute inset-0 bg-gray-900/40 group-hover:bg-gray-900/60 transition-colors duration-500" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-16 h-16 rounded-full bg-edufa-yellow text-gray-900 flex items-center justify-center shadow-2xl scale-90 group-hover:scale-100 transition-transform duration-500">
+                    <div className="w-16 h-16 rounded-full bg-EDUfa-yellow text-gray-900 flex items-center justify-center shadow-2xl scale-90 group-hover:scale-100 transition-transform duration-500">
                         <Play className="w-8 h-8 fill-current ml-1" />
                     </div>
                 </div>
                 <div className="absolute top-4 left-4 z-10">
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full bg-edufa-blue text-white shadow-lg">
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full bg-EDUfa-blue text-white shadow-lg">
                         VIDEO
                     </span>
                 </div>
@@ -147,7 +147,7 @@ function PhotoModal({ item, onClose }) {
                         <img src={item.img} alt={item.title} className="w-full h-full object-cover" />
                     </div>
                     <div className="lg:w-1/3 p-8 sm:p-10 flex flex-col justify-center">
-                        <span className="inline-block text-[10px] font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full bg-edufa-yellow text-gray-900 mb-6 w-fit">{item.kategori}</span>
+                        <span className="inline-block text-[10px] font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full bg-EDUfa-yellow text-gray-900 mb-6 w-fit">{item.kategori}</span>
                         {item.title && <h2 className="text-3xl font-black text-gray-900 mb-4 leading-tight">{item.title}</h2>}
                         <p className="text-gray-500 font-medium leading-relaxed">{item.desc || 'Tidak ada deskripsi.'}</p>
                     </div>
@@ -187,7 +187,7 @@ function VideoModal({ item, onClose }) {
                     />
                 </div>
                 <div className="p-8 sm:p-10 border-t border-white/5">
-                    <span className="inline-block text-[10px] font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full bg-edufa-blue text-white mb-4">{item.kategori}</span>
+                    <span className="inline-block text-[10px] font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full bg-EDUfa-blue text-white mb-4">{item.kategori}</span>
                     {item.title && <h2 className="text-2xl font-black text-white mb-2">{item.title}</h2>}
                     <p className="text-gray-400 font-medium text-sm leading-relaxed">{item.desc || 'Tidak ada deskripsi.'}</p>
                 </div>
@@ -241,11 +241,11 @@ export default function Kegiatan({ activities = [] }) {
     const videos = filteredActivities.filter(item => item.media_type === 'video');
 
     return (
-        <div className="min-h-screen bg-gray-50/50 font-sans text-gray-900 antialiased selection:bg-edufa-blue selection:text-white">
+        <div className="min-h-screen bg-gray-50/50 font-sans text-gray-900 antialiased selection:bg-EDUfa-blue selection:text-white">
             <SEO
                 title="Kegiatan & Galeri Aktivitas EDUfa Centre | Terapi, Workshop, Kelas"
                 description="Lihat galeri kegiatan EDUfa Centre: sesi terapi intensif, workshop psikologi, kelas PAUD inklusi, dan aktivitas seru anak berkebutuhan khusus. Dokumentasi lengkap kegiatan kami."
-                keywords="kegiatan edufa centre, galeri terapi abk, workshop psikologi bandung, kelas inklusi, aktivitas anak berkebutuhan khusus, dokumentasi edufa, sesi terapi anak, pelatihan psikologi"
+                keywords="kegiatan EDUfa centre, galeri terapi abk, workshop psikologi bandung, kelas inklusi, aktivitas anak berkebutuhan khusus, dokumentasi EDUfa, sesi terapi anak, pelatihan psikologi"
                 breadcrumbs={[
                     { name: "Beranda", url: "/" },
                     { name: "Kegiatan", url: "/kegiatan" }
@@ -257,22 +257,22 @@ export default function Kegiatan({ activities = [] }) {
                 {/* Hero Section */}
                 <div className="relative py-20 lg:py-32 overflow-hidden bg-white">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
-                        <div className="absolute -top-24 -left-24 w-[600px] h-[600px] bg-edufa-yellow/10 rounded-full blur-[120px]" />
-                        <div className="absolute top-0 -right-24 w-[700px] h-[700px] bg-edufa-blue/10 rounded-full blur-[150px]" />
+                        <div className="absolute -top-24 -left-24 w-[600px] h-[600px] bg-EDUfa-yellow/10 rounded-full blur-[120px]" />
+                        <div className="absolute top-0 -right-24 w-[700px] h-[700px] bg-EDUfa-blue/10 rounded-full blur-[150px]" />
                     </div>
                     
                     <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10 text-center">
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="inline-flex items-center justify-center px-6 py-2 mb-8 rounded-full bg-edufa-blue text-white text-[10px] font-black tracking-[0.3em] uppercase shadow-xl shadow-edufa-blue/20"
+                            className="inline-flex items-center justify-center px-6 py-2 mb-8 rounded-full bg-EDUfa-blue text-white text-[10px] font-black tracking-[0.3em] uppercase shadow-xl shadow-EDUfa-blue/20"
                         >
                             Dokumentasi Kegiatan
                         </motion.div>
                         
                         <h1 className="text-5xl font-black tracking-tight text-gray-900 sm:text-7xl lg:text-8xl leading-none">
                             <RevealText text="Momen" className="text-gray-900" />{' '}
-                            <span className="text-edufa-blue">
+                            <span className="text-EDUfa-blue">
                                 <RevealText text="Berharga" delay={0.5} />
                             </span>
                         </h1>
@@ -289,7 +289,7 @@ export default function Kegiatan({ activities = [] }) {
                             <button 
                                 key={cat} 
                                 onClick={() => setActiveCategory(cat)}
-                                className={`px-10 py-4 rounded-3xl text-sm font-black tracking-wider transition-all duration-500 shadow-sm ${activeCategory === cat ? 'bg-edufa-blue text-white shadow-2xl shadow-edufa-blue/40 scale-105' : 'bg-white text-gray-500 hover:bg-gray-100 ring-1 ring-gray-100 hover:scale-105'}`}
+                                className={`px-10 py-4 rounded-3xl text-sm font-black tracking-wider transition-all duration-500 shadow-sm ${activeCategory === cat ? 'bg-EDUfa-blue text-white shadow-2xl shadow-EDUfa-blue/40 scale-105' : 'bg-white text-gray-500 hover:bg-gray-100 ring-1 ring-gray-100 hover:scale-105'}`}
                             >
                                 {cat.toUpperCase()}
                             </button>
@@ -364,7 +364,7 @@ export default function Kegiatan({ activities = [] }) {
                 <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
                     <ApplicationLogo className="h-12 w-auto mx-auto mb-8 opacity-20" />
                     <p className="text-sm font-bold text-gray-400 uppercase tracking-[0.3em]">
-                        &copy; {new Date().getFullYear()} EDUFA CENTRE • ALL RIGHTS RESERVED
+                        &copy; {new Date().getFullYear()} EDUfa CENTRE • ALL RIGHTS RESERVED
                     </p>
                 </div>
             </footer>

@@ -71,28 +71,42 @@ export default function Index({ teamMembers }) {
     }
 
     const filteredMembers = getFilteredTeamMembers()
+    const filteredTerapis = filteredMembers.filter(m => m.type === 'terapis')
+    const filteredStaf = filteredMembers.filter(m => m.type === 'staf')
 
     const handleDragEnd = (result) => {
-        if (!result.destination) return
+        const { source, destination } = result;
 
-        const items = Array.from(localTeamMembers)
-        const [reorderedItem] = items.splice(result.source.index, 1)
-        items.splice(result.destination.index, 0, reorderedItem)
+        if (!destination) return;
 
-        setLocalTeamMembers(items)
+        if (source.droppableId !== destination.droppableId) {
+             return;
+        }
+
+        const droppableId = source.droppableId;
+        
+        const membersOfType = localTeamMembers.filter(m => m.type === droppableId);
+        const [reorderedItem] = membersOfType.splice(source.index, 1);
+        membersOfType.splice(destination.index, 0, reorderedItem);
+
+        const terapisMembers = droppableId === 'terapis' ? membersOfType : localTeamMembers.filter(m => m.type === 'terapis');
+        const stafMembers = droppableId === 'staf' ? membersOfType : localTeamMembers.filter(m => m.type === 'staf');
+        
+        const newLocalTeamMembers = [...terapisMembers, ...stafMembers];
+
+        setLocalTeamMembers(newLocalTeamMembers);
 
         router.post(route('admin.team-members.reorder'), {
-            members: items.map(item => item.id)
+            members: newLocalTeamMembers.map(item => item.id)
         }, {
             preserveScroll: true,
             onSuccess: () => {
-                // Refresh halaman untuk memastikan data dari database yang dimuat
                 router.reload()
             }
         })
     }
 
-    const { data, setData, post, put, processing, errors, reset } = useForm({
+    const { data, setData, post, put, processing, errors, reset, setError, clearErrors } = useForm({
         name: "",
         type: "terapis", // default
         role: "",
@@ -166,6 +180,112 @@ export default function Index({ teamMembers }) {
         }
     }
 
+    const renderTable = (droppableId, title, members) => (
+        <div className="bg-white rounded-3xl border border-gray-100 shadow-sm shadow-gray-200/50 overflow-hidden">
+            <div className="p-5 border-b border-gray-100 bg-gray-50/50">
+                <h3 className="font-black text-gray-900 text-lg">{title}</h3>
+            </div>
+            <div className="overflow-x-auto">
+                <table className="w-full text-left">
+                    <thead className="bg-gray-50/50 border-b border-gray-100">
+                        <tr>
+                            <th className="w-10 px-3 py-4"></th>
+                            <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-widest">Foto</th>
+                            <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-widest">Nama & Tipe</th>
+                            <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-widest">Jabatan / Status</th>
+                            <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-widest text-right">Aksi</th>
+                        </tr>
+                    </thead>
+                    <Droppable droppableId={droppableId} isDropDisabled={isDragDisabled}>
+                        {(provided) => (
+                            <tbody 
+                                className="divide-y divide-gray-100"
+                                {...provided.droppableProps}
+                                ref={provided.innerRef}
+                            >
+                                {members.map((member, index) => (
+                                    <Draggable key={member.id} draggableId={member.id.toString()} index={index} isDragDisabled={isDragDisabled}>
+                                        {(provided, snapshot) => (
+                                            <tr 
+                                                className={cn("hover:bg-gray-50/50 transition-colors group bg-white", snapshot.isDragging && "shadow-lg bg-gray-50/80 z-50 relative")}
+                                                ref={provided.innerRef}
+                                                {...provided.draggableProps}
+                                            >
+                                                <td className="px-3 py-5 w-10">
+                                                    <div 
+                                                        {...provided.dragHandleProps} 
+                                                        className={cn("text-gray-300 hover:text-gray-500 transition-colors p-2 cursor-grab active:cursor-grabbing", isDragDisabled && "opacity-50 cursor-not-allowed")}
+                                                    >
+                                                        <GripVertical className="h-5 w-5" />
+                                                    </div>
+                                                </td>
+                                                <td className="px-6 py-5">
+                                                    <div className="h-14 w-14 rounded-xl overflow-hidden bg-gray-100 border border-gray-100">
+                                                        {member.photo_url ? (
+                                                            <img src={member.photo_url} alt={member.name} className="w-full h-full object-cover" />
+                                                        ) : (
+                                                            <div className="w-full h-full flex items-center justify-center text-gray-300">
+                                                                <User className="h-6 w-6" />
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                </td>
+                                                <td className="px-6 py-5">
+                                                    <div className="flex flex-col">
+                                                        <p className="font-bold text-gray-900">{member.name}</p>
+                                                        <span className={cn(
+                                                            "mt-1 text-[10px] font-bold uppercase w-max px-2 py-0.5 rounded",
+                                                            member.type === 'terapis' ? "bg-EDUfa-blue/10 text-EDUfa-blue" : "bg-EDUfa-yellow/20 text-EDUfa-yellow"
+                                                        )}>
+                                                            {member.type}
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                                <td className="px-6 py-5">
+                                                    <p className="font-medium text-gray-700">{member.role}</p>
+                                                    {member.description && (
+                                                        <p className="text-xs text-gray-500 mt-1 line-clamp-1 max-w-xs">{member.description}</p>
+                                                    )}
+                                                </td>
+                                                <td className="px-6 py-5 text-right">
+                                                    <div className="flex items-center justify-end gap-2">
+                                                        <Button 
+                                                            variant="ghost" 
+                                                            size="icon"
+                                                            onClick={() => openEdit(member)}
+                                                            className="h-9 w-9 rounded-lg hover:bg-EDUfa-blue/10 hover:text-EDUfa-blue transition-colors"
+                                                        >
+                                                            <Edit2 className="h-4 w-4" />
+                                                        </Button>
+                                                        <Button 
+                                                            variant="ghost" 
+                                                            size="icon"
+                                                            onClick={() => deleteMember(member.id)}
+                                                            className="h-9 w-9 rounded-lg hover:bg-rose-50 hover:text-rose-600 transition-colors"
+                                                        >
+                                                            <Trash2 className="h-4 w-4" />
+                                                        </Button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        )}
+                                    </Draggable>
+                                ))}
+                                {provided.placeholder}
+                            </tbody>
+                        )}
+                    </Droppable>
+                </table>
+                {members.length === 0 && (
+                    <div className="py-20 text-center">
+                        <User className="h-12 w-12 text-gray-200 mx-auto mb-4" />
+                        <p className="text-gray-500 font-medium">Tidak ada {title.toLowerCase()} ditemukan.</p>
+                    </div>
+                )}
+            </div>
+        </div>
+    )
+
     return (
         <>
         <AuthenticatedLayout
@@ -174,7 +294,7 @@ export default function Index({ teamMembers }) {
                     <h2 className="text-xl font-black leading-tight text-gray-900 tracking-tight">
                         Manajemen Tim
                     </h2>
-                    <Button onClick={openCreate} className="bg-edufa-blue hover:bg-edufa-blue/90 text-white rounded-xl shadow-lg shadow-edufa-blue/20 px-6 font-bold">
+                    <Button onClick={openCreate} className="bg-EDUfa-blue hover:bg-EDUfa-blue/90 text-white rounded-xl shadow-lg shadow-EDUfa-blue/20 px-6 font-bold">
                         <Plus className="mr-2 h-4 w-4" /> Tambah Anggota
                     </Button>
                 </div>
@@ -189,7 +309,7 @@ export default function Index({ teamMembers }) {
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                         <Input 
                             placeholder="Cari nama, jabatan, atau tipe..."
-                            className="pl-10 h-11 bg-white border-gray-100 rounded-xl shadow-sm focus:ring-edufa-blue"
+                            className="pl-10 h-11 bg-white border-gray-100 rounded-xl shadow-sm focus:ring-EDUfa-blue"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
@@ -211,7 +331,7 @@ export default function Index({ teamMembers }) {
                             className={cn(
                                 "rounded-lg h-10 font-bold text-sm transition-all",
                                 sortBy === "name" 
-                                    ? "bg-edufa-blue text-white hover:bg-edufa-blue/90 shadow-md" 
+                                    ? "bg-EDUfa-blue text-white hover:bg-EDUfa-blue/90 shadow-md" 
                                     : "border-gray-200 hover:bg-gray-50"
                             )}
                         >
@@ -235,7 +355,7 @@ export default function Index({ teamMembers }) {
                             className={cn(
                                 "rounded-lg h-10 font-bold text-sm transition-all",
                                 sortBy === "date" 
-                                    ? "bg-edufa-blue text-white hover:bg-edufa-blue/90 shadow-md" 
+                                    ? "bg-EDUfa-blue text-white hover:bg-EDUfa-blue/90 shadow-md" 
                                     : "border-gray-200 hover:bg-gray-50"
                             )}
                         >
@@ -263,109 +383,13 @@ export default function Index({ teamMembers }) {
                     </div>
                 </div>
 
-                {/* Table / Grid */}
-                <div className="bg-white rounded-3xl border border-gray-100 shadow-sm shadow-gray-200/50 overflow-hidden">
-                    <div className="overflow-x-auto">
-                        <table className="w-full text-left">
-                            <thead className="bg-gray-50/50 border-b border-gray-100">
-                                <tr>
-                                    <th className="w-10 px-3 py-4"></th>
-                                    <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-widest">Foto</th>
-                                    <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-widest">Nama & Tipe</th>
-                                    <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-widest">Jabatan / Status</th>
-                                    <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-widest text-right">Aksi</th>
-                                </tr>
-                            </thead>
-                            <DragDropContext onDragEnd={handleDragEnd}>
-                                <Droppable droppableId="team-members-list" isDropDisabled={isDragDisabled}>
-                                    {(provided) => (
-                                        <tbody 
-                                            className="divide-y divide-gray-100"
-                                            {...provided.droppableProps}
-                                            ref={provided.innerRef}
-                                        >
-                                            {filteredMembers.map((member, index) => (
-                                                <Draggable key={member.id} draggableId={member.id.toString()} index={index} isDragDisabled={isDragDisabled}>
-                                                    {(provided, snapshot) => (
-                                                        <tr 
-                                                            className={cn("hover:bg-gray-50/50 transition-colors group bg-white", snapshot.isDragging && "shadow-lg bg-gray-50/80 z-50 relative")}
-                                                            ref={provided.innerRef}
-                                                            {...provided.draggableProps}
-                                                        >
-                                                            <td className="px-3 py-5 w-10">
-                                                                <div 
-                                                                    {...provided.dragHandleProps} 
-                                                                    className={cn("text-gray-300 hover:text-gray-500 transition-colors p-2 cursor-grab active:cursor-grabbing", isDragDisabled && "opacity-50 cursor-not-allowed")}
-                                                                >
-                                                                    <GripVertical className="h-5 w-5" />
-                                                                </div>
-                                                            </td>
-                                                            <td className="px-6 py-5">
-                                                                <div className="h-14 w-14 rounded-xl overflow-hidden bg-gray-100 border border-gray-100">
-                                                                    {member.photo_url ? (
-                                                                        <img src={member.photo_url} alt={member.name} className="w-full h-full object-cover" />
-                                                                    ) : (
-                                                                        <div className="w-full h-full flex items-center justify-center text-gray-300">
-                                                                            <User className="h-6 w-6" />
-                                                                        </div>
-                                                                    )}
-                                                                </div>
-                                                            </td>
-                                                            <td className="px-6 py-5">
-                                                                <div className="flex flex-col">
-                                                                    <p className="font-bold text-gray-900">{member.name}</p>
-                                                                    <span className={cn(
-                                                                        "mt-1 text-[10px] font-bold uppercase w-max px-2 py-0.5 rounded",
-                                                                        member.type === 'terapis' ? "bg-edufa-blue/10 text-edufa-blue" : "bg-edufa-yellow/20 text-edufa-yellow"
-                                                                    )}>
-                                                                        {member.type}
-                                                                    </span>
-                                                                </div>
-                                                            </td>
-                                                            <td className="px-6 py-5">
-                                                                <p className="font-medium text-gray-700">{member.role}</p>
-                                                                {member.description && (
-                                                                    <p className="text-xs text-gray-500 mt-1 line-clamp-1 max-w-xs">{member.description}</p>
-                                                                )}
-                                                            </td>
-                                                            <td className="px-6 py-5 text-right">
-                                                                <div className="flex items-center justify-end gap-2">
-                                                                    <Button 
-                                                                        variant="ghost" 
-                                                                        size="icon"
-                                                                        onClick={() => openEdit(member)}
-                                                                        className="h-9 w-9 rounded-lg hover:bg-edufa-blue/10 hover:text-edufa-blue transition-colors"
-                                                                    >
-                                                                        <Edit2 className="h-4 w-4" />
-                                                                    </Button>
-                                                                    <Button 
-                                                                        variant="ghost" 
-                                                                        size="icon"
-                                                                        onClick={() => deleteMember(member.id)}
-                                                                        className="h-9 w-9 rounded-lg hover:bg-rose-50 hover:text-rose-600 transition-colors"
-                                                                    >
-                                                                        <Trash2 className="h-4 w-4" />
-                                                                    </Button>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    )}
-                                                </Draggable>
-                                            ))}
-                                            {provided.placeholder}
-                                        </tbody>
-                                    )}
-                                </Droppable>
-                            </DragDropContext>
-                        </table>
-                        {filteredMembers.length === 0 && (
-                            <div className="py-20 text-center">
-                                <User className="h-12 w-12 text-gray-200 mx-auto mb-4" />
-                                <p className="text-gray-500 font-medium">Tidak ada anggota tim ditemukan.</p>
-                            </div>
-                        )}
+                {/* Lists */}
+                <DragDropContext onDragEnd={handleDragEnd}>
+                    <div className="space-y-8">
+                        {renderTable('terapis', 'Daftar Terapis', filteredTerapis)}
+                        {renderTable('staf', 'Daftar Staf', filteredStaf)}
                     </div>
-                </div>
+                </DragDropContext>
             </div>
 
             {/* Create/Edit Modal */}
@@ -413,7 +437,7 @@ export default function Index({ teamMembers }) {
                                     value={data.type}
                                     onChange={e => setData("type", e.target.value)}
                                     className={cn(
-                                        "h-11 rounded-xl border border-gray-100 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-edufa-blue",
+                                        "h-11 rounded-xl border border-gray-100 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-EDUfa-blue",
                                         errors.type && "border-rose-500"
                                     )}
                                 >
@@ -444,7 +468,7 @@ export default function Index({ teamMembers }) {
                                     rows={3}
                                     placeholder="Masukkan keterangan singkat..."
                                     className={cn(
-                                        "w-full rounded-xl border border-gray-100 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-edufa-blue",
+                                        "w-full rounded-xl border border-gray-100 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-EDUfa-blue",
                                         errors.description && "border-rose-500"
                                     )}
                                 />
@@ -452,10 +476,10 @@ export default function Index({ teamMembers }) {
                             </div>
 
                             <div className="grid gap-2">
-                                <Label className="text-sm font-bold text-gray-700">Foto Profil</Label>
+                                <Label className="text-sm font-bold text-gray-700">Foto Profil <span className="text-gray-400 font-normal text-xs">(Maks 2MB)</span></Label>
                                 <div className="space-y-4">
                                     <div 
-                                        className="relative w-32 h-32 rounded-2xl overflow-hidden border-2 border-dashed border-gray-200 bg-gray-50 group transition-all hover:border-edufa-blue/50 flex flex-col items-center justify-center cursor-pointer"
+                                        className="relative w-32 h-32 rounded-2xl overflow-hidden border-2 border-dashed border-gray-200 bg-gray-50 group transition-all hover:border-EDUfa-blue/50 flex flex-col items-center justify-center cursor-pointer"
                                         onClick={() => document.getElementById('photo-upload').click()}
                                     >
                                         {data.photo || (editingMember && editingMember.photo_url) ? (
@@ -466,7 +490,7 @@ export default function Index({ teamMembers }) {
                                             />
                                         ) : (
                                             <div className="text-center p-4">
-                                                <div className="h-8 w-8 rounded-full bg-white shadow-sm flex items-center justify-center mx-auto mb-2 text-gray-400 group-hover:text-edufa-blue group-hover:scale-110 transition-all">
+                                                <div className="h-8 w-8 rounded-full bg-white shadow-sm flex items-center justify-center mx-auto mb-2 text-gray-400 group-hover:text-EDUfa-blue group-hover:scale-110 transition-all">
                                                     <Plus className="h-4 w-4" />
                                                 </div>
                                                 <p className="text-[10px] font-bold text-gray-500">Upload Foto</p>
@@ -476,7 +500,17 @@ export default function Index({ teamMembers }) {
                                             id="photo-upload"
                                             type="file" 
                                             className="hidden" 
-                                            onChange={e => setData("photo", e.target.files[0])}
+                                            onChange={e => {
+                                                const file = e.target.files[0];
+                                                if (file && file.size > 2 * 1024 * 1024) {
+                                                    setError("photo", "Ukuran gambar tidak boleh lebih dari 2MB!");
+                                                    setData("photo", null);
+                                                    e.target.value = null;
+                                                } else {
+                                                    clearErrors("photo");
+                                                    setData("photo", file);
+                                                }
+                                            }}
                                             accept="image/*"
                                         />
                                     </div>
@@ -489,7 +523,7 @@ export default function Index({ teamMembers }) {
                             <Button type="button" variant="ghost" onClick={() => setIsModalOpen(false)} className="rounded-xl font-bold">
                                 Batal
                             </Button>
-                            <Button type="submit" disabled={processing} className="bg-edufa-blue hover:bg-edufa-blue/90 text-white rounded-xl shadow-lg shadow-edufa-blue/20 px-8 font-bold">
+                            <Button type="submit" disabled={processing} className="bg-EDUfa-blue hover:bg-EDUfa-blue/90 text-white rounded-xl shadow-lg shadow-EDUfa-blue/20 px-8 font-bold">
                                 {processing ? "Menyimpan..." : "Simpan Anggota"}
                             </Button>
                         </div>
@@ -514,7 +548,7 @@ export default function Index({ teamMembers }) {
                         Batal
                     </SecondaryButton>
                     {confirmModal.type === 'save' ? (
-                        <PrimaryButton onClick={handleConfirm} disabled={processing} className="bg-edufa-blue">
+                        <PrimaryButton onClick={handleConfirm} disabled={processing} className="bg-EDUfa-blue">
                             {processing ? 'Menyimpan...' : 'Ya, Simpan'}
                         </PrimaryButton>
                     ) : (

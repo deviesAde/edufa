@@ -52,7 +52,7 @@ export default function Hero() {
                 
                 {/* Background Layer (z-0) - Stays behind ServiceCards */}
                 <div className="absolute inset-0 z-0 overflow-hidden">
-                    <div className="absolute inset-0 bg-edufa-blue -z-30"></div>
+                    <div className="absolute inset-0 bg-EDUfa-blue -z-30"></div>
                     <FloatingShapes />
                     {/* Background Video */}
                     <video 
@@ -63,11 +63,11 @@ export default function Hero() {
                         playsInline
                         preload="metadata"
                     >
-                        <source src="/hero/edufa.webm" type="video/webm" />
+                        <source src="/hero/EDUfa.webm" type="video/webm" />
                     </video>
 
                     {/* Branded Overlays */}
-                    <div className="absolute inset-0 bg-edufa-blue/60 mix-blend-multiply -z-10"></div>
+                    <div className="absolute inset-0 bg-EDUfa-blue/60 mix-blend-multiply -z-10"></div>
                     
                     {/* Grid Pattern Layer */}
                     <div 
@@ -78,16 +78,16 @@ export default function Hero() {
                         }}
                     ></div>
 
-                    <div className="absolute inset-0 bg-gradient-to-tr from-white/20 via-transparent to-edufa-yellow/40 -z-10"></div>
+                    <div className="absolute inset-0 bg-gradient-to-tr from-white/20 via-transparent to-EDUfa-yellow/40 -z-10"></div>
                     <div className="absolute inset-0 bg-radial-gradient from-transparent to-black/30 -z-10"></div>
-                    <div className="absolute inset-0 bg-edufa-blue/20 -z-10"></div>
+                    <div className="absolute inset-0 bg-EDUfa-blue/20 -z-10"></div>
                 </div>
 
                 {/* Content Layer (z-50) - Explicitly flex-col for perfect centering */}
                 <div className="mx-auto max-w-7xl px-6 py-[clamp(4rem,12vh,9rem)] flex flex-col lg:px-8 relative z-50 w-full pointer-events-none items-center justify-center">
                     <div className="mx-auto max-w-6xl pointer-events-auto text-center flex flex-col items-center">
                         <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mb-10">
-                            <span className="rounded-full bg-edufa-blue px-6 py-2.5 text-xs font-black uppercase tracking-[0.2em] text-white shadow-lg shadow-edufa-blue/30 border border-white/10">
+                            <span className="rounded-full bg-EDUfa-blue px-6 py-2.5 text-xs font-black uppercase tracking-[0.2em] text-white shadow-lg shadow-EDUfa-blue/30 border border-white/10">
                                 Growing Together, Improving Better
                             </span>
                             <span className="text-sm font-bold text-white uppercase tracking-widest drop-shadow-sm opacity-60">
@@ -113,7 +113,7 @@ export default function Hero() {
                                         <Typewriter
                                             text={typewriterWords}
                                             speed={70}
-                                            className="text-edufa-yellow font-black row-start-1 col-start-1 text-center"
+                                            className="text-EDUfa-yellow font-black row-start-1 col-start-1 text-center"
                                             waitTime={2000}
                                             deleteSpeed={40}
                                             showCursor={false}
@@ -128,7 +128,7 @@ export default function Hero() {
                                 onClick={() => setShowEmailModal(true)}
                                 whileHover={{ scale: 1.05, rotate: -1 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="group relative overflow-hidden rounded-full bg-edufa-yellow px-14 py-5 text-base font-black text-edufa-blue shadow-2xl shadow-edufa-yellow/40 transition-all w-full sm:w-auto"
+                                className="group relative overflow-hidden rounded-full bg-EDUfa-yellow px-14 py-5 text-base font-black text-EDUfa-blue shadow-2xl shadow-EDUfa-yellow/40 transition-all w-full sm:w-auto"
                             >
                                 <span className="relative z-10">Hubungi Kami</span>
                                 <div className="absolute inset-0 bg-white/30 opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -181,8 +181,8 @@ export default function Hero() {
                                                 {/* Compact Header */}
                                                 <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between flex-shrink-0">
                                                     <div className="flex items-center gap-2">
-                                                        <div className="w-2 h-2 rounded-full bg-edufa-yellow"></div>
-                                                        <h4 className="font-black text-edufa-blue uppercase tracking-[0.15em] text-[11px]">Pilih Layanan</h4>
+                                                        <div className="w-2 h-2 rounded-full bg-EDUfa-yellow"></div>
+                                                        <h4 className="font-black text-EDUfa-blue uppercase tracking-[0.15em] text-[11px]">Pilih Layanan</h4>
                                                     </div>
                                                     <button 
                                                         onClick={() => setShowServicesMenu(false)} 
@@ -200,9 +200,9 @@ export default function Hero() {
                                                             key={idx}
                                                             href={route(item.routeName)}
                                                             onClick={() => setShowServicesMenu(false)}
-                                                            className="flex items-center gap-3 px-4 py-3.5 hover:bg-edufa-blue/5 active:bg-edufa-blue/10 text-gray-700 hover:text-edufa-blue font-semibold text-[13px] transition-colors border-b border-gray-50 last:border-0 group/link"
+                                                            className="flex items-center gap-3 px-4 py-3.5 hover:bg-EDUfa-blue/5 active:bg-EDUfa-blue/10 text-gray-700 hover:text-EDUfa-blue font-semibold text-[13px] transition-colors border-b border-gray-50 last:border-0 group/link"
                                                         >
-                                                            <span className="p-2 rounded-xl bg-gray-50 text-gray-400 group-hover/link:bg-edufa-blue/10 group-hover/link:text-edufa-blue transition-colors flex-shrink-0">
+                                                            <span className="p-2 rounded-xl bg-gray-50 text-gray-400 group-hover/link:bg-EDUfa-blue/10 group-hover/link:text-EDUfa-blue transition-colors flex-shrink-0">
                                                                 {React.cloneElement(item.icon, { size: 16, strokeWidth: 2.5 })}
                                                             </span>
                                                             <span>{item.title}</span>
@@ -239,7 +239,7 @@ export default function Hero() {
                             >
                                 {/* Decorative background */}
                                 <div className="absolute top-0 right-0 -mr-12 -mt-12 w-32 h-32 bg-green-500/10 rounded-full blur-2xl"></div>
-                                <div className="absolute bottom-0 left-0 -ml-12 -mb-12 w-24 h-24 bg-edufa-yellow/10 rounded-full blur-xl"></div>
+                                <div className="absolute bottom-0 left-0 -ml-12 -mb-12 w-24 h-24 bg-EDUfa-yellow/10 rounded-full blur-xl"></div>
 
                                 <button 
                                     onClick={() => setShowEmailModal(false)}

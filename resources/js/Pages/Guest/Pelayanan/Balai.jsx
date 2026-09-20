@@ -62,7 +62,7 @@ export default function Balai({ service }) {
                                 opacity: [0.1, 0.15, 0.1]
                             }}
                             transition={{ duration: 20, repeat: Infinity }}
-                            className="absolute -top-24 -left-24 w-[500px] h-[500px] bg-edufa-yellow rounded-full blur-[120px]"
+                            className="absolute -top-24 -left-24 w-[500px] h-[500px] bg-EDUfa-yellow rounded-full blur-[120px]"
                         />
                         <motion.div
                             animate={{
@@ -71,7 +71,7 @@ export default function Balai({ service }) {
                                 opacity: [0.05, 0.1, 0.05]
                             }}
                             transition={{ duration: 25, repeat: Infinity }}
-                            className="absolute top-0 -right-24 w-[600px] h-[600px] bg-edufa-blue rounded-full blur-[150px]"
+                            className="absolute top-0 -right-24 w-[600px] h-[600px] bg-EDUfa-blue rounded-full blur-[150px]"
                         />
                     </div>
 
@@ -80,9 +80,9 @@ export default function Balai({ service }) {
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                            className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-edufa-blue/5 border border-edufa-blue/10 text-edufa-blue text-xs font-black tracking-widest uppercase shadow-sm"
+                            className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-EDUfa-blue/5 border border-EDUfa-blue/10 text-EDUfa-blue text-xs font-black tracking-widest uppercase shadow-sm"
                         >
-                            <span className="w-2 h-2 rounded-full bg-edufa-blue mr-3 animate-pulse"></span>
+                            <span className="w-2 h-2 rounded-full bg-EDUfa-blue mr-3 animate-pulse"></span>
                             Pelayanan Kami
                         </motion.div>
 
@@ -94,10 +94,10 @@ export default function Balai({ service }) {
                         >
                             <RevealText text="Balai Latihan" className="text-gray-900" />{' '}
                             <span className="relative inline-block mt-2">
-                                <RevealText text="Kerja & Kehidupan" className="text-edufa-blue" delay={0.5} />
+                                <RevealText text="Kerja & Kehidupan" className="text-EDUfa-blue" delay={0.5} />
                                 <motion.svg
                                     viewBox="0 0 450 20"
-                                    className="absolute -bottom-2 left-0 w-full h-4 text-edufa-yellow"
+                                    className="absolute -bottom-2 left-0 w-full h-4 text-EDUfa-yellow"
                                     initial={{ pathLength: 0, opacity: 0 }}
                                     animate={{ pathLength: 1, opacity: 1 }}
                                     transition={{ delay: 1.2, duration: 1 }}
@@ -151,7 +151,7 @@ export default function Balai({ service }) {
                                     { title: "Kelas Kerajinan Tangan", desc: "Meningkatkan fokus dan motorik halus" }
                                 ].map((item, index) => (
                                     <li key={index} className="flex items-start gap-3">
-                                        <div className="w-8 h-8 rounded-full bg-edufa-yellow/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <div className="w-8 h-8 rounded-full bg-EDUfa-yellow/20 flex items-center justify-center flex-shrink-0 mt-0.5">
                                             <svg className="w-5 h-5 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
                                         </div>
                                         <div>
@@ -165,7 +165,7 @@ export default function Balai({ service }) {
                                 href={gFormUrl}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="inline-block bg-edufa-blue text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:bg-blue-800 hover:shadow-edufa-blue/30 transition-all hover:-translate-y-1"
+                                className="inline-block bg-EDUfa-blue text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:bg-blue-800 hover:shadow-EDUfa-blue/30 transition-all hover:-translate-y-1"
                             >
                                 Info Pendaftaran Sekarang
                             </a>
@@ -178,7 +178,7 @@ export default function Balai({ service }) {
                             transition={{ duration: 0.8 }}
                             className="relative"
                         >
-                            <div className="absolute inset-0 bg-edufa-yellow/20 rounded-[3rem] transform translate-x-4 translate-y-4 -z-10"></div>
+                            <div className="absolute inset-0 bg-EDUfa-yellow/20 rounded-[3rem] transform translate-x-4 translate-y-4 -z-10"></div>
                             <div className="aspect-square w-full rounded-[3rem] overflow-hidden bg-gray-100 ring-1 ring-gray-900/5">
                                 <img
                                     src="/images/Salinan IMG_0899.jpg"
@@ -196,8 +196,7 @@ export default function Balai({ service }) {
                     <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
                         <div className="flex items-center group cursor-pointer">
                             <ApplicationLogo className="h-8 w-auto group-hover:scale-105 transition-transform" />
-                            <span className="ml-2 text-lg font-bold">EDU<span className="text-edufa-blue">fa</span></span>
-                        </div>
+                            </div>
                         <p className="text-sm leading-5 text-gray-500 font-medium">
                             &copy; {new Date().getFullYear()} EDUfa Centre. Menumbuhkan Harapan, Mencapai Masa Depan Terpercaya.
                         </p>

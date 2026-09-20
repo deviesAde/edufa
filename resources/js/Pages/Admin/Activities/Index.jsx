@@ -29,7 +29,7 @@ export default function Index({ activities }) {
         (activity.type || "").toLowerCase().includes(searchTerm.toLowerCase())
     )
 
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, post, processing, errors, reset, setError, clearErrors } = useForm({
         title: "",
         description: "",
         type: "terapi",
@@ -93,7 +93,7 @@ export default function Index({ activities }) {
                     <h2 className="text-xl font-black leading-tight text-gray-900 tracking-tight">
                         Manajemen Kegiatan
                     </h2>
-                    <Button onClick={openCreate} className="bg-edufa-blue hover:bg-edufa-blue/90 text-white rounded-xl shadow-lg shadow-edufa-blue/20 px-6 font-bold">
+                    <Button onClick={openCreate} className="bg-EDUfa-blue hover:bg-EDUfa-blue/90 text-white rounded-xl shadow-lg shadow-EDUfa-blue/20 px-6 font-bold">
                         <Plus className="mr-2 h-4 w-4" /> Tambah Kegiatan
                     </Button>
                 </div>
@@ -107,7 +107,7 @@ export default function Index({ activities }) {
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                     <Input 
                         placeholder="Cari judul kegiatan..."
-                        className="pl-10 h-11 bg-white border-gray-100 rounded-xl shadow-sm focus:ring-edufa-blue"
+                        className="pl-10 h-11 bg-white border-gray-100 rounded-xl shadow-sm focus:ring-EDUfa-blue"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
@@ -144,7 +144,7 @@ export default function Index({ activities }) {
                                                 {activity.title && (
                                                     <p className="font-bold text-gray-900 leading-tight mb-1">{activity.title}</p>
                                                 )}
-                                                <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-edufa-blue/10 text-edufa-blue">
+                                                <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-EDUfa-blue/10 text-EDUfa-blue">
                                                     {activity.type}
                                                 </span>
                                             </div>
@@ -158,7 +158,7 @@ export default function Index({ activities }) {
                                                     variant="ghost" 
                                                     size="icon"
                                                     onClick={() => openEdit(activity)}
-                                                    className="h-9 w-9 rounded-lg hover:bg-edufa-blue/10 hover:text-edufa-blue transition-colors"
+                                                    className="h-9 w-9 rounded-lg hover:bg-EDUfa-blue/10 hover:text-EDUfa-blue transition-colors"
                                                 >
                                                     <Edit2 className="h-4 w-4" />
                                                 </Button>
@@ -230,7 +230,7 @@ export default function Index({ activities }) {
                                     id="type"
                                     value={data.type} 
                                     onChange={(e) => setData("type", e.target.value)}
-                                    className="h-11 rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-edufa-blue"
+                                    className="h-11 rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-EDUfa-blue"
                                 >
                                     <option value="terapi">Terapi</option>
                                     <option value="asesmen">Asesmen</option>
@@ -252,7 +252,7 @@ export default function Index({ activities }) {
                                     rows={4}
                                     placeholder="Ceritakan tentang kegiatan ini..."
                                     className={cn(
-                                        "w-full rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-edufa-blue",
+                                        "w-full rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-EDUfa-blue",
                                         errors.description && "border-rose-500"
                                     )}
                                 />
@@ -260,7 +260,7 @@ export default function Index({ activities }) {
                             </div>
 
                             <div className="grid gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100">
-                                <Label className="text-sm font-black text-gray-900 uppercase tracking-wider">Media Pendukung</Label>
+                                <Label className="text-sm font-black text-gray-900 uppercase tracking-wider">Media Pendukung <span className="text-gray-400 font-normal text-xs normal-case">(Maks 5MB)</span></Label>
                                 
                                 <div className="flex gap-2">
                                     <Button 
@@ -269,7 +269,7 @@ export default function Index({ activities }) {
                                         onClick={() => setData("media_type", "photo")}
                                         className={cn(
                                             "flex-1 rounded-xl font-bold h-10",
-                                            data.media_type === "photo" ? "bg-edufa-blue text-white" : "bg-white"
+                                            data.media_type === "photo" ? "bg-EDUfa-blue text-white" : "bg-white"
                                         )}
                                     >
                                         <ImageIcon className="mr-2 h-4 w-4" /> Foto
@@ -280,7 +280,7 @@ export default function Index({ activities }) {
                                         onClick={() => setData("media_type", "video")}
                                         className={cn(
                                             "flex-1 rounded-xl font-bold h-10",
-                                            data.media_type === "video" ? "bg-edufa-blue text-white" : "bg-white"
+                                            data.media_type === "video" ? "bg-EDUfa-blue text-white" : "bg-white"
                                         )}
                                     >
                                         <Video className="mr-2 h-4 w-4" /> Video
@@ -290,7 +290,7 @@ export default function Index({ activities }) {
                                 {data.media_type === "photo" ? (
                                     <div className="space-y-4">
                                         <div 
-                                            className="relative aspect-video rounded-2xl overflow-hidden border-2 border-dashed border-gray-200 bg-white group transition-all hover:border-edufa-blue/50 flex flex-col items-center justify-center cursor-pointer"
+                                            className="relative aspect-video rounded-2xl overflow-hidden border-2 border-dashed border-gray-200 bg-white group transition-all hover:border-EDUfa-blue/50 flex flex-col items-center justify-center cursor-pointer"
                                             onClick={() => document.getElementById('media-upload').click()}
                                         >
                                             {data.media_file ? (
@@ -313,7 +313,17 @@ export default function Index({ activities }) {
                                                 id="media-upload"
                                                 type="file" 
                                                 className="hidden" 
-                                                onChange={e => setData("media_file", e.target.files[0])}
+                                                onChange={e => {
+                                                    const file = e.target.files[0];
+                                                    if (file && file.size > 5 * 1024 * 1024) {
+                                                        setError("media_file", "Ukuran media tidak boleh lebih dari 5MB!");
+                                                        setData("media_file", null);
+                                                        e.target.value = null;
+                                                    } else {
+                                                        clearErrors("media_file");
+                                                        setData("media_file", file);
+                                                    }
+                                                }}
                                                 accept="image/*"
                                             />
                                         </div>
@@ -324,7 +334,7 @@ export default function Index({ activities }) {
                                                 <p className="text-[10px] text-gray-500 font-medium">Max: 5 MB</p>
                                             </div>
                                             {data.media_file && (
-                                                <p className="text-[10px] text-edufa-blue font-medium">
+                                                <p className="text-[10px] text-EDUfa-blue font-medium">
                                                     File size: {(data.media_file.size / 1024 / 1024).toFixed(2)} MB
                                                 </p>
                                             )}
@@ -355,7 +365,7 @@ export default function Index({ activities }) {
                             <Button type="button" variant="ghost" onClick={() => setIsModalOpen(false)} className="rounded-xl font-bold">
                                 Batal
                             </Button>
-                            <Button type="submit" disabled={processing} className="bg-edufa-blue hover:bg-edufa-blue/90 text-white rounded-xl shadow-lg shadow-edufa-blue/20 px-8 font-bold">
+                            <Button type="submit" disabled={processing} className="bg-EDUfa-blue hover:bg-EDUfa-blue/90 text-white rounded-xl shadow-lg shadow-EDUfa-blue/20 px-8 font-bold">
                                 {processing ? "Menyimpan..." : (editingActivity ? "Update Kegiatan" : "Simpan Kegiatan")}
                             </Button>
                         </div>

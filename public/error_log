@@ -1,0 +1,24 @@
+[15-Sep-2026 15:40:52 UTC] PHP Fatal error:  During inheritance of Carbon\FactoryImmutable, while autoloading Carbon\CarbonImmutable: Uncaught Error: Carbon\CarbonImmutable cannot use Carbon\Carbon - it is not a trait in /home/edufacoi/public_html/vendor/nesbot/carbon/src/Carbon/CarbonImmutable.php:838
+Stack trace:
+#0 /home/edufacoi/public_html/vendor/composer/ClassLoader.php(576): include()
+#1 /home/edufacoi/public_html/vendor/composer/ClassLoader.php(427): {closure:Composer\Autoload\ClassLoader::initializeIncludeClosure():575}()
+#2 /home/edufacoi/public_html/vendor/nesbot/carbon/src/Carbon/FactoryImmutable.php(132): Composer\Autoload\ClassLoader->loadClass()
+#3 /home/edufacoi/public_html/vendor/composer/ClassLoader.php(576): include('/home/edufacoi/...')
+#4 /home/edufacoi/public_html/vendor/composer/ClassLoader.php(427): {closure:Composer\Autoload\ClassLoader::initializeIncludeClosure():575}()
+#5 /home/edufacoi/public_html/vendor/nesbot/carbon/src/Carbon/Traits/LocalFactory.php(38): Composer\Autoload\ClassLoader->loadClass()
+#6 /home/edufacoi/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Creator.php(67): Carbon\Carbon->initLocalFactory()
+#7 /home/edufacoi/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Creator.php(249): Carbon\Carbon->__construct()
+#8 /home/edufacoi/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(139): Carbon\Carbon::now()
+#9 /home/edufacoi/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1227): Illuminate\Foundation\Http\Kernel->handle()
+#10 /home/edufacoi/public_html/public/index.php(20): Illuminate\Foundation\Application->handleRequest()
+#11 {main} in /home/edufacoi/public_html/vendor/nesbot/carbon/src/Carbon/FactoryImmutable.php on line 132
+Stack trace:
+#0 /home/edufacoi/public_html/vendor/composer/ClassLoader.php(576): include()
+#1 /home/edufacoi/public_html/vendor/composer/ClassLoader.php(427): {closure:Composer\Autoload\ClassLoader::initializeIncludeClosure():575}()
+#2 /home/edufacoi/public_html/vendor/nesbot/carbon/src/Carbon/Traits/LocalFactory.php(38): Composer\Autoload\ClassLoader->loadClass()
+#3 /home/edufacoi/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Creator.php(67): Carbon\Carbon->initLocalFactory()
+#4 /home/edufacoi/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Creator.php(249): Carbon\Carbon->__construct()
+#5 /home/edufacoi/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(139): Carbon\Carbon::now()
+#6 /home/edufacoi/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1227): Illuminate\Foundation\Http\Kernel->handle()
+#7 /home/edufacoi/public_html/public/index.php(20): Illuminate\Foundation\Application->handleRequest()
+#8 {main}

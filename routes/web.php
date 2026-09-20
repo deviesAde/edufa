@@ -26,7 +26,7 @@ Route::get('/sitemap.xml', function () {
         '/pelayanan/pelatihan',
         '/pelayanan/konseling',
         '/pelayanan/terapi',
-        '/pelayanan/paud-edufa-kids',
+        '/pelayanan/paud-EDUfa-kids',
         '/pelayanan/pendampingan-abk',
         '/pelayanan/balai-latihan-kerja'
     ];
@@ -78,7 +78,7 @@ Route::prefix('pelayanan')->name('pelayanan.')->group(function () {
     Route::get('/pelatihan', [GuestController::class, 'pelayanan'])->defaults('type', 'pelatihan')->name('pelatihan');
     Route::get('/konseling', [GuestController::class, 'pelayanan'])->defaults('type', 'konseling')->name('konseling');
     Route::get('/terapi', [GuestController::class, 'pelayanan'])->defaults('type', 'terapi')->name('terapi');
-    Route::get('/paud-edufa-kids', [GuestController::class, 'pelayanan'])->defaults('type', 'paud-edufa-kids')->name('paud');
+    Route::get('/paud-EDUfa-kids', [GuestController::class, 'pelayanan'])->defaults('type', 'paud-EDUfa-kids')->name('paud');
     Route::get('/pendampingan-abk', [GuestController::class, 'pelayanan'])->defaults('type', 'pendampingan-abk')->name('pendampingan');
     Route::get('/balai-latihan-kerja', [GuestController::class, 'pelayanan'])->defaults('type', 'balai-latihan-kerja')->name('balai');
 });

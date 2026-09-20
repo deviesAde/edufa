@@ -71,7 +71,7 @@ export default function UpdateProfileInformation({
                 <div className="flex items-center gap-4">
                     <button 
                         disabled={processing}
-                        className="inline-flex items-center px-8 py-3 bg-edufa-blue border border-transparent rounded-xl font-bold text-sm text-white uppercase tracking-widest hover:bg-edufa-blue/90 focus:bg-edufa-blue/90 active:bg-edufa-blue/90 focus:outline-none focus:ring-2 focus:ring-edufa-blue focus:ring-offset-2 transition ease-in-out duration-150 disabled:opacity-50 shadow-lg shadow-edufa-blue/20"
+                        className="inline-flex items-center px-8 py-3 bg-EDUfa-blue border border-transparent rounded-xl font-bold text-sm text-white uppercase tracking-widest hover:bg-EDUfa-blue/90 focus:bg-EDUfa-blue/90 active:bg-EDUfa-blue/90 focus:outline-none focus:ring-2 focus:ring-EDUfa-blue focus:ring-offset-2 transition ease-in-out duration-150 disabled:opacity-50 shadow-lg shadow-EDUfa-blue/20"
                     >
                         Simpan Perubahan
                     </button>

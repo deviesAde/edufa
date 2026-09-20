@@ -13,8 +13,8 @@ export default function BranchSection({ branches = [] }) {
     return (
         <div className="bg-white py-24 sm:py-32 relative overflow-hidden">
             {/* Ambient gradients light mode */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-edufa-blue/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3"></div>
-            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-edufa-yellow/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/3"></div>
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-EDUfa-blue/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3"></div>
+            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-EDUfa-yellow/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/3"></div>
 
             <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
@@ -22,7 +22,7 @@ export default function BranchSection({ branches = [] }) {
                     {/* Left: Map & Title */}
                     <div className="flex flex-col h-full h-[600px] lg:h-[700px]">
                         <div className="mb-8">
-                            <h2 className="text-sm font-black leading-7 text-edufa-blue uppercase tracking-[0.2em] mb-2 bg-edufa-blue/10 inline-block px-4 py-1 rounded-full">
+                            <h2 className="text-sm font-black leading-7 text-EDUfa-blue uppercase tracking-[0.2em] mb-2 bg-EDUfa-blue/10 inline-block px-4 py-1 rounded-full">
                                 Jaringan Cabang
                             </h2>
                             <h3 className="text-3xl font-black tracking-tight text-gray-900 md:text-5xl lg:text-6xl mb-6">
@@ -48,7 +48,7 @@ export default function BranchSection({ branches = [] }) {
                                 <input 
                                     type="text" 
                                     placeholder="Cari Kota atau Daerah..." 
-                                    className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-edufa-blue focus:border-transparent transition-all placeholder:text-gray-400"
+                                    className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-EDUfa-blue focus:border-transparent transition-all placeholder:text-gray-400"
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                 />
@@ -64,20 +64,20 @@ export default function BranchSection({ branches = [] }) {
                                         onClick={() => setSelectedCity(branch.city)}
                                         className={cn(
                                             "group bg-white hover:bg-gray-50 border p-5 rounded-2xl transition-all cursor-pointer shadow-sm hover:shadow-md",
-                                            isSelected ? "border-edufa-blue ring-1 ring-edufa-blue bg-blue-50/50" : "border-gray-100"
+                                            isSelected ? "border-EDUfa-blue ring-1 ring-EDUfa-blue bg-blue-50/50" : "border-gray-100"
                                         )}
                                     >
                                         <div className="flex items-start gap-4">
                                             <div className={cn(
                                                 "w-12 h-12 rounded-xl overflow-hidden flex-none border-2 transition-all",
-                                                isSelected ? "border-edufa-blue shadow-lg shadow-edufa-blue/20 scale-110" : "border-gray-50"
+                                                isSelected ? "border-EDUfa-blue shadow-lg shadow-EDUfa-blue/20 scale-110" : "border-gray-50"
                                             )}>
                                                 {branch.photo_url ? (
                                                     <img src={branch.photo_url} alt="" className="w-full h-full object-cover" />
                                                 ) : (
                                                     <div className={cn(
                                                         "w-full h-full flex items-center justify-center transition-colors",
-                                                        isSelected ? "bg-edufa-blue text-white" : "bg-edufa-blue/10 text-edufa-blue group-hover:bg-edufa-blue group-hover:text-white"
+                                                        isSelected ? "bg-EDUfa-blue text-white" : "bg-EDUfa-blue/10 text-EDUfa-blue group-hover:bg-EDUfa-blue group-hover:text-white"
                                                     )}>
                                                         <svg className="w-5 h-5 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                                                     </div>
@@ -89,7 +89,7 @@ export default function BranchSection({ branches = [] }) {
                                                         {branch.city}
                                                     </h4>
                                                     {branch.type && (
-                                                        <span className="text-[10px] bg-edufa-yellow text-amber-900 px-2 py-0.5 rounded font-bold uppercase tracking-wider">
+                                                        <span className="text-[10px] bg-EDUfa-yellow text-amber-900 px-2 py-0.5 rounded font-bold uppercase tracking-wider">
                                                             {branch.type}
                                                         </span>
                                                     )}

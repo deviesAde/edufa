@@ -8,7 +8,7 @@ const createCustomIcon = (isActive) => {
     return L.divIcon({
         className: 'custom-map-marker',
         html: `<div class="relative w-4 h-4">
-                 <div class="absolute inset-0 bg-edufa-blue rounded-full ${isActive ? 'scale-150 animate-pulse bg-edufa-yellow' : ''}"></div>
+                 <div class="absolute inset-0 bg-EDUfa-blue rounded-full ${isActive ? 'scale-150 animate-pulse bg-EDUfa-yellow' : ''}"></div>
                  <div class="absolute inset-0 ring-4 ring-white shadow-md rounded-full"></div>
                </div>`,
         iconSize: [24, 24],
@@ -63,7 +63,7 @@ export function LeafletMap({ branches, selectedCity, onSelectCity }) {
                     >
                         <Popup className="rounded-xl overflow-hidden font-sans">
                             <div className="p-1">
-                                <h4 className="font-bold text-edufa-blue uppercase mb-1">{branch.city}</h4>
+                                <h4 className="font-bold text-EDUfa-blue uppercase mb-1">{branch.city}</h4>
                                 <p className="text-sm font-medium text-gray-700 leading-tight">{branch.address}</p>
                             </div>
                         </Popup>

@@ -86,7 +86,7 @@ const MenuBar = ({ editor }) => {
                     }}
                     className={`p-2 rounded-lg transition-all ${
                         btn.isActive 
-                            ? 'bg-edufa-blue text-white' 
+                            ? 'bg-EDUfa-blue text-white' 
                             : 'text-gray-600 hover:bg-gray-200'
                     }`}
                     title={btn.title}
@@ -122,7 +122,7 @@ export default function RichTextEditor({ value, onChange }) {
     }, [value, editor]);
 
     return (
-        <div className="w-full border border-gray-200 rounded-xl overflow-hidden bg-white focus-within:ring-2 focus-within:ring-edufa-blue transition-all">
+        <div className="w-full border border-gray-200 rounded-xl overflow-hidden bg-white focus-within:ring-2 focus-within:ring-EDUfa-blue transition-all">
             <MenuBar editor={editor} />
             <EditorContent editor={editor} />
         </div>

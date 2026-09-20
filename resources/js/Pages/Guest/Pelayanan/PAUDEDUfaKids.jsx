@@ -36,11 +36,11 @@ export default function PAUDEDUfaKids({ service }) {
             <SEO
                 title="PAUD EDUfa Kids - Sekolah Inklusi Anak Usia Dini di Bandung"
                 description="PAUD EDUfa Kids adalah Pendidikan Anak Usia Dini berbasis inklusi di Bandung. Program belajar sambil bermain untuk anak usia 2-6 tahun dengan pendekatan individual. Kurikulum nasional & internasional. Daftar sekarang!"
-                keywords="paud inklusi bandung, sekolah anak usia dini bandung, tk inklusi bandung, paud edufa kids, pendidikan anak berkebutuhan khusus, preschool bandung, sekolah ramah anak bandung, paud terbaik bandung, taman kanak-kanak inklusi, early childhood education bandung, terapi anak"
+                keywords="paud inklusi bandung, sekolah anak usia dini bandung, tk inklusi bandung, paud EDUfa kids, pendidikan anak berkebutuhan khusus, preschool bandung, sekolah ramah anak bandung, paud terbaik bandung, taman kanak-kanak inklusi, early childhood education bandung, terapi anak"
                 breadcrumbs={[
                     { name: "Beranda", url: "/" },
                     { name: "Pelayanan", url: "/#pelayanan" },
-                    { name: "PAUD EDUfa Kids", url: "/pelayanan/paud-edufa-kids" }
+                    { name: "PAUD EDUfa Kids", url: "/pelayanan/paud-EDUfa-kids" }
                 ]}
                 faqItems={[
                     { question: "Berapa usia minimal masuk PAUD EDUfa Kids?", answer: "PAUD EDUfa Kids menerima anak mulai usia 2 tahun hingga 6 tahun dengan program yang disesuaikan sesuai tahap perkembangan masing-masing anak." },
@@ -62,7 +62,7 @@ export default function PAUDEDUfaKids({ service }) {
                                 opacity: [0.1, 0.15, 0.1]
                             }}
                             transition={{ duration: 20, repeat: Infinity }}
-                            className="absolute -top-24 -left-24 w-[500px] h-[500px] bg-edufa-yellow rounded-full blur-[120px]"
+                            className="absolute -top-24 -left-24 w-[500px] h-[500px] bg-EDUfa-yellow rounded-full blur-[120px]"
                         />
                         <motion.div
                             animate={{
@@ -71,7 +71,7 @@ export default function PAUDEDUfaKids({ service }) {
                                 opacity: [0.05, 0.1, 0.05]
                             }}
                             transition={{ duration: 25, repeat: Infinity }}
-                            className="absolute top-0 -right-24 w-[600px] h-[600px] bg-edufa-blue rounded-full blur-[150px]"
+                            className="absolute top-0 -right-24 w-[600px] h-[600px] bg-EDUfa-blue rounded-full blur-[150px]"
                         />
                     </div>
 
@@ -80,9 +80,9 @@ export default function PAUDEDUfaKids({ service }) {
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                            className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-edufa-blue/5 border border-edufa-blue/10 text-edufa-blue text-xs font-black tracking-widest uppercase shadow-sm"
+                            className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-EDUfa-blue/5 border border-EDUfa-blue/10 text-EDUfa-blue text-xs font-black tracking-widest uppercase shadow-sm"
                         >
-                            <span className="w-2 h-2 rounded-full bg-edufa-blue mr-3 animate-pulse"></span>
+                            <span className="w-2 h-2 rounded-full bg-EDUfa-blue mr-3 animate-pulse"></span>
                             Pelayanan Kami
                         </motion.div>
 
@@ -94,10 +94,10 @@ export default function PAUDEDUfaKids({ service }) {
                         >
                             <RevealText text="PAUD" className="text-gray-900" />{' '}
                             <span className="relative inline-block mt-2">
-                                <RevealText text="EDUfa Kids" className="text-edufa-blue" delay={0.5} />
+                                <RevealText text="EDUfa Kids" className="text-EDUfa-blue" delay={0.5} />
                                 <motion.svg
                                     viewBox="0 0 300 20"
-                                    className="absolute -bottom-2 left-0 w-full h-4 text-edufa-yellow"
+                                    className="absolute -bottom-2 left-0 w-full h-4 text-EDUfa-yellow"
                                     initial={{ pathLength: 0, opacity: 0 }}
                                     animate={{ pathLength: 1, opacity: 1 }}
                                     transition={{ delay: 1.2, duration: 1 }}
@@ -145,7 +145,7 @@ export default function PAUDEDUfaKids({ service }) {
                                     "Observasi Tumbuh Kembang Rutin"
                                 ].map((item, index) => (
                                     <li key={index} className="flex items-center gap-3">
-                                        <div className="w-8 h-8 rounded-full bg-edufa-yellow/20 flex items-center justify-center flex-shrink-0">
+                                        <div className="w-8 h-8 rounded-full bg-EDUfa-yellow/20 flex items-center justify-center flex-shrink-0">
                                             <svg className="w-5 h-5 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                         </div>
                                         <span className="text-gray-800 font-medium">{item}</span>
@@ -156,7 +156,7 @@ export default function PAUDEDUfaKids({ service }) {
                                 href={gFormUrl}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="inline-block bg-edufa-blue text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:bg-blue-800 hover:shadow-edufa-blue/30 transition-all hover:-translate-y-1"
+                                className="inline-block bg-EDUfa-blue text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:bg-blue-800 hover:shadow-EDUfa-blue/30 transition-all hover:-translate-y-1"
                             >
                                 Daftar PAUD Sekarang
                             </a>
@@ -169,7 +169,7 @@ export default function PAUDEDUfaKids({ service }) {
                             transition={{ duration: 0.8 }}
                             className="relative"
                         >
-                            <div className="absolute inset-0 bg-edufa-yellow/20 rounded-[3rem] transform translate-x-4 translate-y-4 -z-10"></div>
+                            <div className="absolute inset-0 bg-EDUfa-yellow/20 rounded-[3rem] transform translate-x-4 translate-y-4 -z-10"></div>
                             <div className="aspect-square w-full rounded-[3rem] overflow-hidden bg-gray-100 ring-1 ring-gray-900/5">
                                 <img
                                     src="/images/paud.png"
@@ -187,8 +187,7 @@ export default function PAUDEDUfaKids({ service }) {
                     <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
                         <div className="flex items-center group cursor-pointer">
                             <ApplicationLogo className="h-8 w-auto group-hover:scale-105 transition-transform" />
-                            <span className="ml-2 text-lg font-bold">EDU<span className="text-edufa-blue">fa</span></span>
-                        </div>
+                            </div>
                         <p className="text-sm leading-5 text-gray-500 font-medium">
                             &copy; {new Date().getFullYear()} EDUfa Centre. Menumbuhkan Harapan, Mencapai Masa Depan Terpercaya.
                         </p>

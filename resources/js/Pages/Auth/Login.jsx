@@ -24,15 +24,15 @@ export default function Login({ status }) {
             <Head title="Admin Login" />
 
             {/* Background Decorative Elements */}
-            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-edufa-blue/5 rounded-full blur-[120px] pointer-events-none"></div>
-            <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-edufa-yellow/5 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-EDUfa-blue/5 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-EDUfa-yellow/5 rounded-full blur-[120px] pointer-events-none"></div>
             
             <div className="w-full max-w-[1100px] grid lg:grid-cols-2 bg-white rounded-[2.5rem] shadow-2xl shadow-gray-200/50 overflow-hidden relative z-10 border border-gray-100">
                 
                 {/* Left Side: Branding & Info */}
-                <div className="hidden lg:flex flex-col justify-between p-12 bg-edufa-blue relative overflow-hidden text-white">
+                <div className="hidden lg:flex flex-col justify-between p-12 bg-EDUfa-blue relative overflow-hidden text-white">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
-                    <div className="absolute bottom-0 left-0 w-48 h-48 bg-edufa-yellow/10 rounded-full translate-y-1/2 -translate-x-1/2 blur-2xl"></div>
+                    <div className="absolute bottom-0 left-0 w-48 h-48 bg-EDUfa-yellow/10 rounded-full translate-y-1/2 -translate-x-1/2 blur-2xl"></div>
                     
                     <motion.div 
                         initial={{ opacity: 0, y: -20 }}
@@ -40,7 +40,7 @@ export default function Login({ status }) {
                         className="relative z-10"
                     >
                         <Link href="/" className="inline-flex items-center gap-3 group">
-                            <span className="text-2xl font-black tracking-tight">EDUFA<span className="text-edufa-yellow"> CENTER ADMIN</span></span>
+                            <span className="text-2xl font-black tracking-tight">EDUfa<span className="text-EDUfa-yellow"> CENTER ADMIN</span></span>
                         </Link>
                     </motion.div>
 
@@ -49,7 +49,7 @@ export default function Login({ status }) {
                             initial={{ opacity: 0, x: -30 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.2 }}
-                            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-edufa-yellow text-[10px] font-bold uppercase tracking-widest mb-6"
+                            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-EDUfa-yellow text-[10px] font-bold uppercase tracking-widest mb-6"
                         >
                             <Shield className="w-3 h-3" /> Dedicated Admin Portal
                         </motion.div>
@@ -60,7 +60,7 @@ export default function Login({ status }) {
                             className="text-4xl xl:text-5xl font-black leading-tight mb-6"
                         >
                             Manage Your <br />
-                            <span className="text-edufa-yellow">Healthcare Excellence</span>
+                            <span className="text-EDUfa-yellow">Healthcare Excellence</span>
                         </motion.h1>
                         <motion.p 
                             initial={{ opacity: 0 }}
@@ -115,7 +115,7 @@ export default function Login({ status }) {
                             <div className="space-y-2">
                                 <label className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">Email Address</label>
                                 <div className="relative group">
-                                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-edufa-blue transition-colors">
+                                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-EDUfa-blue transition-colors">
                                         <Mail className="w-5 h-5" />
                                     </div>
                                     <input
@@ -124,8 +124,8 @@ export default function Login({ status }) {
                                         name="email"
                                         value={data.email}
                                         autoFocus
-                                        className="w-full h-14 pl-12 pr-4 bg-gray-50 border-gray-100 rounded-2xl focus:ring-4 focus:ring-edufa-blue/5 focus:border-edufa-blue focus:bg-white transition-all font-medium text-gray-900"
-                                        placeholder="name@edufa.com"
+                                        className="w-full h-14 pl-12 pr-4 bg-gray-50 border-gray-100 rounded-2xl focus:ring-4 focus:ring-EDUfa-blue/5 focus:border-EDUfa-blue focus:bg-white transition-all font-medium text-gray-900"
+                                        placeholder="name@EDUfa.com"
                                         onChange={(e) => setData('email', e.target.value)}
                                         required
                                     />
@@ -136,7 +136,7 @@ export default function Login({ status }) {
                             <div className="space-y-2">
                                 <label className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">Password</label>
                                 <div className="relative group">
-                                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-edufa-blue transition-colors">
+                                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-EDUfa-blue transition-colors">
                                         <Lock className="w-5 h-5" />
                                     </div>
                                     <input
@@ -144,7 +144,7 @@ export default function Login({ status }) {
                                         type="password"
                                         name="password"
                                         value={data.password}
-                                        className="w-full h-14 pl-12 pr-4 bg-gray-50 border-gray-100 rounded-2xl focus:ring-4 focus:ring-edufa-blue/5 focus:border-edufa-blue focus:bg-white transition-all font-medium text-gray-900"
+                                        className="w-full h-14 pl-12 pr-4 bg-gray-50 border-gray-100 rounded-2xl focus:ring-4 focus:ring-EDUfa-blue/5 focus:border-EDUfa-blue focus:bg-white transition-all font-medium text-gray-900"
                                         placeholder="••••••••"
                                         onChange={(e) => setData('password', e.target.value)}
                                         required
@@ -161,7 +161,7 @@ export default function Login({ status }) {
                                             name="remember"
                                             checked={data.remember}
                                             onChange={(e) => setData('remember', e.target.checked)}
-                                            className="w-5 h-5 rounded-lg border-gray-200 text-edufa-blue focus:ring-edufa-blue/20 cursor-pointer"
+                                            className="w-5 h-5 rounded-lg border-gray-200 text-EDUfa-blue focus:ring-EDUfa-blue/20 cursor-pointer"
                                         />
                                     </div>
                                     <span className="ms-2 text-sm font-bold text-gray-500 group-hover:text-gray-700 transition-colors">
@@ -173,7 +173,7 @@ export default function Login({ status }) {
                             <button
                                 type="submit"
                                 disabled={processing}
-                                className="w-full h-14 bg-edufa-blue hover:bg-edufa-blue/90 text-white font-black text-lg rounded-2xl shadow-xl shadow-edufa-blue/20 flex items-center justify-center gap-3 transition-all active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none group"
+                                className="w-full h-14 bg-EDUfa-blue hover:bg-EDUfa-blue/90 text-white font-black text-lg rounded-2xl shadow-xl shadow-EDUfa-blue/20 flex items-center justify-center gap-3 transition-all active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none group"
                             >
                                 {processing ? (
                                     <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>

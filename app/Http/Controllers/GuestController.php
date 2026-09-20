@@ -112,7 +112,7 @@ class GuestController extends Controller
             'pelatihan' => 'Guest/Pelayanan/Pelatihan',
             'konseling' => 'Guest/Pelayanan/Konseling',
             'terapi' => 'Guest/Pelayanan/Terapi',
-            'paud-edufa-kids' => 'Guest/Pelayanan/PAUDEDUfaKids',
+            'paud-EDUfa-kids' => 'Guest/Pelayanan/PAUDEDUfaKids',
             'pendampingan-abk' => 'Guest/Pelayanan/PendampinganABKdiSekolah',
             'balai-latihan-kerja' => 'Guest/Pelayanan/Balai',
         ];

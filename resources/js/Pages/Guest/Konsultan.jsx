@@ -9,11 +9,11 @@ export default function Konsultan({ images }) {
     const [selectedImage, setSelectedImage] = useState(null);
 
     return (
-        <div className="min-h-screen bg-gray-50 font-sans text-gray-900 antialiased selection:bg-edufa-yellow/30">
+        <div className="min-h-screen bg-gray-50 font-sans text-gray-900 antialiased selection:bg-EDUfa-yellow/30">
             <SEO
                 title="Konsultan - EDUfa Centre"
                 description="Profil Konsultan EDUfa Centre."
-                keywords="konsultan edufa centre, konsultan, portofolio"
+                keywords="konsultan EDUfa centre, konsultan, portofolio"
                 breadcrumbs={[
                     { name: "Beranda", url: "/" },
                     { name: "Konsultan", url: "/konsultan" }
@@ -105,8 +105,7 @@ export default function Konsultan({ images }) {
                     <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
                         <div className="flex items-center">
                             <ApplicationLogo className="h-8 w-auto" />
-                            <span className="ml-2 text-lg font-bold">EDU<span className="text-edufa-blue">fa</span></span>
-                        </div>
+                            </div>
                         <p className="text-sm leading-5 text-gray-500 font-medium">
                             &copy; {new Date().getFullYear()} EDUfa Centre. Menumbuhkan Harapan, Mencapai Masa Depan Terpercaya.
                         </p>

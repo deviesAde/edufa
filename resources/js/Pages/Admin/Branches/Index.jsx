@@ -141,7 +141,7 @@ export default function Index({ branches }) {
         })
     }
 
-    const { data, setData, post, put, processing, errors, reset } = useForm({
+    const { data, setData, post, put, processing, errors, reset, setError, clearErrors } = useForm({
         city: "",
         type: "",
         address: "",
@@ -207,7 +207,7 @@ export default function Index({ branches }) {
                     <h2 className="text-xl font-black leading-tight text-gray-900 tracking-tight">
                         Manajemen Cabang
                     </h2>
-                    <Button onClick={openCreate} className="bg-edufa-blue hover:bg-edufa-blue/90 text-white rounded-xl shadow-lg shadow-edufa-blue/20 px-6 font-bold">
+                    <Button onClick={openCreate} className="bg-EDUfa-blue hover:bg-EDUfa-blue/90 text-white rounded-xl shadow-lg shadow-EDUfa-blue/20 px-6 font-bold">
                         <Plus className="mr-2 h-4 w-4" /> Tambah Cabang
                     </Button>
                 </div>
@@ -222,7 +222,7 @@ export default function Index({ branches }) {
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                         <Input 
                             placeholder="Cari kota atau alamat..."
-                            className="pl-10 h-11 bg-white border-gray-100 rounded-xl shadow-sm focus:ring-edufa-blue"
+                            className="pl-10 h-11 bg-white border-gray-100 rounded-xl shadow-sm focus:ring-EDUfa-blue"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
@@ -244,7 +244,7 @@ export default function Index({ branches }) {
                             className={cn(
                                 "rounded-lg h-10 font-bold text-sm transition-all",
                                 sortBy === "name" 
-                                    ? "bg-edufa-blue text-white hover:bg-edufa-blue/90 shadow-md" 
+                                    ? "bg-EDUfa-blue text-white hover:bg-EDUfa-blue/90 shadow-md" 
                                     : "border-gray-200 hover:bg-gray-50"
                             )}
                         >
@@ -268,7 +268,7 @@ export default function Index({ branches }) {
                             className={cn(
                                 "rounded-lg h-10 font-bold text-sm transition-all",
                                 sortBy === "date" 
-                                    ? "bg-edufa-blue text-white hover:bg-edufa-blue/90 shadow-md" 
+                                    ? "bg-EDUfa-blue text-white hover:bg-EDUfa-blue/90 shadow-md" 
                                     : "border-gray-200 hover:bg-gray-50"
                             )}
                         >
@@ -362,7 +362,7 @@ export default function Index({ branches }) {
                                                                     <div>
                                                                         <p className="font-bold text-gray-900">{branch.city}</p>
                                                                         {branch.type && (
-                                                                            <span className="text-[10px] font-bold text-edufa-yellow uppercase bg-edufa-yellow/10 px-1.5 py-0.5 rounded">
+                                                                            <span className="text-[10px] font-bold text-EDUfa-yellow uppercase bg-EDUfa-yellow/10 px-1.5 py-0.5 rounded">
                                                                                 {branch.type}
                                                                             </span>
                                                                         )}
@@ -384,7 +384,7 @@ export default function Index({ branches }) {
                                                                         variant="ghost" 
                                                                         size="icon"
                                                                         onClick={() => openEdit(branch)}
-                                                                        className="h-9 w-9 rounded-lg hover:bg-edufa-blue/10 hover:text-edufa-blue transition-colors"
+                                                                        className="h-9 w-9 rounded-lg hover:bg-EDUfa-blue/10 hover:text-EDUfa-blue transition-colors"
                                                                     >
                                                                         <Edit2 className="h-4 w-4" />
                                                                     </Button>
@@ -476,7 +476,7 @@ export default function Index({ branches }) {
                                     rows={3}
                                     placeholder="Masukkan alamat lengkap..."
                                     className={cn(
-                                        "w-full rounded-xl border border-gray-100 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-edufa-blue",
+                                        "w-full rounded-xl border border-gray-100 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-EDUfa-blue",
                                         errors.address && "border-rose-500"
                                     )}
                                 />
@@ -507,10 +507,10 @@ export default function Index({ branches }) {
                             </div>
 
                             <div className="grid gap-2">
-                                <Label className="text-sm font-bold text-gray-700">Foto Cabang</Label>
+                                <Label className="text-sm font-bold text-gray-700">Foto Cabang <span className="text-gray-400 font-normal text-xs">(Maks 2MB)</span></Label>
                                 <div className="space-y-4">
                                     <div 
-                                        className="relative aspect-video rounded-2xl overflow-hidden border-2 border-dashed border-gray-200 bg-gray-50 group transition-all hover:border-edufa-blue/50 flex flex-col items-center justify-center cursor-pointer"
+                                        className="relative aspect-video rounded-2xl overflow-hidden border-2 border-dashed border-gray-200 bg-gray-50 group transition-all hover:border-EDUfa-blue/50 flex flex-col items-center justify-center cursor-pointer"
                                         onClick={() => document.getElementById('photo-upload').click()}
                                     >
                                         {data.photo || data.photo_path ? (
@@ -521,7 +521,7 @@ export default function Index({ branches }) {
                                             />
                                         ) : (
                                             <div className="text-center p-6">
-                                                <div className="h-12 w-12 rounded-full bg-white shadow-sm flex items-center justify-center mx-auto mb-3 text-gray-400 group-hover:text-edufa-blue group-hover:scale-110 transition-all">
+                                                <div className="h-12 w-12 rounded-full bg-white shadow-sm flex items-center justify-center mx-auto mb-3 text-gray-400 group-hover:text-EDUfa-blue group-hover:scale-110 transition-all">
                                                     <Plus className="h-6 w-6" />
                                                 </div>
                                                 <p className="text-xs font-bold text-gray-500">Klik untuk upload foto</p>
@@ -532,7 +532,17 @@ export default function Index({ branches }) {
                                             id="photo-upload"
                                             type="file" 
                                             className="hidden" 
-                                            onChange={e => setData("photo", e.target.files[0])}
+                                            onChange={e => {
+                                                const file = e.target.files[0];
+                                                if (file && file.size > 2 * 1024 * 1024) {
+                                                    setError("photo", "Ukuran foto tidak boleh lebih dari 2MB!");
+                                                    setData("photo", null);
+                                                    e.target.value = null;
+                                                } else {
+                                                    clearErrors("photo");
+                                                    setData("photo", file);
+                                                }
+                                            }}
                                             accept="image/*"
                                         />
                                     </div>
@@ -542,7 +552,7 @@ export default function Index({ branches }) {
 
                             <p className="text-[10px] text-muted-foreground flex items-center gap-1.5">
                                 <ExternalLink className="h-3 w-3" /> 
-                                Tip: Gunakan foto terbaru gedung atau ruang kelas Edufa.
+                                Tip: Gunakan foto terbaru gedung atau ruang kelas EDUfa.
                             </p>
                         </div>
 
@@ -550,7 +560,7 @@ export default function Index({ branches }) {
                             <Button type="button" variant="ghost" onClick={() => setIsModalOpen(false)} className="rounded-xl font-bold">
                                 Batal
                             </Button>
-                            <Button type="submit" disabled={processing} className="bg-edufa-blue hover:bg-edufa-blue/90 text-white rounded-xl shadow-lg shadow-edufa-blue/20 px-8 font-bold">
+                            <Button type="submit" disabled={processing} className="bg-EDUfa-blue hover:bg-EDUfa-blue/90 text-white rounded-xl shadow-lg shadow-EDUfa-blue/20 px-8 font-bold">
                                 {processing ? "Menyimpan..." : "Simpan Cabang"}
                             </Button>
                         </div>

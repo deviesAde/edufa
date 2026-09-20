@@ -62,7 +62,7 @@ export default function Page({ branches }) {
                 title="Biro Psikologi & Pusat Terapi ABK di Bandung | Asesmen, Konseling, Terapi"
                 description="EDUfa Centre adalah Biro Psikologi & Pusat Layanan Terapi Anak Berkebutuhan Khusus (ABK) terkemuka di Bandung sejak 2012. Layanan: Asesmen Psikologi, Konseling, Terapi Okupasi & Wicara, PAUD Inklusi, dan Pendampingan ABK. Konsultasi sekarang!"
                 schemaType="LocalBusiness"
-                keywords="biro psikologi bandung, terapi abk bandung, psikolog anak bandung, asesmen psikologi, terapi okupasi bandung, terapi wicara bandung, konseling psikologi bandung, paud inklusi bandung, pendampingan abk, edufa centre, psikolog abk bandung, pusat terapi anak bandung, sekolah inklusi bandung, klinik psikologi bandung"
+                keywords="biro psikologi bandung, terapi abk bandung, psikolog anak bandung, asesmen psikologi, terapi okupasi bandung, terapi wicara bandung, konseling psikologi bandung, paud inklusi bandung, pendampingan abk, EDUfa centre, psikolog abk bandung, pusat terapi anak bandung, sekolah inklusi bandung, klinik psikologi bandung"
                 faqItems={faqItems}
                 breadcrumbs={[
                     { name: "Beranda", url: "/" }
@@ -97,7 +97,7 @@ export default function Page({ branches }) {
                                 scale: [1, 1.1, 1]
                             }}
                             transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-                            className="absolute -top-24 -left-24 w-96 h-96 bg-edufa-blue/10 blur-[100px] rounded-full"
+                            className="absolute -top-24 -left-24 w-96 h-96 bg-EDUfa-blue/10 blur-[100px] rounded-full"
                         ></motion.div>
                         <motion.div 
                             animate={{ 
@@ -106,7 +106,7 @@ export default function Page({ branches }) {
                                 scale: [1, 1.2, 1]
                             }}
                             transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-                            className="absolute top-1/2 -right-24 w-80 h-80 bg-edufa-yellow/10 blur-[90px] rounded-full"
+                            className="absolute top-1/2 -right-24 w-80 h-80 bg-EDUfa-yellow/10 blur-[90px] rounded-full"
                         ></motion.div>
                         <motion.div 
                             animate={{ 
@@ -114,7 +114,7 @@ export default function Page({ branches }) {
                                 y: [0, -50, 0]
                             }}
                             transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-                            className="absolute -bottom-24 left-1/3 w-[500px] h-[500px] bg-edufa-green/5 blur-[120px] rounded-full"
+                            className="absolute -bottom-24 left-1/3 w-[500px] h-[500px] bg-EDUfa-green/5 blur-[120px] rounded-full"
                         ></motion.div>
                         <motion.div 
                             animate={{ 
@@ -122,19 +122,19 @@ export default function Page({ branches }) {
                                 rotate: [0, 45, 0]
                             }}
                             transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-                            className="absolute top-1/4 left-1/2 w-72 h-72 bg-edufa-red/5 blur-[80px] rounded-full"
+                            className="absolute top-1/4 left-1/2 w-72 h-72 bg-EDUfa-red/5 blur-[80px] rounded-full"
                         ></motion.div>
 
                         {/* Floating Shapes */}
                         <motion.div 
                             animate={{ rotate: 360 }}
                             transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                            className="absolute top-40 left-[10%] w-12 h-12 border-2 border-edufa-blue/10 rounded-xl"
+                            className="absolute top-40 left-[10%] w-12 h-12 border-2 border-EDUfa-blue/10 rounded-xl"
                         ></motion.div>
                         <motion.div 
                             animate={{ y: [0, -20, 0] }}
                             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                            className="absolute bottom-20 right-[15%] w-8 h-8 bg-edufa-yellow/10 rounded-full"
+                            className="absolute bottom-20 right-[15%] w-8 h-8 bg-EDUfa-yellow/10 rounded-full"
                         ></motion.div>
                     </div>
 
@@ -145,9 +145,9 @@ export default function Page({ branches }) {
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="text-sm font-black tracking-[0.3em] text-edufa-blue uppercase mb-6 inline-flex items-center gap-3 px-6 py-2 rounded-full bg-gradient-to-r from-edufa-blue/10 to-transparent border border-edufa-blue/10 shadow-sm backdrop-blur-sm"
+                                className="text-sm font-black tracking-[0.3em] text-EDUfa-blue uppercase mb-6 inline-flex items-center gap-3 px-6 py-2 rounded-full bg-gradient-to-r from-EDUfa-blue/10 to-transparent border border-EDUfa-blue/10 shadow-sm backdrop-blur-sm"
                             >
-                                <span className="w-2 h-2 rounded-full bg-edufa-blue animate-ping"></span>
+                                <span className="w-2 h-2 rounded-full bg-EDUfa-blue animate-ping"></span>
                                 Tentangnya Kami
                             </motion.h2>
                             <h2 className="text-[clamp(2rem,6vw,3.5rem)] font-black tracking-tighter text-gray-900 mb-8">
@@ -158,14 +158,14 @@ export default function Page({ branches }) {
                                     text="Yayasan EDUfa Salamanca dan Biro Psikologi EDUfa Counseling berdiri pada tanggal" 
                                     delay={0.5} 
                                 />
-                                <span className="text-edufa-blue font-bold px-1 relative inline-block mx-2">
+                                <span className="text-EDUfa-blue font-bold px-1 relative inline-block mx-2">
                                     <span className="relative z-10">31 Mei 2012</span>
                                     <motion.span 
                                         initial={{ width: 0 }}
                                         whileInView={{ width: "100%" }}
                                         viewport={{ once: true }}
                                         transition={{ delay: 1.5, duration: 0.8 }}
-                                        className="absolute bottom-1 left-0 h-3 bg-edufa-yellow/40 -z-10 rounded-sm"
+                                        className="absolute bottom-1 left-0 h-3 bg-EDUfa-yellow/40 -z-10 rounded-sm"
                                     ></motion.span>
                                 </span> 
                                 <RevealText text="di Bandung." delay={1.8} />
@@ -187,27 +187,27 @@ export default function Page({ branches }) {
                                     initial: { duration: 0.8 },
                                     whileHover: { type: "spring", stiffness: 300, damping: 15 }
                                 }}
-                                className="bg-white rounded-[2.5rem] p-[clamp(1.5rem,5vw,2.5rem)] shadow-2xl shadow-edufa-blue/10 ring-1 ring-gray-900/5 group relative overflow-hidden flex flex-col justify-between border-b-8 border-edufa-blue"
+                                className="bg-white rounded-[2.5rem] p-[clamp(1.5rem,5vw,2.5rem)] shadow-2xl shadow-EDUfa-blue/10 ring-1 ring-gray-900/5 group relative overflow-hidden flex flex-col justify-between border-b-8 border-EDUfa-blue"
                             >
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-edufa-blue/5 rounded-full -mr-16 -mt-16 transition-transform duration-700 group-hover:scale-150"></div>
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-EDUfa-blue/5 rounded-full -mr-16 -mt-16 transition-transform duration-700 group-hover:scale-150"></div>
                                 <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
-                                    <svg className="w-32 h-32 text-edufa-blue" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72l5 2.73 5-2.73v3.72z" /></svg>
+                                    <svg className="w-32 h-32 text-EDUfa-blue" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72l5 2.73 5-2.73v3.72z" /></svg>
                                 </div>
                                 <div className="relative z-10 mb-8">
-                                    <div className="w-16 h-16 rounded-2xl bg-edufa-blue/10 flex items-center justify-center mb-8">
-                                        <svg className="w-8 h-8 text-edufa-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l9-5-9-5-9 5 9 5z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" /></svg>
+                                    <div className="w-16 h-16 rounded-2xl bg-EDUfa-blue/10 flex items-center justify-center mb-8">
+                                        <svg className="w-8 h-8 text-EDUfa-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l9-5-9-5-9 5 9 5z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" /></svg>
                                     </div>
                                     <h3 className="text-2xl font-black text-gray-900 mb-6 tracking-tight">
                                         Yayasan EDUfa Salamanca
                                     </h3>
                                     <p className="text-lg text-gray-600 leading-relaxed">
-                                        Fokus pada menyediakan <span className="font-bold text-edufa-blue">pendidikan inklusi</span> untuk semua anak.
+                                        Fokus pada menyediakan <span className="font-bold text-EDUfa-blue">pendidikan inklusi</span> untuk semua anak.
                                     </p>
                                 </div>
 
                                 <div className="pt-6 border-t border-gray-100 relative z-10">
                                     <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Nomor Akte Yayasan</p>
-                                    <p className="text-sm font-mono text-edufa-blue font-bold">AHU-AH.01.06-0040306</p>
+                                    <p className="text-sm font-mono text-EDUfa-blue font-bold">AHU-AH.01.06-0040306</p>
                                 </div>
                             </motion.div>
 
@@ -221,14 +221,14 @@ export default function Page({ branches }) {
                                     initial: { duration: 0.8 },
                                     whileHover: { type: "spring", stiffness: 300, damping: 15 }
                                 }}
-                                className="bg-white rounded-[2.5rem] p-[clamp(1.5rem,5vw,2.5rem)] shadow-2xl shadow-edufa-yellow/10 ring-1 ring-gray-900/5 group relative overflow-hidden flex flex-col justify-between border-b-8 border-edufa-yellow"
+                                className="bg-white rounded-[2.5rem] p-[clamp(1.5rem,5vw,2.5rem)] shadow-2xl shadow-EDUfa-yellow/10 ring-1 ring-gray-900/5 group relative overflow-hidden flex flex-col justify-between border-b-8 border-EDUfa-yellow"
                             >
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-edufa-yellow/5 rounded-full -mr-16 -mt-16 transition-transform duration-700 group-hover:scale-150"></div>
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-EDUfa-yellow/5 rounded-full -mr-16 -mt-16 transition-transform duration-700 group-hover:scale-150"></div>
                                 <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
-                                    <svg className="w-32 h-32 text-edufa-yellow" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" /></svg>
+                                    <svg className="w-32 h-32 text-EDUfa-yellow" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" /></svg>
                                 </div>
                                 <div className="relative z-10 mb-8">
-                                    <div className="w-16 h-16 rounded-2xl bg-edufa-yellow/10 flex items-center justify-center mb-8">
+                                    <div className="w-16 h-16 rounded-2xl bg-EDUfa-yellow/10 flex items-center justify-center mb-8">
                                         <svg className="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
                                     </div>
                                     <h3 className="text-2xl font-black text-gray-900 mb-6 tracking-tight">
@@ -253,11 +253,11 @@ export default function Page({ branches }) {
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
-                                    className="text-2xl sm:text-3xl font-black text-edufa-blue uppercase tracking-[0.2em]"
+                                    className="text-2xl sm:text-3xl font-black text-EDUfa-blue uppercase tracking-[0.2em]"
                                 >
                                     Pimpinan Yayasan
                                 </motion.h3>
-                                <div className="mt-4 h-1 w-20 bg-edufa-yellow mx-auto rounded-full"></div>
+                                <div className="mt-4 h-1 w-20 bg-EDUfa-yellow mx-auto rounded-full"></div>
                             </div>
 
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
@@ -285,10 +285,10 @@ export default function Page({ branches }) {
                                         transition={{ delay: index * 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                                         className="group relative h-full"
                                     >
-                                        <div className="relative h-full flex flex-col sm:flex-row items-center gap-8 bg-edufa-blue rounded-[3rem] p-8 lg:p-10 shadow-2xl shadow-edufa-blue/30 overflow-hidden ring-1 ring-white/10 transition-all duration-500 hover:ring-white/20 hover:shadow-edufa-blue/40">
+                                        <div className="relative h-full flex flex-col sm:flex-row items-center gap-8 bg-EDUfa-blue rounded-[3rem] p-8 lg:p-10 shadow-2xl shadow-EDUfa-blue/30 overflow-hidden ring-1 ring-white/10 transition-all duration-500 hover:ring-white/20 hover:shadow-EDUfa-blue/40">
                                             {/* Background Decor */}
                                             <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 blur-[50px] -mr-16 -mt-16 group-hover:bg-white/10 transition-all duration-700"></div>
-                                            <div className="absolute bottom-0 left-0 w-24 h-24 bg-edufa-yellow/5 blur-[40px] -ml-12 -mb-12"></div>
+                                            <div className="absolute bottom-0 left-0 w-24 h-24 bg-EDUfa-yellow/5 blur-[40px] -ml-12 -mb-12"></div>
                                             
                                             <div className="relative flex-none mt-4 sm:mt-0 group/img">
                                                 <div 
@@ -317,15 +317,15 @@ export default function Page({ branches }) {
 
                                             <div className="flex-1 text-center sm:text-left relative z-10">
                                                 <div className="mb-4 flex justify-center sm:justify-start">
-                                                    <span className="inline-flex items-center text-[10px] font-black text-edufa-yellow uppercase tracking-[0.2em] bg-white/5 px-4 py-1.5 rounded-full border border-white/10 shadow-lg backdrop-blur-md transition-transform duration-500 group-hover:scale-105">
-                                                        <span className="w-1.5 h-1.5 rounded-full bg-edufa-yellow mr-2 animate-pulse shadow-[0_0_8px_rgba(255,217,0,0.8)]"></span>
+                                                    <span className="inline-flex items-center text-[10px] font-black text-EDUfa-yellow uppercase tracking-[0.2em] bg-white/5 px-4 py-1.5 rounded-full border border-white/10 shadow-lg backdrop-blur-md transition-transform duration-500 group-hover:scale-105">
+                                                        <span className="w-1.5 h-1.5 rounded-full bg-EDUfa-yellow mr-2 animate-pulse shadow-[0_0_8px_rgba(255,217,0,0.8)]"></span>
                                                         {leader.category}
                                                     </span>
                                                 </div>
-                                                <h4 className="text-xl sm:text-2xl font-black text-white tracking-tight mb-3 leading-tight group-hover:text-edufa-yellow transition-colors duration-500">
+                                                <h4 className="text-xl sm:text-2xl font-black text-white tracking-tight mb-3 leading-tight group-hover:text-EDUfa-yellow transition-colors duration-500">
                                                     {leader.name}
                                                 </h4>
-                                                <div className="h-px w-12 bg-gradient-to-r from-edufa-yellow/60 to-transparent mb-4 mx-auto sm:mx-0 transition-all duration-500 group-hover:w-20"></div>
+                                                <div className="h-px w-12 bg-gradient-to-r from-EDUfa-yellow/60 to-transparent mb-4 mx-auto sm:mx-0 transition-all duration-500 group-hover:w-20"></div>
                                                 <p className="text-xs sm:text-[13px] font-bold text-blue-100/80 leading-relaxed uppercase tracking-widest">
                                                     {leader.role}
                                                 </p>
@@ -339,7 +339,7 @@ export default function Page({ branches }) {
                 </div>
 
                 {/* KEUNGGULAN KAMI */}
-                <div className="bg-edufa-blue py-24 sm:py-32 relative overflow-hidden">
+                <div className="bg-EDUfa-blue py-24 sm:py-32 relative overflow-hidden">
                     {/* Artistic Background Elements */}
                     <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
                         <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -351,7 +351,7 @@ export default function Page({ branches }) {
                             <rect width="100" height="100" fill="url(#grid)" />
                         </svg>
                     </div>
-                    <div className="absolute -bottom-1/4 left-1/4 w-full max-w-5xl h-[600px] bg-edufa-yellow/20 blur-[150px] rounded-full pointer-events-none"></div>
+                    <div className="absolute -bottom-1/4 left-1/4 w-full max-w-5xl h-[600px] bg-EDUfa-yellow/20 blur-[150px] rounded-full pointer-events-none"></div>
                     <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/10 blur-[120px] rounded-full pointer-events-none"></div>
                     
                     {/* Floating Decorative Shapes */}
@@ -363,7 +363,7 @@ export default function Page({ branches }) {
                     <motion.div 
                         animate={{ y: [0, 30, 0], scale: [1, 1.2, 1] }}
                         transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-                        className="absolute bottom-40 left-[5%] w-16 h-16 bg-edufa-yellow/10 rounded-2xl hidden lg:block"
+                        className="absolute bottom-40 left-[5%] w-16 h-16 bg-EDUfa-yellow/10 rounded-2xl hidden lg:block"
                     />
 
                     <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
@@ -375,15 +375,15 @@ export default function Page({ branches }) {
                                     initial={{ opacity: 0, x: -30 }}
                                     whileInView={{ opacity: 1, x: 0 }}
                                     viewport={{ once: true }}
-                                    className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/10 border border-white/20 text-edufa-yellow text-xs font-black uppercase tracking-[0.3em] mb-6 shadow-xl backdrop-blur-sm"
+                                    className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/10 border border-white/20 text-EDUfa-yellow text-xs font-black uppercase tracking-[0.3em] mb-6 shadow-xl backdrop-blur-sm"
                                 >
-                                    <span className="w-2 h-2 rounded-full bg-edufa-yellow animate-ping"></span>
+                                    <span className="w-2 h-2 rounded-full bg-EDUfa-yellow animate-ping"></span>
                                     Alasan Memilih Kami
                                 </motion.div>
 
                                 <h2 className="text-[clamp(2.5rem,8vw,4.5rem)] font-black tracking-tighter text-white mb-10 leading-[1] uppercase">
                                     <RevealText text="KEUNGGULAN" /> <br />
-                                    <span className="text-edufa-yellow"><RevealText text="KAMI" delay={0.3} /></span>
+                                    <span className="text-EDUfa-yellow"><RevealText text="KAMI" delay={0.3} /></span>
                                 </h2>
 
                                 <div className="relative space-y-8">
@@ -392,10 +392,10 @@ export default function Page({ branches }) {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: 0.5 }}
-                                        className="text-lg md:text-xl leading-relaxed text-blue-50 font-medium border-l-4 border-edufa-yellow pl-6 text-justify"
+                                        className="text-lg md:text-xl leading-relaxed text-blue-50 font-medium border-l-4 border-EDUfa-yellow pl-6 text-justify"
                                     >
                                         <p>
-                                            Menghadirkan layanan yang <strong className="text-edufa-yellow">lengkap, terintegrasi, dan berkelanjutan</strong> dari proses asesmen awal hingga program kemandirian.
+                                            Menghadirkan layanan yang <strong className="text-EDUfa-yellow">lengkap, terintegrasi, dan berkelanjutan</strong> dari proses asesmen awal hingga program kemandirian.
                                         </p>
                                     </motion.div>
                                     
@@ -414,12 +414,12 @@ export default function Page({ branches }) {
                                         whileInView={{ opacity: 1, scale: 1 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: 0.9 }}
-                                        className="p-1 inline-block bg-gradient-to-tr from-edufa-yellow to-white/20 rounded-2xl"
+                                        className="p-1 inline-block bg-gradient-to-tr from-EDUfa-yellow to-white/20 rounded-2xl"
                                     >
-                                        <div className="bg-edufa-blue px-6 py-3 rounded-[0.9rem] flex items-center gap-4">
-                                            <img src="/hero/logo edufa putih.png" alt="Logo EDUfa Centre - Biro Psikologi dan Pusat Terapi" className="h-12 w-auto" />
+                                        <div className="bg-EDUfa-blue px-6 py-3 rounded-[0.9rem] flex items-center gap-4">
+                                            <img src="/hero/logo EDUfa putih.png" alt="Logo EDUfa Centre - Biro Psikologi dan Pusat Terapi" className="h-12 w-auto" />
                                             <div>
-                                                <p className="text-[9px] font-black uppercase tracking-widest text-edufa-yellow mb-0.5">Terpercaya Sejak</p>
+                                                <p className="text-[9px] font-black uppercase tracking-widest text-EDUfa-yellow mb-0.5">Terpercaya Sejak</p>
                                                 <p className="text-xl font-black text-white leading-none">2012</p>
                                             </div>
                                         </div>
@@ -431,7 +431,7 @@ export default function Page({ branches }) {
                             <div className="lg:col-span-7 flex flex-col justify-center">
                                 {/* Memory Wall / Gallery Strip - LARGER */}
                                 <div className="relative group">
-                                    <div className="absolute -inset-4 bg-gradient-to-r from-edufa-yellow/10 to-blue-400/10 rounded-[3rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                                    <div className="absolute -inset-4 bg-gradient-to-r from-EDUfa-yellow/10 to-blue-400/10 rounded-[3rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                                     <div className="relative w-full h-[400px] sm:h-[480px] overflow-hidden rounded-[3rem] bg-black/20 border border-white/10 shadow-3xl">
                                         <style dangerouslySetInnerHTML={{__html: `
                                             @keyframes slideGaleri {
@@ -445,8 +445,8 @@ export default function Page({ branches }) {
                                                 animation-play-state: paused;
                                             }
                                         `}} />
-                                        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-edufa-blue to-transparent z-10 pointer-events-none"></div>
-                                        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-edufa-blue to-transparent z-10 pointer-events-none"></div>
+                                        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-EDUfa-blue to-transparent z-10 pointer-events-none"></div>
+                                        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-EDUfa-blue to-transparent z-10 pointer-events-none"></div>
                                         
                                         {(() => {
                                             const images = [
@@ -462,7 +462,7 @@ export default function Page({ branches }) {
                                                     {[...images, ...images].map((img, i) => (
                                                         <div key={i} className="h-full w-[320px] sm:w-[400px] p-4">
                                                             <div className="w-full h-full rounded-[2.5rem] overflow-hidden relative shadow-2xl group/img">
-                                                                <div className="absolute inset-0 bg-edufa-blue/20 mix-blend-overlay group-hover/img:bg-transparent transition-all duration-500 z-10"></div>
+                                                                <div className="absolute inset-0 bg-EDUfa-blue/20 mix-blend-overlay group-hover/img:bg-transparent transition-all duration-500 z-10"></div>
                                                                 <img 
                                                                     src={img.src}
                                                                     alt={img.alt}
@@ -476,7 +476,7 @@ export default function Page({ branches }) {
                                         })()}
                                     </div>
                                     {/* Gallery Caption Label */}
-                                    <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-8 py-3 bg-edufa-yellow rounded-full shadow-2xl">
+                                    <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-8 py-3 bg-EDUfa-yellow rounded-full shadow-2xl">
                                         <p className="text-xs font-black text-gray-900 uppercase tracking-[0.2em]">Dokumentasi Kegiatan</p>
                                     </div>
                                 </div>
@@ -493,10 +493,10 @@ export default function Page({ branches }) {
                             initial={{ opacity: 0, y: 40 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="relative rounded-[3rem] bg-edufa-blue px-8 py-16 sm:px-16 sm:py-24 shadow-3xl shadow-edufa-blue/20 overflow-hidden"
+                            className="relative rounded-[3rem] bg-EDUfa-blue px-8 py-16 sm:px-16 sm:py-24 shadow-3xl shadow-EDUfa-blue/20 overflow-hidden"
                         >
                             {/* Decorative background for the hook */}
-                            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-edufa-yellow/20 rounded-full blur-3xl"></div>
+                            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-EDUfa-yellow/20 rounded-full blur-3xl"></div>
                             <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-48 h-48 bg-white/10 rounded-full blur-2xl"></div>
 
                             <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
@@ -511,7 +511,7 @@ export default function Page({ branches }) {
                                 <div className="flex-shrink-0">
                                     <Link 
                                         href={route('artikel')}
-                                        className="inline-flex items-center px-10 py-5 bg-edufa-yellow text-gray-900 font-black rounded-2xl hover:bg-white hover:scale-105 transition-all duration-300 shadow-xl shadow-edufa-yellow/20 group"
+                                        className="inline-flex items-center px-10 py-5 bg-EDUfa-yellow text-gray-900 font-black rounded-2xl hover:bg-white hover:scale-105 transition-all duration-300 shadow-xl shadow-EDUfa-yellow/20 group"
                                     >
                                         Jelajahi Artikel
                                         <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
@@ -532,8 +532,7 @@ export default function Page({ branches }) {
                     <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
                         <div className="flex items-center">
                             <ApplicationLogo className="h-8 w-auto" />
-                            <span className="ml-2 text-lg font-bold">EDU<span className="text-edufa-blue">fa</span></span>
-                        </div>
+                            </div>
                         <p className="text-sm leading-5 text-gray-500">
                             &copy; 2024 EDUfa Centre. Menumbuhkan Harapan, Mencapai Masa Depan Terpercaya.
                         </p>

@@ -95,11 +95,11 @@ export default function Cabang({ branches = [] }) {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 font-sans text-gray-900 antialiased selection:bg-edufa-yellow/30">
+        <div className="min-h-screen bg-gray-50 font-sans text-gray-900 antialiased selection:bg-EDUfa-yellow/30">
             <SEO
                 title="Cabang EDUfa Centre - Lokasi Terdekat di Kota Anda | Peta & Alamat"
                 description="Temukan kantor cabang EDUfa Centre terdekat di kota Anda. Hadir di berbagai kota di Indonesia dengan layanan asesmen psikologi, terapi ABK, dan konseling. Lihat lokasi & alamat lengkap."
-                keywords="cabang edufa centre, lokasi edufa centre, alamat edufa centre, biro psikologi terdekat, terapi abk terdekat, kantor edufa bandung, cabang edufa indonesia, pusat terapi anak terdekat"
+                keywords="cabang EDUfa centre, lokasi EDUfa centre, alamat EDUfa centre, biro psikologi terdekat, terapi abk terdekat, kantor EDUfa bandung, cabang EDUfa indonesia, pusat terapi anak terdekat"
                 breadcrumbs={[
                     { name: "Beranda", url: "/" },
                     { name: "Cabang", url: "/cabang" }
@@ -112,8 +112,8 @@ export default function Cabang({ branches = [] }) {
                 {/* Hero Header */}
                 <div className="relative bg-white py-16 md:py-24 border-b border-gray-200 overflow-hidden">
                     <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]"></div>
-                    <div className="absolute -top-32 -right-32 w-96 h-96 bg-edufa-yellow/10 rounded-full blur-[100px]"></div>
-                    <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-edufa-blue/5 rounded-full blur-[100px]"></div>
+                    <div className="absolute -top-32 -right-32 w-96 h-96 bg-EDUfa-yellow/10 rounded-full blur-[100px]"></div>
+                    <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-EDUfa-blue/5 rounded-full blur-[100px]"></div>
                     
                     {/* Floating Decorative Shapes */}
                     <motion.div 
@@ -122,7 +122,7 @@ export default function Cabang({ branches = [] }) {
                             rotate: [0, 10, 0]
                         }}
                         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute top-20 left-10 w-12 h-12 bg-edufa-yellow/20 rounded-xl blur-sm -z-0"
+                        className="absolute top-20 left-10 w-12 h-12 bg-EDUfa-yellow/20 rounded-xl blur-sm -z-0"
                     />
                     <motion.div 
                         animate={{ 
@@ -130,20 +130,20 @@ export default function Cabang({ branches = [] }) {
                             rotate: [0, -10, 0]
                         }}
                         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute bottom-20 right-10 w-16 h-16 bg-edufa-blue/10 rounded-full blur-sm -z-0"
+                        className="absolute bottom-20 right-10 w-16 h-16 bg-EDUfa-blue/10 rounded-full blur-sm -z-0"
                     />
 
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 text-center">
                         <motion.span 
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            className="text-sm font-black text-edufa-blue tracking-[0.2em] uppercase bg-edufa-blue/10 px-4 py-1.5 rounded-full inline-block mb-6 shadow-sm border border-edufa-blue/20"
+                            className="text-sm font-black text-EDUfa-blue tracking-[0.2em] uppercase bg-EDUfa-blue/10 px-4 py-1.5 rounded-full inline-block mb-6 shadow-sm border border-EDUfa-blue/20"
                         >
                             Lokasi Kami
                         </motion.span>
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight leading-tight mb-6">
                             <RevealText text="Temukan" /> 
-                            <span className="relative z-10 text-edufa-blue inline-block px-2 mx-1">
+                            <span className="relative z-10 text-EDUfa-blue inline-block px-2 mx-1">
                                 <motion.span 
                                     initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
@@ -156,7 +156,7 @@ export default function Cabang({ branches = [] }) {
                                     initial={{ width: 0 }}
                                     animate={{ width: "100%" }}
                                     transition={{ delay: 0.3, duration: 0.8 }}
-                                    className="absolute inset-0 bg-edufa-blue -rotate-1 rounded-xl -z-10 shadow-lg shadow-edufa-blue/20"
+                                    className="absolute inset-0 bg-EDUfa-blue -rotate-1 rounded-xl -z-10 shadow-lg shadow-EDUfa-blue/20"
                                 ></motion.span>
                             </span> 
                             <br className="hidden md:block" /> 
@@ -186,7 +186,7 @@ export default function Cabang({ branches = [] }) {
                                 <svg className="w-6 h-6 absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                                 <input 
                                     type="text" 
-                                    className="w-full md:max-w-md bg-gray-50 border border-gray-200 text-gray-900 rounded-2xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-edufa-blue focus:border-edufa-blue transition-all placeholder:text-gray-400 font-medium"
+                                    className="w-full md:max-w-md bg-gray-50 border border-gray-200 text-gray-900 rounded-2xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-EDUfa-blue focus:border-EDUfa-blue transition-all placeholder:text-gray-400 font-medium"
                                     placeholder="Ketik untuk mencari cabang spesifik..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
@@ -202,12 +202,12 @@ export default function Cabang({ branches = [] }) {
                                 whileTap={{ scale: 0.95 }}
                                 onClick={findNearest}
                                 disabled={isLocating}
-                                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-gray-900 text-white px-6 py-4 rounded-2xl font-bold hover:bg-edufa-blue transition-all disabled:opacity-50 group shadow-lg hover:shadow-edufa-blue/30"
+                                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-gray-900 text-white px-6 py-4 rounded-2xl font-bold hover:bg-EDUfa-blue transition-all disabled:opacity-50 group shadow-lg hover:shadow-EDUfa-blue/30"
                             >
                                 {isLocating ? (
                                     <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                                 ) : (
-                                    <svg className="w-5 h-5 text-edufa-yellow group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                                    <svg className="w-5 h-5 text-EDUfa-yellow group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                                 )}
                                 Temukan Cabang Terdekat Saya
                             </motion.button>
@@ -239,7 +239,7 @@ export default function Cabang({ branches = [] }) {
                                 {/* Overlay indication */}
                                 <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm p-4 rounded-2xl shadow-lg border border-gray-100 text-sm font-medium text-gray-600 flex items-center justify-between z-[400] transition-opacity duration-300 opacity-60 group-hover:opacity-100">
                                     <div className="flex items-center gap-2">
-                                        <div className="w-3 h-3 rounded-full bg-edufa-blue animate-pulse"></div>
+                                        <div className="w-3 h-3 rounded-full bg-EDUfa-blue animate-pulse"></div>
                                         <span>Menampilkan {filteredBranches.length} titik lokasi</span>
                                     </div>
                                     <ApplicationLogo className="w-6 h-6 grayscale opacity-80" />
@@ -293,7 +293,7 @@ export default function Cabang({ branches = [] }) {
                                                 onClick={() => setSelectedCity(branch.city)}
                                                 className={cn(
                                                     "bg-white rounded-3xl overflow-hidden border transition-all duration-300 cursor-pointer shadow-sm hover:shadow-xl relative group flex flex-col",
-                                                    isSelected ? "border-edufa-blue ring-1 ring-edufa-blue scale-[1.02]" : "border-gray-200"
+                                                    isSelected ? "border-EDUfa-blue ring-1 ring-EDUfa-blue scale-[1.02]" : "border-gray-200"
                                                 )}
                                             >
                                                 {/* Distance Badge */}
@@ -303,7 +303,7 @@ export default function Cabang({ branches = [] }) {
                                                         animate={{ scale: 1 }}
                                                         className="absolute top-4 right-4 z-20 bg-gray-900/80 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg flex items-center gap-1 border border-white/20"
                                                     >
-                                                        <svg className="w-3.5 h-3.5 text-edufa-yellow" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/></svg>
+                                                        <svg className="w-3.5 h-3.5 text-EDUfa-yellow" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/></svg>
                                                         {branch.distance < 1 ? "< 1 KM" : `${Math.round(branch.distance)} KM`}
                                                     </motion.div>
                                                 )}
@@ -326,7 +326,7 @@ export default function Cabang({ branches = [] }) {
                                                         <div>
                                                             <div className="text-white font-black text-2xl tracking-wide uppercase drop-shadow-lg leading-none">{branch.city}</div>
                                                             {branch.type && (
-                                                                <div className="mt-2 inline-block bg-edufa-yellow text-gray-900 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-widest shadow-md">
+                                                                <div className="mt-2 inline-block bg-EDUfa-yellow text-gray-900 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-widest shadow-md">
                                                                     {branch.type}
                                                                 </div>
                                                             )}
@@ -343,7 +343,7 @@ export default function Cabang({ branches = [] }) {
                                                         target="_blank"
                                                         rel="noreferrer"
                                                         onClick={(e) => e.stopPropagation()}
-                                                        className="w-full text-center bg-gray-50 border border-gray-200 text-edufa-blue hover:bg-edufa-blue hover:text-white font-bold py-3 px-4 rounded-xl transition-colors text-sm"
+                                                        className="w-full text-center bg-gray-50 border border-gray-200 text-EDUfa-blue hover:bg-EDUfa-blue hover:text-white font-bold py-3 px-4 rounded-xl transition-colors text-sm"
                                                     >
                                                         Buka di Google Maps
                                                     </a>
@@ -379,8 +379,7 @@ export default function Cabang({ branches = [] }) {
                     <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
                         <div className="flex items-center">
                             <ApplicationLogo className="h-8 w-auto" />
-                            <span className="ml-2 text-lg font-bold">EDU<span className="text-edufa-blue">fa</span></span>
-                        </div>
+                            </div>
                         <p className="text-sm leading-5 text-gray-500 font-medium">
                             &copy; {new Date().getFullYear()} EDUfa Centre. Menumbuhkan Harapan, Mencapai Masa Depan Terpercaya.
                         </p>
