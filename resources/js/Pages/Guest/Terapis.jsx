@@ -255,31 +255,39 @@ export default function Terapis({ teamMembers = [] }) {
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true, margin: "-100px" }}
-                            className="flex flex-wrap justify-center gap-4 sm:gap-8 lg:gap-12"
+                            className="flex flex-wrap justify-center gap-x-3 gap-y-6 sm:gap-x-8 sm:gap-y-12"
                         >
                             {staffs.map((person) => (
-                                <motion.div key={`staf-${person.id}`} variants={itemVariants} className="w-[calc(50%-0.5rem)] sm:w-[calc(50%-1rem)] md:w-[calc(33.333%-1.5rem)] lg:w-[calc(20%-2rem)] group relative bg-white p-4 sm:p-6 rounded-2xl sm:rounded-[2rem] shadow-sm ring-1 ring-gray-900/5 hover:shadow-xl hover:shadow-gray-200/50 hover:-translate-y-3 transition-all duration-300 overflow-hidden">
-                                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
-                                    <div className="absolute top-0 right-0 translate-x-2 -translate-y-2 w-12 h-12 bg-EDUfa-yellow/10 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                    <div className="w-16 h-16 sm:w-28 sm:h-28 mx-auto overflow-hidden rounded-full bg-gray-50 mb-4 sm:mb-6 ring-2 sm:ring-4 ring-gray-50 group-hover:ring-EDUfa-yellow/30 transition-all duration-300 relative">
+                                <motion.div 
+                                    key={`staf-${person.id}`} 
+                                    variants={itemVariants} 
+                                    className="group relative flex flex-col h-full w-[calc(50%-0.375rem)] sm:w-[calc(33.333%-1.334rem)] lg:w-[calc(25%-1.5rem)]"
+                                >
+                                    <div className="aspect-[4/5] w-full overflow-hidden rounded-2xl sm:rounded-3xl bg-gray-50 relative mb-3 sm:mb-5 ring-1 ring-gray-900/5 transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:shadow-EDUfa-blue/10">
+                                        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
                                         <img
                                             src={person.image}
                                             alt={person.name}
-                                            className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                            className="h-full w-full object-cover object-center scale-100 group-hover:scale-110 transition-transform duration-700 ease-out"
                                             loading="lazy"
                                         />
+                                        <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-6 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 z-20">
+                                            <button 
+                                                onClick={() => setSelectedPerson(person)}
+                                                className="w-full bg-white text-EDUfa-blue font-bold py-2 sm:py-3 rounded-lg sm:rounded-xl text-[10px] sm:text-sm shadow-lg hover:bg-EDUfa-yellow hover:text-gray-900 transition-colors"
+                                            >
+                                                Perbesar
+                                            </button>
+                                        </div>
+                                        <div className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-[-10px] group-hover:translate-y-0">
+                                            <div className="bg-white/90 backdrop-blur-sm p-2 rounded-full shadow-md text-EDUfa-blue">
+                                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="absolute bottom-0 left-0 right-0 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 z-20">
-                                        <button 
-                                            onClick={() => setSelectedPerson(person)}
-                                            className="w-full bg-white text-EDUfa-blue font-bold py-3 sm:py-4 rounded-b-2xl sm:rounded-b-[2rem] text-xs sm:text-sm shadow-lg hover:bg-EDUfa-yellow hover:text-gray-900 transition-colors"
-                                        >
-                                            Perbesar
-                                        </button>
-                                    </div>
-                                    <div className="text-center relative z-10">
-                                        <h3 className="text-xs sm:text-base font-bold text-gray-900 group-hover:text-EDUfa-blue transition-colors leading-tight">{person.name}</h3>
-                                        <p className="text-[10px] sm:text-xs font-semibold text-gray-500 mt-1 sm:mt-2 bg-gray-50 py-1 sm:py-1.5 px-2 sm:px-3 rounded-md sm:rounded-lg inline-block leading-tight">{person.role}</p>
+                                    <div className="flex-grow flex flex-col justify-start px-2">
+                                        <h3 className="text-sm sm:text-xl font-bold text-gray-900 group-hover:text-EDUfa-blue transition-colors line-clamp-1" title={person.name}>{person.name}</h3>
+                                        <p className="text-xs sm:text-sm font-semibold text-EDUfa-yellow mt-1">{person.role}</p>
                                     </div>
                                 </motion.div>
                             ))}

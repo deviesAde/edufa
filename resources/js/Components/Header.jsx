@@ -33,7 +33,7 @@ export default function Header() {
                                 {[
                                     { name: 'Home', href: route('home'), active: route().current('home') },
                                     { name: 'Cabang', href: route('cabang'), active: route().current('cabang') },
-                                    { name: 'Terapis', href: route('terapis'), active: route().current('terapis') },
+                                    { name: 'Tim EDUfa Pusat', href: route('terapis'), active: route().current('terapis') },
                                     { name: 'Dokumentasi', href: route('kegiatan'), active: route().current('kegiatan') },
                                     { name: 'Artikel', href: route('artikel'), active: route().current('artikel') },
                                 ].map((item, i) => (
@@ -150,7 +150,7 @@ export default function Header() {
                                     href={route('terapis')}
                                     className={`block w-full border-l-4 py-3 pl-3 pr-4 text-left text-base transition duration-150 ease-in-out ${route().current('terapis') ? 'border-EDUfa-yellow font-bold text-gray-900 bg-EDUfa-yellow/10' : 'border-transparent font-medium text-gray-600 hover:border-EDUfa-yellow hover:bg-EDUfa-yellow/5 hover:text-gray-900'}`}
                                 >
-                                    Terapis
+                                    Tim EDUfa Pusat
                                 </Link>
                                 
                                 <Link
